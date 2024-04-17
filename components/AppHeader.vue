@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
+import IconMichelin from '@/assets/icons/michelin.svg'
 
 const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
@@ -54,13 +55,29 @@ const toggleBurger = () => {
 </script>
 
 <template>
-  <div class="app-header wrapper" :class="headerClasses">
-    <button class="app-header__switch" type="button" @click="toggleBurger">
-      <AppHeaderBurger :is-open="isOpen" />
-    </button>
+  <div class="app-header" :class="headerClasses">
+    <div class="app-header__wrapper wrapper">
+      <button class="app-header__switch" type="button" @click="toggleBurger">
+        <span class="app-header__burger">
+          <AppHeaderBurger :is-open="isOpen" />
+        </span>
 
-    <div class="app-header__middle">
-      <IconLucaLogo class="app-header__logo" />
+        <span class="app-header__switch-text type-body-large">Menu</span>
+      </button>
+
+      <div class="app-header__logo">
+        <IconLucaLogo class="app-header__logo-icon" />
+      </div>
+
+      <div class="app-header__details">
+        <IconMichelin class="app-header__michelin-icon" />
+
+        <button type="button">
+          <ButtonAppearance type="green">
+            Reservations
+          </ButtonAppearance>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -68,12 +85,8 @@ const toggleBurger = () => {
 <style lang="postcss" scoped>
 .app-header {
   isolation: isolate;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  padding-block: theme('spacing.24');
+  height: var(--app-header-height);
+  background-image: linear-gradient(to bottom, theme('colors.green/100%'), theme('colors.green/0%'));
 
   &--has-scrolled-up {
     translate: 0 0 0;
@@ -86,6 +99,15 @@ const toggleBurger = () => {
   }
 }
 
+.app-header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100%;
+  padding-block: theme('spacing.24');
+}
+
 .app-header__switch {
   position: relative;
   z-index: 1;
@@ -93,13 +115,28 @@ const toggleBurger = () => {
   padding: var(--app-outer-gutter);
 }
 
-.app-header__middle {
-  display: flex;
-  flex: 1;
-  justify-content: center;
+.app-header__burger {
+  @screen md {
+    display: none;
+  }
+}
+
+.app-header__switch-text {
+  @screen mdMax {
+    display: none;
+  }
 }
 
 .app-header__logo {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-header__logo-icon {
   width: 113px;
   height: 47px;
 
@@ -107,5 +144,20 @@ const toggleBurger = () => {
     width: 180px;
     height: 74px;
   }
+}
+
+.app-header__details {
+  display: flex;
+  gap: theme('spacing.30');
+  align-items: center;
+
+  @screen mdMax {
+    display: none;
+  }
+}
+
+.app-header__michelin-icon {
+  width: 34px;
+  height: 39px;
 }
 </style>

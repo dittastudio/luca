@@ -1,13 +1,13 @@
 @layer base {
   :root {
     /* Global units */
-    --app-outer-gutter: theme('spacing.40');
     --app-inner-gutter: theme('spacing.20');
-    --app-header-height: 96px;
+    --app-outer-gutter: theme('spacing.40');
+    --app-header-height: 87px;
 
     @screen md {
       --app-outer-gutter: theme('spacing.60');
-      --app-header-height: 144px;
+      --app-header-height: 174px;
     }
   }
 }

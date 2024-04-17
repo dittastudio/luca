@@ -59,9 +59,7 @@ export default {
       // #232323
       offblack: 'rgb(25 25 25 / <alpha-value>)',
       // #f5f4ea
-      offwhite: 'rgb(245 244 234 / <alpha-value>)',
-      // #e9e7e7
-      grey: 'rgb(233 231 231 / <alpha-value>)',
+      offwhite: 'rgb(233 231 231 / <alpha-value>)',
       // #D5DCCD
       mint: 'rgb(213 220 205 / <alpha-value>)',
       // #2D3F2F
@@ -74,6 +72,7 @@ export default {
       16: '16px',
       20: '20px',
       24: '24px',
+      30: '30px',
       32: '32px',
       40: '40px',
       48: '48px',

@@ -32,11 +32,8 @@
 }
 
 .layout-app__main {
-  display: flex;
   flex-grow: 1;
 
-  &:deep(>*) {
-    width: 100%;
-  }
+
 }
 </style>
