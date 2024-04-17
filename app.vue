@@ -23,7 +23,7 @@ useSeoMeta({
   <div data-component="App">
     <LayoutApp>
       <template #header>
-        <!-- <AppHeader /> -->
+        <AppHeader />
       </template>
 
       <template #main>
@@ -31,7 +31,7 @@ useSeoMeta({
       </template>
 
       <template #footer>
-
+        This is the Footer
       </template>
     </LayoutApp>
   </div>
