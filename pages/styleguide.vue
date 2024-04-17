@@ -1,7 +1,8 @@
 <template>
+  <!-- <Screen :log="seo_image" /> -->
+
   <div class="section wrapper">
-    <!-- <Screen :log="seo_image" /> -->
-    <h1 class="type-giga">Styleguide</h1>
+    <h1 class="type-h1 opacity-50">Styleguide</h1>
 
     <div class="s-prose">
       <h1 class="type-h1">Heading 1</h1>
@@ -31,9 +32,6 @@
 
   <div class="bg-offwhite text-green">
     <div class="section wrapper">
-      <!-- <Screen :log="seo_image" /> -->
-      <h1 class="type-giga">Styleguide</h1>
-
       <div class="s-prose">
         <h1 class="type-h1">Heading 1</h1>
         <h2 class="type-h2">Heading 2</h2>
