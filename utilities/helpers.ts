@@ -17,12 +17,12 @@ interface IImageTransformOptions {
 }
 
 const storyblokImageDimensions = (
-  filename: string | null | undefined
+  filename: string | null | undefined,
 ): { width: number; height: number } => {
   if (!filename?.length) {
     return {
       width: 0,
-      height: 0
+      height: 0,
     }
   }
 
@@ -33,7 +33,7 @@ const storyblokImageDimensions = (
 
 const storyblokImage = (
   filename: string | null | undefined,
-  options?: IImageTransformOptions | undefined
+  options?: IImageTransformOptions | undefined,
 ): string => {
   if (!filename?.length) return ''
 
@@ -43,12 +43,12 @@ const storyblokImage = (
     smart: false,
     quality: 90,
     blur: 0,
-    ...options
+    ...options,
   }
 
   const filterProperties: Record<string, string> = {
     blur: settings.blur && settings.blur > 0 ? `:blur(${settings.blur})` : '',
-    quality: `:quality(${settings.quality})`
+    quality: `:quality(${settings.quality})`,
   }
 
   const filters: string = Object.values(filterProperties)
@@ -56,9 +56,8 @@ const storyblokImage = (
     .filter(item => item.length)
     .join('')
 
-  const transforms = `m/${settings.width}x${settings.height}${
-    settings.smart ? '/smart' : ''
-  }/filters${filters}`
+  const transforms = `m/${settings.width}x${settings.height}${settings.smart ? '/smart' : ''
+    }/filters${filters}`
   const path = `${filename}/${transforms}`.replace('//a.storyblok.com', '//a2.storyblok.com')
 
   return path
@@ -66,9 +65,9 @@ const storyblokImage = (
 
 const ratioDimensions = (
   maxWidth: number,
-  dimensions: Ditta.ImageDimensions,
-  ratio: string
-): Ditta.ImageDimensions => {
+  dimensions: Luca.ImageDimensions,
+  ratio: string,
+): Luca.ImageDimensions => {
   const width = maxWidth !== 0 && maxWidth < dimensions.width ? maxWidth : dimensions.width
   let ratioCalc = dimensions.height / dimensions.width
 
