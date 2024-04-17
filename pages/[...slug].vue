@@ -42,5 +42,3 @@ onMounted(() => {
     <h1>Luca</h1>
   </div>
 </template>
-
-<style lang="postcss" scoped></style>

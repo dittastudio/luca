@@ -31,7 +31,9 @@ useSeoMeta({
       </template>
 
       <template #footer>
-        This is the Footer
+        <div class="wrapper section">
+          This is the Footer
+        </div>
       </template>
     </LayoutApp>
   </div>

@@ -8,14 +8,7 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": [
-          "tailwind",
-          "apply",
-          "include",
-          "variants",
-          "responsive",
-          "screen"
-        ]
+        "ignoreAtRules": ["tailwind", "apply", "include", "variants", "responsive", "screen"]
       }
     ],
     "function-no-unknown": [
@@ -26,6 +19,7 @@
     ],
     "selector-class-pattern": null,
     "no-descending-specificity": null,
+    "rule-empty-line-before": null,
     "selector-pseudo-class-no-unknown": [
       true,
       {

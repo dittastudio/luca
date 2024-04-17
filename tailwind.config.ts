@@ -52,13 +52,20 @@ export default {
   ],
   theme: {
     colors: {
-      white: 'rgb(255 255 255 / <alpha-value>)', // #ffffff
-      black: 'rgb(0 0 0 / <alpha-value>)', // #000000
-      offblack: 'rgb(25 25 25 / <alpha-value>)', // #232323
-      offwhite: 'rgb(245 244 234 / <alpha-value>)', // #f5f4ea
-      grey: 'rgb(50 50 50 / <alpha-value>)', // #474747
-      blue: 'rgb(0 0 255 / <alpha-value>)', // #0000ff
-      green: 'rgb(45 63 47 / <alpha-value>)', // #2D3F2F
+      // #ffffff
+      white: 'rgb(255 255 255 / <alpha-value>)',
+      // #000000
+      black: 'rgb(0 0 0 / <alpha-value>)',
+      // #232323
+      offblack: 'rgb(25 25 25 / <alpha-value>)',
+      // #f5f4ea
+      offwhite: 'rgb(245 244 234 / <alpha-value>)',
+      // #e9e7e7
+      grey: 'rgb(233 231 231 / <alpha-value>)',
+      // #D5DCCD
+      mint: 'rgb(213 220 205 / <alpha-value>)',
+      // #2D3F2F
+      green: 'rgb(45 63 47 / <alpha-value>)',
     },
     spacing: {
       4: '4px',
@@ -70,6 +77,7 @@ export default {
       32: '32px',
       40: '40px',
       48: '48px',
+      60: '60px',
       64: '64px',
       80: '80px',
       96: '96px',
@@ -78,8 +86,15 @@ export default {
       240: '240px',
     },
     fontFamily: {
-      heading: ['Greycliff CF', 'system-ui'],
-      body: ['Greycliff CF', 'system-ui'],
+      body: [
+        'Magister',
+        'Iowan Old Style',
+        'Palatino Linotype',
+        'URW Palladio L',
+        'serif',
+        'system-ui',
+      ],
+      heading: ['Sebenta', 'Rockwell', 'system-ui'],
     },
     fontSize: {
       10: '0.625rem',
@@ -91,6 +106,7 @@ export default {
       24: '1.5rem',
       32: '2rem',
       38: '2.375rem',
+      40: '2.5rem',
       44: '2.75rem',
       48: '3rem',
       52: '3.25rem',
@@ -98,6 +114,7 @@ export default {
       64: '4rem',
       68: '4.25rem',
       80: '5rem',
+      90: '5.625rem',
       104: '6.5rem',
       160: '10rem',
       'responsive-giga': clamp({
@@ -114,16 +131,14 @@ export default {
       }),
     },
     lineHeight: {
-      tight: '0.85',
       default: '1',
-      snug: '1.2',
-      normal: '1.5',
+      normal: '1.4',
     },
     letterSpacing: {
-      tighter: '-0.02em',
-      tight: '-0.01em',
       normal: '0',
-      wide: '0.04em',
+      wide: '0.03em',
+      wider: '0.05em',
+      widest: '0.2em',
     },
     screens: {
       xs: `${screenSizes.xs}px`,
@@ -152,7 +167,16 @@ export default {
       outQuart: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
       inOutQuart: 'cubic-bezier(0.77, 0, 0.175, 1)',
     },
-    extend: {},
+    extend: {
+      transitionDuration: {
+        175: '175ms',
+        350: '350ms',
+      },
+      transitionDelay: {
+        175: '175ms',
+        350: '350ms',
+      },
+    },
   },
   plugins: [],
 } satisfies Config
