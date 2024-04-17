@@ -13,7 +13,7 @@ if (!story.value) {
   })
 }
 
-const { seo_title, seo_description, seo_image } = story.value.content?.seo[0]
+const { seo_title, seo_description, seo_image } = story.value.content?.seo?.[0] || {}
 
 useSeoMeta({
   title: seo_title ?? story.value.name,
