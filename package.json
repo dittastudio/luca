@@ -13,8 +13,8 @@
     "preview": "nuxt preview",
     "nuke": "del-cli '.output' 'dist' '.nuxt' 'node_modules' 'package-lock.json'",
     "postinstall": "nuxt prepare",
-    "sb:pull-components": "storyblok pull-components --space 285197",
-    "sb:types": "npm run sb:pull-components && storyblok-generate-ts source=./components.285197.json target=./types/storyblok"
+    "sb:pull-components": "storyblok pull-components --space 285210",
+    "sb:types": "npm run sb:pull-components && storyblok-generate-ts source=./components.285210.json target=./types/storyblok"
   },
   "overrides": {
     "@pinia/nuxt": "^0.5.1"
