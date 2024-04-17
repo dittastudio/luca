@@ -56,8 +56,9 @@ const storyblokImage = (
     .filter(item => item.length)
     .join('')
 
-  const transforms = `m/${settings.width}x${settings.height}${settings.smart ? '/smart' : ''
-    }/filters${filters}`
+  const transforms = `m/${settings.width}x${settings.height}${
+    settings.smart ? '/smart' : ''
+  }/filters${filters}`
   const path = `${filename}/${transforms}`.replace('//a.storyblok.com', '//a2.storyblok.com')
 
   return path
@@ -80,7 +81,7 @@ const ratioDimensions = (
 
   return {
     width: width,
-    height: newHeight
+    height: newHeight,
   }
 }
 
