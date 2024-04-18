@@ -9,19 +9,15 @@
     overflow-wrap: break-word;
   }
 
-  a,
   button {
     touch-action: manipulation;
     user-select: none;
+    text-transform: inherit;
+    letter-spacing: inherit;
 
     &:disabled {
       cursor: not-allowed;
     }
-  }
-
-  button {
-    text-transform: inherit;
-    letter-spacing: inherit;
   }
 
   svg {

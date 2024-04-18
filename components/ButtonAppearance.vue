@@ -25,6 +25,8 @@ const { type = 'green' } = defineProps<Props>()
   isolation: isolate;
   position: relative;
 
+  display: block;
+
   padding: var(--button-padding-block) theme('spacing.40');
 
   color: var(--button-text-color);

@@ -18,12 +18,13 @@
   }
 
   .wrapper {
+    max-width: theme('screens.2xl');
     margin-inline: auto;
     padding-inline: var(--app-outer-gutter);
   }
 
   .section {
-    padding-block: theme('spacing.24');
+    padding-block: theme('spacing.40');
 
     @screen md {
       padding-block: theme('spacing.64');

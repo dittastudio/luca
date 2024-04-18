@@ -38,7 +38,7 @@ export const screenSizes = {
   lg: 1024,
   xl: 1200,
   base: 1440,
-  '2xl': 1800,
+  '2xl': 1920,
 }
 
 export default {

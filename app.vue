@@ -35,6 +35,10 @@ useSeoMeta({
           This is the Footer
         </div>
       </template>
+
+      <template #modal>
+        <ToolGrid />
+      </template>
     </LayoutApp>
   </div>
 </template>

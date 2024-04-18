@@ -17,10 +17,8 @@ const { isOpen = false } = defineProps<Props>()
 .app-header-burger {
   --size: theme('spacing.32');
 
-  display: block;
   display: flex;
   align-items: center;
-
   width: var(--size);
   height: var(--size);
 }
