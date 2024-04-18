@@ -22,6 +22,10 @@ const items = computed(() => list?.items ?? [])
           </StoryblokLink>
         </li>
       </ul>
+
+      <button class="app-header-navigation__cta" type="button">
+        <ButtonAppearance type="green">Reservations</ButtonAppearance>
+      </button>
     </div>
   </nav>
 </template>
@@ -66,11 +70,13 @@ const items = computed(() => list?.items ?? [])
 .app-header-navigation__inner {
   @screen mdMax {
     display: flex;
+    flex-direction: column;
+    gap: theme('spacing.40');
     align-items: center;
     justify-content: center;
 
     min-height: 100%;
-    padding-block: var(--app-header-height);
+    padding-block: calc(var(--app-header-height) + theme('spacing.20')) theme('spacing.40');
   }
 }
 
@@ -82,6 +88,11 @@ const items = computed(() => list?.items ?? [])
     --link-padding-x: theme('spacing.10');
     --link-padding-y: 3px;
   }
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
 
   margin-block: calc(-1 * var(--link-padding-y));
   margin-inline: calc(-1 * var(--link-padding-x));
@@ -138,6 +149,12 @@ const items = computed(() => list?.items ?? [])
 
   .app-header-navigation__list:hover &:not(:hover) {
     opacity: 0.5;
+  }
+}
+
+.app-header-navigation__cta {
+  @screen md {
+    display: none;
   }
 }
 </style>
