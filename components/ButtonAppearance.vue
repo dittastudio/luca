@@ -69,16 +69,12 @@ const { type = 'green' } = defineProps<Props>()
     --button-border-color: theme('colors.green');
   }
 
-
-
   a:active &::after,
   button:not(:disabled):active &::after {
     opacity: 1;
   }
 
-
   @media (hover: hover) {
-
 
     a:hover &,
     button:not(:disabled):hover & {

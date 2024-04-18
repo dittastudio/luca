@@ -12,7 +12,7 @@
       <h5 class="type-h5">Heading 5</h5>
       <h6 class="type-h6">Heading 6</h6>
 
-      <p class="max-w-[60ch]">
+      <p class="type-body max-w-[60ch]">
         Lorem ipsum dolor sit amet,
         <a href="#">consectetur adipisicing elit.</a> Vo luptatibus culpa porro
         placeat, doloremque ex aliquid, dolorem ut animi veritatis fugit,
