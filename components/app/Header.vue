@@ -56,21 +56,28 @@ onUnmounted(() => {
 })
 
 const headerClasses = computed<Record<string, boolean>>(() => ({
+  'app-header--is-open': isOpen.value,
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
 }))
 
-const toggleBurger = () => {
+const closeMenu = () => {
+  isOpen.value = false
+}
+
+const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
 </script>
 
 <template>
-  <div data-component="AppHeader" class="app-header" :class="headerClasses">
+  <div @keydown.esc="closeMenu" data-component="AppHeader" class="app-header" :class="headerClasses">
+    <button class="app-header__bg" type="button" @click="closeMenu"></button>
+
     <div class="app-header__wrapper wrapper">
       <div class="app-header__menu">
-        <button class="app-header__switch" type="button" @click="toggleBurger">
+        <button class="app-header__switch" type="button" @click="toggleMenu">
           <span class="app-header__burger">
             <AppHeaderBurger :is-open="isOpen" />
           </span>
@@ -78,11 +85,17 @@ const toggleBurger = () => {
           <span class="app-header__switch-text type-body-large">Menu</span>
         </button>
 
-        <AppHeaderNavigation :is-open="isOpen" :list="links" />
+        <span class="app-header__line"></span>
+
+        <div class="app-header__navigation">
+          <AppHeaderNavigation :is-open="isOpen" :list="links" />
+        </div>
       </div>
 
       <div class="app-header__logo">
-        <IconLucaLogo class="app-header__logo-icon" />
+        <NuxtLink to="/">
+          <IconLucaLogo class="app-header__logo-icon" />
+        </NuxtLink>
       </div>
 
       <div class="app-header__details">
@@ -99,10 +112,32 @@ const toggleBurger = () => {
 <style lang="postcss" scoped>
 .app-header {
   isolation: isolate;
+  position: relative;
   height: var(--app-header-height);
   background-image: linear-gradient(to bottom,
       theme('colors.green/100%'),
       theme('colors.green/0%'));
+}
+
+.app-header__bg {
+  position: absolute;
+
+  width: 100%;
+  height: 100vh;
+
+  opacity: 0;
+  background-color: theme('colors.green/50%');
+  backdrop-filter: blur(8px);
+
+  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+
+  .app-header--is-open & {
+    opacity: 1;
+  }
+
+  @screen mdMax {
+    display: none;
+  }
 }
 
 .app-header__wrapper {
@@ -123,17 +158,25 @@ const toggleBurger = () => {
 
 .app-header__menu {
   @screen md {
+    pointer-events: none;
+
     position: relative;
+    z-index: 1;
+
     display: flex;
+    gap: theme('spacing.10');
     align-items: flex-start;
   }
 }
 
 .app-header__switch {
+  pointer-events: auto;
+
   position: relative;
   z-index: 1;
-  margin: calc(-1 * var(--app-outer-gutter));
-  padding: var(--app-outer-gutter);
+
+  margin: calc(-1 * theme('spacing.20'));
+  padding: theme('spacing.20');
 }
 
 .app-header__burger {
@@ -148,7 +191,37 @@ const toggleBurger = () => {
   }
 }
 
+.app-header__line {
+  transform-origin: left;
+  scale: 0 1 1;
+
+  width: 77px;
+  height: 1px;
+  margin-block: 12px;
+
+  opacity: 0;
+  background-color: theme('colors.white');
+
+  transition:
+    scale theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+    opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  .app-header--is-open & {
+    scale: 1 1 1;
+    opacity: 1;
+    transition:
+      scale theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.100'),
+      opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.100');
+  }
+}
+
+.app-header__navigation {
+  pointer-events: auto;
+}
+
 .app-header__logo {
+  pointer-events: none;
+
   position: absolute;
   inset: 0;
 
@@ -174,6 +247,7 @@ const toggleBurger = () => {
 }
 
 .app-header__logo-icon {
+  pointer-events: auto;
   width: 113px;
   height: 47px;
 
