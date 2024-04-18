@@ -1,14 +1,14 @@
 <template>
-  <div class="layout-app">
-    <header class="layout-app__header">
+  <div data-component="AppLayout" class="app-layout">
+    <header class="app-layout__header">
       <slot name="header" />
     </header>
 
-    <main class="layout-app__main">
+    <main class="app-layout__main">
       <slot name="main" />
     </main>
 
-    <footer class="layout-app__footer">
+    <footer class="app-layout__footer">
       <slot name="footer" />
     </footer>
     <slot name="modal" />
@@ -16,7 +16,7 @@
 </template>
 
 <style lang="postcss" scoped>
-.layout-app {
+.app-layout {
   isolation: isolate;
 
   display: flex;
@@ -27,12 +27,13 @@
   min-height: 100svh;
 }
 
-.layout-app__header {
+.app-layout__header {
   position: sticky;
+  z-index: theme('zIndex.10');
   top: 0;
 }
 
-.layout-app__main {
+.app-layout__main {
   flex-grow: 1;
 }
 </style>

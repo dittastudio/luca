@@ -1,5 +1,18 @@
 import {StoryblokStory} from 'storyblok-generate-ts'
 
+export interface ColourStoryblok {
+  _uid: string;
+  component: "colour";
+  [k: string]: any;
+}
+
+export interface ColoursStoryblok {
+  colours: ColourStoryblok[];
+  _uid: string;
+  component: "colours";
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -41,6 +54,7 @@ export interface LinkListStoryblok {
 
 export interface PageStoryblok {
   seo: SeoStoryblok[];
+  background?: ColoursStoryblok[];
   _uid: string;
   component: "page";
   uuid?: string;

@@ -21,6 +21,7 @@
 
   .type-h2 {
     font-size: theme('fontSize.24');
+    letter-spacing: theme('letterSpacing.plump');
 
     @screen md {
       font-size: theme('fontSize.40');
@@ -36,10 +37,13 @@
   }
 
   .type-h4 {
+    font-size: theme('fontSize.14');
+  }
+
+  .type-h5 {
     font-size: theme('fontSize.12');
   }
 
-  .type-h5,
   .type-h6 {
     font-size: theme('fontSize.10');
   }
@@ -60,28 +64,6 @@
 
     @screen md {
       font-size: theme('fontSize.20');
-    }
-  }
-
-  .s-prose {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-      margin-block-end: theme('spacing.24');
-    }
-
-    p a {
-      text-decoration: underline;
-      opacity: 0.6;
-      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-      &:hover {
-        opacity: 1;
-      }
     }
   }
 }

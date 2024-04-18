@@ -27,7 +27,7 @@
     padding-block: theme('spacing.40');
 
     @screen md {
-      padding-block: theme('spacing.64');
+      padding-block: theme('spacing.60');
     }
   }
 }

@@ -25,10 +25,7 @@ useSeoMeta({
   <div data-component="App">
     <AppLayout>
       <template #header>
-        <AppHeader />
-        <AppNavigation :list="story.content.navigation?.[0]" />
-
-        <!-- <Screen label="Navigation" :log="story.content.navigation?.[0]" /> -->
+        <AppHeader :links="story.content.navigation?.[0]" />
       </template>
 
       <template #main>
@@ -36,18 +33,10 @@ useSeoMeta({
       </template>
 
       <template #footer>
-        <div class="wrapper section">
-          <AppFooter
-            :openingTimesTitle="story.content.opening_times_title"
-            :openingTimes="story.content.opening_times"
-            :contactTitle="story.content.contact_title"
-            :contact="story.content.contact"
-            :reservationsTitle="story.content.reservations_title"
-            :reservations="story.content.reservations"
-            :newsletterTitle="story.content.newsletter_title"
-            :newsletter="story.content.newsletter"
-          />
-        </div>
+        <AppFooter :openingTimesTitle="story.content.opening_times_title" :openingTimes="story.content.opening_times"
+          :contactTitle="story.content.contact_title" :contact="story.content.contact"
+          :reservationsTitle="story.content.reservations_title" :reservations="story.content.reservations"
+          :newsletterTitle="story.content.newsletter_title" :newsletter="story.content.newsletter" />
       </template>
 
       <template #modal>

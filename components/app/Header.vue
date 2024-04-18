@@ -1,6 +1,14 @@
 <script lang="ts" setup>
+import type { LinkListStoryblok } from '@/types/storyblok'
+
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
+
+interface Props {
+  links: LinkListStoryblok
+}
+
+const { links } = defineProps<Props>()
 
 const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
@@ -61,13 +69,17 @@ const toggleBurger = () => {
 <template>
   <div data-component="AppHeader" class="app-header" :class="headerClasses">
     <div class="app-header__wrapper wrapper">
-      <button class="app-header__switch" type="button" @click="toggleBurger">
-        <span class="app-header__burger">
-          <AppHeaderBurger :is-open="isOpen" />
-        </span>
+      <div class="app-header__menu">
+        <button class="app-header__switch" type="button" @click="toggleBurger">
+          <span class="app-header__burger">
+            <AppHeaderBurger :is-open="isOpen" />
+          </span>
 
-        <span class="app-header__switch-text type-body-large">Menu</span>
-      </button>
+          <span class="app-header__switch-text type-body-large">Menu</span>
+        </button>
+
+        <AppHeaderNavigation :is-open="isOpen" :list="links" />
+      </div>
 
       <div class="app-header__logo">
         <IconLucaLogo class="app-header__logo-icon" />
@@ -88,20 +100,33 @@ const toggleBurger = () => {
 .app-header {
   isolation: isolate;
   height: var(--app-header-height);
-  background-image: linear-gradient(
-    to bottom,
-    theme('colors.green/100%'),
-    theme('colors.green/0%')
-  );
+  background-image: linear-gradient(to bottom,
+      theme('colors.green/100%'),
+      theme('colors.green/0%'));
 }
 
 .app-header__wrapper {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   height: 100%;
-  padding-block: theme('spacing.24');
+  padding-block: theme('spacing.20');
+
+  @screen md {
+    align-items: flex-start;
+    padding-block-start: theme('spacing.50');
+  }
+}
+
+.app-header__menu {
+  @screen md {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+  }
 }
 
 .app-header__switch {

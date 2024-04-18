@@ -10,7 +10,7 @@ const toggleGrid = () => {
   <button type="button" :class="[
     'fixed z-50 bottom-20 right-20',
     'font-[monospace] text-14 text-offwhite',
-    'px-12 py-8 shadow-lg backdrop-blur-sm rounded-md',
+    'p-10 shadow-lg backdrop-blur-sm rounded-md',
     'transition-all duration-200 ease-smooth',
     { 'bg-black/20 hover:bg-black/60 active:shadow-sm': !isOpen },
     { 'bg-black/60 active:shadow-sm': isOpen },

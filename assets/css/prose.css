@@ -1,0 +1,25 @@
+@layer components {
+  .prose {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      margin-block-end: theme('spacing.20');
+    }
+  }
+
+  .prose-link {
+    p a {
+      text-decoration: underline;
+      opacity: 1;
+      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}

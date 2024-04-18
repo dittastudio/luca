@@ -25,44 +25,48 @@ const {
 </script>
 
 <template>
-  <footer data-component="AppFooter" class="footer">
+  <footer data-component="AppFooter" class="app-footer wrapper section">
     <div v-if="openingTimesTitle && openingTimes">
-      <h2 class="footer__title">{{ openingTimesTitle }}</h2>
-      <StoryblokRichText :content="openingTimes" />
+      <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
+      <StoryblokRichText class="app-footer__copy prose-link" :content="openingTimes" />
     </div>
 
     <div v-if="contactTitle && contact">
-      <h2 class="footer__title">{{ contactTitle }}</h2>
-      <StoryblokRichText :content="contact" />
+      <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
+      <StoryblokRichText class="app-footer__copy prose-link" :content="contact" />
     </div>
 
     <div v-if="reservationsTitle && reservations">
-      <h2 class="footer__title">{{ reservationsTitle }}</h2>
-      <StoryblokRichText :content="reservations" />
+      <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
+      <StoryblokRichText class="app-footer__copy prose-link" :content="reservations" />
     </div>
 
     <div v-if="newsletterTitle && newsletter">
-      <h2 class="footer__title">{{ newsletterTitle }}</h2>
-      <StoryblokRichText :content="newsletter" />
+      <h2 class="app-footer__title type-h4">{{ newsletterTitle }}</h2>
+      <StoryblokRichText class="app-footer__copy prose-link" :content="newsletter" />
     </div>
   </footer>
 </template>
 
 <style lang="postcss" scoped>
-.footer {
+.app-footer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: theme('spacing.4');
+  gap: var(--app-inner-gutter);
+
+  :deep(p) {
+    font-size: theme('fontSize.14');
+    letter-spacing: theme('letterSpacing.wide');
+  }
+
+  :deep(p+p) {
+    margin-top: theme('spacing.20');
+  }
 }
 
-.footer__title {
-  margin-bottom: theme('spacing.4');
-  font-size: theme('fontSize.20');
-  font-weight: theme('fontWeight.bold');
-  text-transform: uppercase;
-}
-
-&:deep(p) {
-  margin-bottom: theme('spacing.4');
+.app-footer__copy {
+  .app-footer__title+& {
+    margin-top: theme('spacing.20');
+  }
 }
 </style>
