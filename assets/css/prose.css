@@ -1,17 +1,15 @@
 @layer components {
   .prose {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-      margin-block-end: theme('spacing.20');
+    * + h1,
+    * + h2,
+    * + h3,
+    * + h4,
+    * + h5,
+    * + h6,
+    * + p {
+      margin-block-start: theme('spacing.20');
     }
-  }
 
-  .prose-link {
     p a {
       text-decoration: underline;
       opacity: 1;
@@ -20,6 +18,13 @@
       &:hover {
         opacity: 0.6;
       }
+    }
+  }
+
+  .prose--small {
+    p {
+      font-size: theme('fontSize.14');
+      letter-spacing: theme('letterSpacing.wide');
     }
   }
 }

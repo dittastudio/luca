@@ -25,48 +25,93 @@ const {
 </script>
 
 <template>
-  <footer data-component="AppFooter" class="app-footer wrapper section">
-    <div v-if="openingTimesTitle && openingTimes">
-      <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
-      <StoryblokRichText class="app-footer__copy prose-link" :content="openingTimes" />
-    </div>
+  <footer data-component="AppFooter" class="app-footer wrapper">
+    <hr class="app-footer__break">
 
-    <div v-if="contactTitle && contact">
-      <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
-      <StoryblokRichText class="app-footer__copy prose-link" :content="contact" />
-    </div>
+    <div class="app-footer__inner">
+      <div class="prose prose--small" v-if="openingTimesTitle && openingTimes">
+        <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
+        <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
+      </div>
 
-    <div v-if="reservationsTitle && reservations">
-      <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
-      <StoryblokRichText class="app-footer__copy prose-link" :content="reservations" />
-    </div>
+      <div class="prose prose--small" v-if="contactTitle && contact">
+        <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
+        <StoryblokRichText class="app-footer__copy" :content="contact" />
+      </div>
 
-    <div v-if="newsletterTitle && newsletter">
-      <h2 class="app-footer__title type-h4">{{ newsletterTitle }}</h2>
-      <StoryblokRichText class="app-footer__copy prose-link" :content="newsletter" />
+      <div class="prose prose--small" v-if="reservationsTitle && reservations">
+        <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
+        <StoryblokRichText class="app-footer__copy" :content="reservations" />
+      </div>
+
+      <div class="app-footer__newsletter">
+        <div class="prose prose--small" v-if="newsletterTitle && newsletter">
+          <h2 class="app-footer__title type-h4">{{ newsletterTitle }}</h2>
+          <StoryblokRichText class="app-footer__copy" :content="newsletter" />
+        </div>
+
+        <div class="app-footer__meta type-body-small">
+          <ul class="app-footer__meta-list">
+            <li class="app-footer__meta-item">©2024 All rights reserved</li>
+            <li class="app-footer__meta-item">
+              <NuxtLink to="/">Privacy Policy</NuxtLink>
+            </li>
+            <li class="app-footer__meta-item">
+              <NuxtLink to="https://e-i-b.com/" target="_blank">Design: Everything In Between</NuxtLink>
+            </li>
+            <li class="app-footer__meta-item">
+              <NuxtLink to="https://ditta.studio/" target="_blank">made by ditta</NuxtLink>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </footer>
 </template>
 
 <style lang="postcss" scoped>
 .app-footer {
+  padding-block: theme('spacing.120') theme('spacing.40');
+}
+
+.app-footer__break {
+  opacity: 0.2;
+}
+
+.app-footer__inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--app-inner-gutter);
-
-  :deep(p) {
-    font-size: theme('fontSize.14');
-    letter-spacing: theme('letterSpacing.wide');
-  }
-
-  :deep(p+p) {
-    margin-top: theme('spacing.20');
-  }
+  padding-block-start: theme('spacing.40');
 }
 
 .app-footer__copy {
   .app-footer__title+& {
     margin-top: theme('spacing.20');
+  }
+}
+
+.app-footer__newsletter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.app-footer__meta {
+  overflow: hidden;
+}
+
+.app-footer__meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.8em;
+  opacity: 0.5;
+}
+
+.app-footer__meta-item {
+  &::before {
+    content: '/';
+    margin-inline: 0.25em;
   }
 }
 </style>

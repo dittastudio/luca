@@ -4,7 +4,7 @@
   <div class="section wrapper">
     <h1 class="type-h1 opacity-50">Styleguide</h1>
 
-    <div class="prose prose-link">
+    <div class="prose">
       <h1 class="type-h1">Heading 1</h1>
       <h2 class="type-h2">Heading 2</h2>
       <h3 class="type-h3">Heading 3</h3>
@@ -32,7 +32,7 @@
 
   <div class="bg-offwhite text-green">
     <div class="section wrapper">
-      <div class="prose prose-link">
+      <div class="prose">
         <h1 class="type-h1">Heading 1</h1>
         <h2 class="type-h2">Heading 2</h2>
         <h3 class="type-h3">Heading 3</h3>
