@@ -13,14 +13,16 @@ const items = computed(() => list?.items ?? [])
 <template>
   <div data-component="AppHeaderNavigation" class="app-header-navigation"
     :class="{ 'app-header-navigation--is-open': isOpen }">
-    <ul class="app-header-navigation__list type-h2">
-      <li v-for="(item, index) in items" class="app-header-navigation__item"
-        :style="`--link-transition-delay: ${(200 + (index * 40))}ms`">
-        <StoryblokLink class="app-header-navigation__link" :item="item.link">
-          {{ item.title }}
-        </StoryblokLink>
-      </li>
-    </ul>
+    <div class="app-header-navigation__inner">
+      <ul class="app-header-navigation__list type-h2">
+        <li v-for="(item, index) in items" class="app-header-navigation__item"
+          :style="`--link-transition-delay: ${(200 + (index * 40))}ms`">
+          <StoryblokLink class="app-header-navigation__link" :item="item.link">
+            {{ item.title }}
+          </StoryblokLink>
+        </li>
+      </ul>
+    </div>
 
     <button class="app-header-navigation__cta" type="button">
       <ButtonAppearance type="green">Reservations</ButtonAppearance>
@@ -37,9 +39,20 @@ const items = computed(() => list?.items ?? [])
     align-items: center;
 
     min-height: 100%;
-    padding-block: calc(var(--app-header-height) + theme('spacing.20')) theme('spacing.40');
+    padding-block: var(--app-header-height) theme('spacing.40');
 
     text-align: center;
+  }
+}
+
+.app-header-navigation__inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  @screen mdMax {
+    width: 100%;
   }
 }
 
@@ -53,20 +66,12 @@ const items = computed(() => list?.items ?? [])
     --link-padding-y: 3px;
   }
 
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-block: calc(-1 * var(--link-padding-y));
-  margin-inline: calc(-1 * var(--link-padding-x));
+  font-size: theme('fontSize.24');
 
   @screen md {
+    margin-block: calc(-1 * var(--link-padding-y));
+    margin-inline: calc(-1 * var(--link-padding-x));
     font-size: theme('fontSize.20');
-  }
-
-  @screen mdMax {
-    width: 100%;
   }
 }
 
