@@ -11,6 +11,7 @@
     <footer class="layout-app__footer">
       <slot name="footer" />
     </footer>
+    <slot name="modal" />
   </div>
 </template>
 
@@ -32,11 +33,6 @@
 }
 
 .layout-app__main {
-  display: flex;
   flex-grow: 1;
-
-  &:deep(>*) {
-    width: 100%;
-  }
 }
 </style>

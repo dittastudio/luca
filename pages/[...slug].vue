@@ -43,5 +43,3 @@ onMounted(() => {
     <!-- <Screen :log="seo" label="SEO Stuff" /> -->
   </div>
 </template>
-
-<style lang="postcss" scoped></style>
