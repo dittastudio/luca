@@ -43,6 +43,14 @@ export interface BlockTextStoryblok {
   [k: string]: any;
 }
 
+export interface BlockTextEditorialStoryblok {
+  title?: string;
+  text: RichtextStoryblok;
+  _uid: string;
+  component: "block_text_editorial";
+  [k: string]: any;
+}
+
 export interface ColourStoryblok {
   _uid: string;
   component: "colour";
@@ -97,7 +105,7 @@ export interface LinkListStoryblok {
 
 export interface PageStoryblok {
   seo: SeoStoryblok[];
-  blocks?: (BlockTextStoryblok | BlockImageStoryblok)[];
+  blocks?: (BlockTextStoryblok | BlockImageStoryblok | BlockTextEditorialStoryblok)[];
   _uid: string;
   component: "page";
   uuid?: string;

@@ -3,7 +3,7 @@ import { isStoryblokEditor } from '@/utilities/helpers'
 import type { SettingsStoryblok } from '@/types/storyblok'
 
 const route = useRoute()
-const story = await useStory<SettingsStoryblok>('/settings')
+const story = await useStoryblokStory<SettingsStoryblok>('/settings')
 
 const globalClasses = computed(() => ({
   'is-storyblok-editor': isStoryblokEditor(route.query),

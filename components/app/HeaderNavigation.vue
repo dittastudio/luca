@@ -11,11 +11,17 @@ const items = computed(() => list?.items ?? [])
 </script>
 
 <template>
-  <div data-component="AppHeaderNavigation" class="app-header-navigation"
-    :class="{ 'app-header-navigation--is-open': isOpen }">
+  <div
+    data-component="AppHeaderNavigation"
+    class="app-header-navigation"
+    :class="{ 'app-header-navigation--is-open': isOpen }"
+  >
     <ul class="app-header-navigation__list type-h2">
-      <li v-for="(item, index) in items" class="app-header-navigation__item"
-        :style="`--link-transition-delay: ${(200 + (index * 40))}ms`">
+      <li
+        v-for="(item, index) in items"
+        class="app-header-navigation__item"
+        :style="`--link-transition-delay: ${200 + index * 40}ms`"
+      >
         <StoryblokLink class="app-header-navigation__link" :item="item.link">
           {{ item.title }}
         </StoryblokLink>
@@ -97,11 +103,12 @@ const items = computed(() => list?.items ?? [])
 .app-header-navigation__item {
   translate: calc(-1 * var(--link-nudge)) 0 0;
   opacity: 0;
-  animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth') forwards;
-
+  animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
+    forwards;
 
   .app-header-navigation--is-open & {
-    animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth') var(--link-transition-delay) forwards;
+    animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
+      var(--link-transition-delay) forwards;
   }
 }
 
