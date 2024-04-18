@@ -7,7 +7,6 @@ const raf = ref<any>(null)
 
 const handleScroll = () => {
   const triggerPoint = 50
-
   const scrollPos = window.scrollY
 
   hasScrolled.value = scrollPos > triggerPoint
@@ -39,7 +38,12 @@ onMounted(() => {
   window.addEventListener('scroll', rAFHeaderScroll)
 })
 
-const headerClasses = computed<any>(() => ({
+onUnmounted(() => {
+  cancelAnimationFrame(raf.value)
+  window.removeEventListener('scroll', rAFHeaderScroll)
+})
+
+const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
@@ -47,16 +51,15 @@ const headerClasses = computed<any>(() => ({
 </script>
 
 <template>
-  <div class="app-header" :class="headerClasses">
-    Luca
-  </div>
+  <div data-component="AppHeader" class="app-header" :class="headerClasses">Luca</div>
 </template>
 
 <style lang="postcss" scoped>
 .app-header {
   &--has-scrolled-up {
     translate: 0 0 0;
-    transition: translate theme('transitionDuration.500') theme('transitionTimingFunction.inOutExpo');
+    transition: translate theme('transitionDuration.500')
+      theme('transitionTimingFunction.inOutExpo');
   }
 
   &--has-scrolled-down {

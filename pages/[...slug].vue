@@ -9,28 +9,29 @@ if (!story.value) {
   throw createError({
     statusCode: 404,
     statusMessage: `Page not found`,
-    fatal: false
+    fatal: false,
   })
 }
 
-const { seo_title, seo_description, seo_image } = story.value.content?.seo?.[0] || {}
+const seo = story.value.content?.seo?.[0]
+const { title, description, image } = seo || {}
 
 useSeoMeta({
-  title: seo_title ?? story.value.name,
-  description: seo_description,
-  ogTitle: seo_title ?? story.value.name,
-  ogDescription: seo_description,
-  ogImage: storyblokImage(seo_image?.filename, { width: 1230, height: 630 }) || null,
+  title: title ?? story.value.name,
+  description: description,
+  ogTitle: title ?? story.value.name,
+  ogDescription: description,
+  ogImage: storyblokImage(image?.filename, { width: 1230, height: 630 }) || null,
   ogType: 'website',
-  twitterTitle: seo_title ?? story.value.name,
+  twitterTitle: title ?? story.value.name,
   twitterCard: 'summary_large_image',
-  twitterImage: storyblokImage(seo_image?.filename, { width: 1230, height: 630 }) || null
+  twitterImage: storyblokImage(image?.filename, { width: 1230, height: 630 }) || null,
 })
 
 onMounted(() => {
   if (story.value) {
     useStoryblokBridge(story.value.id, (evStory: any) => (story.value = evStory), {
-      preventClicks: true
+      preventClicks: true,
     })
   }
 })
@@ -38,8 +39,8 @@ onMounted(() => {
 
 <template>
   <div class="wrapper">
-    <!-- <Screen :log="seo_image" /> -->
     <h1>Luca</h1>
+    <!-- <Screen :log="seo" label="SEO Stuff" /> -->
   </div>
 </template>
 
