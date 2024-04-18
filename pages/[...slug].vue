@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { storyblokImage } from '@/utilities/helpers'
 import type { PageStoryblok } from '@/types/storyblok'
+import { storyblokImage } from '@/utilities/helpers'
 
 const route = useRoute()
 const story = await useStory<PageStoryblok>(route.path)
@@ -39,7 +39,7 @@ onMounted(() => {
 
 <template>
   <div class="wrapper">
-    <h1>Luca</h1>
     <!-- <Screen :log="seo" label="SEO Stuff" /> -->
+    <BlockComponents :content="story.content" />
   </div>
 </template>

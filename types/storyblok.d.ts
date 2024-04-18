@@ -1,5 +1,21 @@
 import {StoryblokStory} from 'storyblok-generate-ts'
 
+export interface RichtextStoryblok {
+  type: string;
+  content?: RichtextStoryblok[];
+  marks?: RichtextStoryblok[];
+  attrs?: any;
+  text?: string;
+  [k: string]: any;
+}
+
+export interface BlockTextStoryblok {
+  text: RichtextStoryblok;
+  _uid: string;
+  component: "block_text";
+  [k: string]: any;
+}
+
 export interface ColourStoryblok {
   _uid: string;
   component: "colour";
@@ -54,7 +70,7 @@ export interface LinkListStoryblok {
 
 export interface PageStoryblok {
   seo: SeoStoryblok[];
-  background?: ColoursStoryblok[];
+  blocks?: BlockTextStoryblok[];
   _uid: string;
   component: "page";
   uuid?: string;
@@ -85,15 +101,6 @@ export interface SeoStoryblok {
   image: AssetStoryblok;
   _uid: string;
   component: "seo";
-  [k: string]: any;
-}
-
-export interface RichtextStoryblok {
-  type: string;
-  content?: RichtextStoryblok[];
-  marks?: RichtextStoryblok[];
-  attrs?: any;
-  text?: string;
   [k: string]: any;
 }
 
