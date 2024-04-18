@@ -33,14 +33,22 @@ useSeoMeta({
       </template>
 
       <template #footer>
-        <AppFooter :openingTimesTitle="story.content.opening_times_title" :openingTimes="story.content.opening_times"
-          :contactTitle="story.content.contact_title" :contact="story.content.contact"
-          :reservationsTitle="story.content.reservations_title" :reservations="story.content.reservations"
-          :newsletterTitle="story.content.newsletter_title" :newsletter="story.content.newsletter" />
+        <AppFooter
+          :openingTimesTitle="story.content.opening_times_title"
+          :openingTimes="story.content.opening_times"
+          :contactTitle="story.content.contact_title"
+          :contact="story.content.contact"
+          :reservationsTitle="story.content.reservations_title"
+          :reservations="story.content.reservations"
+          :newsletterTitle="story.content.newsletter_title"
+          :newsletter="story.content.newsletter"
+        />
       </template>
 
       <template #modal>
-        <ToolGrid />
+        <DevOnly>
+          <ToolGrid />
+        </DevOnly>
       </template>
     </AppLayout>
   </div>
