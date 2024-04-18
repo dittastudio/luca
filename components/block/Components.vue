@@ -6,23 +6,13 @@ interface Props {
 }
 
 const { content } = defineProps<Props>()
-const spacingTop = ['block_text']
-const spacingBottom = ['block_text']
 </script>
 
 <template>
   <div data-component="BlokComponents">
-    <section
-      v-for="block in content.blocks"
-      :key="block._uid"
-      :class="[
-        {
-          'spacing-top-classes-here-will': spacingTop.includes(block.component),
-          'spacing-bottom-classes-here-will': spacingBottom.includes(block.component),
-        },
-      ]"
-    >
-      <BlockText v-if="block.component === 'block_text'" :block="block" />
+    <section v-for="block in content.blocks" :key="block._uid">
+      <BlockImage v-if="block.component === 'block_image'" :block="block" />
+      <BlockText v-else-if="block.component === 'block_text'" :block="block" />
     </section>
   </div>
 </template>

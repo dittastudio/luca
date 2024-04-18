@@ -50,12 +50,18 @@ export default defineNuxtConfig({
   gtag: {
     id: '',
   },
+  image: {
+    storyblok: {
+      baseURL: 'https://a.storyblok.com',
+    },
+  },
   modules: [
     '@nuxt/eslint',
+    '@nuxt/image',
     '@nuxtjs/sitemap',
+    '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/tailwindcss',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
     'nuxt-gtag',
   ],
