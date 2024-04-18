@@ -87,9 +87,9 @@ const toggleMenu = () => {
 
         <span class="app-header__line"></span>
 
-        <div class="app-header__navigation">
+        <nav class="app-header__navigation">
           <AppHeaderNavigation :is-open="isOpen" :list="links" />
-        </div>
+        </nav>
       </div>
 
       <div class="app-header__logo">
@@ -125,6 +125,8 @@ const toggleMenu = () => {
 }
 
 .app-header__bg {
+  pointer-events: none;
+
   position: absolute;
 
   width: 100%;
@@ -137,6 +139,7 @@ const toggleMenu = () => {
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   .app-header--is-open & {
+    pointer-events: auto;
     opacity: 1;
   }
 
@@ -198,7 +201,7 @@ const toggleMenu = () => {
 
 .app-header__line {
   --line-width: 77px;
-  --line-alignment-nudge: 12px;
+  --line-alignment-nudge: 14px;
 
   transform-origin: left;
   scale: 0 1 1;
@@ -224,7 +227,37 @@ const toggleMenu = () => {
 }
 
 .app-header__navigation {
-  pointer-events: auto;
+  pointer-events: none;
+
+  .app-header--is-open & {
+    pointer-events: auto;
+  }
+
+  @screen mdMax {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    overflow-y: auto;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    opacity: 0;
+    background-color: theme('colors.green');
+
+    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+
+    .app-header--is-open & {
+      opacity: 1;
+    }
+  }
+
+  @screen md {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .app-header__logo {
