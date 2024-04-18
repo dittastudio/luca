@@ -47,7 +47,7 @@
   /* Body */
   .type-body {
     font-size: theme('fontSize.14');
-    letter-spacing: theme('letterSpacing.wider');
+    letter-spacing: theme('letterSpacing.wide');
 
     @screen md {
       font-size: theme('fontSize.16');

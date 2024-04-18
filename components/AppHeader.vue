@@ -87,16 +87,6 @@ const toggleBurger = () => {
   isolation: isolate;
   height: var(--app-header-height);
   background-image: linear-gradient(to bottom, theme('colors.green/100%'), theme('colors.green/0%'));
-
-  &--has-scrolled-up {
-    translate: 0 0 0;
-    transition: translate theme('transitionDuration.500') theme('transitionTimingFunction.inOutExpo');
-  }
-
-  &--has-scrolled-down {
-    translate: 0 -100% 0;
-    transition: translate theme('transitionDuration.200') theme('transitionTimingFunction.inQuart');
-  }
 }
 
 .app-header__wrapper {
@@ -134,6 +124,22 @@ const toggleBurger = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .app-header--has-scrolled-up & {
+    translate: 0 0 0;
+    opacity: 1;
+    transition:
+      opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
+      translate 0s 0s;
+  }
+
+  .app-header--has-scrolled-down & {
+    translate: 0 -15% 0;
+    opacity: 0;
+    transition:
+      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+      translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  }
 }
 
 .app-header__logo-icon {
