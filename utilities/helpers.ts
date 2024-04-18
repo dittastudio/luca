@@ -1,4 +1,5 @@
 import type { LocationQuery } from 'vue-router'
+import type { RichtextStoryblok } from '@/types/storyblok'
 
 const isStoryblokEditor = (search: LocationQuery) => '_storyblok' in search
 
@@ -7,14 +8,6 @@ const randomNumberInRange = (min: number, max: number): number =>
 
 const storyblokSlug = (path: string): string =>
   ['/', ''].includes(path) ? '/home' : path.replace(/\/+$/, '')
-
-interface IImageTransformOptions {
-  width: number
-  height: number
-  smart?: boolean
-  quality?: number
-  blur?: number
-}
 
 const storyblokImageDimensions = (
   filename: string | null | undefined,
@@ -33,11 +26,11 @@ const storyblokImageDimensions = (
 
 const storyblokImage = (
   filename: string | null | undefined,
-  options?: IImageTransformOptions | undefined,
+  options?: Luca.ImageTransformOptions | undefined,
 ): string => {
   if (!filename?.length) return ''
 
-  const settings: IImageTransformOptions = {
+  const settings: Luca.ImageTransformOptions = {
     width: 0,
     height: 0,
     smart: false,
@@ -98,7 +91,7 @@ const requestDelay = async <T>(promise: T, ms: number = 1000) => {
   return p
 }
 
-const hasRichTextContent = (richtext: any): boolean => {
+const hasRichTextContent = (richtext: RichtextStoryblok): boolean => {
   return Boolean(richtext?.content?.[0]?.content?.length)
 }
 

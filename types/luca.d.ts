@@ -3,4 +3,12 @@ declare namespace Luca {
     width: number
     height: number
   }
+
+  export type ImageTransformOptions = {
+    width: number
+    height: number
+    smart?: boolean
+    quality?: number
+    blur?: number
+  }
 }
