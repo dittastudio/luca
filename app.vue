@@ -23,7 +23,7 @@ useSeoMeta({
 
 <template>
   <div data-component="App">
-    <LayoutApp>
+    <AppLayout>
       <template #header>
         <AppHeader />
         <AppNavigation :list="story.content.navigation?.[0]" />
@@ -53,6 +53,6 @@ useSeoMeta({
       <template #modal>
         <ToolGrid />
       </template>
-    </LayoutApp>
+    </AppLayout>
   </div>
 </template>
