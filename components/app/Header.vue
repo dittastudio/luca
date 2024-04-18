@@ -11,7 +11,6 @@ const raf = ref<any>(null)
 
 const handleScroll = () => {
   const triggerPoint = 50
-
   const scrollPos = window.scrollY
 
   hasScrolled.value = scrollPos > triggerPoint
@@ -43,7 +42,12 @@ onMounted(() => {
   window.addEventListener('scroll', rAFHeaderScroll)
 })
 
-const headerClasses = computed<any>(() => ({
+onUnmounted(() => {
+  cancelAnimationFrame(raf.value)
+  window.removeEventListener('scroll', rAFHeaderScroll)
+})
+
+const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
@@ -55,7 +59,7 @@ const toggleBurger = () => {
 </script>
 
 <template>
-  <div class="app-header" :class="headerClasses">
+  <div data-component="AppHeader" class="app-header" :class="headerClasses">
     <div class="app-header__wrapper wrapper">
       <button class="app-header__switch" type="button" @click="toggleBurger">
         <span class="app-header__burger">
@@ -73,9 +77,7 @@ const toggleBurger = () => {
         <IconMichelin class="app-header__michelin-icon" />
 
         <button type="button">
-          <ButtonAppearance type="green">
-            Reservations
-          </ButtonAppearance>
+          <ButtonAppearance type="green">Reservations</ButtonAppearance>
         </button>
       </div>
     </div>
@@ -86,7 +88,11 @@ const toggleBurger = () => {
 .app-header {
   isolation: isolate;
   height: var(--app-header-height);
-  background-image: linear-gradient(to bottom, theme('colors.green/100%'), theme('colors.green/0%'));
+  background-image: linear-gradient(
+    to bottom,
+    theme('colors.green/100%'),
+    theme('colors.green/0%')
+  );
 }
 
 .app-header__wrapper {
