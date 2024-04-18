@@ -121,8 +121,8 @@ const toggleMenu = () => {
   height: var(--app-header-height);
   background-image: linear-gradient(
     to bottom,
-    theme('colors.green/100%'),
-    theme('colors.green/0%')
+    theme('colors.green/100%') 0%,
+    theme('colors.green/0%') 100%
   );
 
   html:has(&.app-header--is-open) {
@@ -131,8 +131,6 @@ const toggleMenu = () => {
 }
 
 .app-header__bg {
-  pointer-events: none;
-
   position: absolute;
 
   width: 100%;
@@ -155,6 +153,12 @@ const toggleMenu = () => {
 }
 
 .app-header__wrapper {
+  --header-padding: theme('spacing.20');
+
+  @screen md {
+    --header-padding: theme('spacing.50');
+  }
+
   position: relative;
 
   display: flex;
@@ -162,18 +166,15 @@ const toggleMenu = () => {
   justify-content: space-between;
 
   height: 100%;
-  padding-block: theme('spacing.20');
+  padding-block: var(--header-padding);
 
   @screen md {
     align-items: flex-start;
-    padding-block-start: theme('spacing.50');
   }
 }
 
 .app-header__menu {
   @screen md {
-    pointer-events: none;
-
     position: relative;
     z-index: 1;
 
@@ -232,6 +233,10 @@ const toggleMenu = () => {
       opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
         theme('transitionDelay.100');
   }
+
+  @screen mdMax {
+    display: none;
+  }
 }
 
 .app-header__navigation {
@@ -269,29 +274,52 @@ const toggleMenu = () => {
 }
 
 .app-header__logo {
-  pointer-events: none;
-
   position: absolute;
   inset: 0;
+  translate: 0 0 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  padding-block: var(--header-padding);
+
+  visibility: visible;
+  opacity: 1;
+
+  transition:
+    opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
+    visibility theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
+    translate 0s 0s;
+
+  @screen md {
+    align-items: flex-start;
+  }
+
   .app-header--has-scrolled-up & {
     translate: 0 0 0;
+    visibility: visible;
     opacity: 1;
-    transition:
-      opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
-      translate 0s 0s;
   }
 
   .app-header--has-scrolled-down & {
     translate: 0 -15% 0;
+    visibility: hidden;
     opacity: 0;
     transition:
       opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+      visibility theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
       translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  }
+
+  @screen lgMax {
+    .app-header--is-open & {
+      visibility: hidden;
+      opacity: 0;
+      transition:
+        opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+        visibility theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    }
   }
 }
 
@@ -300,13 +328,14 @@ const toggleMenu = () => {
   width: 113px;
   height: 47px;
 
-  @screen md {
+  @screen lg {
     width: 180px;
     height: 74px;
   }
 }
 
 .app-header__details {
+  pointer-events: auto;
   display: flex;
   gap: theme('spacing.30');
   align-items: center;

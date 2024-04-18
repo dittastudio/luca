@@ -57,10 +57,11 @@ const {
               <NuxtLink to="/">Privacy Policy</NuxtLink>
             </li>
             <li class="app-footer__meta-item">
-              <NuxtLink to="https://e-i-b.com/" target="_blank">Design: Everything In Between</NuxtLink>
+              <NuxtLink to="https://e-i-b.com/" target="_blank" rel="noopener noreferrer">Design: Everything In Between
+              </NuxtLink>
             </li>
             <li class="app-footer__meta-item">
-              <NuxtLink to="https://ditta.studio/" target="_blank">made by ditta</NuxtLink>
+              <NuxtLink to="https://ditta.studio/" target="_blank" rel="noopener noreferrer">made by ditta</NuxtLink>
             </li>
           </ul>
         </div>
@@ -80,9 +81,17 @@ const {
 
 .app-footer__inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: var(--app-inner-gutter);
   padding-block-start: theme('spacing.40');
+
+  @screen sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @screen md {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .app-footer__copy {

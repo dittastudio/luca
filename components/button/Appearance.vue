@@ -18,26 +18,34 @@ const { type = 'green' } = defineProps<Props>()
 
 <style lang="postcss">
 .button-appearance {
-  --button-padding-block: 11px;
+  --button-padding-y: 11px;
+  --button-padding-x: theme('spacing.40');
   --button-background-color: transparent;
   --button-text-color: theme('colors.white');
   --button-border-color: theme('colors.white');
+
+  @screen md {
+    --button-padding-x: theme('spacing.20');
+  }
+
+  @screen lg {
+    --button-padding-x: theme('spacing.40');
+  }
 
   isolation: isolate;
   position: relative;
 
   display: block;
 
-  padding: var(--button-padding-block) theme('spacing.40');
+  padding: var(--button-padding-y) var(--button-padding-x);
 
   color: var(--button-text-color);
 
   background-color: var(--button-background-color);
   border-radius: theme('borderRadius.sm');
 
-  transition:
-    background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-    color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  transition: background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+  color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   &::before {
     content: '';

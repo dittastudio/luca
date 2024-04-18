@@ -43,9 +43,20 @@ const items = computed(() => list?.items ?? [])
     align-items: center;
 
     min-height: 100%;
-    padding-block: calc(var(--app-header-height) + theme('spacing.20')) theme('spacing.40');
+    padding-block: var(--app-header-height) theme('spacing.40');
 
     text-align: center;
+  }
+}
+
+.app-header-navigation__inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  @screen mdMax {
+    width: 100%;
   }
 }
 
@@ -59,20 +70,12 @@ const items = computed(() => list?.items ?? [])
     --link-padding-y: 3px;
   }
 
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-block: calc(-1 * var(--link-padding-y));
-  margin-inline: calc(-1 * var(--link-padding-x));
+  font-size: theme('fontSize.24');
 
   @screen md {
+    margin-block: calc(-1 * var(--link-padding-y));
+    margin-inline: calc(-1 * var(--link-padding-x));
     font-size: theme('fontSize.20');
-  }
-
-  @screen mdMax {
-    width: 100%;
   }
 }
 

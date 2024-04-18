@@ -28,6 +28,7 @@
 }
 
 .app-layout__header {
+  pointer-events: none;
   position: sticky;
   z-index: theme('zIndex.10');
   top: 0;
