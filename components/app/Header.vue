@@ -109,7 +109,7 @@ const toggleMenu = () => {
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .app-header {
   isolation: isolate;
   position: relative;
@@ -117,6 +117,11 @@ const toggleMenu = () => {
   background-image: linear-gradient(to bottom,
       theme('colors.green/100%'),
       theme('colors.green/0%'));
+
+
+  html:has(&.app-header--is-open) {
+    overflow: hidden;
+  }
 }
 
 .app-header__bg {
@@ -126,7 +131,7 @@ const toggleMenu = () => {
   height: 100vh;
 
   opacity: 0;
-  background-color: theme('colors.green/50%');
+  background-color: theme('colors.green/90%');
   backdrop-filter: blur(8px);
 
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
@@ -192,12 +197,15 @@ const toggleMenu = () => {
 }
 
 .app-header__line {
+  --line-width: 77px;
+  --line-alignment-nudge: 12px;
+
   transform-origin: left;
   scale: 0 1 1;
 
-  width: 77px;
+  width: var(--line-width);
   height: 1px;
-  margin-block: 12px;
+  margin-block: var(--line-alignment-nudge);
 
   opacity: 0;
   background-color: theme('colors.white');

@@ -13,14 +13,16 @@ const items = computed(() => list?.items ?? [])
 <template>
   <nav data-component="AppHeaderNavigation" class="app-header-navigation"
     :class="{ 'app-header-navigation--is-open': isOpen }">
-    <ul class="app-header-navigation__list type-h2">
-      <li v-for="(item, index) in items" class="app-header-navigation__item"
-        :style="`--link-transition-delay: ${(200 + (index * 40))}ms`">
-        <StoryblokLink class="app-header-navigation__link" :item="item.link">
-          {{ item.title }}
-        </StoryblokLink>
-      </li>
-    </ul>
+    <div class="app-header-navigation__inner">
+      <ul class="app-header-navigation__list type-h2">
+        <li v-for="(item, index) in items" class="app-header-navigation__item"
+          :style="`--link-transition-delay: ${(200 + (index * 40))}ms`">
+          <StoryblokLink class="app-header-navigation__link" :item="item.link">
+            {{ item.title }}
+          </StoryblokLink>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -28,14 +30,8 @@ const items = computed(() => list?.items ?? [])
 .app-header-navigation {
   pointer-events: none;
 
-  /* opacity: 0;
-  transition: opacity 0s 0.5s; */
-
   &--is-open {
     pointer-events: auto;
-
-    /* opacity: 1;
-    transition: opacity 0s 0s; */
   }
 
   @screen mdMax {
@@ -43,13 +39,11 @@ const items = computed(() => list?.items ?? [])
     z-index: -1;
     inset: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow-y: auto;
 
     width: 100%;
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
 
     text-align: center;
 
@@ -69,14 +63,28 @@ const items = computed(() => list?.items ?? [])
   }
 }
 
+.app-header-navigation__inner {
+  @screen mdMax {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100%;
+    padding-block: var(--app-header-height);
+  }
+}
+
 .app-header-navigation__list {
-  --link-padding: theme('spacing.10');
+  --link-padding-x: theme('spacing.10');
+  --link-padding-y: theme('spacing.10');
 
   @screen md {
-    --link-padding: 3px;
+    --link-padding-x: theme('spacing.10');
+    --link-padding-y: 3px;
   }
 
-  margin: calc(-1 * var(--link-padding));
+  margin-block: calc(-1 * var(--link-padding-y));
+  margin-inline: calc(-1 * var(--link-padding-x));
 
   @screen md {
     font-size: theme('fontSize.20');
@@ -120,7 +128,8 @@ const items = computed(() => list?.items ?? [])
 
 .app-header-navigation__link {
   display: block;
-  padding: var(--link-padding);
+  padding-block: var(--link-padding-y);
+  padding-inline: var(--link-padding-x);
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   &:hover {
