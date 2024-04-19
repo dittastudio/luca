@@ -7,15 +7,15 @@ const { isOpen = false } = defineProps<Props>()
 </script>
 
 <template>
-  <span data-component="UiAccordionSwitch" class="ui-accordion-switch"
-    :class="{ 'ui-accordion-switch--is-open': isOpen }">
-    <span class="ui-accordion-switch__inner"></span>
+  <span data-component="AppFooterAccordionIcon" class="app-footer-accordion-icon"
+    :class="{ 'app-footer-accordion-icon--is-open': isOpen }">
+    <span class="app-footer-accordion-icon__inner"></span>
     <span class="sr-only">Toggle menu</span>
   </span>
 </template>
 
 <style lang="postcss" scoped>
-.ui-accordion-switch {
+.app-footer-accordion-icon {
   --size: theme('spacing.20');
 
   display: flex;
@@ -24,7 +24,7 @@ const { isOpen = false } = defineProps<Props>()
   height: var(--size);
 }
 
-.ui-accordion-switch__inner {
+.app-footer-accordion-icon__inner {
   --burger-height: 1px;
   --burger-offset: 0;
 
@@ -52,7 +52,7 @@ const { isOpen = false } = defineProps<Props>()
     animation: rotate-close theme('transitionDuration.400') theme('transitionTimingFunction.smooth') forwards;
   }
 
-  .ui-accordion-switch--is-open & {
+  .app-footer-accordion-icon--is-open & {
     &::after {
       rotate: 0.5turn;
       animation: rotate-open theme('transitionDuration.300') theme('transitionTimingFunction.smooth') forwards;

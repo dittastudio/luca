@@ -24,7 +24,7 @@
   .prose--small {
     p {
       font-size: theme('fontSize.14');
-      letter-spacing: theme('letterSpacing.wide');
+      letter-spacing: theme('letterSpacing.wider');
     }
   }
 }

@@ -18,20 +18,20 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div data-component="UiAccordionHybrid" class="ui-accordion-hybrid"
-    :class="{ 'ui-accordion-hybrid--is-open': isOpen }">
-    <button type="button" class="ui-accordion-hybrid__switch" @click="toggleAccordion">
-      <span class="ui-accordion-hybrid__icon">
-        <UiAccordionSwitch :is-open="isOpen" />
+  <div data-component="AppFooterAccordion" class="app-footer-accordion"
+    :class="{ 'app-footer-accordion--is-open': isOpen }">
+    <button type="button" class="app-footer-accordion__switch" @click="toggleAccordion">
+      <span class="app-footer-accordion__icon">
+        <AppFooterAccordionIcon :is-open="isOpen" />
       </span>
 
-      <span class="ui-accordion-hybrid__title">
+      <span class="app-footer-accordion__title">
         <slot name="title" />
       </span>
     </button>
 
     <UiExpandCollapse :is-open="isOpen">
-      <div class="ui-accordion-hybrid__content">
+      <div class="app-footer-accordion__content">
         <slot name="content" />
       </div>
     </UiExpandCollapse>
@@ -40,16 +40,15 @@ watchEffect(() => {
 
 
 <style lang="postcss" scoped>
-.ui-accordion-hybrid {
+.app-footer-accordion {
   width: 100%;
 }
 
-.ui-accordion-hybrid__switch {
+.app-footer-accordion__switch {
   @screen smMax {
     position: relative;
     width: 100%;
     padding-block: theme('spacing.15');
-    border-block-start: 1px solid theme('colors.white/20%');
   }
 
   @screen sm {
@@ -57,7 +56,7 @@ watchEffect(() => {
   }
 }
 
-.ui-accordion-hybrid__icon {
+.app-footer-accordion__icon {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -71,20 +70,20 @@ watchEffect(() => {
   }
 }
 
-.ui-accordion-hybrid__title {
+.app-footer-accordion__title {
   @screen smMax {
     translate: 0 0 0;
     display: block;
     transition: translate theme('transitionDuration.400') theme('transitionTimingFunction.smooth');
 
-    .ui-accordion-hybrid--is-open & {
+    .app-footer-accordion--is-open & {
       translate: 0 theme('spacing.20') 0;
       transition: translate theme('transitionDuration.350') theme('transitionTimingFunction.smooth');
     }
   }
 }
 
-.ui-accordion-hybrid__content {
+.app-footer-accordion__content {
   padding-block: theme('spacing.30');
 
   @screen sm {

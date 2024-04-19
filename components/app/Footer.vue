@@ -44,7 +44,7 @@ const footerLinks: any = [{
 
     <div class="app-footer__inner">
       <div class="app-footer__details prose prose--small" v-if="openingTimesTitle && openingTimes">
-        <UiAccordionHybrid>
+        <AppFooterAccordion>
           <template #title>
             <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
           </template>
@@ -52,11 +52,11 @@ const footerLinks: any = [{
           <template #content>
             <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
           </template>
-        </UiAccordionHybrid>
+        </AppFooterAccordion>
       </div>
 
       <div class="app-footer__details prose prose--small" v-if="contactTitle && contact">
-        <UiAccordionHybrid>
+        <AppFooterAccordion>
           <template #title>
             <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
           </template>
@@ -64,29 +64,29 @@ const footerLinks: any = [{
           <template #content>
             <StoryblokRichText class="app-footer__copy" :content="contact" />
           </template>
-        </UiAccordionHybrid>
+        </AppFooterAccordion>
       </div>
 
       <div class="app-footer__details prose prose--small" v-if="reservationsTitle && reservations">
-        <UiAccordionHybrid>
+        <AppFooterAccordion>
           <template #title>
             <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
           </template>
           <template #content>
             <StoryblokRichText class="app-footer__copy" :content="reservations" />
           </template>
-        </UiAccordionHybrid>
+        </AppFooterAccordion>
       </div>
 
       <div class="app-footer__details app-footer__details--info prose prose--small">
-        <UiAccordionHybrid>
+        <AppFooterAccordion>
           <template #title>
             <h2 class="app-footer__title type-h4">Info</h2>
           </template>
           <template #content>
             <AppFooterInfo :items="footerLinks" />
           </template>
-        </UiAccordionHybrid>
+        </AppFooterAccordion>
       </div>
 
       <div class="app-footer__newsletter">
@@ -95,8 +95,8 @@ const footerLinks: any = [{
           <StoryblokRichText class="app-footer__copy" :content="newsletter" />
 
           <form class="app-footer__form" action="">
-            <input class="app-footer__input type-body" type="email" placeholder="Email" />
-            <button class="type-h6" type="submit">Submit</button>
+            <input class="app-footer__input type-body" type="email" placeholder="Email" required />
+            <button class="app-footer__submit type-h6" type="submit">Submit</button>
           </form>
         </div>
 
@@ -142,11 +142,42 @@ const footerLinks: any = [{
   }
 
   @screen smMax {
+    position: relative;
     text-align: center;
+
+    &::before {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+
+      height: 1px;
+
+      background-color: theme('colors.white/20%');
+    }
   }
 }
 
 .app-footer__details--info {
+  @screen smMax {
+    &::after {
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      height: 1px;
+
+      background-color: theme('colors.white/20%');
+    }
+  }
+
   @screen sm {
     display: none;
   }
@@ -178,22 +209,17 @@ const footerLinks: any = [{
 .app-footer__form {
   display: flex;
   gap: theme('spacing.10');
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
 
-  padding-block: theme('spacing.20') theme('spacing.6');
-
-  border-bottom: 1px solid theme('colors.white/20%');
-
-  transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  &:hover {
-    border-color: theme('colors.white/50%');
-  }
+  border-bottom: 1px solid theme('colors.white');
 }
 
 .app-footer__input {
+  --input-padding-end: 4px;
+
   width: 100%;
+  padding-block: theme('spacing.20') var(--input-padding-end);
   outline: none;
 
   @screen md {
@@ -201,7 +227,30 @@ const footerLinks: any = [{
   }
 
   &::placeholder {
-    color: theme('colors.white/50%');
+    color: currentcolor;
+    opacity: 1;
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  }
+
+  &:hover::placeholder {
+    opacity: 0.5;
+  }
+
+  &:focus::placeholder {
+    opacity: 0;
+  }
+}
+
+.app-footer__submit {
+  opacity: 1;
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active {
+    opacity: 0.75;
   }
 }
 </style>
