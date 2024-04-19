@@ -29,17 +29,17 @@ const {
     <hr class="app-footer__break">
 
     <div class="app-footer__inner">
-      <div class="prose prose--small" v-if="openingTimesTitle && openingTimes">
+      <div class="app-footer__details prose prose--small" v-if="openingTimesTitle && openingTimes">
         <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
         <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
       </div>
 
-      <div class="prose prose--small" v-if="contactTitle && contact">
+      <div class="app-footer__details prose prose--small" v-if="contactTitle && contact">
         <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
         <StoryblokRichText class="app-footer__copy" :content="contact" />
       </div>
 
-      <div class="prose prose--small" v-if="reservationsTitle && reservations">
+      <div class="app-footer__details prose prose--small" v-if="reservationsTitle && reservations">
         <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
         <StoryblokRichText class="app-footer__copy" :content="reservations" />
       </div>
@@ -54,14 +54,16 @@ const {
           <ul class="app-footer__meta-list">
             <li class="app-footer__meta-item">©2024 All rights reserved</li>
             <li class="app-footer__meta-item">
-              <NuxtLink to="/">Privacy Policy</NuxtLink>
+              <NuxtLink class="app-footer__meta-link" to="/">Privacy Policy</NuxtLink>
             </li>
             <li class="app-footer__meta-item">
-              <NuxtLink to="https://e-i-b.com/" target="_blank" rel="noopener noreferrer">Design: Everything In Between
+              <NuxtLink class="app-footer__meta-link" to="https://e-i-b.com/" target="_blank" rel="noopener noreferrer"><!--
+              -->Design: Everything In Between
               </NuxtLink>
             </li>
             <li class="app-footer__meta-item">
-              <NuxtLink to="https://ditta.studio/" target="_blank" rel="noopener noreferrer">made by ditta</NuxtLink>
+              <NuxtLink class="app-footer__meta-link" to="https://ditta.studio/" target="_blank"
+                rel="noopener noreferrer">made by ditta</NuxtLink>
             </li>
           </ul>
         </div>
@@ -89,8 +91,14 @@ const {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @screen md {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  @screen xl {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.app-footer__details {
+  @screen xl {
+    grid-column: span 2;
   }
 }
 
@@ -102,6 +110,11 @@ const {
 
 .app-footer__newsletter {
   display: flex;
+
+  @screen xl {
+    grid-column: 9 / 13;
+  }
+
   flex-direction: column;
   justify-content: space-between;
 }
@@ -114,13 +127,22 @@ const {
   display: flex;
   flex-wrap: wrap;
   margin-left: -0.8em;
-  opacity: 0.5;
 }
 
 .app-footer__meta-item {
   &::before {
     content: '/';
     margin-inline: 0.25em;
+  }
+}
+
+.app-footer__meta-link {
+  @media (hover: hover) {
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }
 </style>

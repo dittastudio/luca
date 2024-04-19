@@ -19,7 +19,7 @@ const toggleGrid = () => {
   </button>
 
   <div :class="[
-    'fixed z-40 inset-0 w-full h-full pointer-events-none',
+    'fixed z-40 inset-x-0 w-full h-full pointer-events-none',
     'transition-opacity duration-200 ease-smooth',
     { 'opacity-0': !isOpen },
     { 'opacity-100': isOpen }

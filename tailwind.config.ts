@@ -66,6 +66,7 @@ export default {
       green: 'rgb(45 63 47 / <alpha-value>)',
     },
     spacing: {
+      0: '0',
       6: '6px',
       10: '10px',
       20: '20px',
