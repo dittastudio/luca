@@ -93,6 +93,11 @@ const footerLinks: any = [{
         <div class="prose prose--small" v-if="newsletterTitle && newsletter">
           <h2 class="app-footer__title type-h4">{{ newsletterTitle }}</h2>
           <StoryblokRichText class="app-footer__copy" :content="newsletter" />
+
+          <form class="app-footer__form" action="">
+            <input class="app-footer__input type-body" type="email" placeholder="Email" />
+            <button class="type-h6" type="submit">Submit</button>
+          </form>
         </div>
 
         <div class="smMax:hidden">
@@ -167,6 +172,36 @@ const footerLinks: any = [{
 
   @screen xl {
     grid-column: 9 / 13;
+  }
+}
+
+.app-footer__form {
+  display: flex;
+  gap: theme('spacing.10');
+  align-items: center;
+  justify-content: space-between;
+
+  padding-block: theme('spacing.20') theme('spacing.6');
+
+  border-bottom: 1px solid theme('colors.white/20%');
+
+  transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  &:hover {
+    border-color: theme('colors.white/50%');
+  }
+}
+
+.app-footer__input {
+  width: 100%;
+  outline: none;
+
+  @screen md {
+    font-size: theme('fontSize.14');
+  }
+
+  &::placeholder {
+    color: theme('colors.white/50%');
   }
 }
 </style>
