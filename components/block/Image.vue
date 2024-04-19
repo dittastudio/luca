@@ -10,7 +10,6 @@ const { block } = defineProps<Props>()
 
 <template>
   <div data-component="BlockImage" v-editable="block">
-    <Screen :log="{ columnStart: block.column_start, columnSpan: block.column_span }" />
     <NuxtImg provider="storyblok" :src="block.image.filename" :alt="block.image.alt" />
   </div>
 </template>

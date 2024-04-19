@@ -2,9 +2,9 @@ import { storyblokSlug } from '@/utilities/helpers'
 import type { Ref } from 'vue'
 import type { ISbStoryData, ISbStoriesParams } from 'storyblok-js-client'
 
-const useStory = async <T>(
+export const useStoryblokStory = async <T>(
   slug: string = '',
-  options: ISbStoriesParams = {}
+  options: ISbStoriesParams = {},
 ): Promise<Ref<ISbStoryData<T>>> => {
   const runtimeConfig = useRuntimeConfig()
   const route = useRoute()
@@ -15,17 +15,15 @@ const useStory = async <T>(
   const defaultOptions: ISbStoriesParams = {
     version: runtimeConfig.public.STORYBLOK_VERSION === 'published' ? 'published' : 'draft',
     from_release: release,
-    resolve_relations: []
+    resolve_relations: [],
   }
 
   const config = { ...defaultOptions, ...options }
 
   const { data } = await useAsyncData(
     storyBlokSlug,
-    async () => await storyblokApi.get(`cdn/stories${storyBlokSlug}`, config)
+    async () => await storyblokApi.get(`cdn/stories${storyBlokSlug}`, config),
   )
 
   return ref(data.value?.data?.story)
 }
-
-export { useStory }
