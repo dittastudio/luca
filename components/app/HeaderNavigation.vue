@@ -125,6 +125,7 @@ const items = computed(() => list?.items ?? [])
 
   /* HACK: Added to stop hover stutter with italics 🤪 */
   &::after {
+    pointer-events: none;
     content: attr(title);
 
     overflow: hidden;
@@ -133,9 +134,9 @@ const items = computed(() => list?.items ?? [])
     height: 0;
 
     font-style: normal;
-    color: transparent;
 
     visibility: hidden;
+    opacity: 0;
   }
 
   &:hover,

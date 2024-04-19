@@ -22,6 +22,20 @@ const {
   newsletterTitle,
   newsletter,
 } = defineProps<Props>()
+
+const footerLinks: any = [{
+  _uid: '123',
+  link: {
+    id: '123',
+    url: '',
+    linktype: 'footer',
+    fieldtype: 'multilink',
+    cached_url: '/privacy-policy',
+  },
+  title: 'Privacy Policy',
+  component: 'link_list',
+  items: []
+}]
 </script>
 
 <template>
@@ -64,29 +78,25 @@ const {
         </UiAccordionHybrid>
       </div>
 
+      <div class="app-footer__details app-footer__details--info prose prose--small">
+        <UiAccordionHybrid>
+          <template #title>
+            <h2 class="app-footer__title type-h4">Info</h2>
+          </template>
+          <template #content>
+            <AppFooterInfo :items="footerLinks" />
+          </template>
+        </UiAccordionHybrid>
+      </div>
+
       <div class="app-footer__newsletter">
         <div class="prose prose--small" v-if="newsletterTitle && newsletter">
           <h2 class="app-footer__title type-h4">{{ newsletterTitle }}</h2>
           <StoryblokRichText class="app-footer__copy" :content="newsletter" />
         </div>
 
-        <div class="app-footer__meta type-body-small">
-          <ul class="app-footer__meta-list">
-            <li class="app-footer__meta-item">©2024 All rights reserved</li>
-            <li class="app-footer__meta-item">
-              <NuxtLink class="app-footer__meta-link" to="/">Privacy Policy</NuxtLink>
-            </li>
-            <li class="app-footer__meta-item">
-              <NuxtLink class="app-footer__meta-link" to="https://e-i-b.com/" target="_blank" rel="noopener noreferrer"><!--
-              -->Design: Everything In Between
-              </NuxtLink>
-            </li>
-            <li class="app-footer__meta-item">
-              <NuxtLink class="app-footer__meta-link" to="https://ditta.studio/" target="_blank"
-                rel="noopener noreferrer">
-                made by ditta</NuxtLink>
-            </li>
-          </ul>
+        <div class="smMax:hidden">
+          <AppFooterInfo :items="footerLinks" />
         </div>
       </div>
     </div>
@@ -95,10 +105,10 @@ const {
 
 <style lang="postcss" scoped>
 .app-footer {
-  padding-block: theme('spacing.120') theme('spacing.120');
+  padding-block: theme('spacing.120');
 
   @screen md {
-    padding-block: theme('spacing.120') theme('spacing.40');
+    padding-block-end: theme('spacing.40');
   }
 }
 
@@ -131,6 +141,12 @@ const {
   }
 }
 
+.app-footer__details--info {
+  @screen sm {
+    display: none;
+  }
+}
+
 .app-footer__copy {
   .app-footer__title+& {
     margin-top: theme('spacing.20');
@@ -140,43 +156,17 @@ const {
 .app-footer__newsletter {
   display: flex;
   flex-direction: column;
+  gap: theme('spacing.40');
   justify-content: space-between;
 
   @screen smMax {
     order: -1;
+    padding-block-end: theme('spacing.120');
     text-align: center;
   }
 
-
   @screen xl {
     grid-column: 9 / 13;
-  }
-}
-
-.app-footer__meta {
-  overflow: hidden;
-}
-
-.app-footer__meta-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -0.8em;
-}
-
-.app-footer__meta-item {
-  &::before {
-    content: '/';
-    margin-inline: 0.25em;
-  }
-}
-
-.app-footer__meta-link {
-  @media (hover: hover) {
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-    &:hover {
-      opacity: 0.6;
-    }
   }
 }
 </style>
