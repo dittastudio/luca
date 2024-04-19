@@ -18,7 +18,7 @@ const items = computed(() => list?.items ?? [])
         <li v-for="(item, index) in items" class="app-header-navigation__item"
           :style="`--link-transition-delay: ${200 + index * 40}ms`">
           <StoryblokLink class="app-header-navigation__link" active-class="app-header-navigation__link--is-active"
-            :item="item.link">
+            :item="item.link" :title="item.title">
             {{ item.title }}
           </StoryblokLink>
         </li>
@@ -113,6 +113,8 @@ const items = computed(() => list?.items ?? [])
 .app-header-navigation__link {
   user-select: none;
 
+  position: relative;
+
   display: block;
 
   width: 100%;
@@ -120,6 +122,32 @@ const items = computed(() => list?.items ?? [])
   padding-inline: var(--link-padding-x);
 
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  /* Added to stop hover stutter with italics */
+  &::after {
+    content: attr(title);
+
+    overflow: hidden;
+    display: block;
+
+    height: 0;
+
+    font-style: normal;
+    color: transparent;
+
+    visibility: hidden;
+
+    /* content: '';
+
+    position: absolute;
+    top: 0;
+    left: 100%;
+
+    width: 1ch;
+    height: 100%;
+
+    background-color: red; */
+  }
 
   &:hover,
   .app-header-navigation__list:not(:hover) &.app-header-navigation__link--is-active {

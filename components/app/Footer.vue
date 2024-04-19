@@ -30,20 +30,38 @@ const {
 
     <div class="app-footer__inner">
       <div class="app-footer__details prose prose--small" v-if="openingTimesTitle && openingTimes">
-        <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
-        <UiExpandCollapse>
-          <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
-        </UiExpandCollapse>
+        <UiAccordionHybrid>
+          <template #title>
+            <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
+          </template>
+
+          <template #content>
+            <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
+          </template>
+        </UiAccordionHybrid>
       </div>
 
       <div class="app-footer__details prose prose--small" v-if="contactTitle && contact">
-        <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
-        <StoryblokRichText class="app-footer__copy" :content="contact" />
+        <UiAccordionHybrid>
+          <template #title>
+            <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
+          </template>
+
+          <template #content>
+            <StoryblokRichText class="app-footer__copy" :content="contact" />
+          </template>
+        </UiAccordionHybrid>
       </div>
 
       <div class="app-footer__details prose prose--small" v-if="reservationsTitle && reservations">
-        <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
-        <StoryblokRichText class="app-footer__copy" :content="reservations" />
+        <UiAccordionHybrid>
+          <template #title>
+            <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
+          </template>
+          <template #content>
+            <StoryblokRichText class="app-footer__copy" :content="reservations" />
+          </template>
+        </UiAccordionHybrid>
       </div>
 
       <div class="app-footer__newsletter">
@@ -65,7 +83,8 @@ const {
             </li>
             <li class="app-footer__meta-item">
               <NuxtLink class="app-footer__meta-link" to="https://ditta.studio/" target="_blank"
-                rel="noopener noreferrer">made by ditta</NuxtLink>
+                rel="noopener noreferrer">
+                made by ditta</NuxtLink>
             </li>
           </ul>
         </div>
@@ -76,7 +95,11 @@ const {
 
 <style lang="postcss" scoped>
 .app-footer {
-  padding-block: theme('spacing.120') theme('spacing.40');
+  padding-block: theme('spacing.120') theme('spacing.120');
+
+  @screen md {
+    padding-block: theme('spacing.120') theme('spacing.40');
+  }
 }
 
 .app-footer__break {
@@ -86,11 +109,11 @@ const {
 .app-footer__inner {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: var(--app-inner-gutter);
   padding-block-start: theme('spacing.40');
 
   @screen sm {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--app-inner-gutter);
   }
 
   @screen xl {
@@ -102,6 +125,10 @@ const {
   @screen xl {
     grid-column: span 2;
   }
+
+  @screen smMax {
+    text-align: center;
+  }
 }
 
 .app-footer__copy {
@@ -112,13 +139,18 @@ const {
 
 .app-footer__newsletter {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @screen smMax {
+    order: -1;
+    text-align: center;
+  }
+
 
   @screen xl {
     grid-column: 9 / 13;
   }
-
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .app-footer__meta {

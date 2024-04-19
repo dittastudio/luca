@@ -169,13 +169,17 @@ export default {
     extend: {
       transitionDuration: {
         175: '175ms',
+        250: '250ms',
         350: '350ms',
         400: '400ms',
+        450: '450ms',
       },
       transitionDelay: {
         175: '175ms',
+        250: '250ms',
         350: '350ms',
         400: '400ms',
+        450: '450ms',
       },
     },
   },
