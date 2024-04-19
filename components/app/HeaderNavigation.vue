@@ -123,7 +123,7 @@ const items = computed(() => list?.items ?? [])
 
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-  /* Added to stop hover stutter with italics */
+  /* HACK: Added to stop hover stutter with italics 🤪 */
   &::after {
     content: attr(title);
 
@@ -136,17 +136,6 @@ const items = computed(() => list?.items ?? [])
     color: transparent;
 
     visibility: hidden;
-
-    /* content: '';
-
-    position: absolute;
-    top: 0;
-    left: 100%;
-
-    width: 1ch;
-    height: 100%;
-
-    background-color: red; */
   }
 
   &:hover,
