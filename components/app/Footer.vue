@@ -31,7 +31,9 @@ const {
     <div class="app-footer__inner">
       <div class="app-footer__details prose prose--small" v-if="openingTimesTitle && openingTimes">
         <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
-        <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
+        <UiExpandCollapse>
+          <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
+        </UiExpandCollapse>
       </div>
 
       <div class="app-footer__details prose prose--small" v-if="contactTitle && contact">

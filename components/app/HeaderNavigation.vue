@@ -14,11 +14,11 @@ const items = computed(() => list?.items ?? [])
   <div data-component="AppHeaderNavigation" class="app-header-navigation"
     :class="{ 'app-header-navigation--is-open': isOpen }">
     <div class="app-header-navigation__inner">
-
       <ul class="app-header-navigation__list type-h2">
         <li v-for="(item, index) in items" class="app-header-navigation__item"
           :style="`--link-transition-delay: ${200 + index * 40}ms`">
-          <StoryblokLink class="app-header-navigation__link" :item="item.link">
+          <StoryblokLink class="app-header-navigation__link" active-class="app-header-navigation__link--is-active"
+            :item="item.link">
             {{ item.title }}
           </StoryblokLink>
         </li>
@@ -111,6 +111,8 @@ const items = computed(() => list?.items ?? [])
 }
 
 .app-header-navigation__link {
+  user-select: none;
+
   display: block;
 
   width: 100%;
@@ -119,7 +121,8 @@ const items = computed(() => list?.items ?? [])
 
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-  &:hover {
+  &:hover,
+  .app-header-navigation__list:not(:hover) &.app-header-navigation__link--is-active {
     font-style: italic;
   }
 

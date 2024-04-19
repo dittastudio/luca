@@ -69,15 +69,19 @@ const closeMenu = () => {
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
+
+const route = useRoute()
+
+watch(
+  () => route.path,
+  () => {
+    closeMenu()
+  }
+)
 </script>
 
 <template>
-  <div
-    @keydown.esc="closeMenu"
-    data-component="AppHeader"
-    class="app-header"
-    :class="headerClasses"
-  >
+  <div @keydown.esc="closeMenu" data-component="AppHeader" class="app-header" :class="headerClasses">
     <button class="app-header__bg" type="button" @click="closeMenu"></button>
 
     <div class="app-header__wrapper wrapper">
@@ -119,11 +123,9 @@ const toggleMenu = () => {
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
-  background-image: linear-gradient(
-    to bottom,
-    theme('colors.green/100%') 0%,
-    theme('colors.green/0%') 100%
-  );
+  background-image: linear-gradient(to bottom,
+      theme('colors.green/100%') 0%,
+      theme('colors.green/0%') 100%);
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
@@ -228,10 +230,8 @@ const toggleMenu = () => {
     scale: 1 1 1;
     opacity: 1;
     transition:
-      scale theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.100'),
-      opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.100');
+      scale theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.100'),
+      opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.100');
   }
 
   @screen mdMax {
