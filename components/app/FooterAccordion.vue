@@ -14,7 +14,6 @@ watchEffect(() => {
   if (!process.client) return
   return isOpen.value = isScreenSm.value
 })
-
 </script>
 
 <template>

@@ -209,9 +209,7 @@ const footerLinks: any = [{
 .app-footer__form {
   display: flex;
   gap: theme('spacing.10');
-  align-items: baseline;
   justify-content: space-between;
-
   border-bottom: 1px solid theme('colors.white');
 }
 
@@ -242,6 +240,7 @@ const footerLinks: any = [{
 }
 
 .app-footer__submit {
+  padding-block-start: theme('spacing.20');
   opacity: 1;
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
