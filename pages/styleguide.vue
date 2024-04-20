@@ -33,8 +33,16 @@
 
     <button type="button">
       <ButtonAppearanceAlt type="green">
-        Reservations
+        Button Alt
       </ButtonAppearanceAlt>
+    </button>
+
+    <br><br>
+
+    <button type="button">
+      <LinkAppearance>
+        Link
+      </LinkAppearance>
     </button>
   </div>
 
@@ -69,8 +77,16 @@
 
       <button type="button">
         <ButtonAppearanceAlt type="offwhite">
-          Reservations
+          Button Alt
         </ButtonAppearanceAlt>
+      </button>
+
+      <br><br>
+
+      <button type="button">
+        <LinkAppearance>
+          Link
+        </LinkAppearance>
       </button>
     </div>
   </div>

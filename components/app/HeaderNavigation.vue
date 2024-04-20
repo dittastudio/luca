@@ -26,7 +26,7 @@ const items = computed(() => list?.items ?? [])
     </div>
 
     <button class="app-header-navigation__cta" type="button" :tabindex="isOpen ? '0' : '-1'">
-      <ButtonAppearance type="green">Reservations</ButtonAppearance>
+      <ButtonAppearanceAlt type="green">Reservations</ButtonAppearanceAlt>
     </button>
   </div>
 </template>

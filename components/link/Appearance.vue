@@ -1,22 +1,23 @@
 <template>
-  <span data-component="ButtonAppearance" class="link-appearance type-body-large">
+  <span data-component="ButtonAppearance" class="link-appearance">
     <slot />
   </span>
 </template>
 
 <style lang="postcss">
 .link-appearance {
-  --link-padding: theme('spacing.20');
+  --link-padding-x: theme('spacing.10');
+  --link-padding-y: theme('spacing.10');
 
   isolation: isolate;
 
   display: block;
 
-  margin: calc(-1 * var(--link-padding));
-  padding: var(--link-padding);
+  margin: calc(-1 * var(--link-padding-y)) calc(-1 * var(--link-padding-x));
+  padding: var(--link-padding-y) var(--link-padding-x);
 
   font-family: theme('fontFamily.heading');
-  font-size: 10px;
+  font-size: theme('fontSize.10');
   font-weight: normal;
   text-indent: theme('letterSpacing.widest');
   text-transform: uppercase;
@@ -33,10 +34,5 @@
   button:not(:disabled):active & {
     opacity: 0.8;
   }
-}
-
-.link-appearance__text {
-  position: relative;
-  z-index: 1;
 }
 </style>
