@@ -28,6 +28,14 @@
         Button
       </ButtonAppearance>
     </button>
+
+    <br><br>
+
+    <button type="button">
+      <ButtonAppearanceAlt type="green">
+        Reservations
+      </ButtonAppearanceAlt>
+    </button>
   </div>
 
   <div class="bg-offwhite text-green">

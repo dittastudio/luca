@@ -62,6 +62,10 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled-down': hasScrolledDown.value,
 }))
 
+const openMenu = () => {
+  isOpen.value = true
+}
+
 const closeMenu = () => {
   isOpen.value = false
 }
@@ -82,7 +86,7 @@ watch(
 
 <template>
   <div @keydown.esc="closeMenu" data-component="AppHeader" class="app-header" :class="headerClasses">
-    <button class="app-header__bg" type="button" @click="closeMenu"></button>
+    <button tabindex="-1" class="app-header__bg" type="button" @click="closeMenu"></button>
 
     <div class="app-header__wrapper wrapper">
       <div class="app-header__menu">
@@ -102,7 +106,7 @@ watch(
       </div>
 
       <div class="app-header__logo">
-        <NuxtLink to="/">
+        <NuxtLink to="/" class="app-header__logo-link">
           <IconLucaLogo class="app-header__logo-icon" />
         </NuxtLink>
       </div>
@@ -110,8 +114,12 @@ watch(
       <div class="app-header__details">
         <IconMichelin class="app-header__michelin-icon" />
 
-        <button type="button">
+        <button class="app-header__reservations" type="button">
           <ButtonAppearance type="green">Reservations</ButtonAppearance>
+        </button>
+
+        <button class="app-header__book" type="button">
+          <LinkAppearance>Book</LinkAppearance>
         </button>
       </div>
     </div>
@@ -276,7 +284,6 @@ watch(
 .app-header__logo {
   position: absolute;
   inset: 0;
-  translate: 0 0 0;
 
   display: flex;
   align-items: center;
@@ -284,7 +291,18 @@ watch(
 
   padding-block: var(--header-padding);
 
-  visibility: visible;
+  @screen md {
+    align-items: flex-start;
+  }
+}
+
+.app-header__logo-link {
+  pointer-events: auto;
+
+  translate: 0 0 0;
+
+  display: block;
+
   opacity: 1;
 
   transition:
@@ -292,39 +310,33 @@ watch(
     visibility theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
     translate 0s 0s;
 
-  @screen md {
-    align-items: flex-start;
-  }
-
   .app-header--has-scrolled-up & {
+    pointer-events: auto;
     translate: 0 0 0;
     visibility: visible;
     opacity: 1;
   }
 
   .app-header--has-scrolled-down & {
+    pointer-events: none;
     translate: 0 -15% 0;
-    visibility: hidden;
     opacity: 0;
     transition:
       opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-      visibility theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
       translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
   @screen lgMax {
     .app-header--is-open & {
-      visibility: hidden;
+      pointer-events: none;
       opacity: 0;
       transition:
-        opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-        visibility theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+        opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
     }
   }
 }
 
 .app-header__logo-icon {
-  pointer-events: auto;
   width: 113px;
   height: 47px;
 
@@ -339,14 +351,33 @@ watch(
   display: flex;
   gap: theme('spacing.30');
   align-items: center;
+}
+
+.app-header__michelin-icon {
+  width: 34px;
+  height: 39px;
 
   @screen mdMax {
     display: none;
   }
 }
 
-.app-header__michelin-icon {
-  width: 34px;
-  height: 39px;
+.app-header__reservations {
+  @screen mdMax {
+    display: none;
+  }
+}
+
+.app-header__book {
+  opacity: 1;
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  .app-header--is-open & {
+    opacity: 0;
+  }
+
+  @screen md {
+    display: none;
+  }
 }
 </style>

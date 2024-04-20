@@ -45,9 +45,12 @@ watchEffect(() => {
 
 .app-footer-accordion__switch {
   @screen smMax {
+    --button-padding-start: 16px;
+    --button-padding-end: 14px;
+
     position: relative;
     width: 100%;
-    padding-block: theme('spacing.15');
+    padding-block: var(--button-padding-start) var(--button-padding-end);
   }
 
   @screen sm {

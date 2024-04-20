@@ -18,14 +18,14 @@ const items = computed(() => list?.items ?? [])
         <li v-for="(item, index) in items" class="app-header-navigation__item"
           :style="`--link-transition-delay: ${200 + index * 40}ms`">
           <StoryblokLink class="app-header-navigation__link" active-class="app-header-navigation__link--is-active"
-            :item="item.link" :title="item.title">
+            :item="item.link" :title="item.title" :tabindex="isOpen ? '0' : '-1'">
             {{ item.title }}
           </StoryblokLink>
         </li>
       </ul>
     </div>
 
-    <button class="app-header-navigation__cta" type="button">
+    <button class="app-header-navigation__cta" type="button" :tabindex="isOpen ? '0' : '-1'">
       <ButtonAppearance type="green">Reservations</ButtonAppearance>
     </button>
   </div>
