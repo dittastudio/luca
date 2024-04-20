@@ -64,6 +64,14 @@
           Button
         </ButtonAppearance>
       </button>
+
+      <br><br>
+
+      <button type="button">
+        <ButtonAppearanceAlt type="offwhite">
+          Reservations
+        </ButtonAppearanceAlt>
+      </button>
     </div>
   </div>
 </template>

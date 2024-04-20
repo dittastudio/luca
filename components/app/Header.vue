@@ -115,7 +115,7 @@ watch(
         <IconMichelin class="app-header__michelin-icon" />
 
         <button class="app-header__reservations" type="button">
-          <ButtonAppearance type="green">Reservations</ButtonAppearance>
+          <ButtonAppearanceAlt type="green">Reservations</ButtonAppearanceAlt>
         </button>
 
         <button class="app-header__book" type="button">

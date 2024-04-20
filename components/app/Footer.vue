@@ -44,7 +44,7 @@ const footerLinks: any = [{
 
     <div class="app-footer__inner">
       <div class="app-footer__details prose prose--small" v-if="openingTimesTitle && openingTimes">
-        <AppFooterAccordion>
+        <AppFooterAccordion :id="openingTimesTitle">
           <template #title>
             <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
           </template>
@@ -56,7 +56,7 @@ const footerLinks: any = [{
       </div>
 
       <div class="app-footer__details prose prose--small" v-if="contactTitle && contact">
-        <AppFooterAccordion>
+        <AppFooterAccordion :id="contactTitle">
           <template #title>
             <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
           </template>
@@ -68,7 +68,7 @@ const footerLinks: any = [{
       </div>
 
       <div class="app-footer__details prose prose--small" v-if="reservationsTitle && reservations">
-        <AppFooterAccordion>
+        <AppFooterAccordion :id="reservationsTitle">
           <template #title>
             <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
           </template>
@@ -79,7 +79,7 @@ const footerLinks: any = [{
       </div>
 
       <div class="app-footer__details app-footer__details--info prose prose--small">
-        <AppFooterAccordion>
+        <AppFooterAccordion id="Info">
           <template #title>
             <h2 class="app-footer__title type-h4">Info</h2>
           </template>

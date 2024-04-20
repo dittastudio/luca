@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import config from '@/tailwind.config'
 
+interface Props {
+  id: string
+}
+
+const { id } = defineProps<Props>()
+
 const isOpen = ref<boolean>(false)
 
 const toggleAccordion = () => {
@@ -14,12 +20,17 @@ watchEffect(() => {
   if (!process.client) return
   return isOpen.value = isScreenSm.value
 })
+
+const headerId = `accordion-header-${id}`
+const bodyId = `accordion-body-${id}`
 </script>
 
 <template>
   <div data-component="AppFooterAccordion" class="app-footer-accordion"
     :class="{ 'app-footer-accordion--is-open': isOpen }">
-    <button type="button" class="app-footer-accordion__switch" @click="toggleAccordion">
+    <button type="button" class="app-footer-accordion__switch" @click="toggleAccordion"
+      :tabindex="isScreenSm ? '-1' : '0'" :aria-label="isOpen ? 'Close accordion' : 'Open accordion'"
+      :aria-expanded="isOpen ? 'true' : 'false'" :id="headerId" :aria-controls="bodyId">
       <span class="app-footer-accordion__icon">
         <AppFooterAccordionIcon :is-open="isOpen" />
       </span>
@@ -30,7 +41,7 @@ watchEffect(() => {
     </button>
 
     <UiExpandCollapse :is-open="isOpen">
-      <div class="app-footer-accordion__content">
+      <div :id="bodyId" role="region" :aria-labelledby="headerId" class="app-footer-accordion__content">
         <slot name="content" />
       </div>
     </UiExpandCollapse>
