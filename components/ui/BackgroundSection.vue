@@ -24,7 +24,7 @@ useIntersectionObserver(
   <Component
     :is="tag"
     ref="section"
-    class="flex items-center justify-center text-center h-screen"
+    data-component="UiBackgroundSection"
   >
     <slot />
   </Component>
