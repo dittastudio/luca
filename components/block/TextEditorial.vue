@@ -10,8 +10,13 @@ const { block } = defineProps<Props>()
 </script>
 
 <template>
-  <div data-component="BlockTextEditorial" v-editable="block">
-    <h2 v-if="block.title">{{ block.title }}</h2>
+  <div
+    v-editable="block"
+    data-component="BlockTextEditorial"
+  >
+    <h2 v-if="block.title">
+      {{ block.title }}
+    </h2>
     <StoryblokRichText
       v-if="hasRichTextContent(block.text)"
       :content="block.text"
@@ -22,8 +27,8 @@ const { block } = defineProps<Props>()
 
 <style lang="postcss" scoped>
 :deep(p) {
-  color: black;
   margin-bottom: theme('spacing.20');
+  color: black;
 }
 
 .text-editorial__columns {

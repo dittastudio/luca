@@ -6,10 +6,12 @@ interface Props {
 const { type = 'green' } = defineProps<Props>()
 </script>
 
-
 <template>
-  <span data-component="ButtonAppearance" class="button-appearance type-body-large"
-    :class="`button-appearance--type-${type}`">
+  <span
+    data-component="ButtonAppearance"
+    class="button-appearance type-body-large"
+    :class="`button-appearance--type-${type}`"
+  >
     <span class="button-appearance__text">
       <slot />
     </span>
@@ -98,7 +100,6 @@ const { type = 'green' } = defineProps<Props>()
     }
   }
 }
-
 
 .button-appearance__text {
   position: relative;

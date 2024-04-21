@@ -7,25 +7,36 @@ const toggleGrid = () => {
 </script>
 
 <template>
-  <button type="button" :class="[
-    'fixed z-50 bottom-20 right-20',
-    'font-[monospace] text-14 text-offwhite',
-    'p-10 shadow-lg backdrop-blur-sm rounded-md',
-    'transition-all duration-200 ease-smooth',
-    { 'bg-black/20 hover:bg-black/60 active:shadow-sm': !isOpen },
-    { 'bg-black/60 active:shadow-sm': isOpen },
-  ]" @click="toggleGrid">
+  <button
+    type="button"
+    :class="[
+      'fixed z-50 bottom-20 right-20',
+      'font-[monospace] text-14 text-offwhite',
+      'p-10 shadow-lg backdrop-blur-sm rounded-md',
+      'transition-all duration-200 ease-smooth',
+      { 'bg-black/20 hover:bg-black/60 active:shadow-sm': !isOpen },
+      { 'bg-black/60 active:shadow-sm': isOpen },
+    ]"
+    @click="toggleGrid"
+  >
     Grid
   </button>
 
-  <div :class="[
-    'fixed z-40 inset-x-0 w-full h-full pointer-events-none',
-    'transition-opacity duration-200 ease-smooth',
-    { 'opacity-0': !isOpen },
-    { 'opacity-100': isOpen }
-  ]" class="wrapper">
+  <div
+    :class="[
+      'fixed z-40 inset-x-0 w-full h-full pointer-events-none',
+      'transition-opacity duration-200 ease-smooth',
+      { 'opacity-0': !isOpen },
+      { 'opacity-100': isOpen },
+    ]"
+    class="wrapper"
+  >
     <div class="grid gap-x-[var(--app-inner-gutter)] grid-cols-2 sm:grid-cols-4 md:grid-cols-12 h-screen">
-      <div v-for="i in 12" :key="i" class="opacity-10 bg-[red]" />
+      <div
+        v-for="i in 12"
+        :key="i"
+        class="opacity-10 bg-[red]"
+      />
     </div>
   </div>
 </template>

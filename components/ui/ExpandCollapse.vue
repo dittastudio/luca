@@ -10,12 +10,12 @@ const height = ref<number>(0)
 const resizeObserver = ref<ResizeObserver | undefined>(undefined)
 
 const setHeightStyles = computed<{ height: string }>(() => ({
-  height: isOpen && inner.value ? `${height.value}px` : '0px'
+  height: isOpen && inner.value ? `${height.value}px` : '0px',
 }))
 
 onMounted(() => {
-  resizeObserver.value = new window.ResizeObserver(entries => {
-    entries.forEach(entry => {
+  resizeObserver.value = new window.ResizeObserver((entries) => {
+    entries.forEach((entry) => {
       height.value = entry.contentRect.height
     })
   })
@@ -34,9 +34,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div data-component="UiExpandCollapse" class="ui-expand-collapse" :class="{ 'ui-expand-collapse--is-open': isOpen }"
-    :style="setHeightStyles">
-    <div class="ui-expand-collapse__inner" ref="inner">
+  <div
+    data-component="UiExpandCollapse"
+    class="ui-expand-collapse"
+    :class="{ 'ui-expand-collapse--is-open': isOpen }"
+    :style="setHeightStyles"
+  >
+    <div
+      ref="inner"
+      class="ui-expand-collapse__inner"
+    >
       <slot />
     </div>
   </div>

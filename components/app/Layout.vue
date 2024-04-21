@@ -1,5 +1,8 @@
 <template>
-  <div data-component="AppLayout" class="app-layout">
+  <div
+    data-component="AppLayout"
+    class="app-layout"
+  >
     <header class="app-layout__header">
       <slot name="header" />
     </header>

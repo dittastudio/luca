@@ -11,22 +11,40 @@ const items = computed(() => list?.items ?? [])
 </script>
 
 <template>
-  <div data-component="AppHeaderNavigation" class="app-header-navigation"
-    :class="{ 'app-header-navigation--is-open': isOpen }">
+  <div
+    data-component="AppHeaderNavigation"
+    class="app-header-navigation"
+    :class="{ 'app-header-navigation--is-open': isOpen }"
+  >
     <div class="app-header-navigation__inner">
       <ul class="app-header-navigation__list type-h2">
-        <li v-for="(item, index) in items" class="app-header-navigation__item"
-          :style="`--link-transition-delay: ${200 + index * 40}ms`">
-          <StoryblokLink class="app-header-navigation__link" active-class="app-header-navigation__link--is-active"
-            :item="item.link" :title="item.title" :tabindex="isOpen ? '0' : '-1'">
+        <li
+          v-for="(item, index) in items"
+          :key="item.title"
+          class="app-header-navigation__item"
+          :style="`--link-transition-delay: ${200 + index * 40}ms`"
+        >
+          <StoryblokLink
+            class="app-header-navigation__link"
+            active-class="app-header-navigation__link--is-active"
+            :item="item.link"
+            :title="item.title"
+            :tabindex="isOpen ? '0' : '-1'"
+          >
             {{ item.title }}
           </StoryblokLink>
         </li>
       </ul>
     </div>
 
-    <button class="app-header-navigation__cta" type="button" :tabindex="isOpen ? '0' : '-1'">
-      <ButtonAppearanceAlt type="green">Reservations</ButtonAppearanceAlt>
+    <button
+      class="app-header-navigation__cta"
+      type="button"
+      :tabindex="isOpen ? '0' : '-1'"
+    >
+      <ButtonAppearanceAlt type="green">
+        Reservations
+      </ButtonAppearanceAlt>
     </button>
   </div>
 </template>

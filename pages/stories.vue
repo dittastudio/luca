@@ -38,7 +38,9 @@ definePageMeta({
   <div class="wrapper">
     <p>
       Test link {{ counter }}
-      <NuxtLink to="/stories/vitra-luca">Vitra + Luca</NuxtLink>
+      <NuxtLink to="/stories/vitra-luca">
+        Vitra + Luca
+      </NuxtLink>
     </p>
 
     <p>{{ $route.name }}</p>

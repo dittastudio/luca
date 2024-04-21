@@ -87,7 +87,8 @@ exports.handler = async (event: HandlerEvent) => {
         errors: [],
       }),
     }
-  } catch (error: any) {
+  }
+  catch (error: any) {
     return {
       statusCode: 500,
       body: JSON.stringify({

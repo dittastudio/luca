@@ -29,7 +29,8 @@ const handleScroll = () => {
     hasScrolledDown.value = false
 
     // Scrolling down
-  } else {
+  }
+  else {
     hasScrolledUp.value = false
     hasScrolledDown.value = scrollPos > triggerPoint
   }
@@ -62,10 +63,6 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled-down': hasScrolledDown.value,
 }))
 
-const openMenu = () => {
-  isOpen.value = true
-}
-
 const closeMenu = () => {
   isOpen.value = false
 }
@@ -80,17 +77,31 @@ watch(
   () => route.path,
   () => {
     closeMenu()
-  }
+  },
 )
 </script>
 
 <template>
-  <div @keydown.esc="closeMenu" data-component="AppHeader" class="app-header" :class="headerClasses">
-    <button tabindex="-1" class="app-header__bg" type="button" @click="closeMenu"></button>
+  <div
+    data-component="AppHeader"
+    class="app-header"
+    :class="headerClasses"
+    @keydown.esc="closeMenu"
+  >
+    <button
+      tabindex="-1"
+      class="app-header__bg"
+      type="button"
+      @click="closeMenu"
+    />
 
     <div class="app-header__wrapper wrapper">
       <div class="app-header__menu">
-        <button class="app-header__switch" type="button" @click="toggleMenu">
+        <button
+          class="app-header__switch"
+          type="button"
+          @click="toggleMenu"
+        >
           <span class="app-header__burger">
             <AppHeaderBurger :is-open="isOpen" />
           </span>
@@ -98,15 +109,21 @@ watch(
           <span class="app-header__switch-text type-body-large">Menu</span>
         </button>
 
-        <span class="app-header__line"></span>
+        <span class="app-header__line" />
 
         <nav class="app-header__navigation">
-          <AppHeaderNavigation :is-open="isOpen" :list="links" />
+          <AppHeaderNavigation
+            :is-open="isOpen"
+            :list="links"
+          />
         </nav>
       </div>
 
       <div class="app-header__logo">
-        <NuxtLink to="/" class="app-header__logo-link">
+        <NuxtLink
+          to="/"
+          class="app-header__logo-link"
+        >
           <IconLucaLogo class="app-header__logo-icon" />
         </NuxtLink>
       </div>
@@ -114,11 +131,19 @@ watch(
       <div class="app-header__details">
         <IconMichelin class="app-header__michelin-icon" />
 
-        <button class="app-header__reservations" type="button">
-          <ButtonAppearanceAlt type="green">Reservations</ButtonAppearanceAlt>
+        <button
+          class="app-header__reservations"
+          type="button"
+        >
+          <ButtonAppearanceAlt type="green">
+            Reservations
+          </ButtonAppearanceAlt>
         </button>
 
-        <button class="app-header__book" type="button">
+        <button
+          class="app-header__book"
+          type="button"
+        >
           <LinkAppearance>Book</LinkAppearance>
         </button>
       </div>

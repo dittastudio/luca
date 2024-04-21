@@ -11,7 +11,7 @@ const storyblokSlug = (path: string): string =>
 
 const storyblokImageDimensions = (
   filename: string | null | undefined,
-): { width: number; height: number } => {
+): { width: number, height: number } => {
   if (!filename?.length) {
     return {
       width: 0,

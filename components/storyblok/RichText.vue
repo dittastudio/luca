@@ -10,5 +10,8 @@ const html = computed(() => (content ? renderRichText(content) : ''))
 </script>
 
 <template>
-  <div data-component="StoryblokRichText" v-html="html" />
+  <div
+    data-component="StoryblokRichText"
+    v-html="html"
+  />
 </template>

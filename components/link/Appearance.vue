@@ -1,5 +1,8 @@
 <template>
-  <span data-component="ButtonAppearance" class="link-appearance">
+  <span
+    data-component="ButtonAppearance"
+    class="link-appearance"
+  >
     <slot />
   </span>
 </template>
