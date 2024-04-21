@@ -64,6 +64,10 @@ export default {
       mint: 'rgb(213 220 205 / <alpha-value>)',
       // #2D3F2F
       green: 'rgb(45 63 47 / <alpha-value>)',
+      // #5C5F42
+      olive: 'rgb(92 95 66 / <alpha-value>)',
+      // #38331B
+      brown: 'rgb(56 51 27 / <alpha-value>)',
     },
     spacing: {
       0: '0',

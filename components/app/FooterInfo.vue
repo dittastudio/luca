@@ -15,7 +15,7 @@ const { items } = defineProps<Props>()
   >
     <ul class="app-footer-info__list">
       <li class="app-footer-info__item">
-        ©2024 All rights reserved
+        <!---->©2024 All rights reserved
       </li>
 
       <li
@@ -39,8 +39,8 @@ const { items } = defineProps<Props>()
           to="https://e-i-b.com/"
           target="_blank"
           rel="noopener noreferrer"
-        ><!--
-        -->Design: Everything In Between
+        >
+          <!---->Design: Everything In Between
         </NuxtLink>
       </li>
 
@@ -50,8 +50,9 @@ const { items } = defineProps<Props>()
           to="https://ditta.studio/"
           target="_blank"
           rel="noopener noreferrer"
-        ><!--
-        -->Made by ditta</NuxtLink>
+        >
+          <!---->Made by ditta
+        </NuxtLink>
       </li>
     </ul>
   </div>
@@ -60,24 +61,22 @@ const { items } = defineProps<Props>()
 <style lang="postcss" scoped>
 .app-footer-info {
   overflow: hidden;
-  font-size: theme('fontSize.14');
+  font-size: theme('fontSize.12');
   color: theme('colors.white/50%');
   letter-spacing: theme('letterSpacing.wide');
-
-  @screen sm {
-    font-size: theme('fontSize.12');
-  }
 }
 
 .app-footer-info__list {
   display: flex;
   flex-direction: column;
+  gap: theme('spacing.15');
   align-items: center;
-  margin-left: -2ch;
 
   @screen sm {
     flex-flow: row wrap;
+    gap: 0;
     align-items: flex-start;
+    margin-left: -1.6ch;
   }
 }
 

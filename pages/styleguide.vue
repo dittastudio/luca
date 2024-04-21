@@ -1,6 +1,34 @@
 <template>
   <div>
+    <UiBackgroundObserver
+      tag="section"
+      bg-color-class="bg-green"
+    >
+      <h1 class="type-h1">
+        Section 1
+      </h1>
+    </UiBackgroundObserver>
+
+    <UiBackgroundObserver
+      tag="section"
+      bg-color-class="bg-olive"
+    >
+      <h1 class="type-h1">
+        Section 2
+      </h1>
+    </UiBackgroundObserver>
+
+    <UiBackgroundObserver
+      tag="section"
+      bg-color-class="bg-brown"
+    >
+      <h1 class="type-h1">
+        Section 3
+      </h1>
+    </UiBackgroundObserver>
+
     <!-- <Screen :log="seo_image" /> -->
+
     <div class="section wrapper">
       <h1 class="type-h1 opacity-40">
         Styleguide

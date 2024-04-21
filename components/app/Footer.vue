@@ -185,7 +185,7 @@ const footerLinks: any = [{
 
 <style lang="postcss" scoped>
 .app-footer {
-  padding-block: theme('spacing.120') theme('spacing.80');
+  padding-block: theme('spacing.120') theme('spacing.40');
 
   @screen md {
     padding-block-end: theme('spacing.40');
@@ -313,16 +313,17 @@ const footerLinks: any = [{
 .app-footer__bottom {
   display: flex;
   grid-column: 1 / -1;
-  flex-direction: column;
-  gap: theme('spacing.40');
+  flex-direction: column-reverse;
+  gap: theme('spacing.60');
   align-items: center;
   justify-content: space-between;
 
-  margin-block-start: theme('spacing.120');
+  margin-block-start: theme('spacing.60');
 
   @screen sm {
     flex-direction: row;
     align-items: flex-end;
+    margin-block-start: theme('spacing.120');
   }
 
 }
