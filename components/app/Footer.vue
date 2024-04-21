@@ -152,8 +152,8 @@ const footerLinks: any = [{
           title="Follow us on Facebook"
         >
           <IconFacebook
-            width="20"
-            height="20"
+            width="16"
+            height="16"
           />
         </NuxtLink>
 
@@ -163,8 +163,8 @@ const footerLinks: any = [{
           title="Follow us on TikTok"
         >
           <IconTikTok
-            width="20"
-            height="20"
+            width="16"
+            height="16"
           />
         </NuxtLink>
 
@@ -174,8 +174,8 @@ const footerLinks: any = [{
           title="Follow us on Instagram"
         >
           <IconInstagram
-            width="20"
-            height="20"
+            width="16"
+            height="16"
           />
         </NuxtLink>
       </div>
@@ -185,7 +185,7 @@ const footerLinks: any = [{
 
 <style lang="postcss" scoped>
 .app-footer {
-  padding-block: theme('spacing.120');
+  padding-block: theme('spacing.120') theme('spacing.80');
 
   @screen md {
     padding-block-end: theme('spacing.40');
@@ -318,7 +318,7 @@ const footerLinks: any = [{
   align-items: center;
   justify-content: space-between;
 
-  margin-block-start: theme('spacing.40');
+  margin-block-start: theme('spacing.120');
 
   @screen sm {
     flex-direction: row;
@@ -328,12 +328,14 @@ const footerLinks: any = [{
 }
 
 .app-footer__social {
+  --social-padding: theme('spacing.15');
+
   display: flex;
+  margin: calc(-1 * var(--social-padding));
 }
 
 .app-footer__social-link {
-  margin-block: calc(-1 * theme('spacing.10'));
-  padding: theme('spacing.10');
+  padding: var(--social-padding);
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   .app-footer__social:hover &:not(:hover) {
