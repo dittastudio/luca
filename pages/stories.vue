@@ -2,7 +2,7 @@
 import type { PageStoryblok } from '@/types/storyblok'
 
 const route = useRoute()
-const story = await useStoryblokStory<PageStoryblok>(route.path)
+const story = await useStoryblokStory<PageStoryblok>('/stories')
 
 if (!story.value) {
   throw createError({
@@ -27,11 +27,6 @@ onMounted(() => {
     counter.value++
   }, 1000)
 })
-
-definePageMeta({
-  // key: route => route.fullPath,
-  keepalive: true,
-})
 </script>
 
 <template>
@@ -41,11 +36,13 @@ definePageMeta({
       <NuxtLink to="/stories/vitra-luca">Vitra + Luca</NuxtLink>
     </p>
 
-    <p>{{ $route.name }}</p>
+    <p>{{ route.name }}</p>
 
-    <AppModal :is-open="$route.name === 'stories-page'">
-      <transition name="fade">
-        <NuxtPage />
+    <AppModal :is-open="route.name === 'stories-page'">
+      <transition name="fade" mode="out-in">
+        <div v-if="route.name === 'stories-page'" :key="route.fullPath">
+          <NuxtPage :page-key="route.fullPath" />
+        </div>
       </transition>
     </AppModal>
 
@@ -56,11 +53,10 @@ definePageMeta({
 <style lang="postcss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.4s;
+  transition: all 1s;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  filter: blur(1rem);
 }
 </style>
