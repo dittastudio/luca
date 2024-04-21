@@ -14,6 +14,7 @@
     <footer class="app-layout__footer">
       <slot name="footer" />
     </footer>
+
     <slot name="modal" />
   </div>
 </template>

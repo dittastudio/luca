@@ -17,7 +17,8 @@ const { screens } = config.theme
 const isScreenSm = useAtMedia(`(min-width: ${screens.sm})`)
 
 watchEffect(() => {
-  if (!process.client) return
+  if (!import.meta.client) return
+
   return isOpen.value = isScreenSm.value
 })
 
@@ -26,11 +27,21 @@ const bodyId = `accordion-body-${id}`
 </script>
 
 <template>
-  <div data-component="AppFooterAccordion" class="app-footer-accordion"
-    :class="{ 'app-footer-accordion--is-open': isOpen }">
-    <button type="button" class="app-footer-accordion__switch" @click="toggleAccordion"
-      :tabindex="isScreenSm ? '-1' : '0'" :aria-label="isOpen ? 'Close accordion' : 'Open accordion'"
-      :aria-expanded="isOpen ? 'true' : 'false'" :id="headerId" :aria-controls="bodyId">
+  <div
+    data-component="AppFooterAccordion"
+    class="app-footer-accordion"
+    :class="{ 'app-footer-accordion--is-open': isOpen }"
+  >
+    <button
+      :id="headerId"
+      type="button"
+      class="app-footer-accordion__switch"
+      :tabindex="isScreenSm ? '-1' : '0'"
+      :aria-label="isOpen ? 'Close accordion' : 'Open accordion'"
+      :aria-expanded="isOpen ? 'true' : 'false'"
+      :aria-controls="bodyId"
+      @click="toggleAccordion"
+    >
       <span class="app-footer-accordion__icon">
         <AppFooterAccordionIcon :is-open="isOpen" />
       </span>
@@ -41,17 +52,29 @@ const bodyId = `accordion-body-${id}`
     </button>
 
     <UiExpandCollapse :is-open="isOpen">
-      <div :id="bodyId" role="region" :aria-labelledby="headerId" class="app-footer-accordion__content">
+      <div
+        :id="bodyId"
+        role="region"
+        :aria-labelledby="headerId"
+        class="app-footer-accordion__content"
+      >
         <slot name="content" />
       </div>
     </UiExpandCollapse>
   </div>
 </template>
 
-
 <style lang="postcss" scoped>
 .app-footer-accordion {
   width: 100%;
+
+  @screen smMax {
+    border-block: 1px solid theme('colors.white/20%');
+
+    & + & {
+      border-block-start: 0;
+    }
+  }
 }
 
 .app-footer-accordion__switch {

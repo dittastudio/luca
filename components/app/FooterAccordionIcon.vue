@@ -7,9 +7,13 @@ const { isOpen = false } = defineProps<Props>()
 </script>
 
 <template>
-  <span data-component="AppFooterAccordionIcon" class="app-footer-accordion-icon"
-    :class="{ 'app-footer-accordion-icon--is-open': isOpen }">
-    <span class="app-footer-accordion-icon__inner"></span>
+  <span
+    data-component="AppFooterAccordionIcon"
+    class="app-footer-accordion-icon"
+    :class="{ 'app-footer-accordion-icon--is-open': isOpen }"
+  >
+    <span class="app-footer-accordion-icon__inner" />
+
     <span class="sr-only">Toggle menu</span>
   </span>
 </template>

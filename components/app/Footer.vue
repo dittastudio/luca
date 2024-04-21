@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import IconFacebook from '@/assets/icons/facebook.svg'
+import IconTikTok from '@/assets/icons/tiktok.svg'
+import IconInstagram from '@/assets/icons/instagram.svg'
 import type { RichtextStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -34,75 +37,147 @@ const footerLinks: any = [{
   },
   title: 'Privacy Policy',
   component: 'link_list',
-  items: []
+  items: [],
 }]
 </script>
 
 <template>
-  <footer data-component="AppFooter" class="app-footer wrapper">
+  <footer
+    data-component="AppFooter"
+    class="app-footer wrapper"
+  >
     <hr class="app-footer__break">
 
     <div class="app-footer__inner">
-      <div class="app-footer__details prose prose--small" v-if="openingTimesTitle && openingTimes">
-        <AppFooterAccordion :id="openingTimesTitle">
-          <template #title>
-            <h2 class="app-footer__title type-h4">{{ openingTimesTitle }}</h2>
-          </template>
-
-          <template #content>
-            <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
-          </template>
-        </AppFooterAccordion>
-      </div>
-
-      <div class="app-footer__details prose prose--small" v-if="contactTitle && contact">
-        <AppFooterAccordion :id="contactTitle">
-          <template #title>
-            <h2 class="app-footer__title type-h4">{{ contactTitle }}</h2>
-          </template>
-
-          <template #content>
-            <StoryblokRichText class="app-footer__copy" :content="contact" />
-          </template>
-        </AppFooterAccordion>
-      </div>
-
-      <div class="app-footer__details prose prose--small" v-if="reservationsTitle && reservations">
-        <AppFooterAccordion :id="reservationsTitle">
-          <template #title>
-            <h2 class="app-footer__title type-h4">{{ reservationsTitle }}</h2>
-          </template>
-          <template #content>
-            <StoryblokRichText class="app-footer__copy" :content="reservations" />
-          </template>
-        </AppFooterAccordion>
-      </div>
-
-      <div class="app-footer__details app-footer__details--info prose prose--small">
-        <AppFooterAccordion id="Info">
-          <template #title>
-            <h2 class="app-footer__title type-h4">Info</h2>
-          </template>
-          <template #content>
-            <AppFooterInfo :items="footerLinks" />
-          </template>
-        </AppFooterAccordion>
-      </div>
-
       <div class="app-footer__newsletter">
-        <div class="prose prose--small" v-if="newsletterTitle && newsletter">
-          <h2 class="app-footer__title type-h4">{{ newsletterTitle }}</h2>
-          <StoryblokRichText class="app-footer__copy" :content="newsletter" />
+        <div
+          v-if="newsletterTitle && newsletter"
+          class="prose prose--small"
+        >
+          <h2 class="app-footer__title type-h4">
+            {{ newsletterTitle }}
+          </h2>
 
-          <form class="app-footer__form" action="">
-            <input class="app-footer__input type-body" type="email" placeholder="Email" required />
-            <button class="app-footer__submit type-h6" type="submit">Submit</button>
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="newsletter"
+          />
+
+          <form
+            class="app-footer__form"
+            action=""
+          >
+            <input
+              class="app-footer__input type-body"
+              type="email"
+              placeholder="Email"
+              required
+            >
+
+            <button
+              class="app-footer__submit type-h6"
+              type="submit"
+            >
+              Submit
+            </button>
           </form>
         </div>
+      </div>
 
-        <div class="smMax:hidden">
-          <AppFooterInfo :items="footerLinks" />
-        </div>
+      <AppFooterAccordion
+        v-if="openingTimesTitle && openingTimes"
+        :id="openingTimesTitle"
+        class="app-footer__details prose prose--small"
+      >
+        <template #title>
+          <h2 class="app-footer__title type-h4">
+            {{ openingTimesTitle }}
+          </h2>
+        </template>
+
+        <template #content>
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="openingTimes"
+          />
+        </template>
+      </AppFooterAccordion>
+
+      <AppFooterAccordion
+        v-if="contactTitle && contact"
+        :id="contactTitle"
+        class="app-footer__details prose prose--small"
+      >
+        <template #title>
+          <h2 class="app-footer__title type-h4">
+            {{ contactTitle }}
+          </h2>
+        </template>
+
+        <template #content>
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="contact"
+          />
+        </template>
+      </AppFooterAccordion>
+
+      <AppFooterAccordion
+        v-if="reservationsTitle && reservations"
+        :id="reservationsTitle"
+        class="app-footer__details prose prose--small"
+      >
+        <template #title>
+          <h2 class="app-footer__title type-h4">
+            {{ reservationsTitle }}
+          </h2>
+        </template>
+
+        <template #content>
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="reservations"
+          />
+        </template>
+      </AppFooterAccordion>
+    </div>
+
+    <div class="app-footer__bottom">
+      <AppFooterInfo :items="footerLinks" />
+
+      <div class="app-footer__social">
+        <NuxtLink
+          class="app-footer__social-link"
+          to="https://www.facebook.com/Lucarestaurantlondon"
+          title="Follow us on Facebook"
+        >
+          <IconFacebook
+            width="20"
+            height="20"
+          />
+        </NuxtLink>
+
+        <NuxtLink
+          class="app-footer__social-link"
+          to="https://www.tiktok.com/@luca.restaurant"
+          title="Follow us on TikTok"
+        >
+          <IconTikTok
+            width="20"
+            height="20"
+          />
+        </NuxtLink>
+
+        <NuxtLink
+          class="app-footer__social-link"
+          to="https://www.instagram.com/luca.restaurant"
+          title="Follow us on Instagram"
+        >
+          <IconInstagram
+            width="20"
+            height="20"
+          />
+        </NuxtLink>
       </div>
     </div>
   </footer>
@@ -137,49 +212,17 @@ const footerLinks: any = [{
 }
 
 .app-footer__details {
+
   @screen xl {
+    grid-column: span 3;
+  }
+
+  @screen base {
     grid-column: span 2;
   }
 
   @screen smMax {
-    position: relative;
     text-align: center;
-
-    &::before {
-      pointer-events: none;
-      content: '';
-
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-
-      height: 1px;
-
-      background-color: theme('colors.white/20%');
-    }
-  }
-}
-
-.app-footer__details--info {
-  @screen smMax {
-    &::after {
-      pointer-events: none;
-      content: '';
-
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-
-      height: 1px;
-
-      background-color: theme('colors.white/20%');
-    }
-  }
-
-  @screen sm {
-    display: none;
   }
 }
 
@@ -196,12 +239,19 @@ const footerLinks: any = [{
   justify-content: space-between;
 
   @screen smMax {
-    order: -1;
     padding-block-end: theme('spacing.120');
     text-align: center;
   }
 
+  @screen sm {
+    order: 1;
+  }
+
   @screen xl {
+    grid-column: 10 / 13;
+  }
+
+  @screen base {
     grid-column: 9 / 13;
   }
 }
@@ -210,7 +260,14 @@ const footerLinks: any = [{
   display: flex;
   gap: theme('spacing.10');
   justify-content: space-between;
-  border-bottom: 1px solid theme('colors.white');
+
+  border-bottom: 1px solid theme('colors.white/20%');
+
+  transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  &:focus-within {
+    border-color: theme('colors.white/100%');
+  }
 }
 
 .app-footer__input {
@@ -250,6 +307,37 @@ const footerLinks: any = [{
 
   &:active {
     opacity: 0.75;
+  }
+}
+
+.app-footer__bottom {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-direction: column;
+  gap: theme('spacing.40');
+  align-items: center;
+  justify-content: space-between;
+
+  margin-block-start: theme('spacing.40');
+
+  @screen sm {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+}
+
+.app-footer__social {
+  display: flex;
+}
+
+.app-footer__social-link {
+  margin-block: calc(-1 * theme('spacing.10'));
+  padding: theme('spacing.10');
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  .app-footer__social:hover &:not(:hover) {
+    opacity: 0.5;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <div>
     <!-- <Screen :log="seo_image" /> -->
     <div class="section wrapper">
-      <h1 class="type-h1 opacity-50">
+      <h1 class="type-h1 opacity-40">
         Styleguide
       </h1>
 
@@ -10,18 +10,23 @@
         <h1 class="type-h1">
           Heading 1
         </h1>
+
         <h2 class="type-h2">
           Heading 2
         </h2>
+
         <h3 class="type-h3">
           Heading 3
         </h3>
+
         <h4 class="type-h4">
           Heading 4
         </h4>
+
         <h5 class="type-h5">
           Heading 5
         </h5>
+
         <h6 class="type-h6">
           Heading 6
         </h6>
@@ -43,7 +48,9 @@
         </ButtonAppearance>
       </button>
 
-      <br><br>
+      <br>
+
+      <br>
 
       <button type="button">
         <ButtonAppearanceAlt type="green">
@@ -51,7 +58,9 @@
         </ButtonAppearanceAlt>
       </button>
 
-      <br><br>
+      <br>
+
+      <br>
 
       <button type="button">
         <LinkAppearance>
@@ -66,18 +75,23 @@
           <h1 class="type-h1">
             Heading 1
           </h1>
+
           <h2 class="type-h2">
             Heading 2
           </h2>
+
           <h3 class="type-h3">
             Heading 3
           </h3>
+
           <h4 class="type-h4">
             Heading 4
           </h4>
+
           <h5 class="type-h5">
             Heading 5
           </h5>
+
           <h6 class="type-h6">
             Heading 6
           </h6>
@@ -99,7 +113,9 @@
           </ButtonAppearance>
         </button>
 
-        <br><br>
+        <br>
+
+        <br>
 
         <button type="button">
           <ButtonAppearanceAlt type="offwhite">
@@ -107,7 +123,9 @@
           </ButtonAppearanceAlt>
         </button>
 
-        <br><br>
+        <br>
+
+        <br>
 
         <button type="button">
           <LinkAppearance>

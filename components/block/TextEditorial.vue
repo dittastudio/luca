@@ -17,6 +17,7 @@ const { block } = defineProps<Props>()
     <h2 v-if="block.title">
       {{ block.title }}
     </h2>
+
     <StoryblokRichText
       v-if="hasRichTextContent(block.text)"
       :content="block.text"

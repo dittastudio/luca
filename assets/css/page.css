@@ -1,6 +1,6 @@
 @layer base {
   html {
-    color: theme('colors.offwhite');
+    color: theme('colors.white');
     background-color: theme('colors.green');
   }
 

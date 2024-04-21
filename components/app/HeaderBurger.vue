@@ -13,6 +13,7 @@ const { isOpen = false } = defineProps<Props>()
     :class="{ 'app-header-burger--is-open': isOpen }"
   >
     <span class="app-header-burger__inner" />
+
     <span class="sr-only">Toggle menu</span>
   </span>
 </template>
