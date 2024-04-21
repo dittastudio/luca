@@ -49,14 +49,9 @@
   }
 
   /* Body */
-  .type-body-small {
-    font-size: theme('fontSize.12');
-    letter-spacing: theme('letterSpacing.wide');
-  }
-
   .type-body {
     font-size: theme('fontSize.14');
-    letter-spacing: theme('letterSpacing.wide');
+    letter-spacing: theme('letterSpacing.wider');
 
     @screen md {
       font-size: theme('fontSize.16');

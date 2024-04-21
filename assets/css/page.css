@@ -1,7 +1,8 @@
 @layer base {
   html {
-    color: theme('colors.offwhite');
+    color: theme('colors.white');
     background-color: theme('colors.green');
+    transition: background-color theme('transitionDuration.1000') theme('transitionTimingFunction.out');
   }
 
   body {

@@ -15,7 +15,7 @@ export default defineNuxtConfig({
         { name: 'msapplication-TileColor', content: '#ffb9b9' },
         { name: 'theme-color', content: '#ffb9b9' },
         { name: 'google', content: 'notranslate' },
-        { 'http-equiv': 'content-language', content: 'en-GB' },
+        { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
       link: [
         { rel: 'preconnect', href: 'https://a2.storyblok.com' },
@@ -45,6 +45,9 @@ export default defineNuxtConfig({
   components: true,
   css: process.env.LOCAL === 'true' ? ['@michaelpumo/screen/app.css'] : [],
   eslint: {
+    config: {
+      stylistic: true,
+    },
     // options here
   },
   gtag: {
@@ -72,8 +75,8 @@ export default defineNuxtConfig({
     plugins: {
       'postcss-import': {},
       'tailwindcss/nesting': {},
-      tailwindcss: {},
-      autoprefixer: {},
+      'tailwindcss': {},
+      'autoprefixer': {},
     },
   },
   runtimeConfig: {

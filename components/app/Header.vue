@@ -29,7 +29,8 @@ const handleScroll = () => {
     hasScrolledDown.value = false
 
     // Scrolling down
-  } else {
+  }
+  else {
     hasScrolledUp.value = false
     hasScrolledDown.value = scrollPos > triggerPoint
   }
@@ -69,20 +70,38 @@ const closeMenu = () => {
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
+
+const route = useRoute()
+
+watch(
+  () => route.path,
+  () => {
+    closeMenu()
+  },
+)
 </script>
 
 <template>
   <div
-    @keydown.esc="closeMenu"
     data-component="AppHeader"
     class="app-header"
     :class="headerClasses"
+    @keydown.esc="closeMenu"
   >
-    <button class="app-header__bg" type="button" @click="closeMenu"></button>
+    <button
+      tabindex="-1"
+      class="app-header__bg"
+      type="button"
+      @click="closeMenu"
+    />
 
     <div class="app-header__wrapper wrapper">
       <div class="app-header__menu">
-        <button class="app-header__switch" type="button" @click="toggleMenu">
+        <button
+          class="app-header__switch"
+          type="button"
+          @click="toggleMenu"
+        >
           <span class="app-header__burger">
             <AppHeaderBurger :is-open="isOpen" />
           </span>
@@ -90,15 +109,21 @@ const toggleMenu = () => {
           <span class="app-header__switch-text type-body-large">Menu</span>
         </button>
 
-        <span class="app-header__line"></span>
+        <span class="app-header__line" />
 
         <nav class="app-header__navigation">
-          <AppHeaderNavigation :is-open="isOpen" :list="links" />
+          <AppHeaderNavigation
+            :is-open="isOpen"
+            :list="links"
+          />
         </nav>
       </div>
 
       <div class="app-header__logo">
-        <NuxtLink to="/">
+        <NuxtLink
+          to="/"
+          class="app-header__logo-link"
+        >
           <IconLucaLogo class="app-header__logo-icon" />
         </NuxtLink>
       </div>
@@ -106,8 +131,20 @@ const toggleMenu = () => {
       <div class="app-header__details">
         <IconMichelin class="app-header__michelin-icon" />
 
-        <button type="button">
-          <ButtonAppearance type="green">Reservations</ButtonAppearance>
+        <button
+          class="app-header__reservations"
+          type="button"
+        >
+          <ButtonAppearanceAlt type="green">
+            Reservations
+          </ButtonAppearanceAlt>
+        </button>
+
+        <button
+          class="app-header__book"
+          type="button"
+        >
+          <LinkAppearance>Book</LinkAppearance>
         </button>
       </div>
     </div>
@@ -119,11 +156,9 @@ const toggleMenu = () => {
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
-  background-image: linear-gradient(
-    to bottom,
-    theme('colors.green/100%') 0%,
-    theme('colors.green/0%') 100%
-  );
+  background-image: linear-gradient(to bottom,
+      theme('colors.green/100%') 0%,
+      theme('colors.green/0%') 100%);
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
@@ -228,10 +263,8 @@ const toggleMenu = () => {
     scale: 1 1 1;
     opacity: 1;
     transition:
-      scale theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.100'),
-      opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.100');
+      scale theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.100'),
+      opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.100');
   }
 
   @screen mdMax {
@@ -276,7 +309,6 @@ const toggleMenu = () => {
 .app-header__logo {
   position: absolute;
   inset: 0;
-  translate: 0 0 0;
 
   display: flex;
   align-items: center;
@@ -284,7 +316,18 @@ const toggleMenu = () => {
 
   padding-block: var(--header-padding);
 
-  visibility: visible;
+  @screen md {
+    align-items: flex-start;
+  }
+}
+
+.app-header__logo-link {
+  pointer-events: auto;
+
+  translate: 0 0 0;
+
+  display: block;
+
   opacity: 1;
 
   transition:
@@ -292,39 +335,33 @@ const toggleMenu = () => {
     visibility theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
     translate 0s 0s;
 
-  @screen md {
-    align-items: flex-start;
-  }
-
   .app-header--has-scrolled-up & {
+    pointer-events: auto;
     translate: 0 0 0;
     visibility: visible;
     opacity: 1;
   }
 
   .app-header--has-scrolled-down & {
+    pointer-events: none;
     translate: 0 -15% 0;
-    visibility: hidden;
     opacity: 0;
     transition:
       opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-      visibility theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
       translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
   @screen lgMax {
     .app-header--is-open & {
-      visibility: hidden;
+      pointer-events: none;
       opacity: 0;
       transition:
-        opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-        visibility theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+        opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
     }
   }
 }
 
 .app-header__logo-icon {
-  pointer-events: auto;
   width: 113px;
   height: 47px;
 
@@ -339,14 +376,33 @@ const toggleMenu = () => {
   display: flex;
   gap: theme('spacing.30');
   align-items: center;
+}
+
+.app-header__michelin-icon {
+  width: 34px;
+  height: 39px;
 
   @screen mdMax {
     display: none;
   }
 }
 
-.app-header__michelin-icon {
-  width: 34px;
-  height: 39px;
+.app-header__reservations {
+  @screen mdMax {
+    display: none;
+  }
+}
+
+.app-header__book {
+  opacity: 1;
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  .app-header--is-open & {
+    opacity: 0;
+  }
+
+  @screen md {
+    display: none;
+  }
 }
 </style>

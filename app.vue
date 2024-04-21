@@ -34,13 +34,13 @@ useSeoMeta({
 
       <template #footer>
         <AppFooter
-          :openingTimesTitle="story.content.opening_times_title"
-          :openingTimes="story.content.opening_times"
-          :contactTitle="story.content.contact_title"
+          :opening-times-title="story.content.opening_times_title"
+          :opening-times="story.content.opening_times"
+          :contact-title="story.content.contact_title"
           :contact="story.content.contact"
-          :reservationsTitle="story.content.reservations_title"
+          :reservations-title="story.content.reservations_title"
           :reservations="story.content.reservations"
-          :newsletterTitle="story.content.newsletter_title"
+          :newsletter-title="story.content.newsletter_title"
           :newsletter="story.content.newsletter"
         />
       </template>

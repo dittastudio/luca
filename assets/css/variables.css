@@ -2,12 +2,16 @@
   :root {
     /* Global units */
     --app-inner-gutter: theme('spacing.20');
-    --app-outer-gutter: theme('spacing.40');
+    --app-outer-gutter: theme('spacing.20');
     --app-header-height: 87px;
 
     @screen md {
-      --app-outer-gutter: theme('spacing.60');
+      --app-outer-gutter: theme('spacing.40');
       --app-header-height: 174px;
+    }
+
+    @screen base {
+      --app-outer-gutter: theme('spacing.60');
     }
   }
 }

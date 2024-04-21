@@ -1,5 +1,5 @@
-import { storyblokImage } from '@/utilities/helpers'
 import type { Ref } from 'vue'
+import { storyblokImage } from '@/utilities/helpers'
 
 export const useStoryblokSeo = async (story: Ref) => {
   const seo = story.value.content?.seo?.[0]

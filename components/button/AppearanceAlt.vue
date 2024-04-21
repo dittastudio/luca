@@ -8,20 +8,20 @@ const { type = 'green' } = defineProps<Props>()
 
 <template>
   <span
-    data-component="ButtonAppearance"
-    class="button-appearance type-body-large"
-    :class="`button-appearance--type-${type}`"
+    data-component="ButtonAppearanceAlt"
+    class="button-appearance-alt"
+    :class="`button-appearance-alt--type-${type}`"
   >
-    <span class="button-appearance__text">
+    <span class="button-appearance-alt__text">
       <slot />
     </span>
   </span>
 </template>
 
 <style lang="postcss">
-.button-appearance {
-  --button-padding-y: 11px;
-  --button-padding-x: theme('spacing.40');
+.button-appearance-alt {
+  --button-padding-y: 1.25em;
+  --button-padding-x: 2.2em;
   --button-background-color: transparent;
   --button-text-color: theme('colors.white');
   --button-border-color: theme('colors.white');
@@ -33,14 +33,23 @@ const { type = 'green' } = defineProps<Props>()
 
   padding: var(--button-padding-y) var(--button-padding-x);
 
+  font-family: theme('fontFamily.heading');
+  font-size: theme('fontSize.10');
+  font-weight: normal;
   color: var(--button-text-color);
-  text-indent: theme('letterSpacing.wider');
+  text-indent: theme('letterSpacing.widest');
+  text-transform: uppercase;
+  letter-spacing: theme('letterSpacing.widest');
 
   background-color: var(--button-background-color);
   border-radius: theme('borderRadius.sm');
 
   transition: background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
     color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  @screen md {
+    font-size: theme('fontSize.12');
+  }
 
   &::before {
     content: '';
@@ -86,13 +95,13 @@ const { type = 'green' } = defineProps<Props>()
       --button-text-color: theme('colors.green');
       --button-border-color: theme('colors.white');
 
-      &.button-appearance--type-offwhite {
+      &.button-appearance-alt--type-offwhite {
         --button-background-color: theme('colors.green');
         --button-text-color: theme('colors.offwhite');
         --button-border-color: theme('colors.green');
       }
 
-      &.button-appearance--type-white {
+      &.button-appearance-alt--type-white {
         --button-background-color: theme('colors.green');
         --button-text-color: theme('colors.white');
         --button-border-color: theme('colors.green');
@@ -101,8 +110,9 @@ const { type = 'green' } = defineProps<Props>()
   }
 }
 
-.button-appearance__text {
+.button-appearance-alt__text {
   position: relative;
   z-index: 1;
+  top: 0.1em;
 }
 </style>

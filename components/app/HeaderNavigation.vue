@@ -16,20 +16,35 @@ const items = computed(() => list?.items ?? [])
     class="app-header-navigation"
     :class="{ 'app-header-navigation--is-open': isOpen }"
   >
-    <ul class="app-header-navigation__list type-h2">
-      <li
-        v-for="(item, index) in items"
-        class="app-header-navigation__item"
-        :style="`--link-transition-delay: ${200 + index * 40}ms`"
-      >
-        <StoryblokLink class="app-header-navigation__link" :item="item.link">
-          {{ item.title }}
-        </StoryblokLink>
-      </li>
-    </ul>
+    <div class="app-header-navigation__inner">
+      <ul class="app-header-navigation__list type-h2">
+        <li
+          v-for="(item, index) in items"
+          :key="item.title"
+          class="app-header-navigation__item"
+          :style="`--link-transition-delay: ${200 + index * 40}ms`"
+        >
+          <StoryblokLink
+            class="app-header-navigation__link"
+            active-class="app-header-navigation__link--is-active"
+            :item="item.link"
+            :title="item.title"
+            :tabindex="isOpen ? '0' : '-1'"
+          >
+            {{ item.title }}
+          </StoryblokLink>
+        </li>
+      </ul>
+    </div>
 
-    <button class="app-header-navigation__cta" type="button">
-      <ButtonAppearance type="green">Reservations</ButtonAppearance>
+    <button
+      class="app-header-navigation__cta"
+      type="button"
+      :tabindex="isOpen ? '0' : '-1'"
+    >
+      <ButtonAppearanceAlt type="green">
+        Reservations
+      </ButtonAppearanceAlt>
     </button>
   </div>
 </template>
@@ -106,16 +121,18 @@ const items = computed(() => list?.items ?? [])
 .app-header-navigation__item {
   translate: calc(-1 * var(--link-nudge)) 0 0;
   opacity: 0;
-  animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
-    forwards;
+  animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth') forwards;
 
   .app-header-navigation--is-open & {
-    animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-      var(--link-transition-delay) forwards;
+    animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth') var(--link-transition-delay) forwards;
   }
 }
 
 .app-header-navigation__link {
+  user-select: none;
+
+  position: relative;
+
   display: block;
 
   width: 100%;
@@ -124,7 +141,24 @@ const items = computed(() => list?.items ?? [])
 
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-  &:hover {
+  /* HACK: Added to stop hover stutter with italics 🤪 */
+  &::after {
+    pointer-events: none;
+    content: attr(title);
+
+    overflow: hidden;
+    display: block;
+
+    height: 0;
+
+    font-style: normal;
+
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &:hover,
+  .app-header-navigation__list:not(:hover) &.app-header-navigation__link--is-active {
     font-style: italic;
   }
 

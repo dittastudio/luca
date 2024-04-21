@@ -10,7 +10,13 @@ const { block } = defineProps<Props>()
 </script>
 
 <template>
-  <div data-component="BlockText" v-editable="block">
-    <StoryblokRichText v-if="hasRichTextContent(block.text)" :content="block.text" />
+  <div
+    v-editable="block"
+    data-component="BlockText"
+  >
+    <StoryblokRichText
+      v-if="hasRichTextContent(block.text)"
+      :content="block.text"
+    />
   </div>
 </template>

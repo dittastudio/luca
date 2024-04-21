@@ -9,7 +9,14 @@ const { block } = defineProps<Props>()
 </script>
 
 <template>
-  <div data-component="BlockImage" v-editable="block">
-    <NuxtImg provider="storyblok" :src="block.image.filename" :alt="block.image.alt" />
+  <div
+    v-editable="block"
+    data-component="BlockImage"
+  >
+    <NuxtImg
+      provider="storyblok"
+      :src="block.image.filename"
+      :alt="block.image.alt"
+    />
   </div>
 </template>
