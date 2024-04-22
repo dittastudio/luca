@@ -42,7 +42,11 @@ useSeoMeta({
           :reservations="story.content.reservations"
           :newsletter-title="story.content.newsletter_title"
           :newsletter="story.content.newsletter"
-        />
+        >
+          <template #navigation>
+            <AppFooterNavigation :list="story.content.footer?.[0]" />
+          </template>
+        </AppFooter>
       </template>
 
       <template #modal>

@@ -2,18 +2,19 @@
 import type { LinkListStoryblok } from '@/types/storyblok'
 
 interface Props {
-  items: LinkListStoryblok[]
+  list?: LinkListStoryblok
 }
 
-const { items } = defineProps<Props>()
+const { list } = defineProps<Props>()
+const items = computed(() => list?.items ?? [])
 </script>
 
 <template>
-  <div data-component="AppFooterInfo" class="app-footer-info">
+  <div data-component="AppFooterNavigation" class="app-footer-info">
     <ul class="app-footer-info__list">
       <li class="app-footer-info__item">&copy;2024 All rights reserved</li>
 
-      <li v-for="item in items" :key="item.title" class="app-footer-info__item">
+      <li v-for="item in items" :key="item._uid" class="app-footer-info__item">
         <StoryblokLink
           class="app-footer-info__link"
           active-class="app-header-navigation__link--is-active"

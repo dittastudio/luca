@@ -25,61 +25,25 @@ const {
   newsletterTitle,
   newsletter,
 } = defineProps<Props>()
-
-const footerLinks: any = [{
-  _uid: '123',
-  link: {
-    id: '123',
-    url: '',
-    linktype: 'footer',
-    fieldtype: 'multilink',
-    cached_url: '/privacy-policy',
-  },
-  title: 'Privacy Policy',
-  component: 'link_list',
-  items: [],
-}]
 </script>
 
 <template>
-  <footer
-    data-component="AppFooter"
-    class="app-footer wrapper"
-  >
-    <hr class="app-footer__break">
+  <footer data-component="AppFooter" class="app-footer wrapper">
+    <hr class="app-footer__break" />
 
     <div class="app-footer__inner">
       <div class="app-footer__newsletter">
-        <div
-          v-if="newsletterTitle && newsletter"
-          class="prose prose--small"
-        >
+        <div v-if="newsletterTitle && newsletter" class="prose prose--small">
           <h2 class="app-footer__title type-h4">
             {{ newsletterTitle }}
           </h2>
 
-          <StoryblokRichText
-            class="app-footer__copy"
-            :content="newsletter"
-          />
+          <StoryblokRichText class="app-footer__copy" :content="newsletter" />
 
-          <form
-            class="app-footer__form"
-            action=""
-          >
-            <input
-              class="app-footer__input type-body"
-              type="email"
-              placeholder="Email"
-              required
-            >
+          <form class="app-footer__form" action="">
+            <input class="app-footer__input type-body" type="email" placeholder="Email" required />
 
-            <button
-              class="app-footer__submit type-h6"
-              type="submit"
-            >
-              Submit
-            </button>
+            <button class="app-footer__submit type-h6" type="submit">Submit</button>
           </form>
         </div>
       </div>
@@ -96,10 +60,7 @@ const footerLinks: any = [{
         </template>
 
         <template #content>
-          <StoryblokRichText
-            class="app-footer__copy"
-            :content="openingTimes"
-          />
+          <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
         </template>
       </AppFooterAccordion>
 
@@ -115,10 +76,7 @@ const footerLinks: any = [{
         </template>
 
         <template #content>
-          <StoryblokRichText
-            class="app-footer__copy"
-            :content="contact"
-          />
+          <StoryblokRichText class="app-footer__copy" :content="contact" />
         </template>
       </AppFooterAccordion>
 
@@ -134,16 +92,13 @@ const footerLinks: any = [{
         </template>
 
         <template #content>
-          <StoryblokRichText
-            class="app-footer__copy"
-            :content="reservations"
-          />
+          <StoryblokRichText class="app-footer__copy" :content="reservations" />
         </template>
       </AppFooterAccordion>
     </div>
 
     <div class="app-footer__bottom">
-      <AppFooterInfo :items="footerLinks" />
+      <slot name="navigation" />
 
       <div class="app-footer__social">
         <NuxtLink
@@ -151,10 +106,7 @@ const footerLinks: any = [{
           to="https://www.facebook.com/Lucarestaurantlondon"
           title="Follow us on Facebook"
         >
-          <IconFacebook
-            width="16"
-            height="16"
-          />
+          <IconFacebook width="16" height="16" />
         </NuxtLink>
 
         <NuxtLink
@@ -162,10 +114,7 @@ const footerLinks: any = [{
           to="https://www.tiktok.com/@luca.restaurant"
           title="Follow us on TikTok"
         >
-          <IconTikTok
-            width="16"
-            height="16"
-          />
+          <IconTikTok width="16" height="16" />
         </NuxtLink>
 
         <NuxtLink
@@ -173,10 +122,7 @@ const footerLinks: any = [{
           to="https://www.instagram.com/luca.restaurant"
           title="Follow us on Instagram"
         >
-          <IconInstagram
-            width="16"
-            height="16"
-          />
+          <IconInstagram width="16" height="16" />
         </NuxtLink>
       </div>
     </div>
@@ -212,7 +158,6 @@ const footerLinks: any = [{
 }
 
 .app-footer__details {
-
   @screen xl {
     grid-column: span 3;
   }
@@ -227,7 +172,7 @@ const footerLinks: any = [{
 }
 
 .app-footer__copy {
-  .app-footer__title+& {
+  .app-footer__title + & {
     margin-top: theme('spacing.20');
   }
 }

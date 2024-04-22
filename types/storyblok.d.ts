@@ -125,6 +125,7 @@ export interface SettingsStoryblok {
   reservations?: RichtextStoryblok;
   newsletter_title?: string;
   newsletter?: RichtextStoryblok;
+  footer?: LinkListStoryblok[];
   _uid: string;
   component: "settings";
   [k: string]: any;
