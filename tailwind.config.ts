@@ -82,8 +82,8 @@ export default {
       60: '60px',
       80: '80px',
       120: '120px',
-      160: '160px',
-      240: '240px',
+      150: '150px',
+      300: '300px',
     },
     fontFamily: {
       body: [
@@ -115,8 +115,6 @@ export default {
       '68': '4.25rem',
       '80': '5rem',
       '90': '5.625rem',
-      '104': '6.5rem',
-      '160': '10rem',
       'responsive-giga': clamp({
         minPixels: 30,
         minViewportWidthPixels: screenSizes.xs,

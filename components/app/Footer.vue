@@ -325,7 +325,6 @@ const footerLinks: any = [{
     align-items: flex-end;
     margin-block-start: theme('spacing.120');
   }
-
 }
 
 .app-footer__social {

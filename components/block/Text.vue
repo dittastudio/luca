@@ -13,6 +13,7 @@ const { block } = defineProps<Props>()
   <div
     v-editable="block"
     data-component="BlockText"
+    class="block-text prose prose--large"
   >
     <StoryblokRichText
       v-if="hasRichTextContent(block.text)"
@@ -20,3 +21,38 @@ const { block } = defineProps<Props>()
     />
   </div>
 </template>
+
+<style lang="postcss">
+.block-text {
+  text-align: center;
+
+  & :is(h1, h2, h3, h4, h5, h6) {
+    font-family: theme('fontFamily.heading');
+    font-size: theme('fontSize.14');
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: theme('letterSpacing.widest');
+
+    @screen md {
+      font-size: theme('fontSize.16');
+    }
+  }
+
+  & p {
+    max-width: 25em;
+    margin-inline: auto;
+  }
+
+  blockquote {
+    & p {
+      &:first-of-type::before {
+        content: open-quote;
+      }
+
+      &:last-of-type::after {
+        content: close-quote;
+      }
+    }
+  }
+}
+</style>
