@@ -227,6 +227,15 @@ watch(
 
   margin: calc(-1 * theme('spacing.20'));
   padding: theme('spacing.20');
+
+  @media (hover: hover) {
+    opacity: 1;
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+    &:not(:active):hover {
+      opacity: 0.6;
+    }
+  }
 }
 
 .app-header__burger {
