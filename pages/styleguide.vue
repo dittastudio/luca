@@ -1,31 +1,31 @@
 <template>
-  <div>
-    <UiBackgroundObserver
+  <HeroStickyLogo>
+    <UiBackgroundSection
       tag="section"
       bg-color-class="bg-green"
     >
-      <h1 class="type-h1">
-        Section 1
-      </h1>
-    </UiBackgroundObserver>
+      <div class="grid grid-cols-12 gap-[20px] items-center min-h-screen wrapper">
+        <div class="col-span-4 col-start-7 aspect-[2/3] bg-[tomato]" />
+      </div>
+    </UiBackgroundSection>
 
-    <UiBackgroundObserver
+    <UiBackgroundSection
       tag="section"
       bg-color-class="bg-olive"
     >
-      <h1 class="type-h1">
-        Section 2
-      </h1>
-    </UiBackgroundObserver>
+      <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
+        <div class="col-span-6 col-start-1 aspect-[3/2] bg-[tomato] z-1" />
+      </div>
+    </UiBackgroundSection>
 
-    <UiBackgroundObserver
+    <UiBackgroundSection
       tag="section"
       bg-color-class="bg-brown"
     >
-      <h1 class="type-h1">
-        Section 3
-      </h1>
-    </UiBackgroundObserver>
+      <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
+        <div class="col-span-6 col-start-4 aspect-[16/9] bg-[tomato] z-1" />
+      </div>
+    </UiBackgroundSection>
 
     <!-- <Screen :log="seo_image" /> -->
 
@@ -162,5 +162,5 @@
         </button>
       </div>
     </div>
-  </div>
+  </HeroStickyLogo>
 </template>

@@ -314,7 +314,7 @@ const footerLinks: any = [{
   display: flex;
   grid-column: 1 / -1;
   flex-direction: column-reverse;
-  gap: theme('spacing.60');
+  gap: theme('spacing.50');
   align-items: center;
   justify-content: space-between;
 
@@ -325,7 +325,6 @@ const footerLinks: any = [{
     align-items: flex-end;
     margin-block-start: theme('spacing.120');
   }
-
 }
 
 .app-footer__social {

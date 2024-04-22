@@ -1,13 +1,16 @@
 @layer components {
   .prose {
-    * + h1,
-    * + h2,
-    * + h3,
-    * + h4,
-    * + h5,
-    * + h6,
-    * + p {
+    & :is(* + h1, * + h2, * + h3, * + h4, * + h5, * + h6, * + p) {
       margin-block-start: theme('spacing.20');
+    }
+
+    p {
+      font-size: theme('fontSize.14');
+      letter-spacing: theme('letterSpacing.wider');
+
+      @screen md {
+        font-size: theme('fontSize.16');
+      }
     }
 
     p a {
@@ -24,7 +27,14 @@
   .prose--small {
     p {
       font-size: theme('fontSize.14');
-      letter-spacing: theme('letterSpacing.wider');
+    }
+  }
+
+  .prose--large {
+    p {
+      @screen md {
+        font-size: theme('fontSize.20');
+      }
     }
   }
 }
