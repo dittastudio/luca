@@ -14,7 +14,7 @@
       bg-color-class="bg-olive"
     >
       <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
-        <div class="col-span-6 col-start-1 aspect-[3/2] bg-[tomato]  z-10" />
+        <div class="col-span-6 col-start-1 aspect-[3/2] bg-[tomato] z-1" />
       </div>
     </UiBackgroundSection>
 
@@ -23,7 +23,7 @@
       bg-color-class="bg-brown"
     >
       <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
-        <div class="col-span-6 col-start-4 aspect-[16/9] bg-[tomato]  z-10" />
+        <div class="col-span-6 col-start-4 aspect-[16/9] bg-[tomato] z-1" />
       </div>
     </UiBackgroundSection>
 

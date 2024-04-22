@@ -135,9 +135,9 @@ watch(
           class="app-header__reservations"
           type="button"
         >
-          <ButtonAppearanceAlt type="green">
+          <ButtonAppearance type="green">
             Reservations
-          </ButtonAppearanceAlt>
+          </ButtonAppearance>
         </button>
 
         <button

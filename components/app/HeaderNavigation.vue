@@ -42,9 +42,9 @@ const items = computed(() => list?.items ?? [])
       type="button"
       :tabindex="isOpen ? '0' : '-1'"
     >
-      <ButtonAppearanceAlt type="green">
+      <ButtonAppearance type="green">
         Reservations
-      </ButtonAppearanceAlt>
+      </ButtonAppearance>
     </button>
   </div>
 </template>
