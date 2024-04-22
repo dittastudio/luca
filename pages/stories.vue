@@ -33,12 +33,8 @@ onMounted(() => {
   <div class="wrapper">
     <p>
       Test link {{ counter }}
-      <NuxtLink to="/stories/vitra-luca">
-        Vitra + Luca
-      </NuxtLink>
+      <NuxtLink to="/stories/vitra-luca">Vitra + Luca</NuxtLink>
     </p>
-
-    <p>{{ route.name }}</p>
 
     <AppModal :is-open="route.name === 'stories-page'">
       <transition name="fade" mode="out-in">
@@ -55,7 +51,7 @@ onMounted(() => {
 <style lang="postcss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 1s;
+  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 }
 .fade-enter-from,
 .fade-leave-to {
