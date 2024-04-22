@@ -20,7 +20,7 @@ const items = computed(() => list?.items ?? [])
       <ul class="app-header-navigation__list type-h2">
         <li
           v-for="(item, index) in items"
-          :key="item.title"
+          :key="item._uid"
           class="app-header-navigation__item"
           :style="`--link-transition-delay: ${200 + index * 40}ms`"
         >
@@ -37,14 +37,8 @@ const items = computed(() => list?.items ?? [])
       </ul>
     </div>
 
-    <button
-      class="app-header-navigation__cta"
-      type="button"
-      :tabindex="isOpen ? '0' : '-1'"
-    >
-      <ButtonAppearance type="green">
-        Reservations
-      </ButtonAppearance>
+    <button class="app-header-navigation__cta" type="button" :tabindex="isOpen ? '0' : '-1'">
+      <ButtonAppearance type="green">Reservations</ButtonAppearance>
     </button>
   </div>
 </template>
@@ -121,10 +115,12 @@ const items = computed(() => list?.items ?? [])
 .app-header-navigation__item {
   translate: calc(-1 * var(--link-nudge)) 0 0;
   opacity: 0;
-  animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth') forwards;
+  animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
+    forwards;
 
   .app-header-navigation--is-open & {
-    animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth') var(--link-transition-delay) forwards;
+    animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
+      var(--link-transition-delay) forwards;
   }
 }
 
@@ -179,8 +175,10 @@ const items = computed(() => list?.items ?? [])
     translate: 0 0 0;
     opacity: 1;
     transition:
-      opacity theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.400'),
-      translate theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.400');
+      opacity theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo')
+        theme('transitionDelay.400'),
+      translate theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo')
+        theme('transitionDelay.400');
   }
 
   @screen md {
