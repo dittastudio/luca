@@ -57,6 +57,17 @@ export default defineNuxtConfig({
     storyblok: {
       baseURL: 'https://a.storyblok.com',
     },
+    quality: 80,
+    densities: [1, 2, 3],
+    screens: {
+      'xs': 375,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024,
+      'xl': 1200,
+      'base': 1440,
+      '2xl': 1920,
+    },
   },
   modules: [
     '@nuxt/eslint',
