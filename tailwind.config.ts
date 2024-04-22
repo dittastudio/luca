@@ -32,13 +32,14 @@ const clamp = ({
 }
 
 export const screenSizes = {
+  'zero': 1,
   'xs': 375,
   'sm': 640,
   'md': 768,
   'lg': 1024,
   'xl': 1200,
-  'base': 1440,
-  '2xl': 1920,
+  '2xl': 1440,
+  '3xl': 1920,
 }
 
 export default {

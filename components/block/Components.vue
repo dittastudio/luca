@@ -17,6 +17,7 @@ const { content } = defineProps<Props>()
       v-for="block in content.blocks"
       :key="block._uid"
       class="block-components__item"
+      :class="`block-components__item--${block.component}`"
     >
       <BlockImage
         v-if="block.component === 'block_image'"
@@ -37,9 +38,9 @@ const { content } = defineProps<Props>()
 </template>
 
 <style lang="postcss" scoped>
-.block-components {
-  display: flex;
-  flex-direction: column;
-  row-gap: theme('spacing.150');
+.block-components__item--block_image {
+  & + & {
+    margin-block-start: 10.5vw;
+  }
 }
 </style>
