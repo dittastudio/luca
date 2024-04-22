@@ -132,11 +132,7 @@ watch(
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
-  background-image: linear-gradient(
-    to bottom,
-    theme('colors.green/100%') 0%,
-    theme('colors.green/0%') 100%
-  );
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
