@@ -9,20 +9,11 @@ const { items } = defineProps<Props>()
 </script>
 
 <template>
-  <div
-    data-component="AppFooterInfo"
-    class="app-footer-info"
-  >
+  <div data-component="AppFooterInfo" class="app-footer-info">
     <ul class="app-footer-info__list">
-      <li class="app-footer-info__item">
-        <!---->©2024 All rights reserved
-      </li>
+      <li class="app-footer-info__item">&copy;2024 All rights reserved</li>
 
-      <li
-        v-for="item in items"
-        :key="item.title"
-        class="app-footer-info__item"
-      >
+      <li v-for="item in items" :key="item.title" class="app-footer-info__item">
         <StoryblokLink
           class="app-footer-info__link"
           active-class="app-header-navigation__link--is-active"
@@ -36,22 +27,22 @@ const { items } = defineProps<Props>()
       <li class="app-footer-info__item">
         <NuxtLink
           class="app-footer-info__link"
-          to="https://e-i-b.com/"
+          to="https://e-i-b.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <!---->Design: Everything In Between
+          Design: Everything In Between
         </NuxtLink>
       </li>
 
       <li class="app-footer-info__item">
         <NuxtLink
           class="app-footer-info__link"
-          to="https://ditta.studio/"
+          to="https://ditta.studio"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <!---->Made by ditta
+          Made by ditta
         </NuxtLink>
       </li>
     </ul>

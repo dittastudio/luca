@@ -1,8 +1,20 @@
+/* Generic page transition classes */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
 @layer base {
   html {
     color: theme('colors.white');
     background-color: theme('colors.green');
-    transition: background-color theme('transitionDuration.1000') theme('transitionTimingFunction.out');
+    transition: background-color theme('transitionDuration.1000')
+      theme('transitionTimingFunction.out');
   }
 
   body {

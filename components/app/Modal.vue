@@ -54,7 +54,7 @@ const { isOpen = false } = defineProps<Props>()
   transition: transform theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   .app-modal--is-open & {
-    transform: translate3d(0, 50vh, 0);
+    transform: translate3d(0, 0, 0);
     transition-delay: theme('transitionDelay.500');
   }
 }
