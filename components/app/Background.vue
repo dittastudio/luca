@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { BackgroundStoryblok } from '@/types/storyblok'
-import config from '@/tailwind.config'
 
 interface Props {
   backgrounds?: BackgroundStoryblok[]
