@@ -13,6 +13,9 @@ interface Props {
   reservations?: RichtextStoryblok
   newsletterTitle?: string
   newsletter?: RichtextStoryblok
+  socialFacebook?: string
+  socialTiktok?: string
+  socialInstagram?: string
 }
 
 const {
@@ -102,27 +105,33 @@ const {
 
       <div class="app-footer__social">
         <NuxtLink
+          v-if="socialFacebook"
           class="app-footer__social-link"
-          to="https://www.facebook.com/Lucarestaurantlondon"
+          :to="socialFacebook"
           title="Follow us on Facebook"
         >
           <IconFacebook width="16" height="16" />
+          <span class="sr-only">Follow us on Facebook</span>
         </NuxtLink>
 
         <NuxtLink
+          v-if="socialTiktok"
           class="app-footer__social-link"
-          to="https://www.tiktok.com/@luca.restaurant"
+          :to="socialTiktok"
           title="Follow us on TikTok"
         >
           <IconTikTok width="16" height="16" />
+          <span class="sr-only">Follow us on TikTok</span>
         </NuxtLink>
 
         <NuxtLink
+          v-if="socialInstagram"
           class="app-footer__social-link"
-          to="https://www.instagram.com/luca.restaurant"
+          :to="socialInstagram"
           title="Follow us on Instagram"
         >
           <IconInstagram width="16" height="16" />
+          <span class="sr-only">Follow us on Instagram</span>
         </NuxtLink>
       </div>
     </div>

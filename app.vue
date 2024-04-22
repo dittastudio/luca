@@ -42,6 +42,9 @@ useSeoMeta({
           :reservations="story.content.reservations"
           :newsletter-title="story.content.newsletter_title"
           :newsletter="story.content.newsletter"
+          :social-facebook="story.content.social_facebook"
+          :social-tiktok="story.content.social_tiktok"
+          :social-instagram="story.content.social_instagram"
         >
           <template #navigation>
             <AppFooterNavigation :list="story.content.footer?.[0]" />

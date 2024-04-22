@@ -126,6 +126,9 @@ export interface SettingsStoryblok {
   newsletter_title?: string;
   newsletter?: RichtextStoryblok;
   footer?: LinkListStoryblok[];
+  social_facebook?: string;
+  social_tiktok?: string;
+  social_instagram?: string;
   _uid: string;
   component: "settings";
   [k: string]: any;
