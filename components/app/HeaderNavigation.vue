@@ -168,6 +168,21 @@ const items = computed(() => list?.items ?? [])
 }
 
 .app-header-navigation__cta {
+  translate: 0 50% 0;
+  display: block;
+  opacity: 0;
+  transition:
+    opacity theme('transitionDuration.100') theme('transitionTimingFunction.smooth'),
+    translate 0s theme('transitionDelay.100');
+
+  .app-header-navigation--is-open & {
+    translate: 0 0 0;
+    opacity: 1;
+    transition:
+      opacity theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.400'),
+      translate theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.400');
+  }
+
   @screen md {
     display: none;
   }
