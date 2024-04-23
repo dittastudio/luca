@@ -1,34 +1,8 @@
 <template>
-  <AppStickyLogo>
-    <div class="grid grid-cols-12 gap-[20px] items-center min-h-screen wrapper">
-      <div class="col-span-4 col-start-7 aspect-[2/3] bg-[tomato]" />
-    </div>
+  <div>
+    <BlockSplit />
 
-    <div class="section wrapper grid grid-cols-12 gap-[20px] items-center">
-      <div class="col-span-6 col-start-4">
-        <CardCta
-          title="Private Dining"
-          copy="We make room for the curious."
-        >
-          <template #image>
-            <img
-              class="aspect-[3/2] w-full h-full object-cover bg-[tomato]"
-              src="https://a.storyblok.com/f/285210/2742x2064/188fa8fed8/home-4.jpg/m/1920x0/filters:quality(80)"
-            >
-          </template>
-        </CardCta>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
-      <div class="col-span-6 col-start-1 aspect-[3/2] bg-[tomato] z-1" />
-    </div>
-
-    <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
-      <div class="col-span-6 col-start-4 aspect-[16/9] bg-[tomato] z-1" />
-    </div>
-
-    <!-- <Screen :log="seo_image" /> -->
+    <BlockSplit is-reversed />
 
     <div class="section wrapper">
       <h1 class="type-h1 opacity-40">
@@ -75,16 +49,6 @@
         <ButtonAppearance type="green">
           Button
         </ButtonAppearance>
-      </button>
-
-      <br>
-
-      <br>
-
-      <button type="button">
-        <ButtonAppearanceAlt type="green">
-          Button Alt
-        </ButtonAppearanceAlt>
       </button>
 
       <br>
@@ -147,21 +111,11 @@
         <br>
 
         <button type="button">
-          <ButtonAppearanceAlt type="offwhite">
-            Button Alt
-          </ButtonAppearanceAlt>
-        </button>
-
-        <br>
-
-        <br>
-
-        <button type="button">
           <LinkAppearance>
             Link
           </LinkAppearance>
         </button>
       </div>
     </div>
-  </AppStickyLogo>
+  </div>
 </template>
