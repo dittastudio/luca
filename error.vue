@@ -39,7 +39,7 @@ useHead({
 
       <p class="text-24">
         <a href="/">
-          <ButtonAppearance type="green">Back to home</ButtonAppearance>
+          <AppearanceButton type="green">Back to home</AppearanceButton>
         </a>
       </p>
     </div>

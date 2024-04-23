@@ -50,9 +50,9 @@
       <br>
 
       <button type="button">
-        <ButtonAppearance type="green">
+        <AppearanceButton type="green">
           Button
-        </ButtonAppearance>
+        </AppearanceButton>
       </button>
 
       <br>
@@ -60,9 +60,9 @@
       <br>
 
       <button type="button">
-        <LinkAppearance>
+        <AppearanceLink>
           Link
-        </LinkAppearance>
+        </AppearanceLink>
       </button>
     </div>
 
@@ -105,9 +105,9 @@
         <br>
 
         <button type="button">
-          <ButtonAppearance type="offwhite">
+          <AppearanceButton type="offwhite">
             Button
-          </ButtonAppearance>
+          </AppearanceButton>
         </button>
 
         <br>
@@ -115,9 +115,9 @@
         <br>
 
         <button type="button">
-          <LinkAppearance>
+          <AppearanceLink>
             Link
-          </LinkAppearance>
+          </AppearanceLink>
         </button>
       </div>
     </div>

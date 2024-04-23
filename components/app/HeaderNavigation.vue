@@ -50,9 +50,9 @@ watch(
       type="button"
       :tabindex="isOpen ? '0' : '-1'"
     >
-      <ButtonAppearance type="green">
+      <AppearanceButton type="green">
         Reservations
-      </ButtonAppearance>
+      </AppearanceButton>
     </button>
   </div>
 </template>

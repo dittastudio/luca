@@ -135,16 +135,18 @@ watch(
           class="app-header__reservations"
           type="button"
         >
-          <ButtonAppearance type="green">
+          <AppearanceButton type="green">
             Reservations
-          </ButtonAppearance>
+          </AppearanceButton>
         </button>
 
         <button
           class="app-header__book"
           type="button"
         >
-          <LinkAppearance>Book</LinkAppearance>
+          <AppearanceLink>
+            Book
+          </AppearanceLink>
         </button>
       </div>
     </div>
