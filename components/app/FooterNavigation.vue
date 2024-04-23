@@ -10,11 +10,17 @@ const items = computed(() => list?.items ?? [])
 </script>
 
 <template>
-  <div data-component="AppFooterNavigation" class="app-footer-info">
+  <div class="app-footer-info">
     <ul class="app-footer-info__list">
-      <li class="app-footer-info__item">&copy;2024 All rights reserved</li>
+      <li class="app-footer-info__item">
+        &copy;2024 All rights reserved
+      </li>
 
-      <li v-for="item in items" :key="item._uid" class="app-footer-info__item">
+      <li
+        v-for="item in items"
+        :key="item._uid"
+        class="app-footer-info__item"
+      >
         <StoryblokLink
           class="app-footer-info__link"
           active-class="app-header-navigation__link--is-active"

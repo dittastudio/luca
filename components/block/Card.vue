@@ -12,7 +12,6 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    data-component="BlockCard"
     class="block-card"
   >
     <div

@@ -8,7 +8,6 @@ const { isOpen = false } = defineProps<Props>()
 
 <template>
   <span
-    data-component="AppHeaderBurger"
     class="app-header-burger"
     :class="{ 'app-header-burger--is-open': isOpen }"
   >

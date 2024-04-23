@@ -32,10 +32,7 @@ const {
 </script>
 
 <template>
-  <footer
-    data-component="AppFooter"
-    class="app-footer wrapper"
-  >
+  <footer class="app-footer wrapper">
     <hr class="app-footer__break">
 
     <div class="app-footer__inner">

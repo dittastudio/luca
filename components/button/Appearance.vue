@@ -8,7 +8,6 @@ const { type = 'green' } = defineProps<Props>()
 
 <template>
   <span
-    data-component="ButtonAppearance"
     class="button-appearance"
     :class="`button-appearance--type-${type}`"
   >

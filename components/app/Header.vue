@@ -82,7 +82,6 @@ watch(
 
 <template>
   <div
-    data-component="AppHeader"
     class="app-header"
     :class="headerClasses"
     @keydown.esc="closeMenu"

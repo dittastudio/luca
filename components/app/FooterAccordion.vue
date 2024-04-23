@@ -28,7 +28,6 @@ const bodyId = `accordion-body-${id}`
 
 <template>
   <div
-    data-component="AppFooterAccordion"
     class="app-footer-accordion"
     :class="{ 'app-footer-accordion--is-open': isOpen }"
   >

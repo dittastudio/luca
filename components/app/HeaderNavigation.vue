@@ -18,7 +18,6 @@ watch(
 
 <template>
   <div
-    data-component="AppHeaderNavigation"
     class="app-header-navigation"
     :class="{
       'app-header-navigation--is-open': isOpen && isInteracted,

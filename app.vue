@@ -22,7 +22,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div data-component="App">
+  <div>
     <AppLayout>
       <template #header>
         <AppHeader :links="story.content.navigation?.[0]" />

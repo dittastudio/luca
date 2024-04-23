@@ -46,10 +46,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    data-component="AppBackground"
-    class="relative"
-  >
+  <div class="relative">
     <slot />
 
     <div class="absolute inset-0 flex flex-col items-start justify-start pointer-events-none">

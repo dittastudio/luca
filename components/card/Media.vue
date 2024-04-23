@@ -8,10 +8,7 @@ const { title, headline } = defineProps<Props>()
 </script>
 
 <template>
-  <div
-    data-component="CardMedia"
-    class="card-media"
-  >
+  <div class="card-media">
     <div
       class="card-media__backdrop"
     >

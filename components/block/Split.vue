@@ -12,7 +12,6 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    data-component="BlockSplit"
     :class="['block-split section wrapper', { 'block-split--reverse': block?.reversed }]"
   >
     <div class="block-split__media">

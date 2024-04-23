@@ -8,7 +8,6 @@ const { isOpen = false } = defineProps<Props>()
 
 <template>
   <span
-    data-component="AppFooterAccordionIcon"
     class="app-footer-accordion-icon"
     :class="{ 'app-footer-accordion-icon--is-open': isOpen }"
   >

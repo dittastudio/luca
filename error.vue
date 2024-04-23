@@ -23,14 +23,12 @@ useHead({
 </script>
 
 <template>
-  <div
-    data-component="Error"
-    class="w-full h-screen flex items-center justify-center px-4 sm:px-6 py-24"
-  >
+  <div class="w-full h-screen flex items-center justify-center px-4 sm:px-6 py-24">
     <div class="w-full max-w-md flex flex-col items-center justify-center gap-40 text-center">
       <h1 class="text-20">
         <NuxtLink to="/">
           <IconLucaLogo class="w-80 h-auto" />
+
           <span class="sr-only">Luca</span>
         </NuxtLink>
       </h1>

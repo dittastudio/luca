@@ -17,7 +17,6 @@ useIntersectionObserver(
 <template>
   <div
     ref="section"
-    data-component="HeroStickyLogo"
     class="hero-sticky-logo"
     :class="{ 'hero-sticky-logo--is-active': isActive }"
   >

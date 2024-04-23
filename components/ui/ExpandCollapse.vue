@@ -27,15 +27,12 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (resizeObserver.value) {
-    resizeObserver.value.disconnect()
-  }
+  resizeObserver.value?.disconnect()
 })
 </script>
 
 <template>
   <div
-    data-component="UiExpandCollapse"
     class="ui-expand-collapse"
     :class="{ 'ui-expand-collapse--is-open': isOpen }"
     :style="setHeightStyles"

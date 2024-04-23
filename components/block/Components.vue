@@ -9,10 +9,7 @@ const { content } = defineProps<Props>()
 </script>
 
 <template>
-  <div
-    data-component="BlockComponents"
-    class="block-components"
-  >
+  <div class="block-components">
     <section
       v-for="block in content.blocks"
       :key="block._uid"

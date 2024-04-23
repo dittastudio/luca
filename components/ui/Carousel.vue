@@ -34,17 +34,10 @@ const eventKeydown = (event: KeyboardEvent) => {
       break
   }
 }
-
-// interface Props {
-//   isOpen?: boolean
-// }
-
-// const { isOpen = false } = defineProps<Props>()
 </script>
 
 <template>
   <div
-    data-component="UiCarousel"
     class="ui-carousel"
     tabindex="0"
     @keydown="eventKeydown"

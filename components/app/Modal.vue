@@ -8,7 +8,6 @@ const { isOpen = false } = defineProps<Props>()
 
 <template>
   <div
-    data-component="AppModal"
     :class="[
       'app-modal',
       {

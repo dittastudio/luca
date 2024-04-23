@@ -28,10 +28,7 @@ const attributes = {
 </script>
 
 <template>
-  <NuxtLink
-    data-component="StoryblokLink"
-    v-bind="attributes"
-  >
+  <NuxtLink v-bind="attributes">
     <slot />
   </NuxtLink>
 </template>

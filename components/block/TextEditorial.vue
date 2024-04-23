@@ -10,10 +10,7 @@ const { block } = defineProps<Props>()
 </script>
 
 <template>
-  <div
-    v-editable="block"
-    data-component="BlockTextEditorial"
-  >
+  <div v-editable="block">
     <h2 v-if="block.title">
       {{ block.title }}
     </h2>

@@ -60,7 +60,6 @@ onUnmounted(() => {
   <video
     v-if="asset"
     ref="video"
-    data-component="MediaVideo"
     :src="src"
     autoplay
     muted
