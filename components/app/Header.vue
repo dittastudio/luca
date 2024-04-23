@@ -149,6 +149,44 @@ watch(
         </button>
       </div>
     </div>
+
+    <svg
+      class="app-header__background"
+      width="100%"
+      height="300"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient
+          id="app-header__gradient"
+          x1="0"
+          x2="0"
+          y1="0"
+          y2="1"
+        >
+          <stop
+            class="app-header__gradient--colour-1"
+            offset="0%"
+          />
+
+          <stop
+            class="app-header__gradient--colour-2"
+            offset="100%"
+          />
+        </linearGradient>
+      </defs>
+
+      <rect
+        class="app-header__gradient"
+        x="0"
+        y="0"
+        rx="0"
+        ry="0"
+        width="100%"
+        height="100%"
+      />
+    </svg>
   </div>
 </template>
 
@@ -157,11 +195,35 @@ watch(
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
-  background-image: linear-gradient(to bottom, theme('colors.green/100%') 0%, theme('colors.green/0%') 100%);
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
   }
+}
+
+.app-header__background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.app-header__gradient {
+  fill: url(#app-header__gradient);
+}
+
+.app-header__gradient--colour-1,
+.app-header__gradient--colour-2 {
+  transition: stop-color var(--app-background-speed) var(--app-background-ease);
+}
+
+.app-header__gradient--colour-1 {
+  stop-color: var(--app-background);
+}
+
+.app-header__gradient--colour-2 {
+  stop-color: var(--app-background);
+  stop-opacity: 0;
 }
 
 .app-header__bg {

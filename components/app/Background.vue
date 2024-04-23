@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import config from '@/tailwind.config'
 import type { BackgroundStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -14,23 +13,25 @@ interface Emits {
 
 const emit = defineEmits<Emits>()
 
-const { colors } = config.theme
 const segment = backgrounds.length === 0 ? 0 : 100 / backgrounds.length
 const itemRefs = ref<HTMLDivElement[]>([])
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (
-        entry.isIntersecting
-        && entry.target instanceof HTMLDivElement
-        && entry.target?.dataset?.colour
-      ) {
-        emit('background', entry.target.dataset.colour)
-      }
-    })
-  }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 })
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting
+          && entry.target instanceof HTMLDivElement
+          && entry.target?.dataset?.colour
+        ) {
+          emit('background', entry.target.dataset.colour)
+        }
+      })
+    },
+    { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
+  )
 
   itemRefs.value.forEach((item) => {
     observer?.observe(item)
@@ -56,9 +57,9 @@ onUnmounted(() => {
         v-for="background in backgrounds"
         ref="itemRefs"
         :key="background._uid"
+        class="w-full"
         :style="{ height: `${segment}%` }"
         :data-colour="background?.colour?.color || null"
-        class="w-full"
       />
     </div>
   </div>

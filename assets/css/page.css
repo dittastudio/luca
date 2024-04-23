@@ -13,8 +13,7 @@
   html {
     color: theme('colors.white');
     background-color: var(--app-background);
-    transition: background-color theme('transitionDuration.1000')
-      theme('transitionTimingFunction.out');
+    transition: background-color var(--app-background-speed) var(--app-background-ease);
   }
 
   body {
