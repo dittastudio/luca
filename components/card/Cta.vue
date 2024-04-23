@@ -57,10 +57,6 @@ const { title, copy = '' } = defineProps<Props>()
     align-items: center;
     justify-content: center;
   }
-
-  @screen mdMax {
-    .
-  }
 }
 
 .card-cta__copy {

@@ -40,7 +40,7 @@ onMounted(() => {
 onUnmounted(() => {
   observer && observer.disconnect()
 
-  emit('background', colors.green)
+  emit('background', '#2D3F2F')
 })
 </script>
 
