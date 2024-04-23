@@ -56,9 +56,10 @@ const colStartMap = {
         :src="block.image.filename"
         :alt="block.image.alt"
         :sizes="`
-          ${Number(block.column_span) / 12 * 1800}px
+          100vw
           sm:100vw
-          3xl:${Number(block.column_span) / 12 * 100}vw
+          md:${Number(block.column_span) / 12 * 100}vw
+          3xl:${Number(block.column_span) / 12 * 1800}px
         `"
         loading="lazy"
       />
