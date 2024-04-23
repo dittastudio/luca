@@ -19,6 +19,12 @@ const { title, copy = '' } = defineProps<Props>()
     </div>
 
     <div
+      class="card-cta__backdrop"
+    >
+      <slot name="image" />
+    </div>
+
+    <div
       v-if="title"
       class="card-cta__content"
     >
@@ -36,17 +42,55 @@ const { title, copy = '' } = defineProps<Props>()
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .card-cta {
+  isolation: isolate;
   position: relative;
+  background-color: var(--app-background-color);
+}
+
+.card-cta__backdrop {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  filter:blur(20px);
+
+  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+
+  .card-cta:hover & {
+    opacity: 1;
+    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  }
 }
 
 .card-cta__image {
+  opacity: 1;
+  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
 
+  .card-cta:hover & {
+    opacity: 0;
+    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  }
 }
 
 .card-cta__content {
   text-align: center;
+  opacity: 0;
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  .card-cta:hover & {
+    scale: 1;
+    opacity: 1;
+    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth') 0.2s;
+  }
 
   @screen md {
     position: absolute;
@@ -56,6 +100,12 @@ const { title, copy = '' } = defineProps<Props>()
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  @screen smMax {
+    .card-cta__image + & {
+      margin-block-start: theme('spacing.40');
+    }
   }
 }
 

@@ -14,7 +14,10 @@ const items = computed(() => list?.items ?? [])
   <div
     data-component="AppHeaderNavigation"
     class="app-header-navigation"
-    :class="{ 'app-header-navigation--is-open': isOpen }"
+    :class="{
+      'app-header-navigation--is-open': isOpen,
+      'app-header-navigation--is-closed': !isOpen,
+    }"
   >
     <div class="app-header-navigation__inner">
       <ul class="app-header-navigation__list type-h2">
@@ -121,8 +124,11 @@ const items = computed(() => list?.items ?? [])
 .app-header-navigation__item {
   translate: calc(-1 * var(--link-nudge)) 0 0;
   opacity: 0;
-  animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
-    forwards;
+
+  .app-header-navigation--is-closed & {
+    animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
+      forwards;
+  }
 
   .app-header-navigation--is-open & {
     animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
