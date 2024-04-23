@@ -8,7 +8,7 @@
       <div class="col-span-6 col-start-4">
         <CardCta
           title="Private Dining"
-          copy="We make room for the curious."
+          headline="We make room for the curious."
         >
           <template #image>
             <img
@@ -82,9 +82,9 @@
       <br>
 
       <button type="button">
-        <ButtonAppearanceAlt type="green">
+        <ButtonAppearance type="green">
           Button Alt
-        </ButtonAppearanceAlt>
+        </ButtonAppearance>
       </button>
 
       <br>
@@ -147,9 +147,9 @@
         <br>
 
         <button type="button">
-          <ButtonAppearanceAlt type="offwhite">
+          <ButtonAppearance type="offwhite">
             Button Alt
-          </ButtonAppearanceAlt>
+          </ButtonAppearance>
         </button>
 
         <br>
