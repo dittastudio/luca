@@ -30,6 +30,14 @@ export type MultilinkStoryblok =
       [k: string]: any;
     };
 
+export interface BlockButtonStoryblok {
+  title: string;
+  link: Exclude<MultilinkStoryblok, {linktype?: "asset"}>;
+  _uid: string;
+  component: "block_button";
+  [k: string]: any;
+}
+
 export interface BlockCardStoryblok {
   title: string;
   headline: string;
@@ -132,6 +140,7 @@ export interface PageStoryblok {
     | BlockTextEditorialStoryblok
     | BlockCardStoryblok
     | BlockSplitStoryblok
+    | BlockButtonStoryblok
   )[];
   background?: BackgroundStoryblok[];
   _uid: string;

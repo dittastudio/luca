@@ -16,8 +16,13 @@ const { content } = defineProps<Props>()
       class="block-components__item"
       :class="`block-components__item--${block.component}`"
     >
+      <BlockButton
+        v-if="block.component === 'block_button'"
+        :block="block"
+      />
+
       <BlockCard
-        v-if="block.component === 'block_card'"
+        v-else-if="block.component === 'block_card'"
         :block="block"
       />
 

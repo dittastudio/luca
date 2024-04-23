@@ -31,6 +31,44 @@
       "component_group_name": "elements"
     },
     {
+      "name": "block_button",
+      "display_name": "Button",
+      "created_at": "2024-04-23T18:03:59.135Z",
+      "updated_at": "2024-04-23T18:05:35.626Z",
+      "id": 5698808,
+      "schema": {
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "link": {
+          "type": "multilink",
+          "required": true,
+          "email_link_type": true,
+          "allow_target_blank": true,
+          "restrict_content_types": true,
+          "component_whitelist": [
+            "page"
+          ]
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Button",
+      "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "block"
+    },
+    {
       "name": "block_card",
       "display_name": "Card",
       "created_at": "2024-04-23T14:44:41.343Z",
@@ -150,7 +188,7 @@
       "name": "block_split",
       "display_name": "Split",
       "created_at": "2024-04-23T17:04:16.558Z",
-      "updated_at": "2024-04-23T17:09:04.987Z",
+      "updated_at": "2024-04-23T17:44:04.535Z",
       "id": 5698629,
       "schema": {
         "reversed": {
@@ -196,7 +234,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "<p>{{it.text}}</p>",
+      "preview_tmpl": "<p>{{it.text.content[0].content[0].text}}</p>",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -400,7 +438,7 @@
       "name": "page",
       "display_name": null,
       "created_at": "2024-04-17T15:56:08.626Z",
-      "updated_at": "2024-04-23T17:06:01.409Z",
+      "updated_at": "2024-04-23T18:04:51.910Z",
       "id": 5668780,
       "schema": {
         "seo": {
@@ -424,7 +462,8 @@
             "block_image",
             "block_text_editorial",
             "block_card",
-            "block_split"
+            "block_split",
+            "block_button"
           ]
         },
         "background": {
