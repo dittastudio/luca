@@ -37,8 +37,14 @@ const items = computed(() => list?.items ?? [])
       </ul>
     </div>
 
-    <button class="app-header-navigation__cta" type="button" :tabindex="isOpen ? '0' : '-1'">
-      <ButtonAppearance type="green">Reservations</ButtonAppearance>
+    <button
+      class="app-header-navigation__cta"
+      type="button"
+      :tabindex="isOpen ? '0' : '-1'"
+    >
+      <ButtonAppearance type="green">
+        Reservations
+      </ButtonAppearance>
     </button>
   </div>
 </template>
