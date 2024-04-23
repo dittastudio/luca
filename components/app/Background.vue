@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import config from '@/tailwind.config'
 import type { BackgroundStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -19,17 +18,20 @@ const itemRefs = ref<HTMLDivElement[]>([])
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (
-        entry.isIntersecting
-        && entry.target instanceof HTMLDivElement
-        && entry.target?.dataset?.colour
-      ) {
-        emit('background', entry.target.dataset.colour)
-      }
-    })
-  }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 })
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting
+          && entry.target instanceof HTMLDivElement
+          && entry.target?.dataset?.colour
+        ) {
+          emit('background', entry.target.dataset.colour)
+        }
+      })
+    },
+    { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
+  )
 
   itemRefs.value.forEach((item) => {
     observer?.observe(item)

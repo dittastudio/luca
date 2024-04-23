@@ -48,7 +48,6 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
-    // options here
   },
   gtag: {
     id: '',
