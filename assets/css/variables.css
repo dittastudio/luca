@@ -1,7 +1,7 @@
 @layer base {
   :root {
     /* Global units */
-    --app-background: theme('colors.green');
+    --app-background-color: theme('colors.green');
     --app-background-speed: theme('transitionDuration.1000');
     --app-background-ease: theme('transitionTimingFunction.out');
 

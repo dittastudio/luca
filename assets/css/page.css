@@ -12,7 +12,7 @@
 @layer base {
   html {
     color: theme('colors.white');
-    background-color: var(--app-background);
+    background-color: var(--app-background-color);
     transition: background-color var(--app-background-speed) var(--app-background-ease);
   }
 

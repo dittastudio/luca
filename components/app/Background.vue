@@ -24,9 +24,9 @@ onMounted(() => {
         if (
           entry.isIntersecting
           && entry.target instanceof HTMLDivElement
-          && entry.target?.dataset?.colour
+          && entry.target?.dataset?.color
         ) {
-          emit('background', entry.target.dataset.colour)
+          emit('background', entry.target.dataset.color)
         }
       })
     },
@@ -59,7 +59,7 @@ onUnmounted(() => {
         :key="background._uid"
         class="w-full"
         :style="{ height: `${segment}%` }"
-        :data-colour="background?.colour?.color || null"
+        :data-color="background?.colour?.color || null"
       />
     </div>
   </div>

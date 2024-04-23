@@ -218,11 +218,11 @@ watch(
 }
 
 .app-header__gradient--colour-1 {
-  stop-color: var(--app-background);
+  stop-color: var(--app-background-color);
 }
 
 .app-header__gradient--colour-2 {
-  stop-color: var(--app-background);
+  stop-color: var(--app-background-color);
   stop-opacity: 0;
 }
 
