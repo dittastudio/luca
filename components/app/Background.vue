@@ -14,7 +14,6 @@ interface Emits {
 
 const emit = defineEmits<Emits>()
 
-const { colors } = config.theme
 const segment = backgrounds.length === 0 ? 0 : 100 / backgrounds.length
 const itemRefs = ref<HTMLDivElement[]>([])
 let observer: IntersectionObserver | null = null
