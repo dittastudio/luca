@@ -6,8 +6,14 @@ interface Props {
   list?: LinkListStoryblok
 }
 
-const { list } = defineProps<Props>()
+const isInteracted = ref(false)
+const { isOpen, list } = defineProps<Props>()
 const items = computed(() => list?.items ?? [])
+
+watch(
+  () => isOpen,
+  () => isInteracted.value = true,
+)
 </script>
 
 <template>
@@ -15,8 +21,8 @@ const items = computed(() => list?.items ?? [])
     data-component="AppHeaderNavigation"
     class="app-header-navigation"
     :class="{
-      'app-header-navigation--is-open': isOpen,
-      'app-header-navigation--is-closed': !isOpen,
+      'app-header-navigation--is-open': isOpen && isInteracted,
+      'app-header-navigation--is-closed': !isOpen && isInteracted,
     }"
   >
     <div class="app-header-navigation__inner">
