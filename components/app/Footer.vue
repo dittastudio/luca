@@ -31,22 +31,44 @@ const {
 </script>
 
 <template>
-  <footer data-component="AppFooter" class="app-footer wrapper">
-    <hr class="app-footer__break" />
+  <footer
+    data-component="AppFooter"
+    class="app-footer wrapper"
+  >
+    <hr class="app-footer__break">
 
     <div class="app-footer__inner">
       <div class="app-footer__newsletter">
-        <div v-if="newsletterTitle && newsletter" class="prose prose--small">
+        <div
+          v-if="newsletterTitle && newsletter"
+          class="prose prose--small"
+        >
           <h2 class="app-footer__title type-h4">
             {{ newsletterTitle }}
           </h2>
 
-          <StoryblokRichText class="app-footer__copy" :content="newsletter" />
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="newsletter"
+          />
 
-          <form class="app-footer__form" action="">
-            <input class="app-footer__input type-body" type="email" placeholder="Email" required />
+          <form
+            class="app-footer__form"
+            action=""
+          >
+            <input
+              class="app-footer__input type-body"
+              type="email"
+              placeholder="Email"
+              required
+            >
 
-            <button class="app-footer__submit type-h6" type="submit">Submit</button>
+            <button
+              class="app-footer__submit type-h6"
+              type="submit"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>
@@ -63,7 +85,10 @@ const {
         </template>
 
         <template #content>
-          <StoryblokRichText class="app-footer__copy" :content="openingTimes" />
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="openingTimes"
+          />
         </template>
       </AppFooterAccordion>
 
@@ -79,7 +104,10 @@ const {
         </template>
 
         <template #content>
-          <StoryblokRichText class="app-footer__copy" :content="contact" />
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="contact"
+          />
         </template>
       </AppFooterAccordion>
 
@@ -95,7 +123,10 @@ const {
         </template>
 
         <template #content>
-          <StoryblokRichText class="app-footer__copy" :content="reservations" />
+          <StoryblokRichText
+            class="app-footer__copy"
+            :content="reservations"
+          />
         </template>
       </AppFooterAccordion>
     </div>
@@ -110,7 +141,11 @@ const {
           :to="socialFacebook"
           title="Follow us on Facebook"
         >
-          <IconFacebook width="16" height="16" />
+          <IconFacebook
+            width="16"
+            height="16"
+          />
+
           <span class="sr-only">Follow us on Facebook</span>
         </NuxtLink>
 
@@ -120,7 +155,11 @@ const {
           :to="socialTiktok"
           title="Follow us on TikTok"
         >
-          <IconTikTok width="16" height="16" />
+          <IconTikTok
+            width="16"
+            height="16"
+          />
+
           <span class="sr-only">Follow us on TikTok</span>
         </NuxtLink>
 
@@ -130,7 +169,11 @@ const {
           :to="socialInstagram"
           title="Follow us on Instagram"
         >
-          <IconInstagram width="16" height="16" />
+          <IconInstagram
+            width="16"
+            height="16"
+          />
+
           <span class="sr-only">Follow us on Instagram</span>
         </NuxtLink>
       </div>
@@ -171,7 +214,7 @@ const {
     grid-column: span 3;
   }
 
-  @screen base {
+  @screen 2xl {
     grid-column: span 2;
   }
 
@@ -205,7 +248,7 @@ const {
     grid-column: 10 / 13;
   }
 
-  @screen base {
+  @screen 2xl {
     grid-column: 9 / 13;
   }
 }

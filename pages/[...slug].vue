@@ -28,7 +28,10 @@ const setBackground = (colour: string) => {
 </script>
 
 <template>
-  <AppBackground :backgrounds="story.content.background" @background="setBackground">
+  <AppBackground
+    :backgrounds="story.content.background"
+    @background="setBackground"
+  >
     <div class="wrapper">
       <BlockComponents :content="story.content" />
     </div>

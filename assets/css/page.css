@@ -31,7 +31,7 @@
   }
 
   .wrapper {
-    max-width: theme('screens.2xl');
+    max-width: theme('screens.3xl');
     margin-inline: auto;
     padding-inline: var(--app-outer-gutter);
   }

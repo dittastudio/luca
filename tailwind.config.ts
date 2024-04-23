@@ -120,13 +120,13 @@ export default {
         minPixels: 30,
         minViewportWidthPixels: screenSizes.xs,
         maxPixels: 120,
-        maxViewportWidthPixels: screenSizes.base,
+        maxViewportWidthPixels: screenSizes['2xl'],
       }),
       'responsive-mega': clamp({
         minPixels: 100,
         minViewportWidthPixels: screenSizes.xs,
         maxPixels: 200,
-        maxViewportWidthPixels: screenSizes.base,
+        maxViewportWidthPixels: screenSizes['2xl'],
       }),
     },
     lineHeight: {
@@ -151,10 +151,10 @@ export default {
       'lgMax': { max: `${screenSizes.lg - 1}px` },
       'xl': `${screenSizes.xl}px`,
       'xlMax': { max: `${screenSizes.xl - 1}px` },
-      'base': `${screenSizes.base}px`,
-      'baseMax': { max: `${screenSizes.base - 1}px` },
       '2xl': `${screenSizes['2xl']}px`,
       '2xlMax': { max: `${screenSizes['2xl'] - 1}px` },
+      '3xl': `${screenSizes['3xl']}px`,
+      '3xlMax': { max: `${screenSizes['3xl'] - 1}px` },
     },
     transitionTimingFunction: {
       smooth: 'cubic-bezier(0.4, 0.0, 0.2, 1)',

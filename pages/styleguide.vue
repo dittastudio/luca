@@ -1,31 +1,16 @@
 <template>
   <HeroStickyLogo>
-    <UiBackgroundSection
-      tag="section"
-      bg-color-class="bg-green"
-    >
-      <div class="grid grid-cols-12 gap-[20px] items-center min-h-screen wrapper">
-        <div class="col-span-4 col-start-7 aspect-[2/3] bg-[tomato]" />
-      </div>
-    </UiBackgroundSection>
+    <div class="grid grid-cols-12 gap-[20px] items-center min-h-screen wrapper">
+      <div class="col-span-4 col-start-7 aspect-[2/3] bg-[tomato]" />
+    </div>
 
-    <UiBackgroundSection
-      tag="section"
-      bg-color-class="bg-olive"
-    >
-      <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
-        <div class="col-span-6 col-start-1 aspect-[3/2] bg-[tomato] z-1" />
-      </div>
-    </UiBackgroundSection>
+    <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
+      <div class="col-span-6 col-start-1 aspect-[3/2] bg-[tomato] z-1" />
+    </div>
 
-    <UiBackgroundSection
-      tag="section"
-      bg-color-class="bg-brown"
-    >
-      <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
-        <div class="col-span-6 col-start-4 aspect-[16/9] bg-[tomato] z-1" />
-      </div>
-    </UiBackgroundSection>
+    <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
+      <div class="col-span-6 col-start-4 aspect-[16/9] bg-[tomato] z-1" />
+    </div>
 
     <!-- <Screen :log="seo_image" /> -->
 

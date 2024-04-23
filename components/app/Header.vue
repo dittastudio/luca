@@ -28,7 +28,8 @@ const handleScroll = () => {
     hasScrolledDown.value = false
 
     // Scrolling down
-  } else {
+  }
+  else {
     hasScrolledUp.value = false
     hasScrolledDown.value = scrollPos > triggerPoint
   }
@@ -86,11 +87,20 @@ watch(
     :class="headerClasses"
     @keydown.esc="closeMenu"
   >
-    <button tabindex="-1" class="app-header__bg" type="button" @click="closeMenu" />
+    <button
+      tabindex="-1"
+      class="app-header__bg"
+      type="button"
+      @click="closeMenu"
+    />
 
     <div class="app-header__wrapper wrapper">
       <div class="app-header__menu">
-        <button class="app-header__switch" type="button" @click="toggleMenu">
+        <button
+          class="app-header__switch"
+          type="button"
+          @click="toggleMenu"
+        >
           <span class="app-header__burger">
             <AppHeaderBurger :is-open="isOpen" />
           </span>
@@ -101,13 +111,20 @@ watch(
         <span class="app-header__line" />
 
         <nav class="app-header__navigation">
-          <AppHeaderNavigation :is-open="isOpen" :list="links" />
+          <AppHeaderNavigation
+            :is-open="isOpen"
+            :list="links"
+          />
         </nav>
       </div>
 
       <div class="app-header__logo">
-        <NuxtLink to="/" class="app-header__logo-link">
+        <NuxtLink
+          to="/"
+          class="app-header__logo-link"
+        >
           <IconLucaLogo class="app-header__logo-icon" />
+
           <span class="sr-only">Luca</span>
         </NuxtLink>
       </div>
@@ -115,11 +132,19 @@ watch(
       <div class="app-header__details">
         <IconMichelin class="app-header__michelin-icon" />
 
-        <button class="app-header__reservations" type="button">
-          <ButtonAppearance type="green">Reservations</ButtonAppearance>
+        <button
+          class="app-header__reservations"
+          type="button"
+        >
+          <ButtonAppearance type="green">
+            Reservations
+          </ButtonAppearance>
         </button>
 
-        <button class="app-header__book" type="button">
+        <button
+          class="app-header__book"
+          type="button"
+        >
           <LinkAppearance>Book</LinkAppearance>
         </button>
       </div>
@@ -132,7 +157,7 @@ watch(
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  background-image: linear-gradient(to bottom, theme('colors.green/100%') 0%, theme('colors.green/0%') 100%);
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
