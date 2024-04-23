@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { BlockImageStoryblok } from '@/types/storyblok'
+import type { BlockCardStoryblok } from '@/types/storyblok'
 import { colSpanMap, colStartMap } from '@/utilities/maps'
 
 interface Props {
-  block: BlockImageStoryblok
+  block: BlockCardStoryblok
 }
 
 const { block } = defineProps<Props>()
@@ -12,8 +12,8 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    data-component="BlockImage"
-    class="block-image"
+    data-component="BlockCard"
+    class="block-card"
   >
     <div
       :class="[
@@ -22,9 +22,10 @@ const { block } = defineProps<Props>()
       ]"
     >
       <NuxtImg
+        v-if="block.media[0]?.image"
         provider="storyblok"
-        :src="block.image.filename"
-        :alt="block.image.alt"
+        :src="block.media[0]?.image.filename"
+        :alt="block.media[0]?.image.alt"
         :sizes="`
           100vw
           sm:100vw
@@ -38,7 +39,7 @@ const { block } = defineProps<Props>()
 </template>
 
 <style lang="postcss" scoped>
-.block-image {
+.block-card {
   @screen sm {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));

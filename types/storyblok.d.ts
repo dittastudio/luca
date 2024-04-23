@@ -6,6 +6,42 @@ export interface BackgroundStoryblok {
   [k: string]: any
 }
 
+export type MultilinkStoryblok =
+  | {
+    id?: string
+    cached_url?: string
+    anchor?: string
+    linktype?: 'story'
+    target?: '_self' | '_blank'
+    [k: string]: any
+  }
+  | {
+    url?: string
+    cached_url?: string
+    anchor?: string
+    linktype?: 'asset' | 'url'
+    target?: '_self' | '_blank'
+    [k: string]: any
+  }
+  | {
+    email?: string
+    linktype?: 'email'
+    target?: '_self' | '_blank'
+    [k: string]: any
+  }
+
+export interface BlockCardStoryblok {
+  title: string
+  headline: string
+  media: (VideoStoryblok | ImageStoryblok)[]
+  link: Exclude<MultilinkStoryblok, { linktype?: 'email' } | { linktype?: 'asset' }>
+  column_start: number | string
+  column_span: number | string
+  _uid: string
+  component: 'block_card'
+  [k: string]: any
+}
+
 export interface AssetStoryblok {
   _uid?: string
   id: number
@@ -57,29 +93,12 @@ export interface BlockTextEditorialStoryblok {
   [k: string]: any
 }
 
-export type MultilinkStoryblok =
-  | {
-    id?: string
-    cached_url?: string
-    anchor?: string
-    linktype?: 'story'
-    target?: '_self' | '_blank'
-    [k: string]: any
-  }
-  | {
-    url?: string
-    cached_url?: string
-    anchor?: string
-    linktype?: 'asset' | 'url'
-    target?: '_self' | '_blank'
-    [k: string]: any
-  }
-  | {
-    email?: string
-    linktype?: 'email'
-    target?: '_self' | '_blank'
-    [k: string]: any
-  }
+export interface ImageStoryblok {
+  image: AssetStoryblok
+  _uid: string
+  component: 'image'
+  [k: string]: any
+}
 
 export interface LinkStoryblok {
   title: string
@@ -98,7 +117,7 @@ export interface LinkListStoryblok {
 
 export interface PageStoryblok {
   seo: SeoStoryblok[]
-  blocks?: (BlockTextStoryblok | BlockImageStoryblok | BlockTextEditorialStoryblok)[]
+  blocks?: (BlockTextStoryblok | BlockImageStoryblok | BlockTextEditorialStoryblok | BlockCardStoryblok)[]
   background?: BackgroundStoryblok[]
   _uid: string
   component: 'page'
@@ -131,5 +150,12 @@ export interface SettingsStoryblok {
   social_instagram?: string
   _uid: string
   component: 'settings'
+  [k: string]: any
+}
+
+export interface VideoStoryblok {
+  video: AssetStoryblok
+  _uid: string
+  component: 'video'
   [k: string]: any
 }
