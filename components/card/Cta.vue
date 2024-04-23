@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 interface Props {
   title: string
-  copy?: string
+  headline?: string
 }
 
-const { title, copy = '' } = defineProps<Props>()
+const { title, headline = '' } = defineProps<Props>()
 </script>
 
 <template>
@@ -33,10 +33,10 @@ const { title, copy = '' } = defineProps<Props>()
       </h2>
 
       <p
-        v-if="copy"
-        class="card-cta__copy type-body-large"
+        v-if="headline"
+        class="card-cta__headline type-body-large"
       >
-        {{ copy }}
+        {{ headline }}
       </p>
     </div>
   </div>
@@ -129,7 +129,7 @@ const { title, copy = '' } = defineProps<Props>()
   }
 }
 
-.card-cta__copy {
+.card-cta__headline {
   .card-cta__title + &::before {
     content: '';
 
