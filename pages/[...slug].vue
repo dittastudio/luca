@@ -22,8 +22,8 @@ onMounted(() => {
   }
 })
 
-const setBackground = (colour: string) => {
-  document.documentElement.style.setProperty('--app-background', colour)
+const setBackground = (color: string) => {
+  document.documentElement.style.setProperty('--app-background-color', color)
 }
 </script>
 

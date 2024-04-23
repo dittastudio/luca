@@ -22,13 +22,16 @@ onMounted(() => {
   }
 })
 
-const setBackground = (colour: string) => {
-  document.documentElement.style.setProperty('--app-background', colour)
+const setBackground = (color: string) => {
+  document.documentElement.style.setProperty('--app-background-color', color)
 }
 </script>
 
 <template>
-  <AppBackground :backgrounds="story.content.background" @background="setBackground">
+  <AppBackground
+    :backgrounds="story.content.background"
+    @background="setBackground"
+  >
     <div class="wrapper">
       <BlockComponents :content="story.content" />
     </div>

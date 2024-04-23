@@ -28,22 +28,33 @@ onMounted(() => {
   }, 1000)
 })
 
-const setBackground = (colour: string) => {
-  document.documentElement.style.setProperty('--app-background', colour)
+const setBackground = (color: string) => {
+  document.documentElement.style.setProperty('--app-background-color', color)
 }
 </script>
 
 <template>
-  <AppBackground :backgrounds="story.content.background" @background="setBackground">
+  <AppBackground
+    :backgrounds="story.content.background"
+    @background="setBackground"
+  >
     <div class="wrapper">
       <p>
         Test link {{ counter }}
-        <NuxtLink to="/stories/vitra-luca">Vitra + Luca</NuxtLink>
+        <NuxtLink to="/stories/vitra-luca">
+          Vitra + Luca
+        </NuxtLink>
       </p>
 
       <AppModal :is-open="route.name === 'stories-page'">
-        <transition name="fade" mode="out-in">
-          <div v-if="route.name === 'stories-page'" :key="route.fullPath">
+        <transition
+          name="fade"
+          mode="out-in"
+        >
+          <div
+            v-if="route.name === 'stories-page'"
+            :key="route.fullPath"
+          >
             <NuxtPage :page-key="route.fullPath" />
           </div>
         </transition>
