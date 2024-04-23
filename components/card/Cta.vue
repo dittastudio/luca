@@ -78,7 +78,7 @@ const { title, copy = '' } = defineProps<Props>()
 
       .card-cta:hover & {
         opacity: 1;
-        transition: opacity theme('transitionDuration.400') theme('transitionTimingFunction.smooth');
+        transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
       }
     }
   }
@@ -92,7 +92,7 @@ const { title, copy = '' } = defineProps<Props>()
 
       .card-cta:hover & {
         opacity: 0;
-        transition: opacity theme('transitionDuration.400') theme('transitionTimingFunction.smooth');
+        transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
       }
     }
   }
@@ -117,7 +117,7 @@ const { title, copy = '' } = defineProps<Props>()
 
       .card-cta:hover & {
         opacity: 1;
-        transition: opacity theme('transitionDuration.400') theme('transitionTimingFunction.smooth') 0.2s;
+        transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth') theme('transitionDelay.150');
       }
     }
   }
