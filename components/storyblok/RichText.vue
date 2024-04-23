@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { ISbRichtext } from 'storyblok-js-client'
+import type { RichtextStoryblok } from '@/types/storyblok'
 
 interface Props {
-  content?: ISbRichtext
+  content?: RichtextStoryblok
 }
 
 const { content } = defineProps<Props>()

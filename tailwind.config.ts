@@ -51,6 +51,7 @@ export default {
     './app.vue',
     './error.vue',
   ],
+  safelist: [{ pattern: /(col-start|col-span)-./ }],
   theme: {
     colors: {
       // #ffffff

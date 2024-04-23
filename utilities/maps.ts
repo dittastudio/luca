@@ -1,4 +1,4 @@
-export const colSpanMap: Record<string, string> = {
+const colSpanMap: Record<string, string> = {
   1: 'col-span-1',
   2: 'col-span-2',
   3: 'col-span-3',
@@ -11,9 +11,9 @@ export const colSpanMap: Record<string, string> = {
   10: 'col-span-10',
   11: 'col-span-11',
   12: 'col-span-12',
-}
+} as const
 
-export const colStartMap: Record<string, string> = {
+const colStartMap: Record<string, string> = {
   1: 'col-start-1',
   2: 'col-start-2',
   3: 'col-start-3',
@@ -26,4 +26,6 @@ export const colStartMap: Record<string, string> = {
   10: 'col-start-10',
   11: 'col-start-11',
   12: 'col-start-12',
-}
+} as const
+
+export { colSpanMap, colStartMap }

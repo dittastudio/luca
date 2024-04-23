@@ -91,7 +91,7 @@ const requestDelay = async <T>(promise: T, ms: number = 1000) => {
   return p
 }
 
-const hasRichTextContent = (richtext: RichtextStoryblok): boolean => {
+const hasRichTextContent = (richtext: RichtextStoryblok | undefined): boolean => {
   return Boolean(richtext?.content?.[0]?.content?.length)
 }
 

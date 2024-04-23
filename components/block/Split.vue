@@ -1,34 +1,47 @@
 <script lang="ts" setup>
+import type { BlockSplitStoryblok } from '@/types/storyblok'
+import { hasRichTextContent } from '@/utilities/helpers'
+
 interface Props {
-  isReversed?: boolean
+  block: BlockSplitStoryblok
 }
 
-const { isReversed = false } = defineProps<Props>()
+const { block } = defineProps<Props>()
 </script>
 
 <template>
   <div
+    v-editable="block"
     data-component="BlockSplit"
-    class="block-split section wrapper"
-    :class="{ 'block-split--reverse': isReversed }"
+    :class="['block-split section wrapper', { 'block-split--reverse': block?.reversed }]"
   >
     <div class="block-split__media">
-      <!-- Image/Video component goes here -->
       <NuxtImg
-        src="https://placehold.co/600x400"
+        v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
+        provider="storyblok"
+        :src="block.media[0]?.image.filename"
+        :alt="block.media[0]?.image.alt"
         :sizes="`
           100vw
           sm:100vw
           md:${(5 / 12 * 100)}vw
           3xl:${(5 / 12 * 1800)}px
         `"
+        loading="lazy"
+      />
+
+      <MediaVideo
+        v-else-if="block.media[0]?.component === 'video' && block.media[0]?.video"
+        :asset="block.media[0]?.video"
       />
     </div>
 
     <div class="block-split__text">
-      <!-- RichText goes here -->
-      <div class="block-split__copy prose prose--large">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat quia, eveniet dolor at fugit id suscipit harum, aspernatur eaque perspiciatis odit nostrum voluptates culpa eos. Ratione, est. Soluta, qui mollitia.</p>
+      <div
+        v-if="hasRichTextContent(block.text)"
+        class="block-split__copy prose prose--large"
+      >
+        <StoryblokRichText :content="block.text" />
       </div>
     </div>
   </div>
