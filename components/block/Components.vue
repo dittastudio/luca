@@ -50,9 +50,20 @@ const { content } = defineProps<Props>()
 </template>
 
 <style lang="postcss" scoped>
-.block-components__item--block_image {
+.block-components__item {
+  --spacing-rhythm: 15.75vw;
   & + & {
-    margin-block-start: 10.5vw;
+    margin-block-start: theme('spacing.150');
+
+    @screen md {
+      margin-block-start: var(--spacing-rhythm);
+    }
+  }
+}
+
+.block-components__item--block_card {
+  & + & {
+    margin-block-start: var(--spacing-rhythm);
   }
 }
 </style>

@@ -12,7 +12,7 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-image"
+    class="block-image wrapper"
   >
     <div
       :class="[

@@ -12,7 +12,7 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-text prose prose--large"
+    class="block-text prose prose--large wrapper"
   >
     <StoryblokRichText
       v-if="hasRichTextContent(block.text)"

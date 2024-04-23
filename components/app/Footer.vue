@@ -181,11 +181,7 @@ const {
 
 <style lang="postcss" scoped>
 .app-footer {
-  padding-block: theme('spacing.120') theme('spacing.40');
-
-  @screen md {
-    padding-block-end: theme('spacing.40');
-  }
+  padding-block-end: theme('spacing.40');
 }
 
 .app-footer__break {

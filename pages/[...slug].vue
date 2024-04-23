@@ -32,8 +32,6 @@ const setBackground = (color: string) => {
     :backgrounds="story.content.background"
     @background="setBackground"
   >
-    <div class="wrapper">
-      <BlockComponents :content="story.content" />
-    </div>
+    <BlockComponents :content="story.content" />
   </AppBackground>
 </template>
