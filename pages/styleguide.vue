@@ -5,6 +5,10 @@
     <BlockSplit is-reversed />
 
     <div class="section wrapper">
+      <UiCarousel />
+    </div>
+
+    <div class="section wrapper">
       <h1 class="type-h1 opacity-40">
         Styleguide
       </h1>
