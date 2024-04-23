@@ -21,26 +21,35 @@ const { block } = defineProps<Props>()
         colStartMap[block.column_start],
       ]"
     >
-      <CardCta
-        :title="block.title"
-        :headline="block.headline"
-      >
-        <template #image>
-          <NuxtImg
-            v-if="block.media[0]?.image"
-            provider="storyblok"
-            :src="block.media[0]?.image.filename"
-            :alt="block.media[0]?.image.alt"
-            :sizes="`
+      <StoryblokLink :item="block.link">
+        <CardMedia
+          :title="block.title"
+          :headline="block.headline"
+        >
+          <template #media>
+            <NuxtImg
+              v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
+              provider="storyblok"
+              :src="block.media[0]?.image.filename"
+              :alt="block.media[0]?.image.alt"
+              :sizes="`
               100vw
               sm:100vw
               md:${Number(block.column_span) / 12 * 100}vw
               3xl:${Number(block.column_span) / 12 * 1800}px
             `"
-            loading="lazy"
-          />
-        </template>
-      </CardCta>
+              loading="lazy"
+            />
+
+            <MediaVideo
+              v-else-if="block.media[0]?.component === 'video' && block.media[0]?.video"
+              :asset="block.media[0]?.video"
+              @playing="($event) => console.log('playing', $event)"
+              @seen="($event) => console.log('seen', $event)"
+            />
+          </template>
+        </CardMedia>
+      </StoryblokLink>
     </div>
   </div>
 </template>

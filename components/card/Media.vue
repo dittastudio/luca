@@ -1,40 +1,40 @@
 <script lang="ts" setup>
 interface Props {
   title: string
-  headline?: string
+  headline: string
 }
 
-const { title, headline = '' } = defineProps<Props>()
+const { title, headline } = defineProps<Props>()
 </script>
 
 <template>
   <div
-    data-component="CardCta"
-    class="card-cta"
+    data-component="CardMedia"
+    class="card-media"
   >
     <div
-      class="card-cta__backdrop"
+      class="card-media__backdrop"
     >
-      <slot name="image" />
+      <slot name="media" />
     </div>
 
     <div
-      class="card-cta__image"
+      class="card-media__media"
     >
-      <slot name="image" />
+      <slot name="media" />
     </div>
 
-    <div
-      v-if="title"
-      class="card-cta__content"
-    >
-      <h2 class="card-cta__title type-h3">
+    <div class="card-media__content">
+      <h2
+        v-if="title"
+        class="card-media__title type-h3"
+      >
         {{ title }}
       </h2>
 
       <p
         v-if="headline"
-        class="card-cta__headline type-body-large"
+        class="card-media__headline type-body-large"
       >
         {{ headline }}
       </p>
@@ -43,7 +43,7 @@ const { title, headline = '' } = defineProps<Props>()
 </template>
 
 <style lang="postcss">
-.card-cta {
+.card-media {
   isolation: isolate;
   position: relative;
 
@@ -54,7 +54,7 @@ const { title, headline = '' } = defineProps<Props>()
   }
 }
 
-.card-cta__backdrop {
+.card-media__backdrop {
   display: none;
 
   @media (hover: hover) {
@@ -76,7 +76,7 @@ const { title, headline = '' } = defineProps<Props>()
 
       transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
 
-      .card-cta:hover & {
+      .card-media:hover & {
         opacity: 1;
         transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
       }
@@ -84,13 +84,13 @@ const { title, headline = '' } = defineProps<Props>()
   }
 }
 
-.card-cta__image {
+.card-media__media {
   @media (hover: hover) {
     @screen md {
       opacity: 1;
       transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
 
-      .card-cta:hover & {
+      .card-media:hover & {
         opacity: 0;
         transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
       }
@@ -98,8 +98,9 @@ const { title, headline = '' } = defineProps<Props>()
   }
 }
 
-.card-cta__content {
+.card-media__content {
   text-align: center;
+  padding: theme('spacing.20');
 
   @media (hover: hover) {
     @screen md {
@@ -115,7 +116,7 @@ const { title, headline = '' } = defineProps<Props>()
 
       transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-      .card-cta:hover & {
+      .card-media:hover & {
         opacity: 1;
         transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth') theme('transitionDelay.150');
       }
@@ -123,14 +124,14 @@ const { title, headline = '' } = defineProps<Props>()
   }
 
   @screen mdMax {
-    .card-cta__image + & {
+    .card-media__media + & {
       margin-block-start: theme('spacing.40');
     }
   }
 }
 
-.card-cta__headline {
-  .card-cta__title + &::before {
+.card-media__headline {
+  .card-media__title + &::before {
     content: '';
 
     display: block;
