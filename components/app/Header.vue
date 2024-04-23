@@ -153,7 +153,7 @@ watch(
     <svg
       class="app-header__background"
       width="100%"
-      height="300"
+      height="100%"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
