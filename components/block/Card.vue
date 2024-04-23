@@ -21,19 +21,26 @@ const { block } = defineProps<Props>()
         colStartMap[block.column_start],
       ]"
     >
-      <NuxtImg
-        v-if="block.media[0]?.image"
-        provider="storyblok"
-        :src="block.media[0]?.image.filename"
-        :alt="block.media[0]?.image.alt"
-        :sizes="`
-          100vw
-          sm:100vw
-          md:${Number(block.column_span) / 12 * 100}vw
-          3xl:${Number(block.column_span) / 12 * 1800}px
-        `"
-        loading="lazy"
-      />
+      <CardCta
+        :title="block.title"
+        :headline="block.headline"
+      >
+        <template #image>
+          <NuxtImg
+            v-if="block.media[0]?.image"
+            provider="storyblok"
+            :src="block.media[0]?.image.filename"
+            :alt="block.media[0]?.image.alt"
+            :sizes="`
+              100vw
+              sm:100vw
+              md:${Number(block.column_span) / 12 * 100}vw
+              3xl:${Number(block.column_span) / 12 * 1800}px
+            `"
+            loading="lazy"
+          />
+        </template>
+      </CardCta>
     </div>
   </div>
 </template>
