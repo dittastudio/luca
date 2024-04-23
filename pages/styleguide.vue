@@ -1,7 +1,18 @@
 <template>
-  <HeroStickyLogo>
+  <AppStickyLogo>
     <div class="grid grid-cols-12 gap-[20px] items-center min-h-screen wrapper">
       <div class="col-span-4 col-start-7 aspect-[2/3] bg-[tomato]" />
+    </div>
+
+    <div class="scetion wrapper">
+      <CardCta
+        title="Private Dining"
+        copy="We make room for the curious."
+      >
+        <template #image>
+          <div class="aspect-[16/9] bg-[tomato]" />
+        </template>
+      </cardcta>
     </div>
 
     <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
@@ -147,5 +158,5 @@
         </button>
       </div>
     </div>
-  </HeroStickyLogo>
+  </AppStickyLogo>
 </template>
