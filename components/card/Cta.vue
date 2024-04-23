@@ -13,13 +13,13 @@ const { title, copy = '' } = defineProps<Props>()
     class="card-cta"
   >
     <div
-      class="card-cta__image"
+      class="card-cta__backdrop"
     >
       <slot name="image" />
     </div>
 
     <div
-      class="card-cta__backdrop"
+      class="card-cta__image"
     >
       <slot name="image" />
     </div>
@@ -46,63 +46,83 @@ const { title, copy = '' } = defineProps<Props>()
 .card-cta {
   isolation: isolate;
   position: relative;
-  background-color: var(--app-background-color);
+
+  @media (hover: hover) {
+    @screen md {
+      background-color: var(--app-background-color);
+    }
+  }
 }
 
 .card-cta__backdrop {
-  pointer-events: none;
+  display: none;
 
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
+  @media (hover: hover) {
+    @screen md {
+      pointer-events: none;
 
-  width: 100%;
-  height: 100%;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
 
-  opacity: 0;
-  filter:blur(20px);
+      display: block;
 
-  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+      width: 100%;
+      height: 100%;
 
-  .card-cta:hover & {
-    opacity: 1;
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+      opacity: 0;
+      filter:blur(20px);
+
+      transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
+
+      .card-cta:hover & {
+        opacity: 1;
+        transition: opacity theme('transitionDuration.400') theme('transitionTimingFunction.smooth');
+      }
+    }
   }
 }
 
 .card-cta__image {
-  opacity: 1;
-  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+  @media (hover: hover) {
+    @screen md {
+      opacity: 1;
+      transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
 
-  .card-cta:hover & {
-    opacity: 0;
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+      .card-cta:hover & {
+        opacity: 0;
+        transition: opacity theme('transitionDuration.400') theme('transitionTimingFunction.smooth');
+      }
+    }
   }
 }
 
 .card-cta__content {
   text-align: center;
-  opacity: 0;
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-  .card-cta:hover & {
-    scale: 1;
-    opacity: 1;
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth') 0.2s;
+  @media (hover: hover) {
+    @screen md {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      opacity: 0;
+
+      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+      .card-cta:hover & {
+        opacity: 1;
+        transition: opacity theme('transitionDuration.400') theme('transitionTimingFunction.smooth') 0.2s;
+      }
+    }
   }
 
-  @screen md {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @screen smMax {
+  @screen mdMax {
     .card-cta__image + & {
       margin-block-start: theme('spacing.40');
     }
