@@ -9,7 +9,7 @@ const { type = 'green' } = defineProps<Props>()
 <template>
   <span
     data-component="ButtonAppearance"
-    class="button-appearance type-body-large"
+    class="button-appearance"
     :class="`button-appearance--type-${type}`"
   >
     <span class="button-appearance__text">
@@ -20,8 +20,8 @@ const { type = 'green' } = defineProps<Props>()
 
 <style lang="postcss">
 .button-appearance {
-  --button-padding-y: 11px;
-  --button-padding-x: theme('spacing.40');
+  --button-padding-y: 1.25em;
+  --button-padding-x: 2.2em;
   --button-background-color: transparent;
   --button-text-color: theme('colors.white');
   --button-border-color: theme('colors.white');
@@ -33,8 +33,13 @@ const { type = 'green' } = defineProps<Props>()
 
   padding: var(--button-padding-y) var(--button-padding-x);
 
+  font-family: theme('fontFamily.heading');
+  font-size: theme('fontSize.12');
+  font-weight: normal;
   color: var(--button-text-color);
-  text-indent: theme('letterSpacing.wider');
+  text-indent: theme('letterSpacing.widest');
+  text-transform: uppercase;
+  letter-spacing: theme('letterSpacing.widest');
 
   background-color: var(--button-background-color);
   border-radius: theme('borderRadius.sm');
@@ -104,5 +109,6 @@ const { type = 'green' } = defineProps<Props>()
 .button-appearance__text {
   position: relative;
   z-index: 1;
+  top: 0.1em;
 }
 </style>

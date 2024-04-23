@@ -55,16 +55,10 @@ const colStartMap = {
         provider="storyblok"
         :src="block.image.filename"
         :alt="block.image.alt"
-        :width="storyblokImageDimensions(block.image.filename).width"
-        :height="storyblokImageDimensions(block.image.filename).height"
         :sizes="`
           100vw
-          xs:100vw
-          sm:${Number(block.column_span) / 12 * 100}vw
+          sm:100vw
           md:${Number(block.column_span) / 12 * 100}vw
-          lg:${Number(block.column_span) / 12 * 100}vw
-          xl:${Number(block.column_span) / 12 * 100}vw
-          2xl:${Number(block.column_span) / 12 * 100}vw
           3xl:${Number(block.column_span) / 12 * 1800}px
         `"
         loading="lazy"
