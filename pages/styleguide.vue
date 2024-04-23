@@ -4,15 +4,20 @@
       <div class="col-span-4 col-start-7 aspect-[2/3] bg-[tomato]" />
     </div>
 
-    <div class="scetion wrapper">
-      <CardCta
-        title="Private Dining"
-        copy="We make room for the curious."
-      >
-        <template #image>
-          <div class="aspect-[16/9] bg-[tomato]" />
-        </template>
-      </cardcta>
+    <div class="section wrapper grid grid-cols-12 gap-[20px] items-center">
+      <div class="col-span-6 col-start-4">
+        <CardCta
+          title="Private Dining"
+          copy="We make room for the curious."
+        >
+          <template #image>
+            <img
+              class="aspect-[3/2] w-full h-full object-cover bg-[tomato]"
+              src="https://a.storyblok.com/f/285210/2742x2064/188fa8fed8/home-4.jpg/m/1920x0/filters:quality(80)"
+            >
+          </template>
+        </CardCta>
+      </div>
     </div>
 
     <div class="grid grid-cols-12 gap-[20px] items-center py-[7.8vw] wrapper">
