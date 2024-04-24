@@ -82,7 +82,7 @@ const { block } = defineProps<Props>()
   flex-basis: 50%;
   flex-grow: 1;
 
-  /* TODO: To be refactored */
+  /* TODO: To be refactored  */
   & video,
   & img {
     aspect-ratio: auto;
