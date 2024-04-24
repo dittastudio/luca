@@ -34,7 +34,7 @@
       "name": "block_button",
       "display_name": "Button",
       "created_at": "2024-04-23T18:03:59.135Z",
-      "updated_at": "2024-04-23T18:05:35.626Z",
+      "updated_at": "2024-04-24T10:49:07.998Z",
       "id": 5698808,
       "schema": {
         "title": {
@@ -50,6 +50,10 @@
           "component_whitelist": [
             "page"
           ]
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "inline_label": true
         }
       },
       "image": null,
@@ -72,7 +76,7 @@
       "name": "block_card",
       "display_name": "Card",
       "created_at": "2024-04-23T14:44:41.343Z",
-      "updated_at": "2024-04-24T10:15:47.255Z",
+      "updated_at": "2024-04-24T10:49:21.287Z",
       "id": 5697381,
       "schema": {
         "title": {
@@ -120,6 +124,10 @@
           "datasource_slug": "columns",
           "exclude_empty_option": true,
           "default_value": "8"
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "inline_label": true
         }
       },
       "image": null,
@@ -142,7 +150,7 @@
       "name": "block_image",
       "display_name": "Image",
       "created_at": "2024-04-18T16:33:02.808Z",
-      "updated_at": "2024-04-18T22:25:31.275Z",
+      "updated_at": "2024-04-24T10:49:26.469Z",
       "id": 5676129,
       "schema": {
         "image": {
@@ -168,6 +176,10 @@
           "source": "internal",
           "datasource_slug": "columns",
           "exclude_empty_option": true
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "inline_label": true
         }
       },
       "image": null,
@@ -190,12 +202,13 @@
       "name": "block_split",
       "display_name": "Split",
       "created_at": "2024-04-23T17:04:16.558Z",
-      "updated_at": "2024-04-23T17:44:04.535Z",
+      "updated_at": "2024-04-24T10:49:31.560Z",
       "id": 5698629,
       "schema": {
         "reversed": {
           "type": "boolean",
-          "inline_label": true
+          "inline_label": true,
+          "pos": 0
         },
         "text": {
           "type": "richtext",
@@ -231,6 +244,11 @@
           "required": true,
           "key": "media",
           "pos": 2
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "pos": 3,
+          "inline_label": true
         }
       },
       "image": null,
@@ -253,7 +271,7 @@
       "name": "block_text",
       "display_name": "Text",
       "created_at": "2024-04-18T15:49:06.779Z",
-      "updated_at": "2024-04-18T22:17:59.298Z",
+      "updated_at": "2024-04-24T10:49:38.428Z",
       "id": 5675869,
       "schema": {
         "text": {
@@ -273,6 +291,10 @@
             "quote"
           ],
           "allow_target_blank": true
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "inline_label": true
         }
       },
       "image": null,
@@ -295,7 +317,7 @@
       "name": "block_text_editorial",
       "display_name": "Text Editorial",
       "created_at": "2024-04-18T22:14:01.150Z",
-      "updated_at": "2024-04-18T22:18:09.775Z",
+      "updated_at": "2024-04-24T10:49:45.480Z",
       "id": 5677158,
       "schema": {
         "title": {
@@ -313,6 +335,11 @@
           ],
           "allow_target_blank": true,
           "pos": 1
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "pos": 2,
+          "inline_label": true
         }
       },
       "image": null,
