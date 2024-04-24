@@ -9,6 +9,15 @@
     overflow-wrap: break-word;
   }
 
+  a,
+  button {
+    &:focus-visible {
+      border-radius: theme('borderRadius.sm');
+      outline: 1px solid theme('colors.white/20%');
+      outline-offset: 3px;
+    }
+  }
+
   button {
     touch-action: manipulation;
     user-select: none;

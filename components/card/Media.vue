@@ -73,7 +73,7 @@ const { title, headline } = defineProps<Props>()
 
       transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
 
-      .card-media:hover & {
+      a:is(:hover, :focus) & {
         opacity: 1;
         transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
       }
@@ -87,7 +87,7 @@ const { title, headline } = defineProps<Props>()
       opacity: 1;
       transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
 
-      .card-media:hover & {
+      a:is(:hover, :focus) & {
         opacity: 0;
         transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
       }
@@ -96,8 +96,8 @@ const { title, headline } = defineProps<Props>()
 }
 
 .card-media__content {
-  text-align: center;
   padding: theme('spacing.20');
+  text-align: center;
 
   @media (hover: hover) {
     @screen md {
@@ -113,7 +113,7 @@ const { title, headline } = defineProps<Props>()
 
       transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-      .card-media:hover & {
+      a:is(:hover, :focus) & {
         opacity: 1;
         transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth') theme('transitionDelay.150');
       }
