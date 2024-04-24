@@ -1,10 +1,6 @@
 import type { Config } from 'tailwindcss'
 
-const pixelsToRemsUnit = (pixels: number): number => {
-  const remsUnit = pixels / 16
-
-  return remsUnit
-}
+const pixelsToRemsUnit = (pixels: number): number => pixels / 16
 
 interface ClampOptions {
   minPixels: number
