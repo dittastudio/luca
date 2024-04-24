@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import type { AssetStoryblok } from '@/types/storyblok'
+import { ratioMap } from '@/utilities/maps'
 
 interface Props {
-  asset?: AssetStoryblok
+  asset: AssetStoryblok
+  ratio: Luca.TAspectRatios
 }
 
 const { asset } = defineProps<Props>()
@@ -40,7 +42,7 @@ onMounted(() => {
         }
       })
     },
-    { rootMargin: '0px 0px 0px 0px', threshold: 0 },
+    { rootMargin: '50% 0px 50% 0px', threshold: 0 },
   )
 
   video.value && observer?.observe(video.value)
@@ -65,5 +67,9 @@ onUnmounted(() => {
     muted
     loop
     playsinline
+    :class="[
+      'w-full h-full object-cover',
+      ratioMap[ratio],
+    ]"
   />
 </template>

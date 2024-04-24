@@ -179,6 +179,7 @@ export interface SettingsStoryblok {
 
 export interface VideoStoryblok {
   video: AssetStoryblok;
+  ratio: number | string;
   _uid: string;
   component: "video";
   [k: string]: any;
