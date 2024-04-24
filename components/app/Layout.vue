@@ -37,21 +37,5 @@
 
 .app-layout__main {
   flex-grow: 1;
-
-  .app-layout__header + & {
-    margin-top: 25vh;
-
-    @screen md {
-      margin-top: theme('spacing.120');
-    }
-  }
-}
-
-.app-layout__footer {
-  margin-block-start: theme('spacing.120');
-
-  @screen md {
-    margin-block-start: theme('spacing.300');
-  }
 }
 </style>

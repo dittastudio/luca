@@ -25,6 +25,8 @@ onMounted(() => {
 const setBackground = (color: string) => {
   document.documentElement.style.setProperty('--app-background-color', color)
 }
+
+const isHome = computed(() => route.path === '/')
 </script>
 
 <template>
@@ -32,6 +34,8 @@ const setBackground = (color: string) => {
     :backgrounds="story.content.background"
     @background="setBackground"
   >
+    <AppCoverLogo v-if="isHome" />
+
     <BlockComponents :content="story.content" />
   </AppBackground>
 </template>
