@@ -33,6 +33,11 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
+      <BlockCarousel
+        v-else-if="block.component === 'block_carousel'"
+        :block="block"
+      />
+
       <BlockImage
         v-else-if="block.component === 'block_image'"
         :block="block"

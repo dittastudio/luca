@@ -1,9 +1,9 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
 import { useKeenSlider } from 'keen-slider/vue.es'
 import config from '@/tailwind.config'
 
 interface Props {
-  slides: any[]
+  slides: T[]
 }
 
 const { slides } = defineProps<Props>()
