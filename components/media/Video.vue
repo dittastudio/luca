@@ -63,10 +63,10 @@ onUnmounted(() => {
     v-if="asset"
     ref="video"
     :src="src"
+    playsinline
     autoplay
     muted
     loop
-    playsinline
     :class="[
       'w-full h-full object-cover',
       ratioMap[ratio],
