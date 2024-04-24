@@ -19,14 +19,28 @@ useSeoMeta({
   titleTemplate: title => (title ? `${title} - Luca` : 'Luca'),
   robots: 'index, follow',
 })
+
+const isHome = computed(() => route.path === '/')
 </script>
 
 <template>
   <div>
     <AppLayout>
       <template #header>
-        <AppHeader :links="story.content.navigation?.[0]" />
+        <AppHeader
+          :logo-hidden="isHome"
+          :links="story.content.navigation?.[0]"
+        />
       </template>
+
+      <!-- <template #fixed>
+        <Transition
+          name="page"
+          mode="out-in"
+        >
+          <AppStickyLogo v-if="isHome" />
+        </Transition>
+      </template> -->
 
       <template #main>
         <NuxtPage />

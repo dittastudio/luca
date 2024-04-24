@@ -57,7 +57,7 @@ onUnmounted(() => {
     width: 1px;
     height: 0;
     background-color: theme('colors.white');
-    transition: height theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+    transition: height theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
 
     &--seen {
       height: 100%;

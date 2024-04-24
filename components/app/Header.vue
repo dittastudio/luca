@@ -4,14 +4,14 @@ import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
 interface Props {
+  logoHidden?: boolean
   links?: LinkListStoryblok
 }
 
-const { links } = defineProps<Props>()
+const { logoHidden, links } = defineProps<Props>()
 
 const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
-const hasScrolled = ref<boolean>(false)
 const hasScrolledUp = ref<boolean>(false)
 const hasScrolledDown = ref<boolean>(false)
 const raf = ref<any>(null)
@@ -20,15 +20,12 @@ const handleScroll = () => {
   const triggerPoint = 50
   const scrollPos = window.scrollY
 
-  hasScrolled.value = scrollPos > triggerPoint
-
   // Scrolling up
   if (prevScrollPos.value > scrollPos) {
     hasScrolledUp.value = scrollPos > triggerPoint
     hasScrolledDown.value = false
-
-    // Scrolling down
   }
+  // Scrolling down
   else {
     hasScrolledUp.value = false
     hasScrolledDown.value = scrollPos > triggerPoint
@@ -57,9 +54,9 @@ onUnmounted(() => {
 
 const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': isOpen.value,
-  'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
+  'app-header--logo-hidden': logoHidden,
 }))
 
 const closeMenu = () => {
@@ -415,7 +412,8 @@ watch(
     opacity: 1;
   }
 
-  .app-header--has-scrolled-down & {
+  .app-header--has-scrolled-down &,
+  .app-header--logo-hidden & {
     pointer-events: none;
     translate: 0 -15% 0;
     opacity: 0;
