@@ -23,25 +23,30 @@ useHead({
 </script>
 
 <template>
-  <div class="w-full h-screen flex items-center justify-center px-4 sm:px-6 py-24">
-    <div class="w-full max-w-md flex flex-col items-center justify-center gap-40 text-center">
-      <h1 class="text-20">
+  <div class="w-full min-h-screen flex items-center justify-center section wrapper">
+    <div class="flex flex-col items-center justify-center gap-40 text-center">
+      <h1>
         <NuxtLink to="/">
-          <IconLucaLogo class="w-80 h-auto" />
+          <IconLucaLogo class="w-150 h-auto" />
 
           <span class="sr-only">Luca</span>
         </NuxtLink>
       </h1>
 
-      <p class="text-24">
-        Sorry, the page you were looking for couldn't be found. It may have been moved.
+      <MediaVideo
+        :asset="{ id: 404, name: '404', filename: '/videos/scusi.mp4' }"
+        class="aspect-[3/2] w- max-w-[300px] h-full object-cover"
+      />
+
+      <p class="type-body max-w-[45ch] mx-auto">
+        Ci scusiamo, the page you were looking for couldn't be found. It may have been moved.
       </p>
 
-      <p class="text-24">
-        <a href="/">
-          <AppearanceButton type="green">Back to home</AppearanceButton>
-        </a>
-      </p>
+      <NuxtLink to="/">
+        <AppearanceButton type="green">
+          Back to home
+        </AppearanceButton>
+      </NuxtLink>
     </div>
   </div>
 </template>

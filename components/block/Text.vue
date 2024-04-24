@@ -37,6 +37,14 @@ const { block } = defineProps<Props>()
     }
   }
 
+  & h5 {
+    font-size: theme('fontSize.12');
+  }
+
+  & h6 {
+    font-size: theme('fontSize.10');
+  }
+
   & p {
     max-width: 25em;
     margin-inline: auto;
