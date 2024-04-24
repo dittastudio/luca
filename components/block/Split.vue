@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { BlockSplitStoryblok } from '@/types/storyblok'
-import { hasRichTextContent } from '@/utilities/helpers'
+import { hasRichTextContent, storyblokImageDimensions } from '@/utilities/helpers'
 
 interface Props {
   block: BlockSplitStoryblok
@@ -20,6 +20,8 @@ const { block } = defineProps<Props>()
         provider="storyblok"
         :src="block.media[0]?.image.filename"
         :alt="block.media[0]?.image.alt"
+        :width="storyblokImageDimensions(block.media[0]?.image.filename).width"
+        :height="storyblokImageDimensions(block.media[0]?.image.filename).height"
         :sizes="`
           100vw
           sm:100vw

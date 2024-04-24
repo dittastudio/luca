@@ -4,7 +4,7 @@ import { ratioMap } from '@/utilities/maps'
 
 interface Props {
   asset: AssetStoryblok
-  ratio: Luca.TAspectRatios
+  ratio: Luca.TAspectRatios | string | number
 }
 
 const { asset } = defineProps<Props>()
