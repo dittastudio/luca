@@ -61,9 +61,9 @@ onUnmounted(() => {
     v-if="asset"
     ref="video"
     :src="src"
+    playsinline
     autoplay
     muted
     loop
-    playsinline
   />
 </template>
