@@ -101,6 +101,8 @@ const eventKeydown = (event: KeyboardEvent) => {
         class="ui-carousel__dot"
         :class="{ 'ui-carousel__dot--is-active': current === index }"
         @click="slider?.moveToIdx(index)"
+        @focus="eventKeyboardFocus"
+        @blur="eventKeyboardBlur"
       >
         <span class="ui-carousel__circle" />
 
@@ -180,7 +182,9 @@ const eventKeydown = (event: KeyboardEvent) => {
   width: var(--dot-size);
   height: var(--dot-size);
 
-  border: 1px solid currentcolor;
+  background-color: theme('colors.white/20%');
+
+  /* border: 2px solid theme('colors.white/30%'); */
   border-radius: 50%;
 
   transition: background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
