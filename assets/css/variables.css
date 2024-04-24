@@ -6,6 +6,8 @@
     --app-inner-gutter: theme('spacing.20');
     --app-outer-gutter: theme('spacing.20');
     --app-header-height: 87px;
+    --app-layer-deep: -1;
+    --app-layer-deeper: -2;
 
     @screen md {
       --app-outer-gutter: theme('spacing.40');

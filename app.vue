@@ -33,15 +33,6 @@ const isHome = computed(() => route.path === '/')
         />
       </template>
 
-      <!-- <template #fixed>
-        <Transition
-          name="page"
-          mode="out-in"
-        >
-          <AppStickyLogo v-if="isHome" />
-        </Transition>
-      </template> -->
-
       <template #main>
         <NuxtPage />
       </template>

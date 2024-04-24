@@ -33,14 +33,23 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .cover-logo {
+  --logo-container-height: 100vh;
+
   pointer-events: none;
-  position: fixed;
-  inset: 0;
+
+  position: sticky;
+  z-index: var(--app-layer-deep);
+  top: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+
+  height: var(--logo-container-height);
+  margin-block-start: calc(-1 * var(--logo-container-height));
+
   opacity: 0;
+
   transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
 
   &--is-active {
@@ -49,15 +58,21 @@ onMounted(() => {
 }
 
 .cover-logo__icon {
-  width: 60vw;
-  height: auto;
+  --logo-responsive-width: 60vw;
 
   @screen md {
-    width: 23.646vw;
+    --logo-responsive-width: 31.55vw;
   }
 
   @screen 2xl {
-    width: 454px;
+    --logo-responsive-width: 454px;
+  }
+
+  width: var(--logo-responsive-width);
+  height: auto;
+
+  @screen mdMax {
+    display: none;
   }
 }
 </style>
