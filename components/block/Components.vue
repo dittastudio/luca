@@ -116,5 +116,9 @@ const isHome = computed(() => route.path === '/')
   & .block-components__line  {
     margin-block-start: var(--line-spacing);
   }
+
+  &--block_text + &--block_button {
+    margin-block-start: var(--line-spacing);
+  }
 }
 </style>
