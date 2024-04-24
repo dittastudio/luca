@@ -32,7 +32,7 @@ const {
 </script>
 
 <template>
-  <footer class="app-footer wrapper">
+  <div class="app-footer wrapper">
     <hr class="app-footer__break">
 
     <div class="app-footer__inner">
@@ -176,7 +176,7 @@ const {
         </NuxtLink>
       </div>
     </div>
-  </footer>
+  </div>
 </template>
 
 <style lang="postcss" scoped>
