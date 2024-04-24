@@ -1,10 +1,6 @@
 import type { Config } from 'tailwindcss'
 
-const pixelsToRemsUnit = (pixels: number): number => {
-  const remsUnit = pixels / 16
-
-  return remsUnit
-}
+const pixelsToRemsUnit = (pixels: number): number => pixels / 16
 
 interface ClampOptions {
   minPixels: number
@@ -48,10 +44,10 @@ export default {
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
+    './utilities/**/*.{js,ts}',
     './app.vue',
     './error.vue',
   ],
-  safelist: [{ pattern: /(col-start|col-span)-./ }],
   theme: {
     colors: {
       // #ffffff
