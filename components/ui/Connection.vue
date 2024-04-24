@@ -1,30 +1,18 @@
 <script lang="ts" setup>
+import { useIntersectionObserver } from '@vueuse/core'
+
 const line = ref<HTMLDivElement | null>(null)
 const seen = ref(false)
 
-let observer: IntersectionObserver | null = null
-
-onMounted(() => {
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!(entry.target instanceof HTMLDivElement)) return
-
-        if (entry.isIntersecting && !seen.value) {
-          seen.value = true
-          observer?.disconnect()
-        }
-      })
-    },
-    { rootMargin: '0px 0px 0px 0px', threshold: 1 },
-  )
-
-  line.value && observer?.observe(line.value)
-})
-
-onUnmounted(() => {
-  observer && observer.disconnect()
-})
+useIntersectionObserver(
+  line,
+  ([{ target, isIntersecting }]) => {
+    if (target instanceof HTMLDivElement && isIntersecting && !seen.value) {
+      seen.value = true
+    }
+  },
+  { rootMargin: '0px 0px 0px 0px', threshold: 1 },
+)
 </script>
 
 <template>
