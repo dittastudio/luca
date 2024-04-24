@@ -3,13 +3,17 @@ import { useIntersectionObserver } from '@vueuse/core'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 
 const isVisible = ref(false)
-const section = ref<HTMLElement | null>(null)
+const main = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  section.value = document.querySelector('main')
+  main.value = document.querySelector('main')
+
+  if (!main.value) {
+    return
+  }
 
   useIntersectionObserver(
-    section,
+    main,
     ([{ isIntersecting }]) => {
       isVisible.value = isIntersecting
     },

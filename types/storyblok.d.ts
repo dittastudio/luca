@@ -52,6 +52,14 @@ export interface BlockCardStoryblok {
   [k: string]: any;
 }
 
+export interface BlockCarouselStoryblok {
+  slides: SlideStoryblok[];
+  connecting_line?: boolean;
+  _uid: string;
+  component: "block_carousel";
+  [k: string]: any;
+}
+
 export interface AssetStoryblok {
   _uid?: string;
   id: number;
@@ -118,6 +126,7 @@ export interface BlockTextEditorialStoryblok {
 
 export interface ImageStoryblok {
   image: AssetStoryblok;
+  ratio: number | string;
   _uid: string;
   component: "image";
   [k: string]: any;
@@ -141,12 +150,13 @@ export interface LinkListStoryblok {
 export interface PageStoryblok {
   seo: SeoStoryblok[];
   blocks?: (
-    | BlockTextStoryblok
-    | BlockImageStoryblok
-    | BlockTextEditorialStoryblok
-    | BlockCardStoryblok
-    | BlockSplitStoryblok
     | BlockButtonStoryblok
+    | BlockCardStoryblok
+    | BlockCarouselStoryblok
+    | BlockImageStoryblok
+    | BlockSplitStoryblok
+    | BlockTextStoryblok
+    | BlockTextEditorialStoryblok
   )[];
   background?: BackgroundStoryblok[];
   _uid: string;
@@ -180,6 +190,13 @@ export interface SettingsStoryblok {
   social_instagram?: string;
   _uid: string;
   component: "settings";
+  [k: string]: any;
+}
+
+export interface SlideStoryblok {
+  media: (ImageStoryblok | VideoStoryblok)[];
+  _uid: string;
+  component: "slide";
   [k: string]: any;
 }
 
