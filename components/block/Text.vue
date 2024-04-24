@@ -12,7 +12,7 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-text prose prose--large"
+    class="block-text prose prose--large wrapper"
   >
     <StoryblokRichText
       v-if="hasRichTextContent(block.text)"
@@ -35,6 +35,14 @@ const { block } = defineProps<Props>()
     @screen md {
       font-size: theme('fontSize.16');
     }
+  }
+
+  & h5 {
+    font-size: theme('fontSize.12');
+  }
+
+  & h6 {
+    font-size: theme('fontSize.10');
   }
 
   & p {

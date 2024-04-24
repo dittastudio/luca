@@ -64,5 +64,6 @@ onUnmounted(() => {
     autoplay
     muted
     loop
+    playsinline
   />
 </template>

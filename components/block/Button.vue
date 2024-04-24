@@ -11,7 +11,7 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-button"
+    class="block-button wrapper"
   >
     <StoryblokLink :item="block.link">
       <AppearanceButton type="green">

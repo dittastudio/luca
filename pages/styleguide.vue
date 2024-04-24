@@ -1,9 +1,5 @@
 <template>
   <div>
-    <BlockSplit />
-
-    <BlockSplit is-reversed />
-
     <div class="section wrapper">
       <UiCarousel />
     </div>

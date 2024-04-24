@@ -12,7 +12,7 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-card"
+    class="block-card wrapper"
   >
     <div
       :class="[
@@ -32,11 +32,11 @@ const { block } = defineProps<Props>()
               :src="block.media[0]?.image.filename"
               :alt="block.media[0]?.image.alt"
               :sizes="`
-              100vw
-              sm:100vw
-              md:${Number(block.column_span) / 12 * 100}vw
-              3xl:${Number(block.column_span) / 12 * 1800}px
-            `"
+                100vw
+                sm:100vw
+                md:${Number(block.column_span) / 12 * 100}vw
+                3xl:${Number(block.column_span) / 12 * 1800}px
+              `"
               loading="lazy"
             />
 
@@ -53,7 +53,7 @@ const { block } = defineProps<Props>()
 
 <style lang="postcss" scoped>
 .block-card {
-  @screen sm {
+  @screen md {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: var(--app-inner-gutter);
