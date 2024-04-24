@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="section wrapper">
-      <UiCarousel />
-    </div>
+    <BlockCarouselDuo />
 
     <div class="section wrapper">
       <h1 class="type-h1 opacity-40">

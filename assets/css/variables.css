@@ -3,7 +3,6 @@
     --app-background-color: theme('colors.green');
     --app-background-speed: theme('transitionDuration.1000');
     --app-background-ease: theme('transitionTimingFunction.out');
-
     --app-inner-gutter: theme('spacing.20');
     --app-outer-gutter: theme('spacing.20');
     --app-header-height: 87px;

@@ -41,7 +41,7 @@ const { block } = defineProps<Props>()
 
 <style lang="postcss" scoped>
 .block-image {
-  @screen sm {
+  @screen md {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: var(--app-inner-gutter);
