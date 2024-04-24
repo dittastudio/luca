@@ -12,6 +12,7 @@ const { logoHidden, links } = defineProps<Props>()
 
 const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
+const hasScrolled = ref<boolean>(false)
 const hasScrolledUp = ref<boolean>(false)
 const hasScrolledDown = ref<boolean>(false)
 const raf = ref<any>(null)
@@ -19,6 +20,8 @@ const raf = ref<any>(null)
 const handleScroll = () => {
   const triggerPoint = 50
   const scrollPos = window.scrollY
+
+  hasScrolled.value = scrollPos > triggerPoint
 
   // Scrolling up
   if (prevScrollPos.value > scrollPos) {
@@ -54,6 +57,7 @@ onUnmounted(() => {
 
 const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': isOpen.value,
+  'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
   'app-header--logo-hidden': logoHidden,
@@ -207,7 +211,20 @@ watch(
 }
 
 .app-header__gradient {
+  translate: 0 -100% 0;
+  opacity: 0;
   fill: url("#app-header__gradient");
+  transition:
+    opacity theme('transitionDuration.400') theme('transitionTimingFunction.in'),
+    translate theme('transitionDuration.400') theme('transitionTimingFunction.in');
+
+  .app-header--has-scrolled:not(.app-header--is-open) & {
+    translate: 0 0 0;
+    opacity: 1;
+    transition:
+      opacity theme('transitionDuration.400') theme('transitionTimingFunction.out'),
+      translate theme('transitionDuration.400') theme('transitionTimingFunction.out');
+  }
 }
 
 .app-header__gradient--colour-1,
