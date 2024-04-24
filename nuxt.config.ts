@@ -12,8 +12,8 @@ export default defineNuxtConfig({
       meta: [
         { name: 'author', content: 'Luca' },
         { name: 'revisit-after', content: '1 day' },
-        { name: 'msapplication-TileColor', content: '#ffb9b9' },
-        { name: 'theme-color', content: '#ffb9b9' },
+        { name: 'msapplication-TileColor', content: '#2D3F2F' },
+        { name: 'theme-color', content: '#2D3F2F' },
         { name: 'google', content: 'notranslate' },
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
