@@ -48,10 +48,10 @@ export default {
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
+    './utilities/**/*.{js,ts}',
     './app.vue',
     './error.vue',
   ],
-  safelist: [{ pattern: /(col-start|col-span)-./ }],
   theme: {
     colors: {
       // #ffffff
