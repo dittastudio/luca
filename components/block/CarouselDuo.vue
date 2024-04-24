@@ -18,33 +18,55 @@ const slides = [
 
 <template>
   <div
-    class="block-carousel-duo wrapper"
+    class="block-carousel-duo"
   >
-    <UiCarousel :slides="slides">
-      <template #slide="{ slide }">
-        <div class="block-carousel-duo__slide">
-          <div class="block-carousel-duo__item">
-            <img
-              :src="slide.src"
-              alt="Slide"
-              class="aspect-[7/8] h-full object-cover"
-            >
-          </div>
+    <div class="block-carousel-duo__grid wrapper">
+      <div class="block-carousel-duo__container">
+        <UiCarousel :slides="slides">
+          <template #slide="{ slide }">
+            <div class="block-carousel-duo__slide">
+              <div class="block-carousel-duo__item">
+                <img
+                  :src="slide.src"
+                  alt="Slide"
+                  class="aspect-[7/8] h-full object-cover"
+                >
+              </div>
 
-          <div class="block-carousel-duo__item">
-            <img
-              :src="slide.src"
-              alt="Slide"
-              class="aspect-[7/8] h-full object-cover"
-            >
-          </div>
-        </div>
-      </template>
-    </UiCarousel>
+              <div class="block-carousel-duo__item">
+                <img
+                  :src="slide.src"
+                  alt="Slide"
+                  class="aspect-[7/8] h-full object-cover"
+                >
+              </div>
+            </div>
+          </template>
+        </UiCarousel>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="postcss" scoped>
+.block-carousel-duo {
+  overflow: hidden;
+}
+
+.block-carousel-duo__grid {
+  @screen md {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--app-inner-gutter);
+  }
+}
+
+.block-carousel-duo__container {
+  @screen md {
+    grid-column: 2 / span 10;
+  }
+}
+
 .block-carousel-duo__slide {
   display: flex;
   gap: var(--app-inner-gutter);
