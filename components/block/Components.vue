@@ -92,8 +92,6 @@ const isHome = computed(() => route.path === '/')
   }
 
   .block-components--home &:first-child {
-    position: relative;
-    z-index: var(--app-layer-deeper);
     margin-block-start: theme('spacing.30');
 
     @screen md {
@@ -104,6 +102,11 @@ const isHome = computed(() => route.path === '/')
       height: 100vh;
       margin-block-start: calc(-1 * var(--app-header-height));
     }
+  }
+
+  .block-components--home &:not(:first-child) {
+    position: relative;
+    z-index: var(--app-layer-two);
   }
 
   &:has(.block-components__line) + & {

@@ -52,7 +52,7 @@ useIntersectionObserver(
     height: 100%;
 
     opacity: 0;
-    background-color: theme('colors.white');
+    background-color: currentcolor;
 
     transition:
       opacity theme('transitionDuration.1000') theme('transitionTimingFunction.outExpo'),

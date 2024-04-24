@@ -321,7 +321,7 @@ watch(
   margin-block: var(--line-alignment-nudge);
 
   opacity: 0;
-  background-color: theme('colors.white');
+  background-color: currentcolor;
 
   transition:
     scale theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),

@@ -36,6 +36,7 @@
 }
 
 .app-layout__main {
+  z-index: 1;
   flex-grow: 1;
   min-height: 100vh;
 }

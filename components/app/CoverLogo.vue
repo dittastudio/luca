@@ -38,7 +38,7 @@ onMounted(() => {
   pointer-events: none;
 
   position: sticky;
-  z-index: var(--app-layer-deep);
+  z-index: var(--app-layer-one);
   top: 0;
 
   display: flex;
