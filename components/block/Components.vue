@@ -45,6 +45,8 @@ const { content } = defineProps<Props>()
         v-else-if="block.component === 'block_text_editorial'"
         :block="block"
       />
+
+      <UiConnection v-if="block.connecting_line" />
     </section>
   </div>
 </template>

@@ -33,6 +33,7 @@ export type MultilinkStoryblok =
 export interface BlockButtonStoryblok {
   title: string;
   link: Exclude<MultilinkStoryblok, {linktype?: "asset"}>;
+  connecting_line?: boolean;
   _uid: string;
   component: "block_button";
   [k: string]: any;
@@ -45,6 +46,7 @@ export interface BlockCardStoryblok {
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
   column_span: number | string;
+  connecting_line?: boolean;
   _uid: string;
   component: "block_card";
   [k: string]: any;
@@ -72,6 +74,7 @@ export interface BlockImageStoryblok {
   image: AssetStoryblok;
   column_start: number | string;
   column_span: number | string;
+  connecting_line?: boolean;
   _uid: string;
   component: "block_image";
   [k: string]: any;
@@ -90,6 +93,7 @@ export interface BlockSplitStoryblok {
   reversed?: boolean;
   text: RichtextStoryblok;
   media: (VideoStoryblok | ImageStoryblok)[];
+  connecting_line?: boolean;
   _uid: string;
   component: "block_split";
   [k: string]: any;
@@ -97,6 +101,7 @@ export interface BlockSplitStoryblok {
 
 export interface BlockTextStoryblok {
   text: RichtextStoryblok;
+  connecting_line?: boolean;
   _uid: string;
   component: "block_text";
   [k: string]: any;
@@ -105,6 +110,7 @@ export interface BlockTextStoryblok {
 export interface BlockTextEditorialStoryblok {
   title?: string;
   text: RichtextStoryblok;
+  connecting_line?: boolean;
   _uid: string;
   component: "block_text_editorial";
   [k: string]: any;
@@ -179,6 +185,7 @@ export interface SettingsStoryblok {
 
 export interface VideoStoryblok {
   video: AssetStoryblok;
+  ratio: number | string;
   _uid: string;
   component: "video";
   [k: string]: any;
