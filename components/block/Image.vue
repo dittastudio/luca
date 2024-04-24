@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { BlockImageStoryblok } from '@/types/storyblok'
 import { colSpanMap, colStartMap } from '@/utilities/maps'
+import { storyblokImageDimensions } from '@/utilities/helpers'
 
 interface Props {
   block: BlockImageStoryblok
@@ -24,6 +25,8 @@ const { block } = defineProps<Props>()
         provider="storyblok"
         :src="block.image.filename"
         :alt="block.image.alt"
+        :width="storyblokImageDimensions(block.image.filename).width"
+        :height="storyblokImageDimensions(block.image.filename).height"
         :sizes="`
           100vw
           sm:100vw

@@ -1,11 +1,27 @@
 <script lang="ts" setup>
-import { useKeenSlider } from 'keen-slider/vue'
+import { useKeenSlider } from 'keen-slider/vue.es'
 
 const isFocused = ref(false)
+const opacities = ref<number[]>([])
+const items = [
+  { src: 'https://placehold.co/1600x900/000000/FFFFFF/png' },
+  { src: 'https://placehold.co/1600x900/FFFFFF/000000/png' },
+  { src: 'https://placehold.co/1600x900/000000/FFFFFF/png' },
+  { src: 'https://placehold.co/1600x900/FFFFFF/000000/png' },
+  { src: 'https://placehold.co/1600x900/000000/FFFFFF/png' },
+]
 
-const [container, slider] = useKeenSlider({ loop: true }, [
-  // add plugins here
-])
+const [container, slider] = useKeenSlider({
+  slides: items.length,
+  loop: true,
+  defaultAnimation: {
+    duration: 3000,
+  },
+  detailsChanged: (s) => {
+    opacities.value = s.track.details.slides.map(slide => slide.portion)
+  },
+  renderMode: 'custom',
+})
 
 const goToSlide = (action: 'prev' | 'next') => {
   if (slider.value) slider.value[action]()
@@ -48,46 +64,17 @@ const eventKeydown = (event: KeyboardEvent) => {
       ref="container"
       class="ui-carousel__container  keen-slider"
     >
-      <div class="ui-carousel__slide keen-slider__slide">
+      <div
+        v-for="(item, index) in items"
+        :key="index"
+        class="ui-carousel__slide keen-slider__slide"
+        :style="{ opacity: opacities[index] }"
+      >
         <img
-          src="https://placehold.co/1600x900/000000/FFFFFF/png"
-          alt=""
+          :src="item.src"
+          alt="Slide"
         >
-      </div>
-
-      <div class="ui-carousel__slide keen-slider__slide">
-        <img
-          src="https://placehold.co/1600x900/FFFFFF/000000/png"
-          alt=""
-        >
-      </div>
-
-      <div class="ui-carousel__slide keen-slider__slide">
-        <img
-          src="https://placehold.co/1600x900/000000/FFFFFF/png"
-          alt=""
-        >
-      </div>
-
-      <div class="ui-carousel__slide keen-slider__slide">
-        <img
-          src="https://placehold.co/1600x900/FFFFFF/000000/png"
-          alt=""
-        >
-      </div>
-
-      <div class="ui-carousel__slide keen-slider__slide">
-        <img
-          src="https://placehold.co/1600x900/000000/FFFFFF/png"
-          alt=""
-        >
-      </div>
-
-      <div class="ui-carousel__slide keen-slider__slide">
-        <img
-          src="https://placehold.co/1600x900/FFFFFF/000000/png"
-          alt=""
-        >
+        <!-- <slot :item="item" /> -->
       </div>
     </div>
   </div>
@@ -107,8 +94,6 @@ const eventKeydown = (event: KeyboardEvent) => {
   position: relative;
 
   overflow: hidden;
-  display: flex;
-  align-content: flex-start;
 
   width: 100%;
 
@@ -125,14 +110,18 @@ const eventKeydown = (event: KeyboardEvent) => {
 }
 
 .ui-carousel__slide {
-  position: relative;
-
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   width: 100%;
+  height: 100%;
   min-height: 100%;
+
+  &:not(:first-child) {
+    position: absolute;
+    top: 0;
+  }
+
+  & img {
+    width: 100%;
+    height: auto;
+  }
 }
 </style>

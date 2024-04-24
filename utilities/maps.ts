@@ -28,4 +28,14 @@ const colStartMap: Record<string, string> = {
   12: 'col-start-12',
 } as const
 
-export { colSpanMap, colStartMap }
+const ratioMap: Record<string, string> = {
+  'auto': '',
+  '16:9': 'aspect-16/9',
+  '9:16': 'aspect-9/16',
+  '3:2': 'aspect-3/2',
+  '2:3': 'aspect-2/3',
+  '4:3': 'aspect-4/3',
+  '3:4': 'aspect-3/4',
+} as const
+
+export { colSpanMap, colStartMap, ratioMap }

@@ -167,6 +167,14 @@ export default {
       outBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
       inOutBack: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
     },
+    aspectRatio: {
+      '3/2': '3 / 2',
+      '2/3': '2 / 3',
+      '4/3': '4 / 3',
+      '3/4': '3 / 4',
+      '16/9': '16 / 9',
+      '9/16': '9 / 16',
+    },
     extend: {
       transitionDuration: {
         175: '175ms',
