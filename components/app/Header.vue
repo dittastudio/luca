@@ -200,14 +200,14 @@ watch(
 }
 
 .app-header__background {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
   pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  inset: 0;
 }
 
 .app-header__gradient {
-  fill: url(#app-header__gradient);
+  fill: url("#app-header__gradient");
 }
 
 .app-header__gradient--colour-1,
@@ -412,8 +412,7 @@ watch(
     opacity: 1;
   }
 
-  .app-header--has-scrolled-down &,
-  .app-header--logo-hidden & {
+  .app-header--has-scrolled-down &{
     pointer-events: none;
     translate: 0 -15% 0;
     opacity: 0;
@@ -427,6 +426,17 @@ watch(
       pointer-events: none;
       opacity: 0;
       transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    }
+  }
+
+  @screen md {
+    .app-header--logo-hidden & {
+      pointer-events: none;
+      translate: 0 -15% 0;
+      opacity: 0;
+      transition:
+        opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+        translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
     }
   }
 }

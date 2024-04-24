@@ -38,4 +38,10 @@
 .app-layout__main {
   flex-grow: 1;
 }
+
+.app-layout__footer {
+  .app-layout__main + & {
+    margin-block-start: theme('spacing.150');
+  }
+}
 </style>
