@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useIntersectionObserver } from '@vueuse/core'
 import type { BackgroundStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -15,32 +16,24 @@ const emit = defineEmits<Emits>()
 
 const segment = backgrounds.length === 0 ? 0 : 100 / backgrounds.length
 const itemRefs = ref<HTMLDivElement[]>([])
-let observer: IntersectionObserver | null = null
 
-onMounted(() => {
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (
-          entry.isIntersecting
-          && entry.target instanceof HTMLDivElement
-          && entry.target?.dataset?.color
-        ) {
-          emit('background', entry.target.dataset.color)
-        }
-      })
-    },
-    { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
-  )
-
-  itemRefs.value.forEach((item) => {
-    observer?.observe(item)
-  })
-})
+useIntersectionObserver(
+  itemRefs,
+  (entries) => {
+    entries.forEach((entry) => {
+      if (
+        entry.isIntersecting
+        && entry.target instanceof HTMLDivElement
+        && entry.target?.dataset?.color
+      ) {
+        emit('background', entry.target.dataset.color)
+      }
+    })
+  },
+  { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
+)
 
 onUnmounted(() => {
-  observer && observer.disconnect()
-
   emit('background', '#2D3F2F')
 })
 </script>
