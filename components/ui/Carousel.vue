@@ -1,21 +1,20 @@
 <script lang="ts" setup>
 import { useKeenSlider } from 'keen-slider/vue.es'
 
+interface Props {
+  slides: any[]
+}
+
+const { slides } = defineProps<Props>()
+
 const isFocused = ref(false)
 const opacities = ref<number[]>([])
-const items = [
-  { src: 'https://placehold.co/1600x900/000000/FFFFFF/png' },
-  { src: 'https://placehold.co/1600x900/FFFFFF/000000/png' },
-  { src: 'https://placehold.co/1600x900/000000/FFFFFF/png' },
-  { src: 'https://placehold.co/1600x900/FFFFFF/000000/png' },
-  { src: 'https://placehold.co/1600x900/000000/FFFFFF/png' },
-]
 
 const [container, slider] = useKeenSlider({
-  slides: items.length,
+  slides: slides.length,
   loop: true,
   defaultAnimation: {
-    duration: 3000,
+    duration: 1000,
   },
   detailsChanged: (s) => {
     opacities.value = s.track.details.slides.map(slide => slide.portion)
@@ -65,16 +64,15 @@ const eventKeydown = (event: KeyboardEvent) => {
       class="ui-carousel__container  keen-slider"
     >
       <div
-        v-for="(item, index) in items"
+        v-for="(slide, index) in slides"
         :key="index"
         class="ui-carousel__slide keen-slider__slide"
         :style="{ opacity: opacities[index] }"
       >
-        <img
-          :src="item.src"
-          alt="Slide"
-        >
-        <!-- <slot :item="item" /> -->
+        <slot
+          name="slide"
+          :slide="slide"
+        />
       </div>
     </div>
   </div>
@@ -117,11 +115,6 @@ const eventKeydown = (event: KeyboardEvent) => {
   &:not(:first-child) {
     position: absolute;
     top: 0;
-  }
-
-  & img {
-    width: 100%;
-    height: auto;
   }
 }
 </style>

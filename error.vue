@@ -35,7 +35,8 @@ useHead({
 
       <MediaVideo
         :asset="{ id: 404, name: '404', filename: '/videos/scusi.mp4' }"
-        class="aspect-[3/2] w- max-w-[300px] h-full object-cover"
+        ratio="3:2"
+        class="w-full max-w-[300px] h-full object-cover rounded-md"
       />
 
       <p class="type-body max-w-[45ch] mx-auto">
