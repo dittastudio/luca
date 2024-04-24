@@ -330,7 +330,7 @@ watch(
   .app-header--is-open & {
     scale: 1 1 1;
     opacity: 1;
-    transition:
+    transition-delay:
       scale theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
         theme('transitionDelay.100'),
       opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
@@ -402,13 +402,11 @@ watch(
 
   transition:
     opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
-    visibility theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
     translate 0s 0s;
 
   .app-header--has-scrolled-up & {
     pointer-events: auto;
     translate: 0 0 0;
-    visibility: visible;
     opacity: 1;
   }
 

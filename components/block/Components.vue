@@ -15,7 +15,7 @@ const isHome = computed(() => route.path === '/')
 <template>
   <div
     class="block-components"
-    :class="{ 'block-component--home': isHome }"
+    :class="{ 'block-components--home': isHome }"
   >
     <section
       v-for="block in content.blocks"
@@ -53,17 +53,25 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
-      <UiConnection v-if="block.connecting_line" />
+      <div
+        v-if="block.connecting_line"
+        class="block-components__line"
+      >
+        <UiConnection />
+      </div>
     </section>
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .block-components__item {
+  --line-spacing: theme('spacing.80');
   --spacing-rhythm: theme('spacing.150');
+  --first-spacing-rhythm: 25vh;
 
   @screen md {
   --spacing-rhythm: 15.75vw;
+  --first-spacing-rhythm: theme('spacing.100');
   }
 
   @screen 3xl {
@@ -74,7 +82,11 @@ const isHome = computed(() => route.path === '/')
     margin-block-start: var(--spacing-rhythm);
   }
 
-  .block-component--home &:first-child {
+  &:first-child {
+    margin-block-start: var(--first-spacing-rhythm);
+  }
+
+  .block-components--home &:first-child {
     position: relative;
     z-index: var(--app-layer-deeper);
     margin-block-start: theme('spacing.30');
@@ -88,11 +100,13 @@ const isHome = computed(() => route.path === '/')
       margin-block-start: calc(-1 * var(--app-header-height));
     }
   }
-}
 
-.block-components__item--block_card {
-  & + & {
-    margin-block-start: var(--spacing-rhythm);
+  &:has(.block-components__line) + & {
+    margin-block-start: var(--line-spacing);
+  }
+
+  & .block-components__line  {
+    margin-block-start: var(--line-spacing);
   }
 }
 </style>

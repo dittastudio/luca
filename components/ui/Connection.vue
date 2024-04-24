@@ -30,25 +30,37 @@ useIntersectionObserver(
 
 <style lang="postcss" scoped>
 .connection {
-  width: 100%;
-  height: 135px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
+  --line-height: 135px;
 
   @screen md {
-    height: 200px;
+    --line-height: 200px;
   }
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+
+  width: 100%;
+  height: var(--line-height);
+
   &__line {
+    transform-origin: 0 0;
+    scale: 1 0 1;
+
     width: 1px;
-    height: 0;
+    height: 100%;
+
+    opacity: 0;
     background-color: theme('colors.white');
-    transition: height theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+
+    transition:
+      opacity theme('transitionDuration.1000') theme('transitionTimingFunction.outExpo'),
+      scale theme('transitionDuration.1000') theme('transitionTimingFunction.outExpo');
 
     &--seen {
-      height: 100%;
+      scale: 1 1 1;
+      opacity: 1;
     }
   }
 }
