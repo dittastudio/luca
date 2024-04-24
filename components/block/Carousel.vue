@@ -53,7 +53,7 @@ const { block } = defineProps<Props>()
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .block-carousel {
   overflow: hidden;
 }
@@ -74,12 +74,18 @@ const { block } = defineProps<Props>()
 
 .block-carousel__slide {
   display: flex;
-  align-items: flex-start;
   gap: var(--app-inner-gutter);
+  height: 100%;
 }
 
 .block-carousel__item {
-  flex-grow: 1;
   flex-basis: 50%;
+  flex-grow: 1;
+
+  & video,
+  & img {
+    aspect-ratio: auto;
+    height: 100%;
+  }
 }
 </style>

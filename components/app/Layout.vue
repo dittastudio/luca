@@ -37,6 +37,7 @@
 
 .app-layout__main {
   flex-grow: 1;
+  min-height: 100vh;
 }
 
 .app-layout__footer {

@@ -85,6 +85,7 @@ const eventKeydown = (event: KeyboardEvent) => {
         v-for="(slide, index) in slides"
         :key="index"
         class="ui-carousel__slide keen-slider__slide"
+        :class="{ 'ui-carousel__slide--is-active': current === index }"
         :style="{ '--slide-opacity': opacities[index] }"
       >
         <slot
@@ -112,7 +113,7 @@ const eventKeydown = (event: KeyboardEvent) => {
   </div>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .ui-carousel {
   &:focus {
     outline: none;
@@ -125,6 +126,7 @@ const eventKeydown = (event: KeyboardEvent) => {
 
   position: relative;
 
+  aspect-ratio: 16 / 9;
   width: 100%;
 
   -webkit-tap-highlight-color: transparent;
@@ -144,21 +146,24 @@ const eventKeydown = (event: KeyboardEvent) => {
 
   @screen md {
     overflow: hidden;
+
   }
 }
 
 .ui-carousel__slide {
+  pointer-events: none;
   width: 100%;
   height: 100%;
   min-height: 100%;
 
   @screen md {
+    position: absolute;
+    top: 0;
     opacity: var(--slide-opacity);
+  }
 
-    &:not(:first-child) {
-      position: absolute;
-      top: 0;
-    }
+  &--is-active {
+    pointer-events: auto;
   }
 }
 
@@ -183,8 +188,6 @@ const eventKeydown = (event: KeyboardEvent) => {
   height: var(--dot-size);
 
   background-color: theme('colors.white/20%');
-
-  /* border: 2px solid theme('colors.white/30%'); */
   border-radius: 50%;
 
   transition: background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
