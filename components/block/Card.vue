@@ -60,7 +60,7 @@ const { block } = defineProps<Props>()
 .block-card {
   @screen md {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
   }
 }

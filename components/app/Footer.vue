@@ -184,7 +184,7 @@ const {
   }
 
   @screen xl {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: var(--app-grid);
   }
 }
 

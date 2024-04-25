@@ -5,6 +5,7 @@
     --app-background-ease: theme('transitionTimingFunction.out');
     --app-inner-gutter: theme('spacing.20');
     --app-outer-gutter: theme('spacing.20');
+    --app-grid: repeat(12, minmax(0, 1fr));
     --app-header-height: 87px;
     --app-layer-one: 1;
     --app-layer-two: 2;
