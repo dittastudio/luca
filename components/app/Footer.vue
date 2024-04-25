@@ -50,24 +50,9 @@ const {
             :content="newsletter"
           />
 
-          <form
-            class="app-footer__form"
-            action=""
-          >
-            <input
-              class="app-footer__input type-body"
-              type="email"
-              placeholder="Email"
-              required
-            >
-
-            <button
-              class="app-footer__submit type-h6"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
+          <div class="app-footer__form">
+            <AppFooterForm />
+          </div>
         </div>
       </div>
 
@@ -217,12 +202,6 @@ const {
   }
 }
 
-.app-footer__copy {
-  .app-footer__title + & {
-    margin-top: theme('spacing.20');
-  }
-}
-
 .app-footer__newsletter {
   display: flex;
   flex-direction: column;
@@ -247,57 +226,15 @@ const {
   }
 }
 
+.app-footer__copy {
+  .app-footer__title + & {
+    margin-block-start: theme('spacing.20');
+  }
+}
+
 .app-footer__form {
-  display: flex;
-  gap: theme('spacing.10');
-  justify-content: space-between;
-
-  border-bottom: 1px solid theme('colors.white/20%');
-
-  transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  &:focus-within {
-    border-color: theme('colors.white/100%');
-  }
-}
-
-.app-footer__input {
-  --input-padding-end: 4px;
-
-  width: 100%;
-  padding-block: theme('spacing.20') var(--input-padding-end);
-  outline: none;
-
-  @screen md {
-    font-size: theme('fontSize.14');
-  }
-
-  &::placeholder {
-    color: currentcolor;
-    opacity: 1;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-  }
-
-  &:hover::placeholder {
-    opacity: 0.5;
-  }
-
-  &:focus::placeholder {
-    opacity: 0;
-  }
-}
-
-.app-footer__submit {
-  padding-block-start: theme('spacing.20');
-  opacity: 1;
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  &:hover {
-    opacity: 0.5;
-  }
-
-  &:active {
-    opacity: 0.75;
+  .app-footer__copy + & {
+    margin-block-start: theme('spacing.10');
   }
 }
 
