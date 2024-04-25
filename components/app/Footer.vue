@@ -50,24 +50,7 @@ const {
             :content="newsletter"
           />
 
-          <form
-            class="app-footer__form"
-            action=""
-          >
-            <input
-              class="app-footer__input type-body"
-              type="email"
-              placeholder="Email"
-              required
-            >
-
-            <button
-              class="app-footer__submit type-h6"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
+          <AppFooterForm />
         </div>
       </div>
 
