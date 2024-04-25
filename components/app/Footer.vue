@@ -242,7 +242,7 @@ const {
   display: flex;
   grid-column: 1 / -1;
   flex-direction: column-reverse;
-  gap: theme('spacing.50');
+  gap: theme('spacing.40');
   align-items: center;
   justify-content: space-between;
 
