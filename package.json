@@ -28,7 +28,7 @@
     "keen-slider": "^6.8.6",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.6",
-    "zod": "^3.23.3"
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@michaelpumo/screen": "^0.0.16",
@@ -49,12 +49,12 @@
     "postcss-import": "^16.1.0",
     "prettier": "^3.2.5",
     "storyblok-generate-ts": "^2.1.0",
-    "stylelint": "^16.3.1",
+    "stylelint": "^16.4.0",
     "stylelint-config-clean-order": "^5.4.2",
     "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-config-standard": "^36.0.0",
     "vite-svg-loader": "^5.1.0",
-    "vue": "^3.4.24",
+    "vue": "^3.4.25",
     "vue-router": "^4.3.2"
   }
 }

@@ -43,7 +43,8 @@ const { type = 'green' } = defineProps<Props>()
   background-color: var(--button-background-color);
   border-radius: theme('borderRadius.sm');
 
-  transition: background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+  transition:
+    background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
     color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   &::before {

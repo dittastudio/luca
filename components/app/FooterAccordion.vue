@@ -105,21 +105,8 @@ const bodyId = `accordion-body-${id}`
   }
 }
 
-.app-footer-accordion__title {
-  @screen smMax {
-    translate: 0 0 0;
-    display: block;
-    transition: translate theme('transitionDuration.400') theme('transitionTimingFunction.smooth');
-
-    .app-footer-accordion--is-open & {
-      translate: 0 theme('spacing.20') 0;
-      transition: translate theme('transitionDuration.350') theme('transitionTimingFunction.smooth');
-    }
-  }
-}
-
 .app-footer-accordion__content {
-  padding-block: theme('spacing.30');
+  padding-block: theme('spacing.10') theme('spacing.30');
 
   @screen sm {
     padding-block: theme('spacing.20');
