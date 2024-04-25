@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { storyblokImageDimensions } from '@/utilities/helpers'
 import { ratioMap } from '@/utilities/maps'
 import type { BlockCarouselStoryblok } from '@/types/storyblok'
 
@@ -27,18 +26,27 @@ const { block } = defineProps<Props>()
               >
                 <NuxtImg
                   v-if="media.component === 'image' && media?.image"
-                  :class="[slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9'], 'object-cover']"
+                  :class="[
+                    slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9'],
+                    'object-cover h-full',
+                  ]"
                   provider="storyblok"
                   :src="media.image.filename"
                   :alt="media.image.alt"
                   :width="slide.media.length === 1 ? '16' : '8'"
                   height="9"
-                  :sizes="`
-                    100vw
-                    sm:100vw
-                    md:${(5 / 12 * 100)}vw
-                    3xl:${(5 / 12 * 1800)}px
-                  `"
+                  :sizes="slide.media.length === 1
+                    ? `
+                      100vw
+                      md:${(10 / 12 * 100)}vw
+                      3xl:${(10 / 12 * 1800)}px
+                    `
+                    :`
+                      50vw
+                      md:${(5 / 12 * 100)}vw
+                      3xl:${(5 / 12 * 1800)}px
+                    `
+                  "
                   loading="lazy"
                 />
 
@@ -84,12 +92,5 @@ const { block } = defineProps<Props>()
 .block-carousel__item {
   flex-basis: 50%;
   flex-grow: 1;
-
-  /* TODO: To be refactored  */
-  & video,
-  & img {
-    aspect-ratio: auto;
-    height: 100%;
-  }
 }
 </style>
