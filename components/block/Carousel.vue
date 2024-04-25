@@ -22,14 +22,8 @@ const { block } = defineProps<Props>()
                 :key="media._uid"
                 class="block-carousel__item"
               >
-                <MediaVideo
-                  v-if="media.component === 'video' && media.video"
-                  :asset="media.video"
-                  :ratio="media.ratio"
-                />
-
                 <NuxtImg
-                  v-else-if="media.component === 'image' && media?.image"
+                  v-if="media.component === 'image' && media?.image"
                   :class="[ratioMap[media.ratio], 'object-cover']"
                   provider="storyblok"
                   :src="media.image.filename"
@@ -44,6 +38,13 @@ const { block } = defineProps<Props>()
                   `"
                   loading="lazy"
                 />
+
+                <MediaVideo
+                  v-else-if="media.component === 'video' && media.video"
+                  :asset="media.video"
+                />
+
+                <!-- block.ratio -->
               </div>
             </div>
           </template>

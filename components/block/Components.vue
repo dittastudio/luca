@@ -38,8 +38,8 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
-      <BlockImage
-        v-else-if="block.component === 'block_image'"
+      <BlockMedia
+        v-else-if="block.component === 'block_media'"
         :block="block"
       />
 

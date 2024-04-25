@@ -43,6 +43,7 @@ export interface BlockCardStoryblok {
   title: string;
   headline: string;
   media: (VideoStoryblok | ImageStoryblok)[];
+  ratio: number | string;
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
   column_span: number | string;
@@ -54,37 +55,21 @@ export interface BlockCardStoryblok {
 
 export interface BlockCarouselStoryblok {
   slides: SlideStoryblok[];
+  ratio: number | string;
   connecting_line?: boolean;
   _uid: string;
   component: "block_carousel";
   [k: string]: any;
 }
 
-export interface AssetStoryblok {
-  _uid?: string;
-  id: number;
-  alt?: string;
-  name: string;
-  focus?: string;
-  source?: string;
-  title?: string;
-  filename: string;
-  copyright?: string;
-  fieldtype?: string;
-  meta_data?: null | {
-    [k: string]: any;
-  };
-  is_external_url?: boolean;
-  [k: string]: any;
-}
-
-export interface BlockImageStoryblok {
-  image: AssetStoryblok;
+export interface BlockMediaStoryblok {
+  media: (ImageStoryblok | VideoStoryblok)[];
+  ratio: number | string;
   column_start: number | string;
   column_span: number | string;
   connecting_line?: boolean;
   _uid: string;
-  component: "block_image";
+  component: "block_media";
   [k: string]: any;
 }
 
@@ -99,8 +84,9 @@ export interface RichtextStoryblok {
 
 export interface BlockSplitStoryblok {
   reversed?: boolean;
-  text: RichtextStoryblok;
   media: (VideoStoryblok | ImageStoryblok)[];
+  ratio: number | string;
+  text: RichtextStoryblok;
   connecting_line?: boolean;
   _uid: string;
   component: "block_split";
@@ -124,9 +110,26 @@ export interface BlockTextEditorialStoryblok {
   [k: string]: any;
 }
 
+export interface AssetStoryblok {
+  _uid?: string;
+  id: number;
+  alt?: string;
+  name: string;
+  focus?: string;
+  source?: string;
+  title?: string;
+  filename: string;
+  copyright?: string;
+  fieldtype?: string;
+  meta_data?: null | {
+    [k: string]: any;
+  };
+  is_external_url?: boolean;
+  [k: string]: any;
+}
+
 export interface ImageStoryblok {
   image: AssetStoryblok;
-  ratio: number | string;
   _uid: string;
   component: "image";
   [k: string]: any;
@@ -153,7 +156,7 @@ export interface PageStoryblok {
     | BlockButtonStoryblok
     | BlockCardStoryblok
     | BlockCarouselStoryblok
-    | BlockImageStoryblok
+    | BlockMediaStoryblok
     | BlockSplitStoryblok
     | BlockTextStoryblok
     | BlockTextEditorialStoryblok
@@ -202,7 +205,6 @@ export interface SlideStoryblok {
 
 export interface VideoStoryblok {
   video: AssetStoryblok;
-  ratio: number | string;
   _uid: string;
   component: "video";
   [k: string]: any;

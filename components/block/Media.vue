@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { BlockImageStoryblok } from '@/types/storyblok'
+import type { BlockMediaStoryblok } from '@/types/storyblok'
 import { colSpanMap, colStartMap } from '@/utilities/maps'
 import { storyblokImageDimensions } from '@/utilities/helpers'
 
 interface Props {
-  block: BlockImageStoryblok
+  block: BlockMediaStoryblok
 }
 
 const { block } = defineProps<Props>()
@@ -22,11 +22,12 @@ const { block } = defineProps<Props>()
       ]"
     >
       <NuxtImg
+        v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
         provider="storyblok"
-        :src="block.image.filename"
-        :alt="block.image.alt"
-        :width="storyblokImageDimensions(block.image.filename).width"
-        :height="storyblokImageDimensions(block.image.filename).height"
+        :src="block.media[0]?.image.filename"
+        :alt="block.media[0]?.image.alt"
+        :width="storyblokImageDimensions(block.media[0]?.image.filename).width"
+        :height="storyblokImageDimensions(block.media[0]?.image.filename).height"
         :sizes="`
           100vw
           sm:100vw
@@ -34,6 +35,12 @@ const { block } = defineProps<Props>()
           3xl:${Number(block.column_span) / 12 * 1800}px
         `"
         loading="lazy"
+      />
+
+      <MediaVideo
+        v-else-if="block.media[0]?.component === 'video' && block.media[0]?.video"
+        :asset="block.media[0]?.video"
+        :ratio="block.ratio"
       />
     </div>
   </div>

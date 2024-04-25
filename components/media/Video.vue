@@ -5,10 +5,10 @@ import type { AssetStoryblok } from '@/types/storyblok'
 
 interface Props {
   asset: AssetStoryblok
-  ratio: Luca.TAspectRatios | string | number
+  ratio?: Luca.TAspectRatios | string | number
 }
 
-const { asset } = defineProps<Props>()
+const { asset, ratio = 'auto' } = defineProps<Props>()
 
 interface Emits {
   (event: 'seen' | 'playing', payload: boolean): void

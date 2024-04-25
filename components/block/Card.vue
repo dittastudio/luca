@@ -46,7 +46,7 @@ const { block } = defineProps<Props>()
             <MediaVideo
               v-else-if="block.media[0]?.component === 'video' && block.media[0]?.video"
               :asset="block.media[0]?.video"
-              :ratio="block.media[0]?.ratio"
+              :ratio="block.ratio"
             />
           </template>
         </CardMedia>
