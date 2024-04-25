@@ -29,6 +29,7 @@ const { block } = defineProps<Props>()
           <template #media>
             <NuxtImg
               v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
+              class="block-card__image"
               provider="storyblok"
               :src="block.media[0]?.image.filename"
               :alt="block.media[0]?.image.alt"
@@ -62,5 +63,9 @@ const { block } = defineProps<Props>()
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: var(--app-inner-gutter);
   }
+}
+
+.block-card__image {
+  border-radius: theme('borderRadius.sm');
 }
 </style>

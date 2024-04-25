@@ -18,6 +18,7 @@ const { block } = defineProps<Props>()
       <NuxtImg
         v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
         provider="storyblok"
+        class="block-split__image"
         :src="block.media[0]?.image.filename"
         :alt="block.media[0]?.image.alt"
         :width="ratioDimensions(block.ratio).width"
@@ -84,6 +85,10 @@ const { block } = defineProps<Props>()
       grid-column: 7 / span 5;
     }
   }
+}
+
+.block-split__image {
+  border-radius: theme('borderRadius.sm');
 }
 
 .block-split__text {

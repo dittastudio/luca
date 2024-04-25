@@ -26,10 +26,8 @@ const { block } = defineProps<Props>()
               >
                 <NuxtImg
                   v-if="media.component === 'image' && media?.image"
-                  :class="[
-                    slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9'],
-                    'object-cover h-full',
-                  ]"
+                  class="block-carousel__image"
+                  :class="slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9']"
                   provider="storyblok"
                   :src="media.image.filename"
                   :alt="media.image.alt"
@@ -92,5 +90,11 @@ const { block } = defineProps<Props>()
 .block-carousel__item {
   flex-basis: 50%;
   flex-grow: 1;
+}
+
+.block-carousel__image {
+  height: 100%;
+  object-fit: cover;
+  border-radius: theme('borderRadius.sm');
 }
 </style>

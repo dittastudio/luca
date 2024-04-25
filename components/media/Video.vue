@@ -57,6 +57,7 @@ onUnmounted(() => {
   <video
     v-if="asset"
     ref="video"
+    class="rounded-sm"
     :src="src"
     playsinline
     autoplay
