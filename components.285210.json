@@ -166,7 +166,7 @@
       "name": "block_carousel",
       "display_name": "Carousel",
       "created_at": "2024-04-24T16:17:24.822Z",
-      "updated_at": "2024-04-25T16:29:14.705Z",
+      "updated_at": "2024-04-25T16:46:24.288Z",
       "id": 5704567,
       "schema": {
         "slides": {
@@ -179,15 +179,6 @@
           "component_whitelist": [
             "slide"
           ]
-        },
-        "ratio": {
-          "type": "option",
-          "pos": 1,
-          "use_uuid": true,
-          "required": true,
-          "source": "internal",
-          "datasource_slug": "ratio",
-          "exclude_empty_option": true
         },
         "connecting_line": {
           "type": "boolean",

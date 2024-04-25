@@ -24,7 +24,7 @@ const { block } = defineProps<Props>()
               >
                 <NuxtImg
                   v-if="media.component === 'image' && media?.image"
-                  :class="[ratioMap[media.ratio], 'object-cover']"
+                  :class="[block.slides.length === 1 ? ratioMap['16:9'] : ratioMap['8:9'], 'object-cover']"
                   provider="storyblok"
                   :src="media.image.filename"
                   :alt="media.image.alt"
@@ -42,9 +42,8 @@ const { block } = defineProps<Props>()
                 <MediaVideo
                   v-else-if="media.component === 'video' && media.video"
                   :asset="media.video"
+                  :ratio="block.slides.length === 1 ? '16:9' : '8:9'"
                 />
-
-                <!-- block.ratio -->
               </div>
             </div>
           </template>

@@ -55,7 +55,6 @@ export interface BlockCardStoryblok {
 
 export interface BlockCarouselStoryblok {
   slides: SlideStoryblok[];
-  ratio: number | string;
   connecting_line?: boolean;
   _uid: string;
   component: "block_carousel";
