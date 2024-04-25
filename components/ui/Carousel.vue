@@ -1,12 +1,14 @@
 <script lang="ts" setup generic="T">
 import { useKeenSlider } from 'keen-slider/vue.es'
 import config from '@/tailwind.config'
+import { ratioMap } from '@/utilities/maps'
 
 interface Props {
+  ratio: Luca.TAspectRatios | string | number
   slides: T[]
 }
 
-const { slides } = defineProps<Props>()
+const { slides, ratio } = defineProps<Props>()
 
 const { screens } = config.theme
 
@@ -80,6 +82,7 @@ const eventKeydown = (event: KeyboardEvent) => {
     <div
       ref="container"
       class="ui-carousel__container  keen-slider"
+      :class="ratioMap[ratio]"
     >
       <div
         v-for="(slide, index) in slides"
@@ -126,7 +129,6 @@ const eventKeydown = (event: KeyboardEvent) => {
 
   position: relative;
 
-  aspect-ratio: 16 / 9;
   width: 100%;
 
   -webkit-tap-highlight-color: transparent;

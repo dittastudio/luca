@@ -14,7 +14,10 @@ const { block } = defineProps<Props>()
   <div class="block-carousel">
     <div class="block-carousel__grid wrapper">
       <div class="block-carousel__container">
-        <UiCarousel :slides="block.slides">
+        <UiCarousel
+          :slides="block.slides"
+          ratio="16:9"
+        >
           <template #slide="{ slide }">
             <div class="block-carousel__slide">
               <div
@@ -24,12 +27,12 @@ const { block } = defineProps<Props>()
               >
                 <NuxtImg
                   v-if="media.component === 'image' && media?.image"
-                  :class="[block.slides.length === 1 ? ratioMap['16:9'] : ratioMap['8:9'], 'object-cover']"
+                  :class="[slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9'], 'object-cover']"
                   provider="storyblok"
                   :src="media.image.filename"
                   :alt="media.image.alt"
-                  :width="storyblokImageDimensions(media.image.filename).width"
-                  :height="storyblokImageDimensions(media.image.filename).height"
+                  :width="slide.media.length === 1 ? '16' : '8'"
+                  height="9"
                   :sizes="`
                     100vw
                     sm:100vw
@@ -42,7 +45,7 @@ const { block } = defineProps<Props>()
                 <MediaVideo
                   v-else-if="media.component === 'video' && media.video"
                   :asset="media.video"
-                  :ratio="block.slides.length === 1 ? '16:9' : '8:9'"
+                  :ratio="slide.media.length === 1 ? '16:9' : '8:9'"
                 />
               </div>
             </div>
