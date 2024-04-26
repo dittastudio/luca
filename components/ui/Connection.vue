@@ -40,23 +40,19 @@ useIntersectionObserver(
   flex-direction: column;
   align-items: center;
   justify-content: start;
-
   width: 100%;
   height: var(--line-height);
 
   &__line {
     transform-origin: 0 0;
     scale: 1 0 1;
-
     width: 1px;
     height: 100%;
-
     opacity: 0;
     background-color: currentcolor;
-
     transition:
-      opacity theme('transitionDuration.1000') theme('transitionTimingFunction.outExpo'),
-      scale theme('transitionDuration.1000') theme('transitionTimingFunction.outExpo');
+      opacity theme('transitionDuration.2000') theme('transitionTimingFunction.outExpo'),
+      scale theme('transitionDuration.2000') theme('transitionTimingFunction.outExpo');
 
     &--seen {
       scale: 1 1 1;

@@ -193,6 +193,7 @@ export default {
         350: '350ms',
         400: '400ms',
         450: '450ms',
+        2000: '2000ms',
       },
       transitionDelay: {
         175: '175ms',
@@ -200,6 +201,7 @@ export default {
         350: '350ms',
         400: '400ms',
         450: '450ms',
+        2000: '2000ms',
       },
       zIndex: {
         '-1': '-1',
