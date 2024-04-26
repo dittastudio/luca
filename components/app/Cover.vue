@@ -46,15 +46,14 @@ html {
 
 <style lang="postcss" scoped>
 .cover {
-  --logo-container-height: 100vh;
-
   position: fixed;
   z-index: var(--app-layer-three);
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--logo-container-height);
+  height: 100vh;
+  height: 100dvh;
   background-color: theme('colors.green');
   pointer-events: none;
 
