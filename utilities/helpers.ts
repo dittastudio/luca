@@ -1,4 +1,5 @@
 import type { LocationQuery } from 'vue-router'
+import { deburr } from 'lodash-es'
 import type { RichtextStoryblok } from '@/types/storyblok'
 
 const isStoryblokEditor = (search: LocationQuery) => '_storyblok' in search
@@ -91,15 +92,22 @@ const hasRichTextContent = (richtext: RichtextStoryblok | undefined): boolean =>
   return Boolean(richtext?.content?.[0]?.content?.length)
 }
 
+const safeKebabCase = (str: string) =>
+  deburr(str)
+    .replace(/[^a-zA-Z0-9\s]/g, '')
+    .replace(/\s+/g, '-')
+    .toLowerCase()
+    .trim()
+
 export {
-  isStoryblokEditor,
-  randomNumberInRange,
-  storyblokAssetType,
-  storyblokSlug,
-  storyblokImageDimensions,
-  storyblokImage,
-  ratioDimensions,
-  wait,
-  requestDelay,
   hasRichTextContent,
+  isStoryblokEditor,
+  ratioDimensions,
+  requestDelay,
+  safeKebabCase,
+  storyblokAssetType,
+  storyblokImage,
+  storyblokImageDimensions,
+  storyblokSlug,
+  wait,
 }

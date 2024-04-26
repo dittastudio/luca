@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import config from '@/tailwind.config'
+import { safeKebabCase } from '@/utilities/helpers'
 
 interface Props {
   id: string
@@ -22,8 +23,8 @@ watchEffect(() => {
   return isOpen.value = isScreenSm.value
 })
 
-const headerId = `accordion-header-${id}`
-const bodyId = `accordion-body-${id}`
+const headerId = `accordion-header-${safeKebabCase(id)}`
+const bodyId = `accordion-body-${safeKebabCase(id)}`
 </script>
 
 <template>
