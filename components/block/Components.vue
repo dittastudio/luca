@@ -125,5 +125,11 @@ const isHome = computed(() => route.path === '/')
   &--block_text + &--block_button {
     margin-block-start: var(--line-spacing);
   }
+
+  &--block_menus:first-child {
+    @screen md {
+      margin-block-start: theme('spacing.20');
+    }
+  }
 }
 </style>
