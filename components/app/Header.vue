@@ -92,7 +92,9 @@ watch(
       class="app-header__bg"
       type="button"
       @click="closeMenu"
-    />
+    >
+      <span class="sr-only">Close Menu</span>
+    </button>
 
     <div class="app-header__wrapper wrapper">
       <div class="app-header__menu">
