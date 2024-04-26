@@ -1,14 +1,3 @@
-/* Generic page transition classes */
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-}
-
 @layer base {
   html {
     color: theme('colors.white');

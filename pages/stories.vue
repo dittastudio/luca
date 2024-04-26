@@ -64,14 +64,3 @@ const setBackground = (color: string) => {
     </div>
   </AppBackground>
 </template>
-
-<style lang="postcss" scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

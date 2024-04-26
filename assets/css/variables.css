@@ -1,8 +1,8 @@
 @layer base {
   :root {
     --app-background-color: theme('colors.green');
-    --app-background-speed: theme('transitionDuration.1000');
-    --app-background-ease: theme('transitionTimingFunction.out');
+    --app-background-speed: theme('transitionDuration.3000');
+    --app-background-ease: theme('transitionTimingFunction.smooth');
     --app-inner-gutter: theme('spacing.20');
     --app-outer-gutter: theme('spacing.20');
     --app-grid: repeat(2, minmax(0, 1fr));
