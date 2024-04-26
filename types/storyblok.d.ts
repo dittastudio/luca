@@ -39,10 +39,28 @@ export interface BlockButtonStoryblok {
   [k: string]: any;
 }
 
+export interface AssetStoryblok {
+  _uid?: string;
+  id: number;
+  alt?: string;
+  name: string;
+  focus?: string;
+  source?: string;
+  title?: string;
+  filename: string;
+  copyright?: string;
+  fieldtype?: string;
+  meta_data?: null | {
+    [k: string]: any;
+  };
+  is_external_url?: boolean;
+  [k: string]: any;
+}
+
 export interface BlockCardStoryblok {
   title: string;
   headline: string;
-  media: (VideoStoryblok | ImageStoryblok)[];
+  media: AssetStoryblok;
   ratio: number | string;
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
@@ -62,7 +80,7 @@ export interface BlockCarouselStoryblok {
 }
 
 export interface BlockMediaStoryblok {
-  media: (ImageStoryblok | VideoStoryblok)[];
+  media: AssetStoryblok;
   ratio: number | string;
   column_start: number | string;
   column_span: number | string;
@@ -82,10 +100,10 @@ export interface RichtextStoryblok {
 }
 
 export interface BlockSplitStoryblok {
-  reversed?: boolean;
-  media: (VideoStoryblok | ImageStoryblok)[];
+  media: AssetStoryblok;
   ratio: number | string;
   text: RichtextStoryblok;
+  reversed?: boolean;
   connecting_line?: boolean;
   _uid: string;
   component: "block_split";
@@ -109,28 +127,10 @@ export interface BlockTextEditorialStoryblok {
   [k: string]: any;
 }
 
-export interface AssetStoryblok {
-  _uid?: string;
-  id: number;
-  alt?: string;
-  name: string;
-  focus?: string;
-  source?: string;
-  title?: string;
-  filename: string;
-  copyright?: string;
-  fieldtype?: string;
-  meta_data?: null | {
-    [k: string]: any;
-  };
-  is_external_url?: boolean;
-  [k: string]: any;
-}
-
-export interface ImageStoryblok {
-  image: AssetStoryblok;
+export interface ImageVideoStoryblok {
+  asset: AssetStoryblok;
   _uid: string;
-  component: "image";
+  component: "image_video";
   [k: string]: any;
 }
 
@@ -196,15 +196,8 @@ export interface SettingsStoryblok {
 }
 
 export interface SlideStoryblok {
-  media: (ImageStoryblok | VideoStoryblok)[];
+  media: ImageVideoStoryblok[];
   _uid: string;
   component: "slide";
-  [k: string]: any;
-}
-
-export interface VideoStoryblok {
-  video: AssetStoryblok;
-  _uid: string;
-  component: "video";
   [k: string]: any;
 }

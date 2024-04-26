@@ -76,40 +76,40 @@
       "name": "block_card",
       "display_name": "Card",
       "created_at": "2024-04-23T14:44:41.343Z",
-      "updated_at": "2024-04-25T14:58:15.630Z",
+      "updated_at": "2024-04-26T13:54:43.466Z",
       "id": 5697381,
       "schema": {
         "title": {
           "type": "text",
           "required": true,
-          "pos": 0
+          "pos": 0,
+          "key": "title"
         },
         "headline": {
           "type": "text",
           "required": true,
-          "pos": 1
+          "pos": 1,
+          "key": "headline"
         },
         "media": {
-          "type": "bloks",
-          "minimum": 1,
-          "maximum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "video",
-            "image"
-          ],
+          "type": "asset",
+          "pos": 2,
           "required": true,
-          "pos": 2
+          "filetypes": [
+            "images",
+            "videos"
+          ],
+          "asset_folder_id": 530535
         },
         "ratio": {
           "type": "option",
-          "pos": 3,
+          "pos": 4,
           "use_uuid": true,
           "required": true,
           "source": "internal",
           "datasource_slug": "ratio",
-          "exclude_empty_option": true
+          "exclude_empty_option": true,
+          "key": "ratio"
         },
         "link": {
           "type": "multilink",
@@ -118,7 +118,8 @@
             "page"
           ],
           "required": true,
-          "pos": 4
+          "pos": 5,
+          "key": "link"
         },
         "column_start": {
           "type": "option",
@@ -128,7 +129,8 @@
           "datasource_slug": "columns",
           "exclude_empty_option": true,
           "default_value": "3",
-          "pos": 5
+          "pos": 6,
+          "key": "column_start"
         },
         "column_span": {
           "type": "option",
@@ -138,12 +140,14 @@
           "datasource_slug": "columns",
           "exclude_empty_option": true,
           "default_value": "8",
-          "pos": 6
+          "pos": 7,
+          "key": "column_span"
         },
         "connecting_line": {
           "type": "boolean",
           "inline_label": true,
-          "pos": 7
+          "pos": 8,
+          "key": "connecting_line"
         }
       },
       "image": null,
@@ -208,30 +212,28 @@
       "name": "block_media",
       "display_name": "Media",
       "created_at": "2024-04-18T16:33:02.808Z",
-      "updated_at": "2024-04-25T14:15:18.504Z",
+      "updated_at": "2024-04-26T13:57:44.305Z",
       "id": 5676129,
       "schema": {
         "media": {
-          "type": "bloks",
+          "type": "asset",
           "pos": 0,
           "required": true,
-          "minimum": 1,
-          "maximum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "image",
-            "video"
-          ]
+          "filetypes": [
+            "images",
+            "videos"
+          ],
+          "asset_folder_id": 530535
         },
         "ratio": {
           "type": "option",
-          "pos": 1,
+          "pos": 2,
           "use_uuid": true,
           "source": "internal",
           "datasource_slug": "ratio",
           "exclude_empty_option": true,
-          "required": true
+          "required": true,
+          "key": "ratio"
         },
         "column_start": {
           "type": "option",
@@ -241,7 +243,8 @@
           "source": "internal",
           "datasource_slug": "columns",
           "exclude_empty_option": true,
-          "pos": 3
+          "pos": 3,
+          "key": "column_start"
         },
         "column_span": {
           "type": "option",
@@ -250,12 +253,14 @@
           "source": "internal",
           "datasource_slug": "columns",
           "exclude_empty_option": true,
-          "pos": 4
+          "pos": 4,
+          "key": "column_span"
         },
         "connecting_line": {
           "type": "boolean",
           "inline_label": true,
-          "pos": 5
+          "pos": 5,
+          "key": "connecting_line"
         }
       },
       "image": null,
@@ -278,27 +283,18 @@
       "name": "block_split",
       "display_name": "Split",
       "created_at": "2024-04-23T17:04:16.558Z",
-      "updated_at": "2024-04-25T15:03:33.766Z",
+      "updated_at": "2024-04-26T13:59:05.450Z",
       "id": 5698629,
       "schema": {
-        "reversed": {
-          "type": "boolean",
-          "inline_label": true,
-          "pos": 0
-        },
         "media": {
-          "type": "bloks",
-          "minimum": 1,
-          "maximum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "video",
-            "image"
-          ],
+          "type": "asset",
+          "pos": 0,
           "required": true,
-          "key": "media",
-          "pos": 1
+          "filetypes": [
+            "images",
+            "videos"
+          ],
+          "asset_folder_id": 530535
         },
         "ratio": {
           "type": "option",
@@ -307,13 +303,14 @@
           "required": true,
           "source": "internal",
           "datasource_slug": "ratio",
-          "exclude_empty_option": true
+          "exclude_empty_option": true,
+          "key": "ratio"
         },
         "text": {
           "type": "richtext",
           "required": true,
           "display_name": "Text",
-          "key": "headline",
+          "key": "text",
           "pos": 3,
           "customize_toolbar": true,
           "toolbar": [
@@ -330,10 +327,17 @@
             "quote"
           ]
         },
+        "reversed": {
+          "type": "boolean",
+          "inline_label": true,
+          "pos": 4,
+          "key": "reversed"
+        },
         "connecting_line": {
           "type": "boolean",
-          "pos": 4,
-          "inline_label": true
+          "pos": 5,
+          "inline_label": true,
+          "key": "connecting_line"
         }
       },
       "image": null,
@@ -444,28 +448,30 @@
       "component_group_name": "block"
     },
     {
-      "name": "image",
+      "name": "image_video",
       "display_name": null,
-      "created_at": "2024-04-23T14:38:37.598Z",
-      "updated_at": "2024-04-25T14:29:50.326Z",
-      "id": 5697266,
+      "created_at": "2024-04-26T13:14:28.535Z",
+      "updated_at": "2024-04-26T13:16:17.861Z",
+      "id": 5716878,
       "schema": {
-        "image": {
+        "asset": {
           "type": "asset",
           "required": true,
           "filetypes": [
-            "images"
-          ]
+            "images",
+            "videos"
+          ],
+          "asset_folder_id": 530535
         }
       },
       "image": null,
-      "preview_field": "image",
+      "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "{{@image(it.image.filename)/}}",
+      "preview_tmpl": null,
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "image",
+      "real_name": "image_video",
       "component_group_uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
       "color": null,
       "icon": null,
@@ -796,7 +802,7 @@
       "name": "slide",
       "display_name": null,
       "created_at": "2024-04-24T16:18:33.870Z",
-      "updated_at": "2024-04-25T16:22:17.884Z",
+      "updated_at": "2024-04-26T14:00:11.744Z",
       "id": 5704569,
       "schema": {
         "media": {
@@ -804,8 +810,7 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
-            "image",
-            "video"
+            "image_video"
           ],
           "required": true,
           "minimum": 1,
@@ -821,37 +826,6 @@
       "all_presets": [],
       "preset_id": null,
       "real_name": "slide",
-      "component_group_uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
-      "color": null,
-      "icon": null,
-      "internal_tags_list": [],
-      "internal_tag_ids": [],
-      "content_type_asset_preview": null,
-      "component_group_name": "elements"
-    },
-    {
-      "name": "video",
-      "display_name": null,
-      "created_at": "2024-04-23T14:39:10.087Z",
-      "updated_at": "2024-04-25T14:29:55.177Z",
-      "id": 5697298,
-      "schema": {
-        "video": {
-          "type": "asset",
-          "required": true,
-          "filetypes": [
-            "videos"
-          ]
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": null,
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "video",
       "component_group_uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
       "color": null,
       "icon": null,
