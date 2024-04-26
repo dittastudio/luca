@@ -6,6 +6,12 @@
 
   .fade-enter-from,
   .fade-leave-to {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
     opacity: 0;
   }
 }
