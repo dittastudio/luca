@@ -12,20 +12,22 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-text-editorial prose wrapper"
+    class="block-text-editorial wrapper"
   >
-    <h2
-      v-if="block.title"
-      class="block-text-editorial__title"
-    >
-      {{ block.title }}
-    </h2>
+    <div class="block-text-editorial__container prose">
+      <h2
+        v-if="block.title"
+        class="block-text-editorial__title"
+      >
+        {{ block.title }}
+      </h2>
 
-    <StoryblokRichText
-      v-if="hasRichTextContent(block.text)"
-      :content="block.text"
-      class="block-text-editorial__columns"
-    />
+      <StoryblokRichText
+        v-if="hasRichTextContent(block.text)"
+        :content="block.text"
+        class="block-text-editorial__columns"
+      />
+    </div>
   </div>
 </template>
 
@@ -35,30 +37,35 @@ const { block } = defineProps<Props>()
 }
 
 .block-text-editorial {
-  width: 100%;
-  max-width: theme('screens.xl');
-  margin-inline: auto;
-  padding-inline: var(--app-outer-gutter);
-
-  /* color: theme('colors.green'); */
-
-  &__title {
-    margin-bottom: theme('spacing.30');
-    font-size: theme('fontSize.14');
-    text-align: center;
-
-    @screen lg {
-      margin-bottom: theme('spacing.90');
-    }
+  @screen md {
+    display: grid;
+    grid-template-columns: var(--app-grid);
+    gap: var(--app-inner-gutter);
   }
+}
 
-  &__columns {
-    text-align: left;
+.block-text-editorial__container {
+  @screen md {
+    grid-column: 2 / span 10;
+  }
+}
 
-    @screen lg {
-      column-count: 2;
-      column-gap: theme('spacing.60');
-    }
+.block-text-editorial__title {
+  margin-bottom: theme('spacing.30');
+  font-size: theme('fontSize.14');
+  text-align: center;
+
+  @screen lg {
+    margin-bottom: theme('spacing.90');
+  }
+}
+
+.block-text-editorial__columns {
+  text-align: left;
+
+  @screen lg {
+    column-count: 2;
+    column-gap: calc(var(--app-inner-gutter) * 5);
   }
 }
 </style>
