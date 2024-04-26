@@ -5,6 +5,7 @@
 @import url('@/assets/css/page.css');
 @import url('@/assets/css/type.css');
 @import url('@/assets/css/prose.css');
+@import url('@/assets/css/transitions.css');
 
 @tailwind base;
 @tailwind components;

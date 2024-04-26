@@ -174,6 +174,7 @@ const eventKeydown = (event: KeyboardEvent) => {
 
   display: flex;
   justify-content: center;
+  min-height: calc(var(--dot-size) * 2);
   margin-block-start: calc(theme('spacing.30') - var(--dot-size));
 }
 
