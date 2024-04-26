@@ -175,7 +175,7 @@ watch(
     font-style: italic;
   }
 
-  .app-header-navigation__list:focus-within &:not(:focus-visible, :focus, :hover),
+  .app-header-navigation__list:focus-within &:not(:hover, :focus, :focus-visible),
   .app-header-navigation__list:hover &:not(:hover) {
     opacity: 0.5;
   }

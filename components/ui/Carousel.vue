@@ -6,9 +6,10 @@ import { ratioMap } from '@/utilities/maps'
 interface Props {
   ratio: Luca.TAspectRatios | string | number
   slides: T[]
+  loop?: boolean
 }
 
-const { slides, ratio } = defineProps<Props>()
+const { slides, ratio, loop = true } = defineProps<Props>()
 
 const { screens } = config.theme
 
@@ -21,7 +22,7 @@ const [container, slider] = useKeenSlider({
     number: slides.length,
     spacing: 20,
   },
-  loop: true,
+  loop,
   defaultAnimation: {
     duration: 1000,
   },
