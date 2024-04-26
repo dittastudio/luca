@@ -1,20 +1,18 @@
-@layer components {
-  .page-enter-active,
-  .page-leave-active {
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-  }
+.page-enter-active,
+.page-leave-active {
+  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+}
 
-  .page-enter-from,
-  .page-leave-to {
-    opacity: 0;
-  }
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
 
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-  }
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }

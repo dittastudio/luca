@@ -1,12 +1,11 @@
-/* Base */
 @import url('@/assets/css/resets.css');
 @import url('@/assets/css/fonts.css');
 @import url('@/assets/css/variables.css');
 @import url('@/assets/css/page.css');
 @import url('@/assets/css/type.css');
 @import url('@/assets/css/prose.css');
-@import url('@/assets/css/transitions.css');
 @import url('@/assets/css/storyblok.css');
+@import url('@/assets/css/transitions.css');
 
 @tailwind base;
 @tailwind components;
