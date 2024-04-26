@@ -19,11 +19,8 @@
 <style lang="postcss" scoped>
 .app-layout {
   isolation: isolate;
-
   display: flex;
   flex-direction: column;
-
-  /* svh doesn't work on Kate's phone, lol. Fallback. */
   min-height: 100vh;
   min-height: 100svh;
 }

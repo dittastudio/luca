@@ -128,6 +128,12 @@ export default {
         maxPixels: 200,
         maxViewportWidthPixels: screenSizes['2xl'],
       }),
+      'responsive-message': clamp({
+        minPixels: 20,
+        minViewportWidthPixels: screenSizes.xs,
+        maxPixels: 40,
+        maxViewportWidthPixels: screenSizes['2xl'],
+      }),
     },
     lineHeight: {
       default: '1',
