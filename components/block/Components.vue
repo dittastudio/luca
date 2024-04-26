@@ -58,6 +58,11 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
+      <BlockMenus
+        v-else-if="block.component === 'block_menus'"
+        :block="block"
+      />
+
       <div
         v-if="block.connecting_line"
         class="block-components__line"

@@ -90,6 +90,13 @@ export interface BlockMediaStoryblok {
   [k: string]: any;
 }
 
+export interface BlockMenusStoryblok {
+  menus?: MenuStoryblok[];
+  _uid: string;
+  component: "block_menus";
+  [k: string]: any;
+}
+
 export interface RichtextStoryblok {
   type: string;
   content?: RichtextStoryblok[];
@@ -149,6 +156,25 @@ export interface LinkListStoryblok {
   [k: string]: any;
 }
 
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface MenuStoryblok {
+  title: string;
+  images: MultiassetStoryblok;
+  pdf: AssetStoryblok;
+  _uid: string;
+  component: "menu";
+  [k: string]: any;
+}
+
 export interface PageStoryblok {
   seo: SeoStoryblok[];
   blocks?: (
@@ -156,6 +182,7 @@ export interface PageStoryblok {
     | BlockCardStoryblok
     | BlockCarouselStoryblok
     | BlockMediaStoryblok
+    | BlockMenusStoryblok
     | BlockSplitStoryblok
     | BlockTextStoryblok
     | BlockTextEditorialStoryblok

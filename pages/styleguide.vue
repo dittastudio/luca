@@ -1,8 +1,8 @@
 <template>
   <div>
-    <section>
+    <!-- <section>
       <UiMenus />
-    </section>
+    </section> -->
 
     <div class="section wrapper">
       <h1 class="type-h1 opacity-40">

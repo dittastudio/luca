@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import type { BlockMenusStoryblok } from '@/types/storyblok'
+import { storyblokImageDimensions } from '@/utilities/helpers'
+
 const activeIndex = ref(0)
 
 const menuItems = [
@@ -61,6 +64,14 @@ const menuItems = [
     link: 'https://google.com',
   },
 ]
+
+interface Props {
+  block: BlockMenusStoryblok
+}
+
+const { block } = defineProps<Props>()
+
+console.log(block.menus?.[0].images)
 </script>
 
 <template>
@@ -70,12 +81,12 @@ const menuItems = [
     <div class="ui-menus__grid">
       <nav class="ui-menus__nav">
         <div
-          v-for="(item, index) in menuItems"
-          :key="item._uid"
+          v-for="(menu, index) in block.menus"
+          :key="menu._uid"
           class="ui-menus__nav-item"
         >
           <input
-            :id="`menus-${item._uid}`"
+            :id="`menus-${menu._uid}`"
             class="ui-menus__radio"
             name="menus"
             type="radio"
@@ -84,21 +95,21 @@ const menuItems = [
           >
 
           <label
-            :for="`menus-${item._uid}`"
+            :for="`menus-${menu._uid}`"
             class="ui-menus__label type-body-large"
             :class="{ 'ui-menus__label--is-active': activeIndex === index }"
-            :data-title="item.title"
+            :data-title="menu.title"
           >
 
-            {{ item.title }}
+            {{ menu.title }}
           </label>
         </div>
       </nav>
 
       <div class="ui-menus__main">
         <template
-          v-for="(item, index) in menuItems"
-          :key="item._uid"
+          v-for="(menu, index) in block.menus"
+          :key="menu._uid"
         >
           <div
             class="ui-menus__item"
@@ -107,23 +118,48 @@ const menuItems = [
             <h1
               class="ui-menus__title type-body-large"
             >
-              {{ item.title }}
+              {{ menu.title }}
             </h1>
 
             <div
               class="ui-menus__paper"
             >
               <UiCarousel
-                :slides="item.images"
-                ratio="3:4"
+                :slides="menu.images"
+                ratio="2:3"
                 :loop="false"
               >
                 <template #slide="{ slide }">
                   <NuxtImg
-                    class="aspect-3/4 w-full h-full object-cover rounded-sm"
-                    :src="slide"
-                    alt="lol"
+                    class="block-menus__image rounded-sm w-full h-full object-cover"
+                    provider="storyblok"
+                    :src="slide.filename"
+                    :alt="slide.alt"
+                    :width="storyblokImageDimensions(slide.filename).width"
+                    :height="storyblokImageDimensions(slide.filename).height"
+                    :sizes="`
+                      100vw
+                      md:${6 / 12 * 100}vw
+                      lg:${4 / 12 * 100}vw
+                      3xl:${4 / 12 * 1800}px
+                    `"
                   />
+
+                  <!-- <NuxtImg
+                    class="block-card__image"
+                    provider="storyblok"
+                    :src="block.media.filename"
+                    :alt="block.media.alt"
+                    :width="ratioDimensions(block.ratio).width"
+                    :height="ratioDimensions(block.ratio).height"
+                    :sizes="`
+                      100vw
+                      sm:100vw
+                      md:${Number(block.column_span) / 12 * 100}vw
+                      3xl:${Number(block.column_span) / 12 * 1800}px
+                    `"
+                    loading="lazy"
+                  /> -->
                 </template>
               </UiCarousel>
             </div>
@@ -132,7 +168,7 @@ const menuItems = [
               class="ui-menus__download"
             >
               <NuxtLink
-                :to="item.link"
+                :to="menu.pdf.filename"
                 target="_blank"
               >
                 <AppearanceButton type="green">
