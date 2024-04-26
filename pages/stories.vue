@@ -46,7 +46,7 @@ const setBackground = (color: string) => {
         </NuxtLink>
       </p>
 
-      <AppModal :is-open="route.name === 'stories-page'">
+      <AppStory :is-open="route.name === 'stories-page'">
         <transition
           name="fade"
           mode="out-in"
@@ -58,7 +58,7 @@ const setBackground = (color: string) => {
             <NuxtPage :page-key="route.fullPath" />
           </div>
         </transition>
-      </AppModal>
+      </AppStory>
 
       <BlockComponents :content="story.content" />
     </div>
