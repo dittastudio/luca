@@ -33,12 +33,6 @@ const setBackground = (color: string) => {
     @background="setBackground"
   >
     <div class="wrapper">
-      <p>
-        <NuxtLink to="/stories/vitra-luca">
-          Vitra + Luca
-        </NuxtLink>
-      </p>
-
       <AppStory :is-open="route.name === 'stories-page'">
         <transition
           name="fade"
