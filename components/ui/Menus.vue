@@ -69,17 +69,30 @@ const menuItems = [
   >
     <div class="ui-menus__grid">
       <nav class="ui-menus__nav">
-        <button
+        <div
           v-for="(item, index) in menuItems"
-          :key="index"
-          type="button"
-          class="ui-menus__nav-item type-body-large"
-          :class="{ 'ui-menus__nav-item--is-active': activeIndex === index }"
-          :name="item.title"
-          @click="activeIndex = index"
+          :key="item._uid"
+          class="ui-menus__nav-item"
         >
-          {{ item.title }}
-        </button>
+          <input
+            :id="`menus-${item._uid}`"
+            class="ui-menus__radio"
+            name="menus"
+            type="radio"
+            :checked="activeIndex === index"
+            @change="activeIndex = index"
+          >
+
+          <label
+            :for="`menus-${item._uid}`"
+            class="ui-menus__label type-body-large"
+            :class="{ 'ui-menus__label--is-active': activeIndex === index }"
+            :data-title="item.title"
+          >
+
+            {{ item.title }}
+          </label>
+        </div>
       </nav>
 
       <div class="ui-menus__main">
@@ -177,8 +190,25 @@ const menuItems = [
 }
 
 .ui-menus__nav-item {
+  position: relative;
+  width: 100%;
+}
+
+.ui-menus__radio {
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  opacity: 0;
+}
+
+.ui-menus__label {
   --link-padding-x: theme('spacing.10');
   --link-padding-y: 3px;
+
+  cursor: pointer;
 
   position: relative;
 
@@ -195,7 +225,7 @@ const menuItems = [
   /* HACK: Added to stop hover stutter with italics 🤪 */
   &::after {
     pointer-events: none;
-    content: attr(name);
+    content: attr(data-title);
 
     overflow: hidden;
     display: block;
@@ -208,14 +238,13 @@ const menuItems = [
     opacity: 0;
   }
 
-  &:is(:hover, :focus-visible),
-  .ui-menus__nav:not(:hover) &.ui-menus__nav-item--is-active {
-    font-style: italic;
+  .ui-menus__nav:hover .ui-menus__radio:not(:checked) + &:not(:hover),
+  .ui-menus__nav:focus-within:not(:hover) .ui-menus__radio:not(:checked) + & {
+    opacity: 0.5;
   }
 
-  .ui-menus__nav:focus-within &:not(:hover, :focus, :focus-visible),
-  .ui-menus__nav:hover &:not(:hover) {
-    opacity: 0.5;
+  .ui-menus__radio:checked + & {
+    font-style: italic;
   }
 }
 
