@@ -135,7 +135,7 @@ export interface BlockTextEditorialStoryblok {
 }
 
 export interface ImageVideoStoryblok {
-  asset: AssetStoryblok;
+  media: AssetStoryblok;
   _uid: string;
   component: "image_video";
   [k: string]: any;

@@ -26,12 +26,12 @@ const { block } = defineProps<Props>()
                 class="block-carousel__item"
               >
                 <NuxtImg
-                  v-if="media.asset && storyblokAssetType(media.asset.filename) === 'image'"
+                  v-if="media.media && storyblokAssetType(media.media.filename) === 'image'"
                   class="block-carousel__image"
                   :class="slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9']"
                   provider="storyblok"
-                  :src="media.asset.filename"
-                  :alt="media.asset.alt"
+                  :src="media.media.filename"
+                  :alt="media.media.alt"
                   :width="slide.media.length === 1 ? '16' : '8'"
                   height="9"
                   :sizes="slide.media.length === 1
@@ -50,7 +50,7 @@ const { block } = defineProps<Props>()
                 />
 
                 <MediaVideo
-                  v-else-if="media.asset && storyblokAssetType(media.asset.filename) === 'video'"
+                  v-else-if="media.media && storyblokAssetType(media.media.filename) === 'video'"
                   :asset="media.video"
                   :ratio="slide.media.length === 1 ? '16:9' : '8:9'"
                 />
