@@ -61,7 +61,7 @@ const { block } = defineProps<Props>()
             <div class="block-menus__carousel">
               <UiCarousel
                 :slides="menu.images"
-                ratio="2:3"
+                ratio="1:1.414"
                 :loop="false"
               >
                 <template #slide="{ slide }">

@@ -1,5 +1,14 @@
 declare namespace Luca {
-  type TAspectRatios = 'auto' | '3:2' | '2:3' | '4:3' | '3:4' | '16:9' | '9:16'
+  type TAspectRatios =
+    'auto'
+    | '16:9'
+    | '9:16'
+    | '8:9'
+    | '3:2'
+    | '2:3'
+    | '4:3'
+    | '3:4'
+    | '1:1.414'
 
   export type ImageDimensions = {
     width: number
