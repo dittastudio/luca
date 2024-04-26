@@ -58,28 +58,29 @@ const { block } = defineProps<Props>()
               {{ menu.title }}
             </h1>
 
-            <UiCarousel
-              :slides="menu.images"
-              ratio="2:3"
-              :loop="false"
-            >
-              <template #slide="{ slide }">
-                <NuxtImg
-                  class="block-menus__image"
-                  provider="storyblok"
-                  :src="slide.filename"
-                  :alt="slide.alt"
-                  :width="storyblokImageDimensions(slide.filename).width"
-                  :height="storyblokImageDimensions(slide.filename).height"
-                  :sizes="`
+            <div class="block-menus__carousel">
+              <UiCarousel
+                :slides="menu.images"
+                ratio="2:3"
+                :loop="false"
+              >
+                <template #slide="{ slide }">
+                  <NuxtImg
+                    class="block-menus__image"
+                    provider="storyblok"
+                    :src="slide.filename"
+                    :alt="slide.alt"
+                    :width="storyblokImageDimensions(slide.filename).width"
+                    :height="storyblokImageDimensions(slide.filename).height"
+                    :sizes="`
                       100vw
                       md:${6 / 12 * 100}vw
-                      lg:${4 / 12 * 100}vw
-                      3xl:${4 / 12 * 1800}px
+                      3xl:${6 / 12 * 1800}px
                     `"
-                />
-              </template>
-            </UiCarousel>
+                  />
+                </template>
+              </UiCarousel>
+            </div>
 
             <div
               class="block-menus__download"
@@ -103,18 +104,19 @@ const { block } = defineProps<Props>()
 <style lang="postcss" scoped>
 .block-menus {
   position: relative;
-  overflow: hidden;
+
+  @screen mdMax {
+    overflow: hidden;
+  }
 
   @screen md {
     display: flex;
-    min-height: 100vh;
   }
 }
 
 .block-menus__grid {
   display: grid;
   grid-template-columns: theme('spacing.40') repeat(3, minmax(0, 1fr)) theme('spacing.40');
-  align-items: center;
   justify-content: center;
 
   width: 100%;
@@ -128,11 +130,17 @@ const { block } = defineProps<Props>()
 }
 
 .block-menus__nav {
+  position: sticky;
+  top: 0;
+
   display: flex;
   grid-column: 1 / span 3;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
+  height: min(calc(100% - 100px), 100vh);
+  padding-block-start: theme('spacing.70');
 
   @screen mdMax {
     display: none;
@@ -140,8 +148,15 @@ const { block } = defineProps<Props>()
 }
 
 .block-menus__nav-item {
+  --link-padding-x: theme('spacing.10');
+  --link-padding-y: 3px;
+
   position: relative;
   width: 100%;
+
+  @screen md {
+    margin-inline: calc(-1 * var(--link-padding-x));
+  }
 }
 
 .block-menus__radio {
@@ -155,9 +170,6 @@ const { block } = defineProps<Props>()
 }
 
 .block-menus__label {
-  --link-padding-x: theme('spacing.10');
-  --link-padding-y: 3px;
-
   cursor: pointer;
 
   position: relative;
@@ -205,10 +217,6 @@ const { block } = defineProps<Props>()
   @screen md {
     grid-column: 4 / span 6;
   }
-
-  @screen lg {
-    grid-column: 5 / span 4;
-  }
 }
 
 .block-menus__item {
@@ -243,9 +251,16 @@ const { block } = defineProps<Props>()
     }
   }
 }
+
 .block-menus__title {
   @screen md {
     display: none;
+  }
+}
+
+.block-menus__carousel {
+  @screen md {
+    overflow: hidden;
   }
 }
 
