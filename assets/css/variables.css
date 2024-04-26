@@ -9,6 +9,7 @@
     --app-header-height: 87px;
     --app-layer-one: 1;
     --app-layer-two: 2;
+    --app-layer-three: 3;
 
     @screen sm {
       --app-grid: repeat(4, minmax(0, 1fr));
