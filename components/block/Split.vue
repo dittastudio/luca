@@ -132,11 +132,15 @@ const { block } = defineProps<Props>()
 
 .block-split__copy {
   & p {
-    max-width: 22em;
+    max-width: 27.5em;
     margin-inline: auto;
 
     @screen md {
       margin-inline: 0;
+
+      .block-split--reverse & {
+        max-width: 22em;
+      }
     }
   }
 }
