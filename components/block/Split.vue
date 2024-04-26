@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { BlockSplitStoryblok } from '@/types/storyblok'
-import { hasRichTextContent, storyblokImageDimensions } from '@/utilities/helpers'
+import { hasRichTextContent, ratioDimensions, storyblokImageDimensions } from '@/utilities/helpers'
 
 interface Props {
   block: BlockSplitStoryblok
@@ -18,10 +18,11 @@ const { block } = defineProps<Props>()
       <NuxtImg
         v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
         provider="storyblok"
+        class="block-split__image"
         :src="block.media[0]?.image.filename"
         :alt="block.media[0]?.image.alt"
-        :width="storyblokImageDimensions(block.media[0]?.image.filename).width"
-        :height="storyblokImageDimensions(block.media[0]?.image.filename).height"
+        :width="ratioDimensions(block.ratio).width"
+        :height="ratioDimensions(block.ratio).height"
         :sizes="`
           100vw
           sm:100vw
@@ -53,7 +54,7 @@ const { block } = defineProps<Props>()
 .block-split {
   @screen md {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
     align-items: center;
   }
@@ -84,6 +85,10 @@ const { block } = defineProps<Props>()
       grid-column: 7 / span 5;
     }
   }
+}
+
+.block-split__image {
+  border-radius: theme('borderRadius.sm');
 }
 
 .block-split__text {

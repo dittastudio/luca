@@ -58,23 +58,13 @@ const storyblokImage = (
 }
 
 const ratioDimensions = (
-  maxWidth: number,
-  dimensions: Luca.ImageDimensions,
-  ratio: string,
+  ratio: Luca.TAspectRatios | string | number,
 ): Luca.ImageDimensions => {
-  const width = maxWidth !== 0 && maxWidth < dimensions.width ? maxWidth : dimensions.width
-  let ratioCalc = dimensions.height / dimensions.width
-
-  if (['1:1', '4:3', '3:4', '16:9', '9:16', '21:9'].includes(ratio)) {
-    const parts = ratio.split(':').map((num: string): number => Number(num))
-    ratioCalc = parts[1] / parts[0]
-  }
-
-  const newHeight = Math.round(ratioCalc * width)
+  const parts = ratio.toString().split(':').map((num: string): number => Number(num))
 
   return {
-    width: width,
-    height: newHeight,
+    width: parts[0],
+    height: parts[1],
   }
 }
 

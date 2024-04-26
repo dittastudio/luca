@@ -7,13 +7,30 @@ interface Props {
 
 const { list } = defineProps<Props>()
 const items = computed(() => list?.items ?? [])
+
+const hover: any = ref(null)
+const hoverInner: any = ref(null)
+
+const animateMe = (event: any) => {
+  const { offsetX: x, offsetY: y } = event
+  const { offsetWidth: width, offsetHeight: height } = hover.value.$el
+  const move = 5
+  const xMove = x / width * (move * 2) - move
+  const yMove = y / height * (move * 2) - move
+
+  hoverInner.value.style.translate = `${xMove}px ${yMove}px 0`
+
+  if (event.type === 'mouseleave') hoverInner.value.style.translate = '0 0 0'
+}
 </script>
 
 <template>
   <div class="app-footer-info">
     <ul class="app-footer-info__list">
       <li class="app-footer-info__item">
-        &copy;2024 All rights reserved
+        <span class="app-footer-info__text">
+          &copy;2024 All rights reserved
+        </span>
       </li>
 
       <li
@@ -42,14 +59,24 @@ const items = computed(() => list?.items ?? [])
         </NuxtLink>
       </li>
 
-      <li class="app-footer-info__item">
+      <li
+        class="app-footer-info__item"
+      >
         <NuxtLink
+          ref="hover"
           class="app-footer-info__link"
           to="https://ditta.studio"
           target="_blank"
           rel="noopener noreferrer"
+          @mousemove="animateMe"
+          @mouseleave="animateMe"
         >
-          Made by ditta
+          <span
+            ref="hoverInner"
+            class="app-footer-info__credit"
+          >
+            Made by ditta
+          </span>
         </NuxtLink>
       </li>
     </ul>
@@ -58,7 +85,6 @@ const items = computed(() => list?.items ?? [])
 
 <style lang="postcss" scoped>
 .app-footer-info {
-  overflow: hidden;
   font-size: theme('fontSize.12');
   color: theme('colors.white/50%');
   letter-spacing: theme('letterSpacing.wide');
@@ -67,23 +93,33 @@ const items = computed(() => list?.items ?? [])
 .app-footer-info__list {
   display: flex;
   flex-direction: column;
-  gap: theme('spacing.15');
   align-items: center;
 
   @screen sm {
     flex-flow: row wrap;
-    gap: 0;
     align-items: flex-start;
-    margin-left: -1.6ch;
+    margin-block-end: -0.3em;
   }
 }
 
 .app-footer-info__item {
   @screen sm {
-    &::before {
+    &:not(:first-child)::before {
       content: '/';
-      margin-inline: 0.5ch;
     }
+  }
+}
+
+.app-footer-info__text,
+.app-footer-info__link {
+  --link-padding-x: theme('spacing.5');
+  --link-padding-y: theme('spacing.10');
+
+  display: inline-block;
+  padding: var(--link-padding-y) var(--link-padding-x);
+
+  @screen sm {
+    margin-block: calc(-1 * var(--link-padding-y));
   }
 }
 
@@ -95,5 +131,11 @@ const items = computed(() => list?.items ?? [])
       color: theme('colors.white/100%');
     }
   }
+}
+
+.app-footer-info__credit {
+  pointer-events: none;
+  display: inline-block;
+  transition: translate theme('transitionDuration.300') theme('transitionTimingFunction.outBack');
 }
 </style>

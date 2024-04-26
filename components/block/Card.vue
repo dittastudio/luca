@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { BlockCardStoryblok } from '@/types/storyblok'
 import { colSpanMap, colStartMap } from '@/utilities/maps'
-import { storyblokImageDimensions } from '@/utilities/helpers'
+import { ratioDimensions, storyblokImageDimensions } from '@/utilities/helpers'
 
 interface Props {
   block: BlockCardStoryblok
@@ -29,11 +29,12 @@ const { block } = defineProps<Props>()
           <template #media>
             <NuxtImg
               v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
+              class="block-card__image"
               provider="storyblok"
               :src="block.media[0]?.image.filename"
               :alt="block.media[0]?.image.alt"
-              :width="storyblokImageDimensions(block.media[0]?.image.filename).width"
-              :height="storyblokImageDimensions(block.media[0]?.image.filename).height"
+              :width="ratioDimensions(block.ratio).width"
+              :height="ratioDimensions(block.ratio).height"
               :sizes="`
                 100vw
                 sm:100vw
@@ -59,8 +60,12 @@ const { block } = defineProps<Props>()
 .block-card {
   @screen md {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
   }
+}
+
+.block-card__image {
+  border-radius: theme('borderRadius.sm');
 }
 </style>

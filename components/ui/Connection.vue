@@ -18,18 +18,18 @@ useIntersectionObserver(
 <template>
   <div
     ref="line"
-    class="connection"
+    class="ui-connection"
   >
     <div
-      :class="['connection__line', {
-        'connection__line--seen': seen,
+      :class="['ui-connection__line', {
+        'ui-connection__line--seen': seen,
       }]"
     />
   </div>
 </template>
 
 <style lang="postcss" scoped>
-.connection {
+.ui-connection {
   --line-height: 135px;
 
   @screen md {

@@ -184,7 +184,7 @@ const {
   }
 
   @screen xl {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: var(--app-grid);
   }
 }
 
@@ -242,7 +242,7 @@ const {
   display: flex;
   grid-column: 1 / -1;
   flex-direction: column-reverse;
-  gap: theme('spacing.50');
+  gap: theme('spacing.40');
   align-items: center;
   justify-content: space-between;
 

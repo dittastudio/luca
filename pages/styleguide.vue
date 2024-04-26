@@ -1,5 +1,9 @@
 <template>
   <div>
+    <section>
+      <UiMenus />
+    </section>
+
     <div class="section wrapper">
       <h1 class="type-h1 opacity-40">
         Styleguide
