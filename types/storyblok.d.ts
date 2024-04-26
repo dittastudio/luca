@@ -71,6 +71,19 @@ export interface BlockCardStoryblok {
   [k: string]: any;
 }
 
+export interface BlockCardEditorialStoryblok {
+  title: string;
+  media: AssetStoryblok;
+  ratio: number | string;
+  link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
+  column_start: number | string;
+  column_span: number | string;
+  connecting_line?: boolean;
+  _uid: string;
+  component: "block_card_editorial";
+  [k: string]: any;
+}
+
 export interface BlockCarouselStoryblok {
   slides: SlideStoryblok[];
   connecting_line?: boolean;
@@ -180,6 +193,7 @@ export interface PageStoryblok {
   blocks?: (
     | BlockButtonStoryblok
     | BlockCardStoryblok
+    | BlockCardEditorialStoryblok
     | BlockCarouselStoryblok
     | BlockMediaStoryblok
     | BlockMenusStoryblok

@@ -57,15 +57,12 @@ onUnmounted(() => {
   <video
     v-if="asset"
     ref="video"
-    class="rounded-sm"
     :src="src"
     playsinline
     autoplay
     muted
     loop
-    :class="[
-      'w-full h-full object-cover',
-      ratioMap[ratio],
-    ]"
+    class="w-full h-full object-cover rounded-sm"
+    :class="ratioMap[ratio]"
   />
 </template>

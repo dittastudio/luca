@@ -33,6 +33,11 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
+      <BlockCardEditorial
+        v-else-if="block.component === 'block_card_editorial'"
+        :block="block"
+      />
+
       <BlockCarousel
         v-else-if="block.component === 'block_carousel'"
         :block="block"
@@ -40,6 +45,11 @@ const isHome = computed(() => route.path === '/')
 
       <BlockMedia
         v-else-if="block.component === 'block_media'"
+        :block="block"
+      />
+
+      <BlockMenus
+        v-else-if="block.component === 'block_menus'"
         :block="block"
       />
 
@@ -55,11 +65,6 @@ const isHome = computed(() => route.path === '/')
 
       <BlockTextEditorial
         v-else-if="block.component === 'block_text_editorial'"
-        :block="block"
-      />
-
-      <BlockMenus
-        v-else-if="block.component === 'block_menus'"
         :block="block"
       />
 

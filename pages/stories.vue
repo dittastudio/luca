@@ -59,8 +59,8 @@ const setBackground = (color: string) => {
           </div>
         </transition>
       </AppStory>
-
-      <BlockComponents :content="story.content" />
     </div>
+
+    <BlockComponents :content="story.content" />
   </AppBackground>
 </template>

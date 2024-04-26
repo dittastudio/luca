@@ -139,8 +139,8 @@ const { block } = defineProps<Props>()
   align-items: flex-start;
   justify-content: center;
 
-  height: min(calc(100% - 100px), 100vh);
-  padding-block-start: theme('spacing.70');
+  max-height: 100vh;
+  padding-block: theme('spacing.70') theme('spacing.80');
 
   @screen mdMax {
     display: none;
