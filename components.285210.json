@@ -76,7 +76,7 @@
       "name": "block_card",
       "display_name": "Card",
       "created_at": "2024-04-23T14:44:41.343Z",
-      "updated_at": "2024-04-26T13:54:43.466Z",
+      "updated_at": "2024-04-26T15:55:13.666Z",
       "id": 5697381,
       "schema": {
         "title": {
@@ -153,7 +153,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "<p><strong>{{it.title}}</strong></p>\n<p>{{it.headline}}</p>",
+      "preview_tmpl": "<p><strong>{{it.title}}</strong></p>\n<p>{{it.headline}}</p>\n{{@if(it.media.filename)}}\n<p>{{@image(it.media.filename)/}}</p>\n{{#else}}\n{{/if}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -212,7 +212,7 @@
       "name": "block_media",
       "display_name": "Media",
       "created_at": "2024-04-18T16:33:02.808Z",
-      "updated_at": "2024-04-26T13:57:44.305Z",
+      "updated_at": "2024-04-26T15:45:25.333Z",
       "id": 5676129,
       "schema": {
         "media": {
@@ -266,7 +266,7 @@
       "image": null,
       "preview_field": "media",
       "is_root": false,
-      "preview_tmpl": "{{@image(it.media[0].image.filename)/}}",
+      "preview_tmpl": "{{@image(it.media.filename)/}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -274,6 +274,41 @@
       "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
       "color": "#fbce41",
       "icon": "block-image",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "block"
+    },
+    {
+      "name": "block_menus",
+      "display_name": "Menus",
+      "created_at": "2024-04-26T15:27:37.492Z",
+      "updated_at": "2024-04-26T15:58:46.567Z",
+      "id": 5717541,
+      "schema": {
+        "menus": {
+          "type": "bloks",
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "menu"
+          ],
+          "minimum": 1,
+          "key": "Menus",
+          "pos": 0
+        }
+      },
+      "image": "//a.storyblok.com/f/285210/x/acad4da6f6/screenshot-2024-04-26-at-16-29-12.png",
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Menus",
+      "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
+      "color": "#1b243f",
+      "icon": "block-center-m",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -449,12 +484,12 @@
     },
     {
       "name": "image_video",
-      "display_name": null,
+      "display_name": "Image or Video",
       "created_at": "2024-04-26T13:14:28.535Z",
-      "updated_at": "2024-04-26T13:16:17.861Z",
+      "updated_at": "2024-04-26T16:23:11.700Z",
       "id": 5716878,
       "schema": {
-        "asset": {
+        "media": {
           "type": "asset",
           "required": true,
           "filetypes": [
@@ -465,13 +500,13 @@
         }
       },
       "image": null,
-      "preview_field": null,
+      "preview_field": "media",
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{@image(it.media.filename)/}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "image_video",
+      "real_name": "Image or Video",
       "component_group_uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
       "color": null,
       "icon": null,
@@ -553,6 +588,47 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null
+    },
+    {
+      "name": "menu",
+      "display_name": "Menu",
+      "created_at": "2024-04-26T15:31:26.858Z",
+      "updated_at": "2024-04-26T15:52:11.253Z",
+      "id": 5717545,
+      "schema": {
+        "title": {
+          "type": "text",
+          "required": true
+        },
+        "images": {
+          "type": "multiasset",
+          "required": true,
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": 531546
+        },
+        "pdf": {
+          "type": "asset",
+          "required": true,
+          "asset_folder_id": 531546
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Menu",
+      "component_group_uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
+      "color": null,
+      "icon": null,
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "elements"
     },
     {
       "name": "page",
