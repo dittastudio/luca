@@ -99,7 +99,10 @@ const eventKeydown = (event: KeyboardEvent) => {
       </div>
     </div>
 
-    <div class="ui-carousel__dots">
+    <div
+      v-if="slides.length > 1"
+      class="ui-carousel__dots"
+    >
       <button
         v-for="(_slide, index) in dotHelper"
         :key="index"
