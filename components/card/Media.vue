@@ -10,12 +10,6 @@ const { title, headline } = defineProps<Props>()
 <template>
   <div class="card-media">
     <div
-      class="card-media__backdrop"
-    >
-      <slot name="media" />
-    </div>
-
-    <div
       class="card-media__media"
     >
       <slot name="media" />
@@ -43,53 +37,19 @@ const { title, headline } = defineProps<Props>()
 .card-media {
   isolation: isolate;
   position: relative;
-
-  @media (hover: hover) {
-    @screen md {
-      background-color: var(--app-background-color);
-    }
-  }
-}
-
-.card-media__backdrop {
-  display: none;
-
-  @media (hover: hover) {
-    @screen md {
-      pointer-events: none;
-
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      left: 0;
-
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      opacity: 0;
-      filter:blur(20px);
-
-      transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
-
-      a:is(:hover, :focus) & {
-        opacity: 1;
-        transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-      }
-    }
-  }
 }
 
 .card-media__media {
   @media (hover: hover) {
     @screen md {
+      will-change: filter;
       opacity: 1;
-      transition: opacity theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
+      filter: blur(0);
+      transition: filter theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
 
       a:is(:hover, :focus) & {
-        opacity: 0;
-        transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+        filter: blur(20px);
+        transition: filter theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
       }
     }
   }
