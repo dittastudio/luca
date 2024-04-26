@@ -64,6 +64,6 @@ const isHome = computed(() => route.path === '/')
       </template>
     </AppLayout>
 
-    <AppCover />
+    <!-- <AppCover /> -->
   </div>
 </template>

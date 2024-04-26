@@ -115,6 +115,10 @@ const animateMe = (event: any) => {
   --link-padding-x: theme('spacing.5');
   --link-padding-y: theme('spacing.10');
 
+  @screen sm {
+    --link-padding-y: theme('spacing.20');
+  }
+
   display: inline-block;
   padding: var(--link-padding-y) var(--link-padding-x);
 
