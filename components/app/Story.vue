@@ -32,7 +32,7 @@ const { isOpen = false } = defineProps<Props>()
   width: 100%;
   height: 100vh;
   height: 100dvh;
-  scroll-behavior: contain;
+  overflow: hidden;
   background-color: rgb(0 0 0 / 0%);
   transition: background-color theme('transitionDuration.500')
     theme('transitionTimingFunction.smooth');
@@ -44,10 +44,15 @@ const { isOpen = false } = defineProps<Props>()
 }
 
 .app-story__content {
-  transform: translate3d(0, 100vh, 0);
   width: 100%;
-  min-height: 100%;
-  background-color: white;
+  height: 100vh;
+  height: 100dvh;
+  background-color: theme('colors.white');
+  color: theme('colors.green');
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translate3d(0, 100vh, 0);
   transition: transform theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   .app-story--is-open & {

@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@michaelpumo/screen": "^0.0.16",
-    "@nuxt/eslint": "^0.3.9",
+    "@nuxt/eslint": "^0.3.10",
     "@nuxt/image": "^1.6.0",
     "@nuxtjs/sitemap": "^5.1.4",
     "@nuxtjs/stylelint-module": "^5.2.0",
