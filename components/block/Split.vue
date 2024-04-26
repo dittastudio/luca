@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import type { BlockSplitStoryblok } from '@/types/storyblok'
-import { hasRichTextContent, ratioDimensions, storyblokImageDimensions } from '@/utilities/helpers'
+import { hasRichTextContent, ratioDimensions, storyblokAssetType } from '@/utilities/helpers'
 
 interface Props {
   block: BlockSplitStoryblok
 }
 
 const { block } = defineProps<Props>()
+const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
 </script>
 
 <template>
@@ -16,11 +17,11 @@ const { block } = defineProps<Props>()
   >
     <div class="block-split__media">
       <NuxtImg
-        v-if="block.media[0]?.component === 'image' && block.media[0]?.image"
+        v-if="block.media && assetType === 'image'"
         provider="storyblok"
         class="block-split__image"
-        :src="block.media[0]?.image.filename"
-        :alt="block.media[0]?.image.alt"
+        :src="block.media.filename"
+        :alt="block.media.alt"
         :width="ratioDimensions(block.ratio).width"
         :height="ratioDimensions(block.ratio).height"
         :sizes="`
@@ -33,8 +34,8 @@ const { block } = defineProps<Props>()
       />
 
       <MediaVideo
-        v-else-if="block.media[0]?.component === 'video' && block.media[0]?.video"
-        :asset="block.media[0]?.video"
+        v-else-if="block.media && assetType === 'video'"
+        :asset="block.media"
         :ratio="block.ratio"
       />
     </div>

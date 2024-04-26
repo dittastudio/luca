@@ -3,8 +3,19 @@ import type { RichtextStoryblok } from '@/types/storyblok'
 
 const isStoryblokEditor = (search: LocationQuery) => '_storyblok' in search
 
-const randomNumberInRange = (min: number, max: number): number =>
-  Math.floor(Math.random() * (max - min + 1)) + min
+const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp']
+const videoExtensions = ['mp4', 'webm', 'ogg']
+
+const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
+  if (!filename.trim().length) return 'other'
+
+  const ext = filename.split('.').pop() || ''
+
+  if (imageExtensions.includes(ext)) return 'image'
+  if (videoExtensions.includes(ext)) return 'video'
+
+  return 'other'
+}
 
 const storyblokSlug = (path: string): string =>
   ['/', ''].includes(path) ? '/home' : path.replace(/\/+$/, '')
@@ -83,6 +94,7 @@ const hasRichTextContent = (richtext: RichtextStoryblok | undefined): boolean =>
 export {
   isStoryblokEditor,
   randomNumberInRange,
+  storyblokAssetType,
   storyblokSlug,
   storyblokImageDimensions,
   storyblokImage,

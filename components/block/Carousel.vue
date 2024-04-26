@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ratioMap } from '@/utilities/maps'
+import { storyblokAssetType } from '@/utilities/helpers'
 import type { BlockCarouselStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -25,12 +26,12 @@ const { block } = defineProps<Props>()
                 class="block-carousel__item"
               >
                 <NuxtImg
-                  v-if="media.component === 'image' && media?.image"
+                  v-if="media.asset && storyblokAssetType(media.asset.filename) === 'image'"
                   class="block-carousel__image"
                   :class="slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9']"
                   provider="storyblok"
-                  :src="media.image.filename"
-                  :alt="media.image.alt"
+                  :src="media.asset.filename"
+                  :alt="media.asset.alt"
                   :width="slide.media.length === 1 ? '16' : '8'"
                   height="9"
                   :sizes="slide.media.length === 1
@@ -49,7 +50,7 @@ const { block } = defineProps<Props>()
                 />
 
                 <MediaVideo
-                  v-else-if="media.component === 'video' && media.video"
+                  v-else-if="media.asset && storyblokAssetType(media.asset.filename) === 'video'"
                   :asset="media.video"
                   :ratio="slide.media.length === 1 ? '16:9' : '8:9'"
                 />
