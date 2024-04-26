@@ -14,18 +14,12 @@ if (!story.value) {
 
 useStoryblokSeo(story)
 
-const counter = ref(0)
-
 onMounted(() => {
   if (story.value) {
     useStoryblokBridge(story.value.id, (evStory: any) => (story.value = evStory), {
       preventClicks: true,
     })
   }
-
-  setInterval(() => {
-    counter.value++
-  }, 1000)
 })
 
 const setBackground = (color: string) => {
@@ -40,7 +34,6 @@ const setBackground = (color: string) => {
   >
     <div class="wrapper">
       <p>
-        Test link {{ counter }}
         <NuxtLink to="/stories/vitra-luca">
           Vitra + Luca
         </NuxtLink>
