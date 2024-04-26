@@ -30,6 +30,12 @@ onMounted(async () => {
   </div>
 </template>
 
+<style lang="postcss">
+html:has(.cover.is-active) {
+  overflow: hidden;
+}
+</style>
+
 <style lang="postcss" scoped>
 .cover {
   --logo-container-height: 100vh;
@@ -42,17 +48,20 @@ onMounted(async () => {
   justify-content: center;
   height: var(--logo-container-height);
   background-color: theme('colors.green');
+  pointer-events: none;
+
+  &.is-active {
+    pointer-events: auto;
+  }
 
   &,
   &__message,
   &__logo {
-    pointer-events: none;
     opacity: 0;
     transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
     &.is-active {
       opacity: 1;
-      pointer-events: auto;
     }
   }
 
