@@ -70,13 +70,8 @@ const ratioDimensions = (
 
 const wait = (ms: number = 0) => new Promise(resolve => setTimeout(resolve, ms))
 
-const nl2br = (input: string): string => input.replace(/\n/g, '<br>')
-
-const sleep = async (ms: number): Promise<void> =>
-  new Promise<void>(resolve => setTimeout(resolve, ms))
-
 const requestDelay = async <T>(promise: T, ms: number = 1000) => {
-  const [p] = await Promise.all([promise, sleep(ms)])
+  const [p] = await Promise.all([promise, wait(ms)])
 
   return p
 }
@@ -93,8 +88,6 @@ export {
   storyblokImage,
   ratioDimensions,
   wait,
-  nl2br,
-  sleep,
   requestDelay,
   hasRichTextContent,
 }
