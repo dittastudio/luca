@@ -476,8 +476,8 @@ watch(
 }
 
 .app-header__michelin-icon {
-  width: 34px;
-  height: 39px;
+  width: 20px;
+  height: 23px;
 
   @screen mdMax {
     display: none;

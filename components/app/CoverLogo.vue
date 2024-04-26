@@ -2,7 +2,7 @@
 import { useIntersectionObserver } from '@vueuse/core'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 
-const isVisible = ref(false)
+const isHidden = ref(false)
 const main = ref<HTMLElement | null>(null)
 
 onMounted(() => {
@@ -15,9 +15,9 @@ onMounted(() => {
   useIntersectionObserver(
     main,
     ([{ isIntersecting }]) => {
-      isVisible.value = isIntersecting
+      isHidden.value = !isIntersecting
     },
-    { rootMargin: '-100% 0px -100% 0px', threshold: 0 },
+    { rootMargin: '-100% 0px 0px 0px', threshold: 0 },
   )
 })
 </script>
@@ -25,7 +25,7 @@ onMounted(() => {
 <template>
   <div
     class="cover-logo"
-    :class="{ 'cover-logo--is-active': isVisible }"
+    :class="{ 'cover-logo--is-hidden': isHidden }"
   >
     <IconLucaLogo class="cover-logo__icon" />
   </div>
@@ -48,12 +48,12 @@ onMounted(() => {
   height: var(--logo-container-height);
   margin-block-start: calc(-1 * var(--logo-container-height));
 
-  opacity: 0;
+  opacity: 1;
 
   transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
 
-  &--is-active {
-    opacity: 1;
+  &--is-hidden {
+    opacity: 0;
   }
 }
 

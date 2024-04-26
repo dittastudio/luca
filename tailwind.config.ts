@@ -185,6 +185,7 @@ export default {
       '2/3': '2 / 3',
       '4/3': '4 / 3',
       '3/4': '3 / 4',
+      '1/1.414': '1 / 1.414', // A4 Paper
     },
     extend: {
       transitionDuration: {

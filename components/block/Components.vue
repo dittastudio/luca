@@ -89,15 +89,15 @@ const isHome = computed(() => route.path === '/')
   }
 
   & + & {
-    margin-block-start: var(--spacing-rhythm);
+    padding-block-start: var(--spacing-rhythm);
   }
 
   &:first-child {
-    margin-block-start: var(--first-spacing-rhythm);
+    padding-block-start: var(--first-spacing-rhythm);
   }
 
   .block-components--home &:first-child {
-    margin-block-start: theme('spacing.30');
+    padding-block-start: theme('spacing.30');
 
     @screen md {
       display: flex;
@@ -115,20 +115,20 @@ const isHome = computed(() => route.path === '/')
   }
 
   &:has(.block-components__line) + & {
-    margin-block-start: var(--line-spacing);
+    padding-block-start: var(--line-spacing);
   }
 
   & .block-components__line  {
-    margin-block-start: var(--line-spacing);
+    padding-block-start: var(--line-spacing);
   }
 
   &--block_text + &--block_button {
-    margin-block-start: var(--line-spacing);
+    padding-block-start: var(--line-spacing);
   }
 
   &--block_menus:first-child {
     @screen md {
-      margin-block-start: theme('spacing.20');
+      padding-block-start: theme('spacing.20');
     }
   }
 }
