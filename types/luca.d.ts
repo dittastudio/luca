@@ -9,6 +9,7 @@ declare namespace Luca {
     | '4:3'
     | '3:4'
     | '1:1.414'
+    | '1:1'
 
   export type ImageDimensions = {
     width: number

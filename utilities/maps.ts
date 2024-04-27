@@ -38,6 +38,7 @@ const ratioMap: Record<string, string> = {
   '4:3': 'aspect-4/3',
   '3:4': 'aspect-3/4',
   '1:1.414': 'aspect-1/1.414',
+  '1:1': 'aspect-1/1',
 } as const
 
 export { colSpanMap, colStartMap, ratioMap }
