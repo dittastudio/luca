@@ -18,9 +18,8 @@ const animateMe = (event: any) => {
   const xMove = x / width * (move * 2) - move
   const yMove = y / height * (move * 2) - move
 
-  hoverInner.value.style.translate = `${xMove}px ${yMove}px 0`
-
-  if (event.type === 'mouseleave') hoverInner.value.style.translate = '0 0 0'
+  hoverInner.value.style.setProperty('--x', `${xMove}px`)
+  hoverInner.value.style.setProperty('--y', `${yMove}px`)
 }
 </script>
 
@@ -64,12 +63,11 @@ const animateMe = (event: any) => {
       >
         <NuxtLink
           ref="hover"
-          class="app-footer-info__link"
+          class="app-footer-info__link app-footer-info__link--credit"
           to="https://ditta.studio"
           target="_blank"
           rel="noopener noreferrer"
           @mousemove="animateMe"
-          @mouseleave="animateMe"
         >
           <span
             ref="hoverInner"
@@ -137,9 +135,32 @@ const animateMe = (event: any) => {
   }
 }
 
+@keyframes enter {
+  from {
+    translate: 0 0 0;
+  }
+  to {
+    translate: var(--x) var(--y) 0;
+  }
+}
+
+@keyframes exit {
+  from {
+    translate: var(--x) var(--y) 0;
+  }
+  to {
+    translate: 0 0 0;
+  }
+}
+
 .app-footer-info__credit {
   pointer-events: none;
+  will-change: translate;
   display: inline-block;
-  transition: translate theme('transitionDuration.300') theme('transitionTimingFunction.outBack');
+  animation: exit theme('transitionDuration.300') theme('transitionTimingFunction.outBack') forwards;
+
+  .app-footer-info__link--credit:hover & {
+    animation: enter theme('transitionDuration.300') theme('transitionTimingFunction.outBack') forwards;
+  }
 }
 </style>
