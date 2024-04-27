@@ -132,6 +132,8 @@ const isHome = computed(() => route.path === '/')
   }
 
   &--block_menus:first-child {
+    padding-block-start: theme('spacing.40');
+
     @screen md {
       padding-block-start: theme('spacing.20');
     }
