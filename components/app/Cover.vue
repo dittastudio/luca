@@ -46,16 +46,22 @@ html {
 
 <style lang="postcss" scoped>
 .cover {
+  pointer-events: none;
+
   position: fixed;
   z-index: var(--app-layer-three);
   inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   height: 100vh;
   height: 100dvh;
+
+  color: theme('colors.white');
+
   background-color: theme('colors.green');
-  pointer-events: none;
 
   &.is-active {
     pointer-events: auto;
@@ -85,6 +91,7 @@ html {
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
+
     width: var(--logo-responsive-width);
     height: auto;
 
