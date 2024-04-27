@@ -33,10 +33,6 @@ const message = ref<string>('')
   align-items: baseline;
   justify-content: space-between;
 
-  border-bottom: 1px solid theme('colors.white/20%');
-
-  transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
   &::after {
     content: '';
 
