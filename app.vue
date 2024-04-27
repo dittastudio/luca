@@ -21,7 +21,7 @@ useSeoMeta({
 })
 
 const isHome = computed(() => route.path === '/')
-const isStories = computed(() => route.path === '/stories')
+const isStories = computed(() => route.path.includes('/stories'))
 </script>
 
 <template>

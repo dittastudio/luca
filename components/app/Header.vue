@@ -233,7 +233,7 @@ watch(
     opacity theme('transitionDuration.400') theme('transitionTimingFunction.in'),
     translate theme('transitionDuration.400') theme('transitionTimingFunction.in');
 
-  .app-header--has-scrolled:not(.app-header--is-open) & {
+  .app-header--has-scrolled:not(.app-header--is-open, .app-header--theme-light) & {
     translate: 0 0 0;
     opacity: 1;
     transition:
