@@ -86,6 +86,7 @@ export interface BlockCardEditorialStoryblok {
 
 export interface BlockCarouselStoryblok {
   slides: SlideStoryblok[];
+  autoplay?: boolean;
   connecting_line?: boolean;
   _uid: string;
   component: "block_carousel";

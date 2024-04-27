@@ -1,5 +1,6 @@
 <script lang="ts" setup generic="T">
 import { useKeenSlider } from 'keen-slider/vue.es'
+import type { KeenSliderInstance } from 'keen-slider/vue.es'
 import config from '@/tailwind.config'
 import { ratioMap } from '@/utilities/maps'
 
@@ -7,15 +8,50 @@ interface Props {
   ratio: Luca.TAspectRatios | string | number
   slides: T[]
   loop?: boolean
+  autoplay?: boolean
 }
 
-const { slides, ratio, loop = true } = defineProps<Props>()
+const { slides, ratio, loop = true, autoplay = false } = defineProps<Props>()
 
 const { screens } = config.theme
 
 const isFocused = ref(false)
 const current = ref(0)
 const opacities = ref<number[]>([])
+
+const initAutoplay = (slider: KeenSliderInstance) => {
+  let timeout: ReturnType<typeof setTimeout>
+  const delay = 2500
+  let mouseOver = false
+
+  function clearNextTimeout() {
+    clearTimeout(timeout)
+  }
+
+  function nextTimeout() {
+    clearTimeout(timeout)
+    if (mouseOver) return
+    timeout = setTimeout(() => {
+      slider.next()
+    }, delay)
+  }
+
+  slider.on('created', () => {
+    slider.container.addEventListener('mouseover', () => {
+      mouseOver = true
+      clearNextTimeout()
+    })
+    slider.container.addEventListener('mouseout', () => {
+      mouseOver = false
+      nextTimeout()
+    })
+    nextTimeout()
+  })
+
+  slider.on('dragStarted', clearNextTimeout)
+  slider.on('animationEnded', nextTimeout)
+  slider.on('updated', nextTimeout)
+}
 
 const [container, slider] = useKeenSlider({
   slides: {
@@ -30,7 +66,6 @@ const [container, slider] = useKeenSlider({
   slideChanged: (s) => {
     current.value = s.track.details.rel
   },
-
   breakpoints: {
     [`(min-width: ${screens.md})`]: {
       renderMode: 'custom',
@@ -39,7 +74,10 @@ const [container, slider] = useKeenSlider({
       },
     },
   },
-})
+}, [(slider) => {
+  if (!autoplay) return
+  initAutoplay(slider)
+}])
 
 const dotHelper = computed(() => slider.value ? [...Array(slider.value.track.details.slides.length).keys()] : [])
 
@@ -129,6 +167,7 @@ const eventKeydown = (event: KeyboardEvent) => {
 
 .ui-carousel__container:not([data-keen-slider-disabled]) {
   touch-action: pan-y;
+  cursor: grab;
   user-select: none;
 
   position: relative;
@@ -137,6 +176,10 @@ const eventKeydown = (event: KeyboardEvent) => {
 
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+
+  &:active {
+    cursor: grabbing;
+  }
 
   &[data-keen-slider-reverse] {
     flex-direction: row-reverse;

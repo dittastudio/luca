@@ -17,6 +17,7 @@ const { block } = defineProps<Props>()
         <UiCarousel
           :slides="block.slides"
           ratio="16:9"
+          :autoplay="block.autoplay"
         >
           <template #slide="{ slide }">
             <div class="block-carousel__slide">
