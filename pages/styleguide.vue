@@ -46,7 +46,7 @@
       <br>
 
       <button type="button">
-        <AppearanceButton type="green">
+        <AppearanceButton type="white">
           Button
         </AppearanceButton>
       </button>
@@ -101,7 +101,7 @@
         <br>
 
         <button type="button">
-          <AppearanceButton type="offwhite">
+          <AppearanceButton type="green">
             Button
           </AppearanceButton>
         </button>

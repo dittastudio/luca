@@ -50,7 +50,7 @@ watch(
       type="button"
       :tabindex="isOpen ? '0' : '-1'"
     >
-      <AppearanceButton type="green">
+      <AppearanceButton type="white">
         Reservations
       </AppearanceButton>
     </button>
@@ -68,6 +68,7 @@ watch(
     min-height: 100%;
     padding-block: var(--app-header-height) theme('spacing.40');
 
+    color: theme('colors.white');
     text-align: center;
   }
 }

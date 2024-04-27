@@ -1,20 +1,19 @@
 @layer base {
   html {
-    color: theme('colors.white');
+    color: var(--app-text-color);
     background-color: var(--app-background-color);
-    transition: background-color var(--app-background-speed) var(--app-background-ease);
+    transition:
+      color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+      background-color var(--app-background-speed) var(--app-background-ease);
   }
 
   body {
     font-family: theme('fontFamily.body');
     font-size: theme('fontSize.16');
-
-    /* Improve text rendering */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: theme('lineHeight.normal');
 
-    /* Remove default touch box */
     -webkit-tap-highlight-color: transparent;
   }
 

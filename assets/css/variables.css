@@ -1,5 +1,6 @@
 @layer base {
   :root {
+    --app-text-color: theme('colors.white');
     --app-background-color: theme('colors.green');
     --app-background-speed: theme('transitionDuration.3000');
     --app-background-ease: theme('transitionTimingFunction.smooth');

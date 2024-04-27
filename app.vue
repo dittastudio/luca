@@ -21,6 +21,7 @@ useSeoMeta({
 })
 
 const isHome = computed(() => route.path === '/')
+const isStories = computed(() => route.path === '/stories')
 </script>
 
 <template>
@@ -28,6 +29,7 @@ const isHome = computed(() => route.path === '/')
     <AppLayout>
       <template #header>
         <AppHeader
+          :theme="isStories ? 'light' : 'dark'"
           :logo-hidden="isHome"
           :links="story.content.navigation?.[0]"
         />

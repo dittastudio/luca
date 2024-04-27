@@ -14,7 +14,7 @@ const { block } = defineProps<Props>()
     class="block-button wrapper"
   >
     <StoryblokLink :item="block.link">
-      <AppearanceButton type="green">
+      <AppearanceButton type="white">
         {{ block.title }}
       </AppearanceButton>
     </StoryblokLink>

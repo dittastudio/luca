@@ -4,11 +4,12 @@ import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
 interface Props {
+  theme?: 'light' | 'dark'
   logoHidden?: boolean
   links?: LinkListStoryblok
 }
 
-const { logoHidden, links } = defineProps<Props>()
+const { logoHidden, links, theme = 'dark' } = defineProps<Props>()
 
 const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
@@ -61,6 +62,7 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
   'app-header--logo-hidden': logoHidden,
+  [`app-header--theme-${theme}`]: true,
 }))
 
 const closeMenu = () => {
@@ -75,9 +77,7 @@ const route = useRoute()
 
 watch(
   () => route.path,
-  () => {
-    closeMenu()
-  },
+  () => closeMenu(),
 )
 </script>
 
@@ -138,7 +138,7 @@ watch(
           class="app-header__reservations"
           type="button"
         >
-          <AppearanceButton type="green">
+          <AppearanceButton :type="theme === 'light' ? 'green' : 'white'">
             Reservations
           </AppearanceButton>
         </button>
@@ -196,12 +196,25 @@ watch(
 
 <style lang="postcss">
 .app-header {
+  /* --header-text-color: currentcolor; */
+  --header-background-tint: theme('colors.green/90%');
+
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
+  transition: color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
+  }
+}
+
+.app-header--theme-light {
+  --header-background-tint: theme('colors.mint/90%');
+
+  html:has(&) {
+    --app-text-color: theme('colors.green');
+    --app-background-color: theme('colors.mint') !important;
   }
 }
 
@@ -250,7 +263,7 @@ watch(
   height: 100vh;
 
   opacity: 0;
-  background-color: theme('colors.green/90%');
+  background-color: var(--header-background-tint);
   backdrop-filter: blur(8px);
 
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');

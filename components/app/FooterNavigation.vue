@@ -84,7 +84,6 @@ const animateMe = (event: any) => {
 <style lang="postcss" scoped>
 .app-footer-info {
   font-size: theme('fontSize.12');
-  color: theme('colors.white/50%');
   letter-spacing: theme('letterSpacing.wide');
 }
 
@@ -104,6 +103,7 @@ const animateMe = (event: any) => {
   @screen sm {
     &:not(:first-child)::before {
       content: '/';
+      opacity: 0.5;
     }
   }
 }
@@ -119,6 +119,7 @@ const animateMe = (event: any) => {
 
   display: inline-block;
   padding: var(--link-padding-y) var(--link-padding-x);
+  opacity: 0.5;
 
   @screen sm {
     margin-block: calc(-1 * var(--link-padding-y));
@@ -127,10 +128,10 @@ const animateMe = (event: any) => {
 
 .app-footer-info__link {
   @media (hover: hover) {
-    transition: color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
     &:hover {
-      color: theme('colors.white/100%');
+      opacity: 1;
     }
   }
 }

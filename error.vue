@@ -44,7 +44,7 @@ useHead({
       </p>
 
       <NuxtLink to="/">
-        <AppearanceButton type="green">
+        <AppearanceButton type="white">
           Back to home
         </AppearanceButton>
       </NuxtLink>

@@ -23,8 +23,15 @@ const { isOpen = false } = defineProps<Props>()
 
   display: flex;
   align-items: center;
+
   width: var(--size);
   height: var(--size);
+
+  transition: color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  &.app-header-burger--is-open {
+    color: theme('colors.white');
+  }
 }
 
 .app-header-burger__inner {
@@ -68,7 +75,6 @@ const { isOpen = false } = defineProps<Props>()
   }
 
   .app-header-burger--is-open & {
-
     &::before,
     &::after {
       transition: translate var(--trans-in-open), rotate var(--trans-out-open);

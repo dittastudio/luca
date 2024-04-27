@@ -26,6 +26,8 @@ const message = ref<string>('')
 
 <style lang="postcss" scoped>
 .app-footer-form {
+  position: relative;
+
   display: flex;
   gap: theme('spacing.10');
   align-items: baseline;
@@ -35,9 +37,31 @@ const message = ref<string>('')
 
   transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-  &:focus-within {
-    border-color: theme('colors.white/100%');
+  &::after {
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    opacity: 0.2;
+    background-color: currentcolor;
+
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
+
+  &:focus-within {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  /* &:focus-within {
+    border-color: theme('colors.white/100%');
+  } */
 }
 
 .app-footer-form__input {

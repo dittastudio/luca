@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 interface Props {
-  type: 'green' | 'offwhite' | 'white'
+  type: 'green' | 'white'
 }
 
-const { type = 'green' } = defineProps<Props>()
+const { type = 'white' } = defineProps<Props>()
 </script>
 
 <template>
@@ -21,9 +21,6 @@ const { type = 'green' } = defineProps<Props>()
 .button-appearance {
   --button-padding-y: 1.25em;
   --button-padding-x: 2.2em;
-  --button-background-color: transparent;
-  --button-text-color: theme('colors.white');
-  --button-border-color: theme('colors.white');
 
   isolation: isolate;
   position: relative;
@@ -55,6 +52,9 @@ const { type = 'green' } = defineProps<Props>()
 
     border: 1px solid var(--button-border-color);
     border-radius: inherit;
+
+    transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
   }
 
   &::after {
@@ -71,11 +71,16 @@ const { type = 'green' } = defineProps<Props>()
     transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
-  &--type-offwhite,
-  &--type-white {
+  &.button-appearance--type-green {
     --button-background-color: transparent;
     --button-text-color: theme('colors.green');
     --button-border-color: theme('colors.green');
+  }
+
+  &.button-appearance--type-white {
+    --button-background-color: transparent;
+    --button-text-color: theme('colors.white');
+    --button-border-color: theme('colors.white');
   }
 
   a:active &::after,
@@ -84,23 +89,18 @@ const { type = 'green' } = defineProps<Props>()
   }
 
   @media (hover: hover) {
-
     a:hover &,
     button:not(:disabled):hover & {
-      --button-background-color: theme('colors.white');
-      --button-text-color: theme('colors.green');
-      --button-border-color: theme('colors.white');
-
-      &.button-appearance--type-offwhite {
-        --button-background-color: theme('colors.green');
-        --button-text-color: theme('colors.offwhite');
-        --button-border-color: theme('colors.green');
+      &.button-appearance--type-green {
+      --button-background-color: theme('colors.green');
+      --button-text-color: theme('colors.white');
+      --button-border-color: theme('colors.green');
       }
 
       &.button-appearance--type-white {
-        --button-background-color: theme('colors.green');
-        --button-text-color: theme('colors.white');
-        --button-border-color: theme('colors.green');
+        --button-background-color: theme('colors.white');
+        --button-text-color: theme('colors.green');
+        --button-border-color: theme('colors.white');
       }
     }
   }

@@ -69,10 +69,34 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
   width: 100%;
 
   @screen smMax {
-    border-block: 1px solid theme('colors.white/20%');
+    position: relative;
 
-    & + & {
-      border-block-start: 0;
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+
+      height: 1px;
+
+      opacity: 0.2;
+      background-color: currentcolor;
+    }
+
+    &:last-child::after {
+      content: '';
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      height: 1px;
+
+      opacity: 0.2;
+      background-color: currentcolor;
     }
   }
 }
