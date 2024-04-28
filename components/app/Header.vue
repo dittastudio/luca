@@ -258,14 +258,11 @@ watch(
 
 .app-header__bg {
   position: absolute;
-
   width: 100%;
   height: 100vh;
-
   opacity: 0;
   background-color: var(--header-background-tint);
   backdrop-filter: blur(8px);
-
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   .app-header--is-open & {
@@ -286,11 +283,9 @@ watch(
   }
 
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   height: 100%;
   padding-block: var(--header-padding);
 
@@ -303,7 +298,6 @@ watch(
   @screen md {
     position: relative;
     z-index: 1;
-
     display: flex;
     gap: theme('spacing.10');
     align-items: flex-start;
@@ -312,10 +306,8 @@ watch(
 
 .app-header__switch {
   pointer-events: auto;
-
   position: relative;
   z-index: 1;
-
   margin: calc(-1 * theme('spacing.20'));
   padding: theme('spacing.20');
 
@@ -347,11 +339,9 @@ watch(
 
   transform-origin: left;
   scale: 0 1 1;
-
   width: var(--line-width);
   height: 1px;
   margin-block: var(--line-alignment-nudge);
-
   opacity: 0;
   background-color: currentcolor;
 
@@ -385,16 +375,12 @@ watch(
     position: absolute;
     z-index: -1;
     inset: 0;
-
     overflow-y: auto;
-
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
-
     opacity: 0;
     background-color: theme('colors.green');
-
     transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
     .app-header--is-open & {
@@ -411,11 +397,9 @@ watch(
 .app-header__logo {
   position: absolute;
   inset: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding-block: var(--header-padding);
 
   @screen md {
@@ -425,13 +409,9 @@ watch(
 
 .app-header__logo-link {
   pointer-events: auto;
-
   translate: 0 0 0;
-
   display: block;
-
   opacity: 1;
-
   transition:
     opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
     translate 0s 0s;
