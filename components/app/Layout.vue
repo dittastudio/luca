@@ -12,7 +12,7 @@
       <slot name="footer" />
     </footer>
 
-    <slot name="modal" />
+    <slot name="dev" />
   </div>
 </template>
 

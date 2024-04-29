@@ -14,6 +14,8 @@ watch(
   () => isOpen,
   () => isInteracted.value = true,
 )
+
+const reservationsOpen = useState('reservationsOpen', () => false)
 </script>
 
 <template>
@@ -49,6 +51,7 @@ watch(
       class="app-header-navigation__cta"
       type="button"
       :tabindex="isOpen ? '0' : '-1'"
+      @click="reservationsOpen = true"
     >
       <AppearanceButton>
         Reservations

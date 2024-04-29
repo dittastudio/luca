@@ -1,40 +1,60 @@
 <script lang="ts" setup>
+import IconClose from '@/assets/icons/close.svg'
+
 const dialog = ref<HTMLDialogElement | null>(null)
 
-const isOpen = useState('isModalOpen', () => false)
-
-const closeWithEscKey = (event: KeyboardEvent) => {
-  if (event.key === 'Escape' || event.key === 'Esc') closeModal()
+interface Props {
+  isOpen: boolean
 }
 
+const { isOpen } = defineProps<Props>()
+
+interface Emits {
+  (event: 'close'): void
+}
+
+const emit = defineEmits<Emits>()
+
 const openModal = () => {
-  isOpen.value = true
-
   dialog.value?.showModal()
-
-  /* Prevents closing with Esc key natively as this doesn't fire close() */
-  dialog.value?.addEventListener('cancel', event => event.preventDefault())
-  dialog.value?.addEventListener('keyup', event => closeWithEscKey(event))
 }
 
 const closeModal = () => {
-  isOpen.value = false
-
   dialog.value?.classList.add('app-modal--close')
-
-  const animationend = (event: AnimationEvent) => {
-    if (event.animationName !== 'dialog-close') return
-
-    dialog.value?.classList.remove('app-modal--close')
-    dialog.value?.close()
-  }
-
-  dialog.value?.addEventListener('animationend', animationend, { once: true })
+  dialog.value?.addEventListener('animationend', animationend)
 }
 
+const animationend = (event: AnimationEvent) => {
+  if (event.animationName !== 'dialog-close') return
+
+  dialog.value?.classList.remove('app-modal--close')
+  dialog.value?.close()
+}
+
+const setClose = () => {
+  emit('close')
+}
+
+const closeWithEscKey = (event: KeyboardEvent) => {
+  if (event.key === 'Escape' || event.key === 'Esc') {
+    setClose()
+  }
+}
+
+onMounted(() => {
+  dialog.value?.addEventListener('cancel', event => event.preventDefault())
+  dialog.value?.addEventListener('keyup', event => closeWithEscKey(event))
+})
+
+onUnmounted(() => {
+  dialog.value?.removeEventListener('cancel', event => event.preventDefault())
+  dialog.value?.removeEventListener('keyup', event => closeWithEscKey(event))
+  dialog.value?.removeEventListener('animationend', animationend)
+})
+
 watch(
-  () => isOpen.value,
-  () => isOpen.value ? openModal() : closeModal(),
+  () => isOpen,
+  openVal => openVal ? openModal() : closeModal(),
 )
 </script>
 
@@ -45,14 +65,18 @@ watch(
   >
     <div
       class="app-modal__outer wrapper"
-      @click.self="closeModal"
+      @click.self="setClose"
     >
       <div class="app-modal__inner">
         <button
           class="app-modal__close"
-          @click="closeModal"
+          @click="setClose"
         >
-          Close
+          <IconClose class="w-full h-full" />
+
+          <span class="sr-only">
+            Close
+          </span>
         </button>
 
         <slot />
@@ -64,12 +88,10 @@ watch(
 <style lang="postcss">
 .app-modal {
   display: block;
-
   width: 100%;
   max-width: 100%;
   max-height: 100%;
   margin: auto;
-
   background-color: transparent;
 
   &::backdrop {
@@ -104,15 +126,12 @@ watch(
 
 .app-modal__outer {
   width: 100%;
-  max-width: theme('screens.3xl');
+  max-width: 696px;
   padding-block: theme('spacing.40');
 }
 
 .app-modal__inner {
   position: relative;
-
-  padding: theme('spacing.60');
-
   opacity: 0;
   background-color: theme('colors.offwhite');
   border-radius: theme('borderRadius.sm');
@@ -127,6 +146,29 @@ watch(
     opacity: 1;
     transition:
     opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.200');
+  }
+}
+
+.app-modal__close {
+  position: absolute;
+  top: theme('spacing.30');
+  right: theme('spacing.30');
+  z-index: 1;
+  width: theme('spacing.30');
+  height: theme('spacing.30');
+  transition:
+      transform theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo');
+
+  &:hover,
+  &:focus {
+    transform: rotate(180deg);
+  }
+
+  @screen md {
+    top: theme('spacing.60');
+    right: theme('spacing.60');
+    width: theme('spacing.40');
+    height: theme('spacing.40');
   }
 }
 

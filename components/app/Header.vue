@@ -79,6 +79,8 @@ watch(
   () => route.path,
   () => closeMenu(),
 )
+
+const reservationsOpen = useState('reservationsOpen', () => false)
 </script>
 
 <template>
@@ -137,6 +139,7 @@ watch(
         <button
           class="app-header__reservations"
           type="button"
+          @click="reservationsOpen = true"
         >
           <AppearanceButton>
             Reservations
@@ -146,11 +149,25 @@ watch(
         <button
           class="app-header__book"
           type="button"
+          @click="reservationsOpen = true"
         >
           <AppearanceLink>
             Book
           </AppearanceLink>
         </button>
+
+        <AppModal
+          :is-open="reservationsOpen"
+          @close="reservationsOpen = false"
+        >
+          <iframe
+            src="https://www.sevenrooms.com/reservations/luca"
+            width="100%"
+            height="700"
+            loading="lazy"
+            frameborder="0"
+          />
+        </AppModal>
       </div>
     </div>
 
