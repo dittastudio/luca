@@ -33,6 +33,11 @@ const setAppTheme = (theme: Luca.Theme) => {
     :themes="story.content.themes"
     @theme="setAppTheme"
   >
+    <PageCover
+      v-if="story.content.cover_message"
+      :message="story.content.cover_message"
+    />
+
     <BlockComponents :content="story.content" />
   </AppTheme>
 </template>

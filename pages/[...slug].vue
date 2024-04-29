@@ -37,6 +37,11 @@ const isHome = computed(() => route.path === '/')
   >
     <AppCoverLogo v-if="isHome" />
 
+    <PageCover
+      v-if="story.content.cover_message"
+      :message="story.content.cover_message"
+    />
+
     <BlockComponents :content="story.content" />
   </AppTheme>
 </template>

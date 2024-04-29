@@ -185,6 +185,7 @@ export interface MenuStoryblok {
 
 export interface PageStoryblok {
   seo: SeoStoryblok[];
+  cover_message?: string;
   themes?: ThemeStoryblok[];
   blocks?: (
     | BlockButtonStoryblok
@@ -213,7 +214,7 @@ export interface SeoStoryblok {
 }
 
 export interface SettingsStoryblok {
-  cover_message: string;
+  cover_message?: string;
   navigation?: LinkListStoryblok[];
   opening_times_title?: string;
   opening_times?: RichtextStoryblok;
@@ -240,6 +241,8 @@ export interface SlideStoryblok {
 }
 
 export interface ThemeStoryblok {
+  background: "white" | "offwhite" | "mint" | "green" | "olive" | "brown";
+  text: "white" | "green";
   _uid: string;
   component: "theme";
   [k: string]: any;

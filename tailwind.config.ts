@@ -38,6 +38,23 @@ export const screenSizes = {
   '3xl': 1920,
 }
 
+export const colours = {
+  white: 'rgb(255 255 255 / <alpha-value>)',
+  whiteHex: '#ffffff',
+  black: 'rgb(0 0 0 / <alpha-value>)',
+  blackHex: '#000000',
+  offwhite: 'rgb(233 231 231 / <alpha-value>)',
+  offwhiteHex: '#E9E7E7',
+  mint: 'rgb(213 220 205 / <alpha-value>)',
+  mintHex: '#D5DCCD',
+  green: 'rgb(45 63 47 / <alpha-value>)',
+  greenHex: '#2D3F2F',
+  olive: 'rgb(92 95 66 / <alpha-value>)',
+  oliveHex: '#5C5F42',
+  brown: 'rgb(56 51 27 / <alpha-value>)',
+  brownHex: '#38331B',
+}
+
 export default {
   content: [
     './components/**/*.{js,vue,ts}',
@@ -50,22 +67,7 @@ export default {
   ],
   theme: {
     colors: {
-      // #ffffff
-      white: 'rgb(255 255 255 / <alpha-value>)',
-      // #000000
-      black: 'rgb(0 0 0 / <alpha-value>)',
-      // #232323
-      offblack: 'rgb(25 25 25 / <alpha-value>)',
-      // #f5f4ea
-      offwhite: 'rgb(233 231 231 / <alpha-value>)',
-      // #D5DCCD
-      mint: 'rgb(213 220 205 / <alpha-value>)',
-      // #2D3F2F
-      green: 'rgb(45 63 47 / <alpha-value>)',
-      // #5C5F42
-      olive: 'rgb(92 95 66 / <alpha-value>)',
-      // #38331B
-      brown: 'rgb(56 51 27 / <alpha-value>)',
+      ...colours,
     },
     spacing: {
       0: '0',
