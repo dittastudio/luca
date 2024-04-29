@@ -21,7 +21,6 @@ useSeoMeta({
 })
 
 const isHome = computed(() => route.path === '/')
-const isStories = computed(() => route.path.startsWith('/stories'))
 </script>
 
 <template>
@@ -76,6 +75,6 @@ const isStories = computed(() => route.path.startsWith('/stories'))
       </template>
     </AppLayout>
 
-    <AppCover />
+    <AppCover :message="story.content.cover_message" />
   </div>
 </template>
