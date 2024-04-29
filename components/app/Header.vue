@@ -213,8 +213,6 @@ const reservationsOpen = useState('reservationsOpen', () => false)
 
 <style lang="postcss">
 .app-header {
-  --header-background-tint: theme('colors.green/90%');
-
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
@@ -279,8 +277,8 @@ const reservationsOpen = useState('reservationsOpen', () => false)
   height: 100vh;
 
   opacity: 0;
-  background-color: var(--header-background-tint);
-  backdrop-filter: blur(8px);
+  background-color: var(--app-header-background-tint);
+  backdrop-filter: var(--app-header-blur);
 
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 

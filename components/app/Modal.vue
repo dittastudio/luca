@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import IconClose from '@/assets/icons/close.svg'
-
 const dialog = ref<HTMLDialogElement | null>(null)
 
 interface Props {
@@ -64,15 +62,17 @@ watch(
     class="app-modal"
   >
     <div
-      class="app-modal__outer wrapper"
+      class="app-modal__container"
       @click.self="setClose"
     >
-      <div class="app-modal__inner">
+      <div class="app-modal__outer">
         <button
-          class="app-modal__close"
+          class="app-modal__button"
           @click="setClose"
         >
-          <IconClose class="w-full h-full" />
+          <span class="app-modal__close">
+            <span class="app-modal__cross" />
+          </span>
 
           <span class="sr-only">
             Close
@@ -87,17 +87,21 @@ watch(
 
 <style lang="postcss">
 .app-modal {
+  overflow: hidden;
   display: block;
+
   width: 100%;
   max-width: 100%;
+  height: 100%;
   max-height: 100%;
-  margin: auto;
+  margin: 0;
+
   background-color: transparent;
 
   &::backdrop {
     cursor: pointer;
-    background-color: theme('colors.green/0.5');
-    backdrop-filter: blur(8px);
+    background-color: var(--app-header-background-tint);
+    backdrop-filter: var(--app-header-blur);
   }
 
   &:not([open]) {
@@ -124,51 +128,100 @@ watch(
   }
 }
 
-.app-modal__outer {
+.app-modal__container {
   width: 100%;
-  max-width: 696px;
-  padding-block: theme('spacing.40');
-}
-
-.app-modal__inner {
-  position: relative;
+  height: 100%;
   opacity: 0;
-  background-color: theme('colors.offwhite');
-  border-radius: theme('borderRadius.sm');
 
   .app-modal[open].app-modal--close & {
     opacity: 0;
-    transition:
-      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
   .app-modal[open] & {
     opacity: 1;
-    transition:
-    opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.200');
+    transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.200');
+  }
+}
+
+.app-modal__outer {
+  --max-width: 696px;
+
+  position: relative;
+
+  width: 100%;
+  max-width: var(--max-width);
+  height: 100%;
+  margin-inline: auto;
+
+  & > iframe {
+    height: 100%;
+  }
+}
+
+.app-modal__button {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 10px;
+
+  margin: calc(-1 * theme('spacing.20'));
+  padding: theme('spacing.20');
+
+  color: theme('colors.white');
+
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  &:hover {
+    opacity: 0.6;
   }
 }
 
 .app-modal__close {
-  position: absolute;
-  top: theme('spacing.30');
-  right: theme('spacing.30');
-  z-index: 1;
-  width: theme('spacing.30');
-  height: theme('spacing.30');
-  transition:
-      transform theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo');
+  --close-padding: 8px;
+  --close-size: theme('spacing.30');
 
-  &:hover,
-  &:focus {
-    transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+
+  width: var(--close-size);
+  height: var(--close-size);
+  padding: 8px;
+
+  color: theme('colors.white');
+
+  background-color: theme('colors.black/100%');
+  border-radius: 50%;
+}
+
+.app-modal__cross {
+  --cross-height: 1.5px;
+
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--cross-height);
+
+  &::before,
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: currentcolor;
   }
 
-  @screen md {
-    top: theme('spacing.60');
-    right: theme('spacing.60');
-    width: theme('spacing.40');
-    height: theme('spacing.40');
+  &::before {
+    rotate: 45deg;
+  }
+
+  &::after {
+    rotate: -45deg;
   }
 }
 

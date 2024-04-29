@@ -23,7 +23,7 @@ const setCurrentSlide = (slide: number) => {
         <div class="block-gallery__inner">
           <UiCarousel
             :slides="block.slides"
-            :ratio="'16:9'"
+            :ratio="'auto'"
             :loop="false"
             :pagination="false"
             @current-slide="setCurrentSlide"
@@ -32,8 +32,7 @@ const setCurrentSlide = (slide: number) => {
               <div class="block-gallery__item">
                 <NuxtImg
                   v-if="slide && storyblokAssetType(slide.filename) === 'image'"
-                  class="block-gallery__image"
-                  :class="ratioMap['3:2']"
+                  class="block-gallery__media"
                   provider="storyblok"
                   :src="slide.filename"
                   :alt="slide.alt"
@@ -49,7 +48,7 @@ const setCurrentSlide = (slide: number) => {
                 <MediaVideo
                   v-else-if="slide && storyblokAssetType(slide.filename) === 'video'"
                   :asset="slide"
-                  :ratio="'16:9'"
+                  class="block-gallery__media"
                 />
               </div>
             </template>
@@ -129,7 +128,7 @@ const setCurrentSlide = (slide: number) => {
   }
 }
 
-.block-gallery__image {
+.block-gallery__media {
   height: 100%;
   object-fit: contain;
   border-radius: theme('borderRadius.sm');
