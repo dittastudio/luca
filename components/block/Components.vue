@@ -102,7 +102,11 @@ const isHome = computed(() => route.path === '/')
     padding-block-start: var(--spacing-rhythm);
   }
 
-  &:not(&--block_gallery):first-child {
+  &:not(&--block_gallery):last-child {
+    padding-block-end: theme('spacing.150');
+  }
+
+  &:not(&--block_gallery, &--block_menus):first-child {
     padding-block-start: var(--first-spacing-rhythm);
   }
 
@@ -116,6 +120,7 @@ const isHome = computed(() => route.path === '/')
 
       height: 100vh;
       margin-block-start: calc(-1 * var(--app-header-height));
+      padding-block-start: 0;
     }
   }
 
@@ -142,21 +147,6 @@ const isHome = computed(() => route.path === '/')
     @screen md {
       padding-block-start: theme('spacing.20');
     }
-  }
-
-  &--block_gallery:first-child {
-    /* margin-block-start: calc(-1 * var(--app-header-height)); */
-
-    /* padding-block-start: theme('spacing.30');
-
-    @screen md {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      height: 100vh;
-      margin-block-start: calc(-1 * var(--app-header-height));
-    } */
   }
 }
 </style>

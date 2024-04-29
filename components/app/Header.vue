@@ -458,7 +458,8 @@ const reservationsOpen = useState('reservationsOpen', () => false)
     opacity: 1;
   }
 
-  .app-header--has-scrolled-down &{
+  .app-header--has-scrolled-down &,
+  .app-header--logo-hidden & {
     pointer-events: none;
     translate: 0 -15% 0;
     opacity: 0;
@@ -472,17 +473,6 @@ const reservationsOpen = useState('reservationsOpen', () => false)
       pointer-events: none;
       opacity: 0;
       transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-    }
-  }
-
-  @screen md {
-    .app-header--logo-hidden & {
-      pointer-events: none;
-      translate: 0 -15% 0;
-      opacity: 0;
-      transition:
-        opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-        translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
     }
   }
 }
@@ -506,12 +496,10 @@ const reservationsOpen = useState('reservationsOpen', () => false)
 
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
-  @screen md {
-    .app-header--reservation-hidden & {
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-    }
+  .app-header--reservation-hidden & {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 }
 

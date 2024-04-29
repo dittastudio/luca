@@ -32,7 +32,7 @@ const setCurrentSlide = (slide: number) => {
               <div class="block-gallery__item">
                 <NuxtImg
                   class="block-gallery__image"
-                  :class="ratioMap['16:9']"
+                  provider="storyblok"
                   :src="slide.filename"
                   :alt="slide.alt"
                 />
@@ -91,12 +91,21 @@ const setCurrentSlide = (slide: number) => {
 
 .block-gallery__grid {
   position: relative;
-
   display: grid;
   grid-template-columns: theme('spacing.20') repeat(3, minmax(0, 1fr)) theme('spacing.20');
   justify-content: center;
 
-  border-block-end: 1px solid currentcolor;
+  &::after {
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    border-block-end: 1px solid currentcolor;
+  }
 
   @screen md {
     grid-template-columns: var(--app-grid);
@@ -126,6 +135,7 @@ const setCurrentSlide = (slide: number) => {
     gap: theme('spacing.40');
   }
 }
+
 .block-gallery__item {
   height: 100%;
   padding-block: var(--app-header-height);
