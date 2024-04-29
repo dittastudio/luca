@@ -9,9 +9,16 @@ interface Props {
   slides: T[]
   loop?: boolean
   autoplay?: boolean
+  pagination?: boolean
 }
 
-const { slides, ratio, loop = true, autoplay = false } = defineProps<Props>()
+interface Emits {
+  (event: 'current-slide', payload: number): void
+}
+
+const emit = defineEmits<Emits>()
+
+const { slides, ratio, loop = true, autoplay = false, pagination = true } = defineProps<Props>()
 
 const { screens } = config.theme
 
@@ -54,6 +61,7 @@ const initAutoplay = (slider: KeenSliderInstance) => {
 }
 
 const [container, slider] = useKeenSlider({
+  disabled: slides.length <= 1,
   slides: {
     number: slides.length,
     spacing: 20,
@@ -63,8 +71,12 @@ const [container, slider] = useKeenSlider({
     duration: 1000,
   },
   initial: current.value,
+  created: () => {
+    emit('current-slide', current.value + 1)
+  },
   slideChanged: (s) => {
     current.value = s.track.details.rel
+    emit('current-slide', current.value + 1)
   },
   breakpoints: {
     [`(min-width: ${screens.md})`]: {
@@ -78,6 +90,10 @@ const [container, slider] = useKeenSlider({
   if (!autoplay) return
   initAutoplay(slider)
 }])
+
+// watchEffect(() => {
+//   if (current.value) emit('current-slide', current.value)
+// })
 
 const dotHelper = computed(() => slider.value ? [...Array(slider.value.track.details.slides.length).keys()] : [])
 
@@ -120,7 +136,7 @@ const eventKeydown = (event: KeyboardEvent) => {
   >
     <div
       ref="container"
-      class="ui-carousel__container  keen-slider"
+      class="ui-carousel__container keen-slider"
       :class="ratioMap[ratio]"
     >
       <div
@@ -137,8 +153,12 @@ const eventKeydown = (event: KeyboardEvent) => {
       </div>
     </div>
 
+    <!-- <div class="absolute left-0 bottom-0 text-white">
+      {{ current + 1 }} / {{ slides.length }}
+    </div> -->
+
     <div
-      v-if="slides.length > 1"
+      v-if="slides.length > 1 && pagination"
       class="ui-carousel__dots"
     >
       <button
@@ -160,41 +180,44 @@ const eventKeydown = (event: KeyboardEvent) => {
 
 <style lang="postcss" scoped>
 .ui-carousel {
+  height: inherit;
+
   &:focus {
     outline: none;
   }
 }
 
-.ui-carousel__container:not([data-keen-slider-disabled]) {
-  touch-action: pan-y pinch-zoom;
-  cursor: grab;
-  user-select: none;
-
+.ui-carousel__container {
   position: relative;
-
   width: 100%;
+  height: inherit;
 
-  -webkit-touch-callout: none;
+  &:not([data-keen-slider-disabled]) {
+    touch-action: pan-y pinch-zoom;
+    cursor: grab;
+    user-select: none;
 
-  &:active {
-    cursor: grabbing;
-  }
+    -webkit-touch-callout: none;
 
-  &[data-keen-slider-reverse] {
-    flex-direction: row-reverse;
-  }
+    &:active {
+      cursor: grabbing;
+    }
 
-  &[data-keen-slider-v] {
-    flex-wrap: wrap;
-  }
+    &[data-keen-slider-reverse] {
+      flex-direction: row-reverse;
+    }
 
-  @screen mdMax {
-    display: flex;
-  }
+    &[data-keen-slider-v] {
+      flex-wrap: wrap;
+    }
 
-  @screen md {
-    overflow: hidden;
+    @screen mdMax {
+      display: flex;
+    }
 
+    @screen md {
+      overflow: hidden;
+    }
   }
 }
 
