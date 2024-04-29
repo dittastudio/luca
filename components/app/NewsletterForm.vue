@@ -40,6 +40,11 @@ const validationSchema = toTypedSchema(
 )
 
 const { errors, resetForm } = useForm({
+  initialValues: {
+    fname: '',
+    lname: '',
+    email: '',
+  },
   validationSchema,
 })
 

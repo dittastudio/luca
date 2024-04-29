@@ -51,7 +51,7 @@ const {
           />
 
           <div class="app-footer__form">
-            <AppFooterForm />
+            <AppNewsletterForm />
           </div>
         </div>
       </div>
