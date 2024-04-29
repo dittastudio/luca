@@ -166,7 +166,7 @@ const eventKeydown = (event: KeyboardEvent) => {
 }
 
 .ui-carousel__container:not([data-keen-slider-disabled]) {
-  touch-action: pan-y;
+  touch-action: pan-y pinch-zoom;
   cursor: grab;
   user-select: none;
 
@@ -174,7 +174,6 @@ const eventKeydown = (event: KeyboardEvent) => {
 
   width: 100%;
 
-  -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 
   &:active {

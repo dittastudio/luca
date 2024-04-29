@@ -60,6 +60,17 @@ const isStories = computed(() => route.path.includes('/stories'))
       </template>
 
       <template #modal>
+        <AppModal>
+          <div class="prose">
+            <p
+              v-for="i in 20"
+              :key="i"
+            >
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur fugiat, molestias, nihil non amet blanditiis dolore iure assumenda sit enim, ad eligendi aliquid quas alias earum sunt dicta excepturi aperiam.
+            </p>
+          </div>
+        </AppModal>
+
         <DevOnly>
           <ToolGrid />
         </DevOnly>
