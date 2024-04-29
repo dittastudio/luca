@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ratioMap } from '@/utilities/maps'
-// import { storyblokAssetType } from '@/utilities/helpers'
+import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/helpers'
 import type { BlockGalleryStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -31,43 +31,27 @@ const setCurrentSlide = (slide: number) => {
             <template #slide="{ slide }">
               <div class="block-gallery__item">
                 <NuxtImg
+                  v-if="slide && storyblokAssetType(slide.filename) === 'image'"
                   class="block-gallery__image"
+                  :class="ratioMap['3:2']"
                   provider="storyblok"
                   :src="slide.filename"
                   :alt="slide.alt"
+                  :width="storyblokImageDimensions(slide.filename).width"
+                  :height="storyblokImageDimensions(slide.filename).height"
+                  :sizes="`
+                      100vw
+                      md:${8 / 12 * 100}vw
+                      3xl:${8 / 12 * 1800}px
+                    `"
+                />
+
+                <MediaVideo
+                  v-else-if="slide && storyblokAssetType(slide.filename) === 'video'"
+                  :asset="slide"
+                  :ratio="'16:9'"
                 />
               </div>
-            <!-- <div class="block-gallery__slide">
-              <NuxtImg
-                v-if="slide.media && storyblokAssetType(media.media.filename) === 'image'"
-                class="block-gallery__image"
-                :class="ratioMap['3:2']"
-                provider="storyblok"
-                :src="slide.filename"
-                :alt="slide.media.alt"
-                :width="slide.media.length === 1 ? '16' : '8'"
-                height="9"
-                :sizes="slide.media.length === 1
-                  ? `
-                    100vw
-                    md:${(10 / 12 * 100)}vw
-                    3xl:${(10 / 12 * 1800)}px
-                  `
-                  :`
-                    50vw
-                    md:${(5 / 12 * 100)}vw
-                    3xl:${(5 / 12 * 1800)}px
-                  `
-                "
-                loading="lazy"
-              />
-
-              <MediaVideo
-                v-else-if="media.media && storyblokAssetType(media.media.filename) === 'video'"
-                :asset="media.video"
-                :ratio="slide.media.length === 1 ? '16:9' : '8:9'"
-              />
-            </div> -->
             </template>
           </UiCarousel>
         </div>
