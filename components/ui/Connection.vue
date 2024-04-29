@@ -55,8 +55,8 @@ useIntersectionObserver(
     background-color: currentcolor;
 
     transition:
-      opacity theme('transitionDuration.2000') theme('transitionTimingFunction.outExpo'),
-      scale theme('transitionDuration.2000') theme('transitionTimingFunction.outExpo');
+      opacity theme('transitionDuration.1500') theme('transitionTimingFunction.outExpo'),
+      scale theme('transitionDuration.1500') theme('transitionTimingFunction.outExpo');
 
     &--seen {
       scale: 1 1 1;

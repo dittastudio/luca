@@ -33,7 +33,7 @@ onMounted(async () => {
     <div class="wrapper">
       <h1
         v-if="message"
-        :class="['app-cover__message', { 'is-active': messageVisible }]"
+        :class="['app-cover__message type-responsive-message', { 'is-active': messageVisible }]"
       >
         {{ message }}
       </h1>
@@ -60,15 +60,20 @@ html {
 <style lang="postcss" scoped>
 .app-cover {
   pointer-events: none;
+
   position: fixed;
   z-index: var(--app-layer-three);
   inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   height: 100vh;
   height: 100dvh;
+
   color: theme('colors.white');
+
   background-color: theme('colors.green');
 
   &.is-active {
@@ -87,7 +92,6 @@ html {
   }
 
   &__message {
-    font-size: theme('fontSize.responsive-message');
     text-align: center;
     text-wrap: balance;
   }
@@ -99,6 +103,7 @@ html {
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
+
     width: var(--logo-responsive-width);
     height: auto;
 

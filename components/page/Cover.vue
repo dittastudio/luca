@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <div :class="['page-cover', { 'is-active': coverVisible }]">
     <div class="wrapper">
-      <h1 :class="['page-cover__message', { 'is-active': messageVisible }]">
+      <h1 :class="['page-cover__message type-responsive-message', { 'is-active': messageVisible }]">
         {{ message }}
       </h1>
     </div>
@@ -80,7 +80,6 @@ html {
   }
 
   &__message {
-    font-size: theme('fontSize.responsive-message');
     text-align: center;
     text-wrap: balance;
   }

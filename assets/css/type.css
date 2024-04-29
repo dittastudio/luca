@@ -48,6 +48,11 @@
     font-size: theme('fontSize.10');
   }
 
+  .type-responsive-message {
+    font-size: theme('fontSize.responsive-message');
+    letter-spacing: theme('letterSpacing.plump');
+  }
+
   /* Body */
   .type-body {
     font-size: theme('fontSize.14');
