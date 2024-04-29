@@ -4,11 +4,12 @@ import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
 interface Props {
-  logoHidden?: boolean
   links?: LinkListStoryblok
+  logoHidden?: boolean
+  reservationHidden?: boolean
 }
 
-const { logoHidden, links } = defineProps<Props>()
+const { links, logoHidden, reservationHidden } = defineProps<Props>()
 
 const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
@@ -61,6 +62,7 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
   'app-header--logo-hidden': logoHidden,
+  'app-header--reservation-hidden': reservationHidden,
 }))
 
 const closeMenu = () => {
@@ -230,7 +232,7 @@ watch(
     opacity theme('transitionDuration.400') theme('transitionTimingFunction.in'),
     translate theme('transitionDuration.400') theme('transitionTimingFunction.in');
 
-  .app-header--has-scrolled:not(.app-header--is-open, .app-header--theme-light) & {
+  .app-header--has-scrolled:not(.app-header--is-open, .app-header--reservation-hidden) & {
     translate: 0 0 0;
     opacity: 1;
     transition:
@@ -480,9 +482,20 @@ watch(
 
 .app-header__details {
   pointer-events: auto;
+
   display: flex;
   gap: theme('spacing.30');
   align-items: center;
+
+  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+
+  @screen md {
+    .app-header--reservation-hidden & {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    }
+  }
 }
 
 .app-header__michelin-icon {
