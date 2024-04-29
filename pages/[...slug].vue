@@ -8,7 +8,7 @@ if (!story.value) {
   throw createError({
     statusCode: 404,
     statusMessage: `Page not found`,
-    fatal: false,
+    fatal: true,
   })
 }
 
