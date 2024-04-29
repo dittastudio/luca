@@ -1,15 +1,6 @@
-<script lang="ts" setup>
-interface Props {
-  type: 'green' | 'white'
-}
-
-const { type = 'white' } = defineProps<Props>()
-</script>
-
 <template>
   <span
     class="button-appearance"
-    :class="`button-appearance--type-${type}`"
   >
     <span class="button-appearance__text">
       <slot />
@@ -32,30 +23,19 @@ const { type = 'white' } = defineProps<Props>()
   font-family: theme('fontFamily.heading');
   font-size: theme('fontSize.12');
   font-weight: normal;
-  color: var(--button-text-color);
+  color: var(--app-text-color);
   text-indent: theme('letterSpacing.widest');
   text-transform: uppercase;
   letter-spacing: theme('letterSpacing.widest');
 
-  background-color: var(--button-background-color);
+  background-color: transparent;
+  border: 1px solid var(--app-text-color);
   border-radius: theme('borderRadius.sm');
 
   transition:
     background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+    border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
     color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  &::before {
-    content: '';
-
-    position: absolute;
-    inset: 0;
-
-    border: 1px solid var(--button-border-color);
-    border-radius: inherit;
-
-    transition: border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  }
 
   &::after {
     content: '';
@@ -71,18 +51,6 @@ const { type = 'white' } = defineProps<Props>()
     transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
-  &.button-appearance--type-green {
-    --button-background-color: transparent;
-    --button-text-color: theme('colors.green');
-    --button-border-color: theme('colors.green');
-  }
-
-  &.button-appearance--type-white {
-    --button-background-color: transparent;
-    --button-text-color: theme('colors.white');
-    --button-border-color: theme('colors.white');
-  }
-
   a:active &::after,
   button:not(:disabled):active &::after {
     opacity: 1;
@@ -91,17 +59,9 @@ const { type = 'white' } = defineProps<Props>()
   @media (hover: hover) {
     a:hover &,
     button:not(:disabled):hover & {
-      &.button-appearance--type-green {
-      --button-background-color: theme('colors.green');
-      --button-text-color: theme('colors.white');
-      --button-border-color: theme('colors.green');
-      }
-
-      &.button-appearance--type-white {
-        --button-background-color: theme('colors.white');
-        --button-text-color: theme('colors.green');
-        --button-border-color: theme('colors.white');
-      }
+      color: var(--app-background-color);
+      background-color: var(--app-text-color);
+      border-color: var(--app-text-color);
     }
   }
 }

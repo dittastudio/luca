@@ -23,4 +23,9 @@ declare namespace Luca {
     quality?: number
     blur?: number
   }
+
+  export type Theme = {
+    background: string
+    text: string
+  }
 }

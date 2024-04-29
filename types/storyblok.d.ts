@@ -1,11 +1,5 @@
 import {StoryblokStory} from 'storyblok-generate-ts'
 
-export interface BackgroundStoryblok {
-  _uid: string;
-  component: "background";
-  [k: string]: any;
-}
-
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -191,6 +185,7 @@ export interface MenuStoryblok {
 
 export interface PageStoryblok {
   seo: SeoStoryblok[];
+  themes?: ThemeStoryblok[];
   blocks?: (
     | BlockButtonStoryblok
     | BlockCardStoryblok
@@ -202,7 +197,6 @@ export interface PageStoryblok {
     | BlockTextStoryblok
     | BlockTextEditorialStoryblok
   )[];
-  background?: BackgroundStoryblok[];
   _uid: string;
   component: "page";
   uuid?: string;
@@ -241,5 +235,11 @@ export interface SlideStoryblok {
   media: ImageVideoStoryblok[];
   _uid: string;
   component: "slide";
+  [k: string]: any;
+}
+
+export interface ThemeStoryblok {
+  _uid: string;
+  component: "theme";
   [k: string]: any;
 }

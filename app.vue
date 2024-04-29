@@ -21,7 +21,7 @@ useSeoMeta({
 })
 
 const isHome = computed(() => route.path === '/')
-const isStories = computed(() => route.path.includes('/stories'))
+const isStories = computed(() => route.path.startsWith('/stories'))
 </script>
 
 <template>
@@ -29,7 +29,6 @@ const isStories = computed(() => route.path.includes('/stories'))
     <AppLayout>
       <template #header>
         <AppHeader
-          :theme="isStories ? 'light' : 'dark'"
           :logo-hidden="isHome"
           :links="story.content.navigation?.[0]"
         />

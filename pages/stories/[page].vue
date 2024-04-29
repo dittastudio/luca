@@ -22,16 +22,17 @@ onMounted(() => {
   }
 })
 
-const setBackground = (color: string) => {
-  document.documentElement.style.setProperty('--app-background-color', color)
+const setAppTheme = (theme: Luca.Theme) => {
+  document.documentElement.style.setProperty('--app-background-color', theme.background)
+  document.documentElement.style.setProperty('--app-text-color', theme.text)
 }
 </script>
 
 <template>
-  <AppBackground
-    :backgrounds="story.content.background"
-    @background="setBackground"
+  <AppTheme
+    :themes="story.content.themes"
+    @theme="setAppTheme"
   >
     <BlockComponents :content="story.content" />
-  </AppBackground>
+  </AppTheme>
 </template>

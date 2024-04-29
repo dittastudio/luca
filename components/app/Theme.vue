@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
-import type { BackgroundStoryblok } from '@/types/storyblok'
+import type { ThemeStoryblok } from '@/types/storyblok'
 
 interface Props {
-  backgrounds?: BackgroundStoryblok[]
+  themes?: ThemeStoryblok[]
 }
 
-const { backgrounds = [] } = defineProps<Props>()
+const { themes = [] } = defineProps<Props>()
 
 interface Emits {
-  (event: 'background', payload: string): void
+  (event: 'theme', payload: { background: string, text: string }): void
 }
 
 const emit = defineEmits<Emits>()
 
-const segment = backgrounds.length === 0 ? 0 : 100 / backgrounds.length
+const segment = themes.length === 0 ? 0 : 100 / themes.length
 const itemRefs = ref<HTMLDivElement[]>([])
 
 useIntersectionObserver(
@@ -24,9 +24,14 @@ useIntersectionObserver(
       if (
         entry.isIntersecting
         && entry.target instanceof HTMLDivElement
-        && entry.target?.dataset?.color
+        && entry.target?.dataset?.theme
       ) {
-        emit('background', entry.target.dataset.color)
+        const theme = JSON.parse(entry.target.dataset.theme) as Luca.Theme
+
+        emit('theme', {
+          background: theme.background,
+          text: theme.text,
+        })
       }
     })
   },
@@ -34,7 +39,7 @@ useIntersectionObserver(
 )
 
 onUnmounted(() => {
-  emit('background', '#2D3F2F')
+  // emit('background', '#2D3F2F')
 })
 </script>
 
@@ -44,12 +49,12 @@ onUnmounted(() => {
 
     <div class="absolute inset-0 flex flex-col items-start justify-start pointer-events-none">
       <div
-        v-for="background in backgrounds"
+        v-for="theme in themes"
         ref="itemRefs"
-        :key="background._uid"
+        :key="theme._uid"
         class="w-full"
         :style="{ height: `${segment}%` }"
-        :data-color="background?.colour?.color || null"
+        :data-theme="JSON.stringify({ background: theme?.background?.color || null, text: theme?.text?.color || null })"
       />
     </div>
   </div>

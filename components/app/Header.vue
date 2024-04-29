@@ -4,12 +4,11 @@ import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
 interface Props {
-  theme?: 'light' | 'dark'
   logoHidden?: boolean
   links?: LinkListStoryblok
 }
 
-const { logoHidden, links, theme = 'dark' } = defineProps<Props>()
+const { logoHidden, links } = defineProps<Props>()
 
 const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
@@ -62,7 +61,6 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
   'app-header--logo-hidden': logoHidden,
-  [`app-header--theme-${theme}`]: true,
 }))
 
 const closeMenu = () => {
@@ -138,7 +136,7 @@ watch(
           class="app-header__reservations"
           type="button"
         >
-          <AppearanceButton :type="theme === 'light' ? 'green' : 'white'">
+          <AppearanceButton>
             Reservations
           </AppearanceButton>
         </button>
@@ -196,7 +194,6 @@ watch(
 
 <style lang="postcss">
 .app-header {
-  /* --header-text-color: currentcolor; */
   --header-background-tint: theme('colors.green/90%');
 
   isolation: isolate;
@@ -207,14 +204,9 @@ watch(
   html:has(&.app-header--is-open) {
     overflow: hidden;
   }
-}
 
-.app-header--theme-light {
-  --header-background-tint: theme('colors.mint/90%');
-
-  html:has(&) {
-    --app-text-color: theme('colors.green');
-    --app-background-color: theme('colors.mint') !important;
+  &.app-header--is-open {
+    color: theme('colors.white');
   }
 }
 
@@ -258,11 +250,14 @@ watch(
 
 .app-header__bg {
   position: absolute;
+
   width: 100%;
   height: 100vh;
+
   opacity: 0;
   background-color: var(--header-background-tint);
   backdrop-filter: blur(8px);
+
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   .app-header--is-open & {
@@ -283,9 +278,11 @@ watch(
   }
 
   position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   height: 100%;
   padding-block: var(--header-padding);
 
@@ -298,6 +295,7 @@ watch(
   @screen md {
     position: relative;
     z-index: 1;
+
     display: flex;
     gap: theme('spacing.10');
     align-items: flex-start;
@@ -306,8 +304,10 @@ watch(
 
 .app-header__switch {
   pointer-events: auto;
+
   position: relative;
   z-index: 1;
+
   margin: calc(-1 * theme('spacing.20'));
   padding: theme('spacing.20');
 
@@ -339,9 +339,11 @@ watch(
 
   transform-origin: left;
   scale: 0 1 1;
+
   width: var(--line-width);
   height: 1px;
   margin-block: var(--line-alignment-nudge);
+
   opacity: 0;
   background-color: currentcolor;
 
@@ -375,12 +377,16 @@ watch(
     position: absolute;
     z-index: -1;
     inset: 0;
+
     overflow-y: auto;
+
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
+
     opacity: 0;
     background-color: theme('colors.green');
+
     transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
     .app-header--is-open & {
@@ -397,9 +403,11 @@ watch(
 .app-header__logo {
   position: absolute;
   inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding-block: var(--header-padding);
 
   @screen md {
@@ -409,9 +417,13 @@ watch(
 
 .app-header__logo-link {
   pointer-events: auto;
+
   translate: 0 0 0;
+
   display: block;
+
   opacity: 1;
+
   transition:
     opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
     translate 0s 0s;

@@ -89,7 +89,7 @@ const { block } = defineProps<Props>()
                 :to="menu.pdf.filename"
                 target="_blank"
               >
-                <AppearanceButton type="white">
+                <AppearanceButton>
                   Download
                 </AppearanceButton>
               </NuxtLink>

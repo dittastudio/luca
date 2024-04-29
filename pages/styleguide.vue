@@ -13,7 +13,7 @@ const openModal = () => {
         type="button"
         @click="openModal"
       >
-        <AppearanceButton type="white">
+        <AppearanceButton>
           Trigger Modal
         </AppearanceButton>
       </button>
@@ -61,7 +61,7 @@ const openModal = () => {
       <br>
 
       <button type="button">
-        <AppearanceButton type="white">
+        <AppearanceButton>
           Button
         </AppearanceButton>
       </button>
@@ -116,7 +116,7 @@ const openModal = () => {
         <br>
 
         <button type="button">
-          <AppearanceButton type="green">
+          <AppearanceButton>
             Button
           </AppearanceButton>
         </button>
