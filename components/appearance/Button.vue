@@ -1,17 +1,19 @@
 <template>
   <span
-    class="button-appearance"
+    class="appearance-button"
   >
-    <span class="button-appearance__text">
+    <span class="appearance-button__text">
       <slot />
     </span>
   </span>
 </template>
 
 <style lang="postcss">
-.button-appearance {
+.appearance-button {
   --button-padding-y: 1.25em;
   --button-padding-x: 2.2em;
+  --button-color: var(--app-text-color);
+  --button-hover-color: var(--app-background-color);
 
   isolation: isolate;
   position: relative;
@@ -23,13 +25,13 @@
   font-family: theme('fontFamily.heading');
   font-size: theme('fontSize.12');
   font-weight: normal;
-  color: var(--app-text-color);
+  color: var(--button-color);
   text-indent: theme('letterSpacing.widest');
   text-transform: uppercase;
   letter-spacing: theme('letterSpacing.widest');
 
   background-color: transparent;
-  border: 1px solid var(--app-text-color);
+  border: 1px solid var(--button-color);
   border-radius: theme('borderRadius.sm');
 
   transition:
@@ -59,14 +61,14 @@
   @media (hover: hover) {
     a:hover &,
     button:not(:disabled):hover & {
-      color: var(--app-background-color);
-      background-color: var(--app-text-color);
-      border-color: var(--app-text-color);
+      color: var(--button-hover-color);
+      background-color: var(--button-color);
+      border-color: var(--button-color);
     }
   }
 }
 
-.button-appearance__text {
+.appearance-button__text {
   position: relative;
   z-index: 1;
   top: 0.1em;

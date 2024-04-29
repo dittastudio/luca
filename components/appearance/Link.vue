@@ -1,11 +1,11 @@
 <template>
-  <span class="link-appearance">
+  <span class="appearance-link">
     <slot />
   </span>
 </template>
 
 <style lang="postcss">
-.link-appearance {
+.appearance-link {
   --link-padding-x: theme('spacing.10');
   --link-padding-y: theme('spacing.10');
 

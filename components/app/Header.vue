@@ -207,6 +207,11 @@ watch(
 
   &.app-header--is-open {
     color: theme('colors.white');
+
+    .appearance-button {
+      --button-color: theme('colors.white');
+      --button-hover-color: theme('colors.green');
+    }
   }
 }
 
