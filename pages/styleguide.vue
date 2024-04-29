@@ -5,15 +5,15 @@ const mockBlockGallery = {
   ratio: '3:2',
   slides: [
     {
-      filename: 'https://placehold.co/600x400/FFF/000/png',
+      filename: 'https://placehold.co/3000x2000/FFF/000/png',
       alt: 'Image 1',
     },
     {
-      filename: 'https://placehold.co/600x400/000/FFF/png',
+      filename: 'https://placehold.co/3000x2000/000/FFF/png',
       alt: 'Image 2',
     },
     {
-      filename: 'https://placehold.co/600x400/F00/000/png',
+      filename: 'https://placehold.co/3000x2000/F00/000/png',
       alt: 'Image 3',
     },
   ],
@@ -22,7 +22,7 @@ const mockBlockGallery = {
 
 <template>
   <div>
-    <BlockGallery :block="mockBlockGallery" />
+    <!-- <BlockGallery :block="mockBlockGallery" /> -->
 
     <div class="section wrapper">
       <h1 class="type-h1 opacity-40">

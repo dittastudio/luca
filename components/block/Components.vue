@@ -43,6 +43,11 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
+      <BlockGallery
+        v-else-if="block.component === 'block_gallery'"
+        :block="block"
+      />
+
       <BlockMedia
         v-else-if="block.component === 'block_media'"
         :block="block"
@@ -97,7 +102,7 @@ const isHome = computed(() => route.path === '/')
     padding-block-start: var(--spacing-rhythm);
   }
 
-  &:first-child {
+  &:not(&--block_gallery):first-child {
     padding-block-start: var(--first-spacing-rhythm);
   }
 
@@ -137,6 +142,21 @@ const isHome = computed(() => route.path === '/')
     @screen md {
       padding-block-start: theme('spacing.20');
     }
+  }
+
+  &--block_gallery:first-child {
+    /* margin-block-start: calc(-1 * var(--app-header-height)); */
+
+    /* padding-block-start: theme('spacing.30');
+
+    @screen md {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      height: 100vh;
+      margin-block-start: calc(-1 * var(--app-header-height));
+    } */
   }
 }
 </style>

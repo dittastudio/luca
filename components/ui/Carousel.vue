@@ -91,10 +91,6 @@ const [container, slider] = useKeenSlider({
   initAutoplay(slider)
 }])
 
-// watchEffect(() => {
-//   if (current.value) emit('current-slide', current.value)
-// })
-
 const dotHelper = computed(() => slider.value ? [...Array(slider.value.track.details.slides.length).keys()] : [])
 
 const goToSlide = (action: 'prev' | 'next') => {
@@ -152,10 +148,6 @@ const eventKeydown = (event: KeyboardEvent) => {
         />
       </div>
     </div>
-
-    <!-- <div class="absolute left-0 bottom-0 text-white">
-      {{ current + 1 }} / {{ slides.length }}
-    </div> -->
 
     <div
       v-if="slides.length > 1 && pagination"

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ratioMap } from '@/utilities/maps'
 // import { storyblokAssetType } from '@/utilities/helpers'
-import type { BlockCarouselStoryblok } from '@/types/storyblok'
+import type { BlockGalleryStoryblok } from '@/types/storyblok'
 
 interface Props {
-  block: BlockCarouselStoryblok
+  block: BlockGalleryStoryblok
 }
 
 const { block } = defineProps<Props>()
@@ -23,7 +23,8 @@ const setCurrentSlide = (slide: number) => {
         <div class="block-gallery__inner">
           <UiCarousel
             :slides="block.slides"
-            :ratio="block.ratio"
+            :ratio="'16:9'"
+            :loop="false"
             :pagination="false"
             @current-slide="setCurrentSlide"
           >
@@ -31,7 +32,7 @@ const setCurrentSlide = (slide: number) => {
               <div class="block-gallery__item">
                 <NuxtImg
                   class="block-gallery__image"
-                  :class="ratioMap[block.ratio]"
+                  :class="ratioMap['16:9']"
                   :src="slide.filename"
                   :alt="slide.alt"
                 />
@@ -72,11 +73,11 @@ const setCurrentSlide = (slide: number) => {
         </div>
 
         <h5 class="block-gallery__caption type-body-large">
-          <span v-if="block.slides.length > 1">
-            {{ currentSlide }} / {{ block.slides.length }}
+          <span v-if="block.slides?.length > 1">
+            {{ currentSlide }} / {{ block.slides?.length }}
           </span>
 
-          <span>Title Here</span>
+          <span v-if="block.title">{{ block.title }}</span>
         </h5>
       </div>
     </div>
@@ -86,21 +87,25 @@ const setCurrentSlide = (slide: number) => {
 <style lang="postcss">
 .block-gallery {
   overflow: hidden;
-  background-color: tomato;
 }
 
 .block-gallery__grid {
   position: relative;
+
+  display: grid;
+  grid-template-columns: theme('spacing.20') repeat(3, minmax(0, 1fr)) theme('spacing.20');
+  justify-content: center;
+
   border-block-end: 1px solid currentcolor;
 
   @screen md {
-    display: grid;
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
   }
 }
 
 .block-gallery__inner {
+  grid-column: 2 / span 3;
   height: 100vh;
 
   @screen md {

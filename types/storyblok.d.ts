@@ -87,6 +87,25 @@ export interface BlockCarouselStoryblok {
   [k: string]: any;
 }
 
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface BlockGalleryStoryblok {
+  title?: string;
+  slides?: MultiassetStoryblok;
+  connecting_line?: boolean;
+  _uid: string;
+  component: "block_gallery";
+  [k: string]: any;
+}
+
 export interface BlockMediaStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
@@ -164,16 +183,6 @@ export interface LinkListStoryblok {
   [k: string]: any;
 }
 
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
-
 export interface MenuStoryblok {
   title: string;
   images: MultiassetStoryblok;
@@ -185,12 +194,14 @@ export interface MenuStoryblok {
 
 export interface PageStoryblok {
   seo: SeoStoryblok[];
+  cover_message?: string;
   themes?: ThemeStoryblok[];
   blocks?: (
     | BlockButtonStoryblok
     | BlockCardStoryblok
     | BlockCardEditorialStoryblok
     | BlockCarouselStoryblok
+    | BlockGalleryStoryblok
     | BlockMediaStoryblok
     | BlockMenusStoryblok
     | BlockSplitStoryblok
@@ -213,7 +224,7 @@ export interface SeoStoryblok {
 }
 
 export interface SettingsStoryblok {
-  cover_message: string;
+  cover_message?: string;
   navigation?: LinkListStoryblok[];
   opening_times_title?: string;
   opening_times?: RichtextStoryblok;
@@ -240,6 +251,8 @@ export interface SlideStoryblok {
 }
 
 export interface ThemeStoryblok {
+  background: "white" | "offwhite" | "mint" | "green" | "olive" | "brown";
+  text: "white" | "green";
   _uid: string;
   component: "theme";
   [k: string]: any;
