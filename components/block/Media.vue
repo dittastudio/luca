@@ -14,7 +14,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 <template>
   <div
     v-editable="block"
-    class="block-image wrapper"
+    class="block-media wrapper"
   >
     <div
       :class="[
@@ -24,7 +24,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     >
       <NuxtImg
         v-if="block.media && assetType === 'image'"
-        class="block-card__image"
+        class="block-media__image"
         provider="storyblok"
         :src="block.media.filename"
         :alt="block.media.alt"
@@ -41,6 +41,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 
       <MediaVideo
         v-else-if="block.media && assetType === 'video'"
+        class="block-media__image"
         :asset="block.media"
         :ratio="block.ratio"
       />
@@ -49,7 +50,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 </template>
 
 <style lang="postcss" scoped>
-.block-image {
+.block-media {
   @screen md {
     display: grid;
     grid-template-columns: var(--app-grid);
@@ -57,7 +58,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
-.block-image__image {
+.block-media__image {
   border-radius: theme('borderRadius.sm');
 }
 </style>
