@@ -1,56 +1,43 @@
 <script lang="ts" setup>
 import { wait } from '@/utilities/helpers'
-import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 
 interface Props {
-  message?: string
+  message: string
 }
 
 const { message } = defineProps<Props>()
 
 const coverVisible = ref(true)
 const messageVisible = ref(false)
-const logoVisible = ref(false)
 
 onMounted(async () => {
   await wait(1000)
-
-  if (message) {
-    messageVisible.value = true
-    await wait(2000)
-    messageVisible.value = false
-    await wait(1000)
-  }
-
-  logoVisible.value = true
+  messageVisible.value = true
   await wait(2000)
+  messageVisible.value = false
+  await wait(1000)
   coverVisible.value = false
 })
 </script>
 
 <template>
-  <div :class="['app-cover', { 'is-active': coverVisible }]">
+  <div :class="['page-cover', { 'is-active': coverVisible }]">
     <div class="wrapper">
-      <h1
-        v-if="message"
-        :class="['app-cover__message', { 'is-active': messageVisible }]"
-      >
+      <h1 :class="['page-cover__message', { 'is-active': messageVisible }]">
         {{ message }}
       </h1>
-
-      <IconLucaLogo :class="['app-cover__logo', { 'is-active': logoVisible }]" />
     </div>
   </div>
 </template>
 
 <style lang="postcss">
 html {
-  &:not(.is-storyblok-editor):has(.app-cover.is-active) {
+  &:not(.is-storyblok-editor):has(.page-cover.is-active) {
     overflow: hidden;
   }
 
   &.is-storyblok-editor {
-    .app-cover {
+    .page-cover {
       display: none;
     }
   }
@@ -58,7 +45,7 @@ html {
 </style>
 
 <style lang="postcss" scoped>
-.app-cover {
+.page-cover {
   pointer-events: none;
   position: fixed;
   z-index: var(--app-layer-three);
@@ -68,16 +55,15 @@ html {
   justify-content: center;
   height: 100vh;
   height: 100dvh;
-  color: theme('colors.white');
-  background-color: theme('colors.green');
+  color: var(--app-text-color);
+  background-color: var(--app-background-color);
 
   &.is-active {
     pointer-events: auto;
   }
 
   &,
-  &__message,
-  &__logo {
+  &__message {
     opacity: 0;
     transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
@@ -90,25 +76,6 @@ html {
     font-size: theme('fontSize.responsive-message');
     text-align: center;
     text-wrap: balance;
-  }
-
-  &__logo {
-    --logo-responsive-width: 60vw;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    width: var(--logo-responsive-width);
-    height: auto;
-
-    @screen md {
-      --logo-responsive-width: 31.55vw;
-    }
-
-    @screen 2xl {
-      --logo-responsive-width: 454px;
-    }
   }
 }
 </style>

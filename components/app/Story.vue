@@ -7,14 +7,7 @@ const { isOpen = false } = defineProps<Props>()
 </script>
 
 <template>
-  <div
-    :class="[
-      'app-story',
-      {
-        'app-story--is-open': isOpen,
-      },
-    ]"
-  >
+  <div :class="['app-story', { 'app-story--is-open': isOpen }]">
     <div class="app-story__content">
       <slot />
     </div>
@@ -47,7 +40,7 @@ const { isOpen = false } = defineProps<Props>()
   width: 100%;
   height: 100vh;
   height: 100dvh;
-  background-color: theme('colors.white');
+  background-color: theme('colors.offwhite');
   color: theme('colors.green');
   overflow-x: hidden;
   overflow-y: auto;
@@ -58,6 +51,11 @@ const { isOpen = false } = defineProps<Props>()
   .app-story--is-open & {
     transform: translate3d(0, 0, 0);
     transition-delay: theme('transitionDelay.500');
+  }
+
+  :deep(.page-cover) {
+    background-color: theme('colors.offwhite');
+    color: theme('colors.green');
   }
 }
 </style>
