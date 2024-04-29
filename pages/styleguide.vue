@@ -1,23 +1,28 @@
 <script lang="ts" setup>
-const isModalOpen = useState('isModalOpen')
-
-const openModal = () => {
-  isModalOpen.value = true
-}
+const mockBlockGallery = {
+  autoplay: false,
+  loop: false,
+  ratio: '3:2',
+  slides: [
+    {
+      filename: 'https://placehold.co/600x400/FFF/000/png',
+      alt: 'Image 1',
+    },
+    {
+      filename: 'https://placehold.co/600x400/000/FFF/png',
+      alt: 'Image 2',
+    },
+    {
+      filename: 'https://placehold.co/600x400/F00/000/png',
+      alt: 'Image 3',
+    },
+  ],
+} as any
 </script>
 
 <template>
   <div>
-    <div class="section wrapper">
-      <button
-        type="button"
-        @click="openModal"
-      >
-        <AppearanceButton>
-          Trigger Modal
-        </AppearanceButton>
-      </button>
-    </div>
+    <BlockGallery :block="mockBlockGallery" />
 
     <div class="section wrapper">
       <h1 class="type-h1 opacity-40">
