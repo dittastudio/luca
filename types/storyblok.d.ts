@@ -213,6 +213,7 @@ export interface SeoStoryblok {
 }
 
 export interface SettingsStoryblok {
+  cover_message: string;
   navigation?: LinkListStoryblok[];
   opening_times_title?: string;
   opening_times?: RichtextStoryblok;

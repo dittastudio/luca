@@ -2,6 +2,12 @@
 import { wait } from '@/utilities/helpers'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 
+interface Props {
+  message: string
+}
+
+const { message } = defineProps<Props>()
+
 const coverVisible = ref(true)
 const messageVisible = ref(false)
 const logoVisible = ref(false)
@@ -22,7 +28,7 @@ onMounted(async () => {
   <div :class="['cover', { 'is-active': coverVisible }]">
     <div class="wrapper">
       <h1 :class="['cover__message', { 'is-active': messageVisible }]">
-        Modern Italian cooking in the heart of Clerkenwell
+        {{ message }}
       </h1>
 
       <IconLucaLogo :class="['cover__logo', { 'is-active': logoVisible }]" />
