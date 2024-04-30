@@ -85,6 +85,7 @@ watch(
 
 <style lang="postcss">
 .app-modal {
+  overflow-x: hidden;
   display: block;
 
   width: 100%;
