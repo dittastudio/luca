@@ -55,6 +55,10 @@ onMounted(() => {
   &--is-hidden {
     opacity: 0;
   }
+
+  @screen mdMax {
+    display: none;
+  }
 }
 
 .cover-logo__icon {
@@ -70,9 +74,5 @@ onMounted(() => {
 
   width: var(--logo-responsive-width);
   height: auto;
-
-  @screen mdMax {
-    display: none;
-  }
 }
 </style>
