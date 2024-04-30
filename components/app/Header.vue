@@ -216,13 +216,12 @@ const reservationsOpen = useState('reservationsOpen', () => false)
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
-  transition: color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
   }
 
-  &.app-header--is-open {
+  &--is-open {
     color: theme('colors.white');
 
     .appearance-button {

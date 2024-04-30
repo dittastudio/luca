@@ -23,15 +23,8 @@ const { isOpen = false } = defineProps<Props>()
 
   display: flex;
   align-items: center;
-
   width: var(--size);
   height: var(--size);
-
-  transition: color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  &.app-header-burger--is-open {
-    color: theme('colors.white');
-  }
 }
 
 .app-header-burger__inner {

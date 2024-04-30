@@ -5,6 +5,9 @@ import type { SettingsStoryblok } from '@/types/storyblok'
 const route = useRoute()
 const story = await useStoryblokStory<SettingsStoryblok>('/settings')
 
+const isHome = computed(() => route.path === '/')
+const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
+
 const globalClasses = computed(() => ({
   'is-storyblok-editor': isStoryblokEditor(route.query),
 }))
@@ -19,9 +22,6 @@ useSeoMeta({
   titleTemplate: title => (title ? `${title} - Luca` : 'Luca'),
   robots: 'index, follow',
 })
-
-const isHome = computed(() => route.path === '/')
-const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
 </script>
 
 <template>

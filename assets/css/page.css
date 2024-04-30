@@ -3,7 +3,7 @@
     color: var(--app-text-color);
     background-color: var(--app-background-color);
     transition:
-      color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+      color var(--app-background-speed) var(--app-background-ease),
       background-color var(--app-background-speed) var(--app-background-ease);
   }
 
