@@ -89,9 +89,11 @@ watch(() => isOpen, (value) => {
 }
 
 .app-story__bar {
-  position: absolute;
+  pointer-events: none;
+
+  position: sticky;
+  z-index: 1;
   top: 0;
-  left: 0;
 
   display: flex;
   align-items: center;
@@ -99,6 +101,7 @@ watch(() => isOpen, (value) => {
 
   width: 100%;
   height: var(--app-header-height);
+  margin-top: calc(-1 * var(--app-header-height));
   padding-block:var(--app-header-padding-y);
 
   @screen md {
@@ -109,11 +112,7 @@ watch(() => isOpen, (value) => {
 
 .app-story__link {
   pointer-events: auto;
-
-  z-index: 1;
-
   display: block;
-
   margin: calc(-1 * theme('spacing.20'));
   padding: theme('spacing.20');
 
