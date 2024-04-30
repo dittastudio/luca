@@ -35,9 +35,9 @@
   border-radius: theme('borderRadius.sm');
 
   transition:
-    background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-    border-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-    color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    background-color var(--app-element-speed) theme('transitionTimingFunction.smooth'),
+    border-color var(--app-element-speed) theme('transitionTimingFunction.smooth'),
+    color var(--app-element-speed) theme('transitionTimingFunction.smooth');
 
   &::after {
     content: '';

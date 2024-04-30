@@ -209,6 +209,7 @@ const toggleNavigation = () => {
   isolation: isolate;
   position: relative;
   height: var(--app-header-height);
+  transition: color var(--app-header-speed) theme('transitionTimingFunction.smooth');
 
   html:has(&.app-header--is-open) {
     overflow: hidden;
