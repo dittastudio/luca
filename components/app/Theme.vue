@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
+import { doc } from 'prettier'
 import type { ThemeStoryblok } from '@/types/storyblok'
 import { colours } from '@/tailwind.config'
+import { wait } from '@/utilities/helpers'
 
 interface Props {
   themes?: ThemeStoryblok[]
@@ -20,15 +22,24 @@ const segment = themes.length === 0 ? 0 : 100 / themes.length
 const itemRefs = ref<HTMLDivElement[]>([])
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9) // Hack!
 
-onMounted(() => {
-  if (isStoryPage.value) return
-
-  if (!themes.length) {
+onMounted(async () => {
+  if (!isStoryPage.value && !themes.length) {
     emit('theme', {
       background: colours.greenHex,
       text: colours.whiteHex,
     })
   }
+
+  await wait(500)
+  document.documentElement.style.setProperty('--app-background-speed', '3000ms')
+  document.documentElement.style.setProperty('--app-element-speed', '200ms')
+  document.documentElement.style.setProperty('--app-header-speed', '200ms')
+})
+
+onUnmounted(() => {
+  document.documentElement.style.setProperty('--app-background-speed', '500ms')
+  document.documentElement.style.setProperty('--app-element-speed', '500ms')
+  document.documentElement.style.setProperty('--app-header-speed', '0ms')
 })
 
 useIntersectionObserver(

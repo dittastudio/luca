@@ -1,15 +1,24 @@
 @layer base {
   :root {
+    /* Theme */
     --app-text-color: theme('colors.white');
     --app-background-color: theme('colors.green');
-    --app-background-speed: theme('transitionDuration.500');
+    --app-background-speed: theme('transitionDuration.3000');
     --app-background-ease: theme('transitionTimingFunction.smooth');
+    --app-element-speed: theme('transitionDuration.200');
+    --app-header-speed: theme('transitionDuration.200');
+
+    /* Spacing */
     --app-inner-gutter: theme('spacing.20');
     --app-outer-gutter: theme('spacing.20');
     --app-grid: repeat(2, minmax(0, 1fr));
+
+    /* Header */
     --app-header-background-tint: theme('colors.green/90%');
     --app-header-blur: blur(8px);
     --app-header-height: 87px;
+
+    /* Layers */
     --app-layer-one: 1;
     --app-layer-two: 2;
     --app-layer-three: 3;

@@ -1,7 +1,7 @@
 <script lang="ts" setup generic="T">
 import { useKeenSlider } from 'keen-slider/vue.es'
 import type { KeenSliderInstance } from 'keen-slider/vue.es'
-import config from '@/tailwind.config'
+import { screenSizes } from '@/tailwind.config'
 import { ratioMap } from '@/utilities/maps'
 
 type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
@@ -21,8 +21,6 @@ interface Emits {
 const emit = defineEmits<Emits>()
 
 const { slides, ratio, loop = true, autoplay = false, pagination = true } = defineProps<Props>()
-
-const { screens } = config.theme
 
 const isFocused = ref(false)
 const current = ref(0)
@@ -81,7 +79,7 @@ const [container, slider] = useKeenSlider({
     emit('current-slide', current.value + 1)
   },
   breakpoints: {
-    [`(min-width: ${screens.md})`]: {
+    [`(min-width: ${screenSizes.md}px)`]: {
       renderMode: 'custom',
       detailsChanged: (s) => {
         opacities.value = s.track.details.slides.map(slide => slide.portion)
@@ -131,6 +129,7 @@ const eventKeydown = (event: KeyboardEvent) => {
     @keydown="eventKeydown"
     @focus="eventKeyboardFocus"
     @blur="eventKeyboardBlur"
+    @click="goToSlide('next')"
   >
     <div
       ref="container"

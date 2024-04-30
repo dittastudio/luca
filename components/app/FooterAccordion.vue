@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import config from '@/tailwind.config'
+import { screenSizes } from '@/tailwind.config'
 import { safeKebabCase } from '@/utilities/helpers'
 
 interface Props {
@@ -14,8 +14,7 @@ const toggleAccordion = () => {
   isOpen.value = !isOpen.value
 }
 
-const { screens } = config.theme
-const isScreenSm = useAtMedia(`(min-width: ${screens.sm})`)
+const isScreenSm = useAtMedia(`(min-width: ${screenSizes.sm}px)`)
 
 watchEffect(() => {
   if (!import.meta.client) return

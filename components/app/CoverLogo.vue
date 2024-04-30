@@ -48,6 +48,8 @@ onMounted(() => {
   height: var(--logo-container-height);
   margin-block-start: calc(-1 * var(--logo-container-height));
 
+  color: theme('colors.white');
+
   opacity: 1;
 
   transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
