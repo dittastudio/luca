@@ -33,7 +33,7 @@ onMounted(async () => {
     <div class="wrapper">
       <h1
         v-if="message"
-        :class="['app-cover__message type-responsive-message', { 'is-active': messageVisible }]"
+        :class="['app-cover__message type-responsive-app-cover', { 'is-active': messageVisible }]"
       >
         {{ message }}
       </h1>
