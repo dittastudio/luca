@@ -180,7 +180,7 @@ watch(
 
   width: var(--close-size);
   height: var(--close-size);
-  padding: 8px;
+  padding: var(--close-padding);
 
   color: theme('colors.white');
 

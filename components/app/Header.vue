@@ -286,12 +286,6 @@ const toggleNavigation = () => {
 }
 
 .app-header__wrapper {
-  --header-padding: theme('spacing.20');
-
-  @screen md {
-    --header-padding: theme('spacing.50');
-  }
-
   position: relative;
 
   display: flex;
@@ -299,7 +293,7 @@ const toggleNavigation = () => {
   justify-content: space-between;
 
   height: 100%;
-  padding-block: var(--header-padding);
+  padding-block: var(--app-header-padding-y);
 
   @screen md {
     align-items: flex-start;
@@ -423,7 +417,7 @@ const toggleNavigation = () => {
   align-items: center;
   justify-content: center;
 
-  padding-block: var(--header-padding);
+  padding-block: var(--app-header-padding-y);
 
   @screen md {
     align-items: flex-start;

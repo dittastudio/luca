@@ -17,6 +17,7 @@
     --app-header-background-tint: theme('colors.green/90%');
     --app-header-blur: blur(8px);
     --app-header-height: 87px;
+    --app-header-padding-y: theme('spacing.20');
 
     /* Layers */
     --app-layer-one: 1;
@@ -31,6 +32,7 @@
       --app-outer-gutter: theme('spacing.40');
       --app-header-height: 174px;
       --app-grid: repeat(12, minmax(0, 1fr));
+      --app-header-padding-y: theme('spacing.50');
     }
 
     @screen 2xl {

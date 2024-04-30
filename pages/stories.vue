@@ -10,21 +10,19 @@ useNavigation(false)
 
 <template>
   <AppTheme :themes="story.content.themes">
-    <div class="wrapper">
-      <AppStory :is-open="route.name === 'stories-page'">
-        <transition
-          name="fade"
-          mode="out-in"
+    <AppStory :is-open="route.name === 'stories-page'">
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <div
+          v-if="route.name === 'stories-page'"
+          :key="route.fullPath"
         >
-          <div
-            v-if="route.name === 'stories-page'"
-            :key="route.fullPath"
-          >
-            <NuxtPage :page-key="route.fullPath" />
-          </div>
-        </transition>
-      </AppStory>
-    </div>
+          <NuxtPage :page-key="route.fullPath" />
+        </div>
+      </transition>
+    </AppStory>
 
     <PageCover
       v-if="story.content.cover_message"

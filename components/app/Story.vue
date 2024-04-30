@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import IconClose from '@/assets/icons/close.svg'
-
 interface Props {
   isOpen?: boolean
 }
@@ -16,20 +14,20 @@ watch(() => isOpen, (value) => {
 <template>
   <div :class="['app-story', { 'app-story--is-open': isOpen }]">
     <div class="app-story__content">
-      <div class="app-story__wrapper">
-        <p class="app-story__close">
-          <NuxtLink
-            :to="closeStoryLink"
-            class="app-story__close-link"
-          >
-            <IconClose class="app-story__close-icon" />
+      <div class="app-story__bar wrapper">
+        <NuxtLink
+          :to="closeStoryLink"
+          class="app-story__link"
+        >
+          <span class="app-story__close">
+            <span class="app-story__cross" />
+          </span>
 
-            <span class="sr-only">Close</span>
-          </NuxtLink>
-        </p>
-
-        <slot />
+          <span class="sr-only">Close</span>
+        </NuxtLink>
       </div>
+
+      <slot />
     </div>
   </div>
 </template>
@@ -37,22 +35,25 @@ watch(() => isOpen, (value) => {
 <style lang="postcss" scoped>
 .app-story {
   pointer-events: none;
+
+  isolation: isolate;
   position: fixed;
-  z-index: 1000;
+  z-index: theme('zIndex.20');
   top: 0;
   left: 0;
-  overflow: auto;
-  overflow: hidden;
+
   width: 100%;
   height: 100vh;
   height: 100dvh;
+
   background-color: rgb(0 0 0 / 0%);
-  transition: background-color theme('transitionDuration.500')
-    theme('transitionTimingFunction.smooth');
+
+  transition: background-color theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   &.app-story--is-open {
     pointer-events: auto;
     background-color: rgb(0 0 0 / 50%);
+    transition: background-color theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
   }
 
   :global(html:has(&.app-story--is-open)) {
@@ -61,19 +62,24 @@ watch(() => isOpen, (value) => {
 }
 
 .app-story__content {
-  transform: translate3d(0, 100vh, 0);
-  overflow: hidden auto;
+  translate: 0 100vh 0;
+  translate: 0 100dvh 0;
+
+  overflow-y: auto;
   overscroll-behavior: contain;
+
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  height: inherit;
+
   color: theme('colors.green');
+
   background-color: theme('colors.offwhite');
-  transition: transform theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+
+  transition: translate theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   .app-story--is-open & {
-    transform: translate3d(0, 0, 0);
-    transition-delay: theme('transitionDelay.500');
+    translate: 0 0 0;
+    transition: translate theme('transitionDuration.700') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.500');
   }
 
   :deep(.page-cover) {
@@ -82,41 +88,80 @@ watch(() => isOpen, (value) => {
   }
 }
 
-.app-story__wrapper {
-  position: relative;
+.app-story__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+  height: var(--app-header-height);
+  padding-block:var(--app-header-padding-y);
+
+  @screen md {
+    align-items: flex-start;
+    padding-block: calc(var(--app-header-padding-y) - 4px);
+  }
+}
+
+.app-story__link {
+  pointer-events: auto;
+
+  z-index: 1;
+
+  display: block;
+
+  margin: calc(-1 * theme('spacing.20'));
+  padding: theme('spacing.20');
 }
 
 .app-story__close {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.app-story__close-link {
-  box-sizing: content-box;
-  pointer-events: auto;
-  display: block;
-  position: sticky;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  width: 20px;
-  height: 20px;
-  margin: 0 0 0 auto;
-  padding: 33px var(--app-outer-gutter) var(--app-outer-gutter);
+  --close-size: theme('spacing.32');
 
   @screen md {
-    padding: var(--app-outer-gutter);
-    width: 46px;
-    height: 46px;
+    --close-size: theme('spacing.40');
   }
 
+  display: flex;
+  align-items: center;
+
+  width: var(--close-size);
+  height: var(--close-size);
+
+  border-radius: 50%;
 }
 
-.app-story__close-icon {
+.app-story__cross {
+  --cross-height: 1px;
+
+  position: relative;
   display: block;
   width: 100%;
-  height: 100%;
+  height: var(--cross-height);
+
+  &::before,
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: currentcolor;
+  }
+
+  &::before {
+    rotate: 45deg;
+  }
+
+  &::after {
+    rotate: -45deg;
+  }
 }
 </style>
