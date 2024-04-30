@@ -58,6 +58,11 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
+      <BlockPlayer
+        v-else-if="block.component === 'block_player'"
+        :block="block"
+      />
+
       <BlockSplit
         v-else-if="block.component === 'block_split'"
         :block="block"

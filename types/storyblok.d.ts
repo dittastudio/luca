@@ -124,6 +124,12 @@ export interface BlockMenusStoryblok {
   [k: string]: any;
 }
 
+export interface BlockPlayerStoryblok {
+  _uid: string;
+  component: "block_player";
+  [k: string]: any;
+}
+
 export interface RichtextStoryblok {
   type: string;
   content?: RichtextStoryblok[];
@@ -204,6 +210,7 @@ export interface PageStoryblok {
     | BlockGalleryStoryblok
     | BlockMediaStoryblok
     | BlockMenusStoryblok
+    | BlockPlayerStoryblok
     | BlockSplitStoryblok
     | BlockTextStoryblok
     | BlockTextEditorialStoryblok
