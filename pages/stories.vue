@@ -6,18 +6,10 @@ const story = await useStoryblokStory<PageStoryblok>('/stories')
 
 useStoryblokSetup(story)
 useNavigation(false)
-
-const setAppTheme = (theme: Luca.Theme) => {
-  document.documentElement.style.setProperty('--app-background-color', theme.background)
-  document.documentElement.style.setProperty('--app-text-color', theme.text)
-}
 </script>
 
 <template>
-  <AppTheme
-    :themes="story.content.themes"
-    @theme="setAppTheme"
-  >
+  <AppTheme :themes="story.content.themes">
     <div class="wrapper">
       <AppStory :is-open="route.name === 'stories-page'">
         <transition

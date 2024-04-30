@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
-import { doc } from 'prettier'
 import type { ThemeStoryblok } from '@/types/storyblok'
 import { colours } from '@/tailwind.config'
 import { wait } from '@/utilities/helpers'
@@ -11,26 +10,26 @@ interface Props {
 
 const { themes = [] } = defineProps<Props>()
 
-interface Emits {
-  (event: 'theme', payload: { background: string, text: string }): void
-}
-
-const emit = defineEmits<Emits>()
-
 const route = useRoute()
 const segment = themes.length === 0 ? 0 : 100 / themes.length
 const itemRefs = ref<HTMLDivElement[]>([])
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9) // Hack!
 
+const setAppTheme = (theme: Luca.Theme) => {
+  document.documentElement.style.setProperty('--app-background-color', theme.background)
+  document.documentElement.style.setProperty('--app-text-color', theme.text)
+}
+
 onMounted(async () => {
   if (!isStoryPage.value && !themes.length) {
-    emit('theme', {
+    setAppTheme({
       background: colours.greenHex,
       text: colours.whiteHex,
     })
   }
 
   await wait(500)
+
   document.documentElement.style.setProperty('--app-background-speed', '3000ms')
   document.documentElement.style.setProperty('--app-element-speed', '200ms')
   document.documentElement.style.setProperty('--app-header-speed', '200ms')
@@ -55,10 +54,7 @@ useIntersectionObserver(
         const background = colours[`${theme.background}Hex` as keyof typeof colours] || colours.greenHex
         const text = colours[`${theme.text}Hex` as keyof typeof colours] || colours.whiteHex
 
-        emit('theme', {
-          background,
-          text,
-        })
+        setAppTheme({ background, text })
       }
     })
   },
