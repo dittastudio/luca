@@ -140,7 +140,6 @@ const { block } = defineProps<Props>()
   justify-content: center;
 
   max-height: 100vh;
-  padding-block: theme('spacing.70') theme('spacing.80');
 
   @screen mdMax {
     display: none;
@@ -216,6 +215,9 @@ const { block } = defineProps<Props>()
 
   @screen md {
     grid-column: 4 / span 6;
+    width: calc(62.5vh - var(--app-header-height));
+    max-width: 480px;
+    margin-inline: auto;
   }
 }
 

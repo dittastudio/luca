@@ -143,28 +143,12 @@ watch(
   }
 }
 
-/*
-.app-modal__outer {
-  --max-width: 696px;
-
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 100%;
-  max-width: var(--max-width);
-  height: 100%;
-  margin-inline: auto;
-} */
-
 .app-modal__content {
   position: relative;
 
   & iframe {
     height: 100%;
-    min-height: 660px;
+    min-height: 664px;
     border-radius: theme('borderRadius.sm');
   }
 }

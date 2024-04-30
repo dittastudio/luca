@@ -67,10 +67,10 @@ useIntersectionObserver(
 </script>
 
 <template>
-  <div class="relative">
+  <div class="app-theme">
     <slot />
 
-    <div class="absolute inset-0 flex flex-col items-start justify-start pointer-events-none">
+    <div class="app-theme__segment">
       <div
         v-for="theme in themes"
         ref="itemRefs"
@@ -82,3 +82,21 @@ useIntersectionObserver(
     </div>
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.app-theme {
+  position: relative;
+}
+
+.app-theme__segment {
+  pointer-events: none;
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+</style>

@@ -45,10 +45,6 @@ onMounted(async () => {
 
 <style lang="postcss">
 html {
-  &:not(.is-storyblok-editor):has(.app-cover.is-active) {
-    overflow: hidden;
-  }
-
   &.is-storyblok-editor {
     .app-cover {
       display: none;
