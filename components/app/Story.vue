@@ -1,15 +1,35 @@
 <script lang="ts" setup>
+import IconClose from '@/assets/icons/close.svg'
+
 interface Props {
   isOpen?: boolean
 }
 
 const { isOpen = false } = defineProps<Props>()
+const closeStoryLink = ref('/')
+
+onMounted(() => {
+  closeStoryLink.value = window.history.state.back
+})
 </script>
 
 <template>
   <div :class="['app-story', { 'app-story--is-open': isOpen }]">
     <div class="app-story__content">
-      <slot />
+      <div class="app-story__wrapper">
+        <p class="app-story__close">
+          <NuxtLink
+            :to="closeStoryLink"
+            class="app-story__close-link"
+          >
+            <IconClose class="app-story__close-icon" />
+
+            <span class="sr-only">Close</span>
+          </NuxtLink>
+        </p>
+
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -60,5 +80,39 @@ const { isOpen = false } = defineProps<Props>()
     color: theme('colors.green');
     background-color: theme('colors.offwhite');
   }
+}
+
+.app-story__wrapper {
+  position: relative;
+}
+
+.app-story__close {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.app-story__close-link {
+  pointer-events: auto;
+  display: block;
+  position: sticky;
+  top: var(--app-outer-gutter);
+  right: var(--app-outer-gutter);
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  margin: 0 0 0 auto;
+
+  @screen md {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+.app-story__close-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 </style>
