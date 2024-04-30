@@ -30,39 +30,20 @@ onMounted(async () => {
   </div>
 </template>
 
-<style lang="postcss">
-html {
-  &:not(.is-storyblok-editor):has(.page-cover.is-active) {
-    overflow: hidden;
-  }
-
-  &.is-storyblok-editor {
-    .page-cover {
-      display: none;
-    }
-  }
-}
-</style>
-
 <style lang="postcss" scoped>
 .page-cover {
   pointer-events: none;
-
   position: sticky;
   z-index: var(--app-layer-three);
   top: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: 100vh;
   height: 100dvh;
   margin-block-start: calc(-1 * 100vh);
   margin-block-start: calc(-1 * 100dvh);
-
   color: var(--app-text-color);
-
   background-color: var(--app-background-color);
 
   &.is-active {

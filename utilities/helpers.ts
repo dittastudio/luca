@@ -8,7 +8,7 @@ const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp']
 const videoExtensions = ['mp4', 'webm', 'ogg']
 
 const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
-  if (!filename.trim().length) return 'other'
+  if (typeof filename !== 'string' || !filename?.trim().length) return 'other'
 
   const ext = filename.split('.').pop() || ''
 
