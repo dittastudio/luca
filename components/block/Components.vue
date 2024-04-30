@@ -17,8 +17,6 @@ const isHome = computed(() => route.path === '/')
     class="block-components"
     :class="{ 'block-components--home': isHome }"
   >
-    <Screen :log="content.blocks" />
-
     <section
       v-for="block in content.blocks"
       :key="block._uid"
