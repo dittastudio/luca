@@ -17,65 +17,67 @@ const setCurrentSlide = (slide: number) => {
 
 <template>
   <div class="block-gallery">
-    <div class="block-gallery__container wrapper">
-      <div class="block-gallery__grid">
-        <div class="block-gallery__inner">
-          <UiCarousel
-            :slides="block.slides"
-            :ratio="'auto'"
-            :loop="false"
-            :pagination="false"
-            @current-slide="setCurrentSlide"
-          >
-            <template #slide="{ slide }">
-              <div class="block-gallery__item">
-                <NuxtImg
-                  v-if="slide && storyblokAssetType(slide.filename) === 'image'"
-                  class="block-gallery__media"
-                  provider="storyblok"
-                  :src="slide.filename"
-                  :alt="slide.alt"
-                  :width="storyblokImageDimensions(slide.filename).width"
-                  :height="storyblokImageDimensions(slide.filename).height"
-                  :sizes="`
+    <UiCarousel
+      :slides="block.slides"
+      :ratio="'auto'"
+      :loop="false"
+      :pagination="false"
+      @current-slide="setCurrentSlide"
+    >
+      <template #slide="{ slide }">
+        <div class="block-gallery__item wrapper">
+          <div class="block-gallery__grid">
+            <div class="block-gallery__inner">
+              <NuxtImg
+                v-if="slide && storyblokAssetType(slide.filename) === 'image'"
+                class="block-gallery__media"
+                provider="storyblok"
+                :src="slide.filename"
+                :alt="slide.alt"
+                :width="storyblokImageDimensions(slide.filename).width"
+                :height="storyblokImageDimensions(slide.filename).height"
+                :sizes="`
                       100vw
                       md:${8 / 12 * 100}vw
                       3xl:${8 / 12 * 1800}px
                     `"
-                />
+              />
 
-                <MediaVideo
-                  v-else-if="slide && storyblokAssetType(slide.filename) === 'video'"
-                  :asset="slide"
-                  class="block-gallery__media"
-                />
-              </div>
-            </template>
-          </UiCarousel>
+              <MediaVideo
+                v-else-if="slide && storyblokAssetType(slide.filename) === 'video'"
+                :asset="slide"
+                class="block-gallery__media"
+              />
+            </div>
+          </div>
         </div>
+      </template>
+    </UiCarousel>
 
-        <h5 class="block-gallery__caption type-body-large">
-          <span v-if="block.slides?.length > 1">
-            {{ currentSlide }} / {{ block.slides?.length }}
-          </span>
+    <h5 class="block-gallery__caption type-body-large wrapper">
+      <span v-if="block.slides?.length > 1">
+        {{ currentSlide }} / {{ block.slides?.length }}
+      </span>
 
-          <span v-if="block.title">{{ block.title }}</span>
-        </h5>
-      </div>
-    </div>
+      <span v-if="block.title">{{ block.title }}</span>
+    </h5>
   </div>
 </template>
 
 <style lang="postcss">
 .block-gallery {
+  position: relative;
   overflow: hidden;
+  height: 100vh;
+
+  @screen mdMax {
+    padding-inline: theme('spacing.60');
+  }
 }
 
 .block-gallery__grid {
-  position: relative;
   display: grid;
-  grid-template-columns: theme('spacing.20') repeat(3, minmax(0, 1fr)) theme('spacing.20');
-  justify-content: center;
+  height: 100%;
 
   &::after {
     content: '';
@@ -92,12 +94,13 @@ const setCurrentSlide = (slide: number) => {
   @screen md {
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
+    justify-content: center;
   }
 }
 
 .block-gallery__inner {
-  grid-column: 2 / span 3;
-  height: 100vh;
+  grid-column: 1 / -1;
+  min-height: 100%;
 
   @screen md {
     grid-column: 3 / span 8;
@@ -106,6 +109,7 @@ const setCurrentSlide = (slide: number) => {
 
 .block-gallery__caption {
   position: absolute;
+  right: 0;
   bottom: theme('spacing.20');
   left: 0;
 
