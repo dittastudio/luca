@@ -4,9 +4,11 @@ import type { KeenSliderInstance } from 'keen-slider/vue.es'
 import config from '@/tailwind.config'
 import { ratioMap } from '@/utilities/maps'
 
+type ArrayOrWrappedInArray<T> = T extends (infer A)[] ? T : T[];
+
 interface Props {
   ratio: Luca.TAspectRatios | string | number
-  slides: T[]
+  slides: ArrayOrWrappedInArray<T>
   loop?: boolean
   autoplay?: boolean
   pagination?: boolean

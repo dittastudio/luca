@@ -99,7 +99,7 @@ export type MultiassetStoryblok = {
 
 export interface BlockGalleryStoryblok {
   title?: string;
-  slides?: MultiassetStoryblok;
+  slides: MultiassetStoryblok;
   connecting_line?: boolean;
   _uid: string;
   component: "block_gallery";
