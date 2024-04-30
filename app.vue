@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { isStoryblokEditor } from '@/utilities/helpers'
+import { screenSizes } from '@/tailwind.config'
 import type { SettingsStoryblok } from '@/types/storyblok'
 
 const route = useRoute()
 const story = await useStoryblokStory<SettingsStoryblok>('/settings')
 
-const isHome = computed(() => route.path === '/')
+const isMd = useAtMedia(`(min-width: ${screenSizes.md}px)`)
+const isHome = computed(() => route.path === '/' && isMd.value)
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
 
 const globalClasses = computed(() => ({
