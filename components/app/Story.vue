@@ -8,8 +8,8 @@ interface Props {
 const { isOpen = false } = defineProps<Props>()
 const closeStoryLink = ref('/')
 
-onMounted(() => {
-  closeStoryLink.value = window.history.state.back
+watch(() => isOpen, (value) => {
+  closeStoryLink.value = value ? window.history.state.back : '/'
 })
 </script>
 
@@ -94,20 +94,24 @@ onMounted(() => {
 }
 
 .app-story__close-link {
+  box-sizing: content-box;
   pointer-events: auto;
   display: block;
   position: sticky;
-  top: var(--app-outer-gutter);
-  right: var(--app-outer-gutter);
+  top: 0;
+  right: 0;
   z-index: 1;
   width: 20px;
   height: 20px;
   margin: 0 0 0 auto;
+  padding: 33px var(--app-outer-gutter) var(--app-outer-gutter);
 
   @screen md {
+    padding: var(--app-outer-gutter);
     width: 46px;
     height: 46px;
   }
+
 }
 
 .app-story__close-icon {
