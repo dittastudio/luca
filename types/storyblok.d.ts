@@ -99,7 +99,7 @@ export type MultiassetStoryblok = {
 
 export interface BlockGalleryStoryblok {
   title?: string;
-  slides?: MultiassetStoryblok;
+  slides: MultiassetStoryblok;
   connecting_line?: boolean;
   _uid: string;
   component: "block_gallery";
@@ -121,6 +121,12 @@ export interface BlockMenusStoryblok {
   menus?: MenuStoryblok[];
   _uid: string;
   component: "block_menus";
+  [k: string]: any;
+}
+
+export interface BlockPlayerStoryblok {
+  _uid: string;
+  component: "block_player";
   [k: string]: any;
 }
 
@@ -204,6 +210,7 @@ export interface PageStoryblok {
     | BlockGalleryStoryblok
     | BlockMediaStoryblok
     | BlockMenusStoryblok
+    | BlockPlayerStoryblok
     | BlockSplitStoryblok
     | BlockTextStoryblok
     | BlockTextEditorialStoryblok

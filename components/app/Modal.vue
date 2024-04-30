@@ -60,12 +60,10 @@ watch(
   <dialog
     ref="dialog"
     class="app-modal"
+    @click.self="setClose"
   >
-    <div
-      class="app-modal__container"
-      @click.self="setClose"
-    >
-      <div class="app-modal__outer">
+    <div class="app-modal__container">
+      <div class="app-modal__content">
         <button
           class="app-modal__button"
           @click="setClose"
@@ -87,19 +85,16 @@ watch(
 
 <style lang="postcss">
 .app-modal {
-  overflow: hidden;
   display: block;
 
   width: 100%;
   max-width: 100%;
-  height: 100%;
   max-height: 100%;
-  margin: 0;
+  margin: auto;
 
   background-color: transparent;
 
   &::backdrop {
-    cursor: pointer;
     background-color: var(--app-header-background-tint);
     backdrop-filter: var(--app-header-blur);
   }
@@ -129,8 +124,11 @@ watch(
 }
 
 .app-modal__container {
+  --max-width: 696px;
+
   width: 100%;
-  height: 100%;
+  max-width: var(--max-width);
+  margin: auto;
   opacity: 0;
 
   .app-modal[open].app-modal--close & {
@@ -144,18 +142,29 @@ watch(
   }
 }
 
+/*
 .app-modal__outer {
   --max-width: 696px;
 
   position: relative;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   width: 100%;
   max-width: var(--max-width);
   height: 100%;
   margin-inline: auto;
+} */
 
-  & > iframe {
+.app-modal__content {
+  position: relative;
+
+  & iframe {
     height: 100%;
+    min-height: 660px;
+    border-radius: theme('borderRadius.sm');
   }
 }
 

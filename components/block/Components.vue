@@ -17,6 +17,8 @@ const isHome = computed(() => route.path === '/')
     class="block-components"
     :class="{ 'block-components--home': isHome }"
   >
+    <Screen :log="content.blocks" />
+
     <section
       v-for="block in content.blocks"
       :key="block._uid"
@@ -55,6 +57,11 @@ const isHome = computed(() => route.path === '/')
 
       <BlockMenus
         v-else-if="block.component === 'block_menus'"
+        :block="block"
+      />
+
+      <BlockPlayer
+        v-else-if="block.component === 'block_player'"
         :block="block"
       />
 
