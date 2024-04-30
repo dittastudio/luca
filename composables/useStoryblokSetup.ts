@@ -1,7 +1,15 @@
 import type { Ref } from 'vue'
 import { storyblokImage } from '@/utilities/helpers'
 
-export const useStoryblokSeo = async (story: Ref) => {
+export const useStoryblokSetup = async (story: Ref) => {
+  if (!story.value) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: `Page not found`,
+      fatal: true,
+    })
+  }
+
   const seo = story.value.content?.seo?.[0]
   const { title, description, image } = seo || {}
 
@@ -17,10 +25,13 @@ export const useStoryblokSeo = async (story: Ref) => {
     twitterImage: storyblokImage(image?.filename, { width: 1230, height: 630 }) || null,
   })
 
-  // const nuxtApp = useNuxtApp();
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-  // nuxtApp.runWithContext(() => useSeoMeta(() => ({
-  //   title: `title`,
-  //   description: `description`,
-  // })));
+  onMounted(() => {
+    if (story.value) {
+      useStoryblokBridge(story.value.id, (evStory: any) => (story.value = evStory), {
+        preventClicks: true,
+      })
+    }
+  })
+
+  return
 }

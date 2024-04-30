@@ -11,7 +11,6 @@ interface Props {
 
 const { links, logoHidden, reservationHidden } = defineProps<Props>()
 
-const isOpen = ref<boolean>(false)
 const prevScrollPos = ref<number>(0)
 const hasScrolled = ref<boolean>(false)
 const hasScrolledUp = ref<boolean>(false)
@@ -56,8 +55,11 @@ onUnmounted(() => {
   window.removeEventListener('scroll', rAFHeaderScroll)
 })
 
+const reservationsOpen = useState<boolean>('reservationsOpen')
+const navigationOpen = useState<boolean>('navigationOpen')
+
 const headerClasses = computed<Record<string, boolean>>(() => ({
-  'app-header--is-open': isOpen.value,
+  'app-header--is-open': navigationOpen.value,
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
@@ -65,35 +67,26 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--reservation-hidden': reservationHidden,
 }))
 
-const closeMenu = () => {
-  isOpen.value = false
+const closeNavigation = () => {
+  navigationOpen.value = false
 }
 
-const toggleMenu = () => {
-  isOpen.value = !isOpen.value
+const toggleNavigation = () => {
+  navigationOpen.value = !navigationOpen.value
 }
-
-const route = useRoute()
-
-watch(
-  () => route.path,
-  () => closeMenu(),
-)
-
-const reservationsOpen = useState('reservationsOpen', () => false)
 </script>
 
 <template>
   <div
     class="app-header"
     :class="headerClasses"
-    @keydown.esc="closeMenu"
+    @keydown.esc="closeNavigation"
   >
     <button
       tabindex="-1"
       class="app-header__bg"
       type="button"
-      @click="closeMenu"
+      @click="closeNavigation"
     >
       <span class="sr-only">Close Menu</span>
     </button>
@@ -103,10 +96,10 @@ const reservationsOpen = useState('reservationsOpen', () => false)
         <button
           class="app-header__switch"
           type="button"
-          @click="toggleMenu"
+          @click="toggleNavigation"
         >
           <span class="app-header__burger">
-            <AppHeaderBurger :is-open="isOpen" />
+            <AppHeaderBurger :is-open="navigationOpen" />
           </span>
 
           <span class="app-header__switch-text type-body-large">Menu</span>
@@ -116,7 +109,7 @@ const reservationsOpen = useState('reservationsOpen', () => false)
 
         <nav class="app-header__navigation">
           <AppHeaderNavigation
-            :is-open="isOpen"
+            :is-open="navigationOpen"
             :list="links"
           />
         </nav>

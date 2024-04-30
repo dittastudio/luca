@@ -24,6 +24,9 @@ useSeoMeta({
   titleTemplate: title => (title ? `${title} - Luca` : 'Luca'),
   robots: 'index, follow',
 })
+
+useState('reservationsOpen', () => false)
+useState('navigationOpen', () => false)
 </script>
 
 <template>

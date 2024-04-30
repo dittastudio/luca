@@ -4,23 +4,8 @@ import type { PageStoryblok } from '@/types/storyblok'
 const route = useRoute()
 const story = await useStoryblokStory<PageStoryblok>(route.path)
 
-if (!story.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: `Page not found`,
-    fatal: true,
-  })
-}
-
-useStoryblokSeo(story)
-
-onMounted(() => {
-  if (story.value) {
-    useStoryblokBridge(story.value.id, (evStory: any) => (story.value = evStory), {
-      preventClicks: true,
-    })
-  }
-})
+useStoryblokSetup(story)
+useNavigation(false)
 
 const setAppTheme = (theme: Luca.Theme) => {
   document.documentElement.style.setProperty('--app-background-color', theme.background)
