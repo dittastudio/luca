@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ratioMap } from '@/utilities/maps'
 import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/helpers'
 import type { BlockGalleryStoryblok } from '@/types/storyblok'
 
