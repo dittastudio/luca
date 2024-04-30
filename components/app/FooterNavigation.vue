@@ -7,20 +7,6 @@ interface Props {
 
 const { list } = defineProps<Props>()
 const items = computed(() => list?.items ?? [])
-
-const hover: any = ref(null)
-const hoverInner: any = ref(null)
-
-const animateMe = (event: any) => {
-  const { offsetX: x, offsetY: y } = event
-  const { offsetWidth: width, offsetHeight: height } = hover.value.$el
-  const move = 5
-  const xMove = x / width * (move * 2) - move
-  const yMove = y / height * (move * 2) - move
-
-  hoverInner.value.style.setProperty('--x', `${xMove}px`)
-  hoverInner.value.style.setProperty('--y', `${yMove}px`)
-}
 </script>
 
 <template>
@@ -58,23 +44,14 @@ const animateMe = (event: any) => {
         </NuxtLink>
       </li>
 
-      <li
-        class="app-footer-info__item"
-      >
+      <li class="app-footer-info__item">
         <NuxtLink
-          ref="hover"
-          class="app-footer-info__link app-footer-info__link--credit"
+          class="app-footer-info__link"
           to="https://ditta.studio"
           target="_blank"
           rel="noopener noreferrer"
-          @mousemove="animateMe"
         >
-          <span
-            ref="hoverInner"
-            class="app-footer-info__credit"
-          >
-            Made by ditta
-          </span>
+          Made by ditta
         </NuxtLink>
       </li>
     </ul>
@@ -133,35 +110,6 @@ const animateMe = (event: any) => {
     &:hover {
       opacity: 1;
     }
-  }
-}
-
-@keyframes enter {
-  from {
-    translate: 0 0 0;
-  }
-  to {
-    translate: var(--x) var(--y) 0;
-  }
-}
-
-@keyframes exit {
-  from {
-    translate: var(--x) var(--y) 0;
-  }
-  to {
-    translate: 0 0 0;
-  }
-}
-
-.app-footer-info__credit {
-  pointer-events: none;
-  will-change: translate;
-  display: inline-block;
-  animation: exit theme('transitionDuration.300') theme('transitionTimingFunction.outBack') forwards;
-
-  .app-footer-info__link--credit:hover & {
-    animation: enter theme('transitionDuration.300') theme('transitionTimingFunction.outBack') forwards;
   }
 }
 </style>

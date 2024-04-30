@@ -139,7 +139,7 @@ const onSubmit = async () => {
           id="fname"
           v-model="fname"
           placeholder="First name"
-          class="app-footer-form__input"
+          class="app-footer-form__input type-body"
         />
       </FormField>
 
@@ -159,7 +159,7 @@ const onSubmit = async () => {
           id="lname"
           v-model="lname"
           placeholder="Last name"
-          class="app-footer-form__input"
+          class="app-footer-form__input type-body"
         />
       </FormField>
 
@@ -180,7 +180,7 @@ const onSubmit = async () => {
           v-model="email"
           field="email"
           placeholder="Email"
-          class="app-footer-form__input"
+          class="app-footer-form__input type-body"
         />
       </FormField>
 
@@ -281,8 +281,12 @@ const onSubmit = async () => {
   flex-grow: 1;
   width: 100%;
   padding: var(--input-padding) 0;
-  font-size: theme('fontSize.16');
   outline: none;
+  font-size: theme('fontSize.16');
+
+  @screen md {
+    font-size: theme('fontSize.14');
+  }
 
   &::placeholder {
     color: currentcolor;

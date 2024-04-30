@@ -227,6 +227,8 @@ const {
 }
 
 .app-footer__copy {
+  text-wrap: balance;
+
   .app-footer__title + & {
     margin-block-start: theme('spacing.20');
   }

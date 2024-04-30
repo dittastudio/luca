@@ -119,10 +119,16 @@ export default {
       '68': '4.25rem',
       '80': '5rem',
       '90': '5.625rem',
-      'responsive-message': clamp({
-        minPixels: 20,
+      'responsive-app-cover': clamp({
+        minPixels: 24,
         minViewportWidthPixels: screenSizes.xs,
         maxPixels: 40,
+        maxViewportWidthPixels: screenSizes['2xl'],
+      }),
+      'responsive-page-cover': clamp({
+        minPixels: 40,
+        minViewportWidthPixels: screenSizes.xs,
+        maxPixels: 90,
         maxViewportWidthPixels: screenSizes['2xl'],
       }),
     },

@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <div :class="['page-cover', { 'is-active': coverVisible }]">
     <div class="wrapper">
-      <h1 :class="['page-cover__message type-responsive-message', { 'is-active': messageVisible }]">
+      <h1 :class="['page-cover__message type-responsive-page-cover', { 'is-active': messageVisible }]">
         {{ message }}
       </h1>
     </div>
