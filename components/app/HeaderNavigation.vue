@@ -32,7 +32,7 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
           v-for="(item, index) in items"
           :key="item._uid"
           class="app-header-navigation__item"
-          :style="`--link-transition-delay: ${200 + index * 40}ms`"
+          :style="`--link-transition-delay: ${500 + index * 50}ms`"
         >
           <StoryblokLink
             class="app-header-navigation__link"
@@ -67,8 +67,10 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
     flex-direction: column;
     gap: theme('spacing.40');
     align-items: center;
+
     min-height: 100%;
     padding-block: var(--app-header-height) theme('spacing.40');
+
     text-align: center;
   }
 }
@@ -144,21 +146,29 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
 
 .app-header-navigation__link {
   user-select: none;
+
   position: relative;
+
   display: block;
+
   width: 100%;
   padding-block: var(--link-padding-y);
   padding-inline: var(--link-padding-x);
+
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   /* HACK: Added to stop hover stutter with italics 🤪 */
   &::after {
     pointer-events: none;
     content: attr(title);
+
     overflow: hidden;
     display: block;
+
     height: 0;
+
     font-style: normal;
+
     visibility: hidden;
     opacity: 0;
   }

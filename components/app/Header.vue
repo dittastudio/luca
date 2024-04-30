@@ -363,11 +363,9 @@ const toggleNavigation = () => {
   .app-header--is-open & {
     scale: 1 1 1;
     opacity: 1;
-    transition-delay:
-      scale theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.100'),
-      opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.100');
+    transition:
+      scale theme('transitionDuration.1000') theme('transitionTimingFunction.inOutExpo'),
+      opacity theme('transitionDuration.1000') theme('transitionTimingFunction.inOutExpo');
   }
 
   @screen mdMax {
