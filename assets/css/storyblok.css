@@ -1,7 +1,7 @@
 @layer base {
   .is-storyblok-editor {
     a,
-    button {
+    button:not([data-grid-toggle]) {
       pointer-events: none !important;
     }
   }
