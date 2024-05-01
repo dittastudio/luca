@@ -32,7 +32,7 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
           v-for="(item, index) in items"
           :key="item._uid"
           class="app-header-navigation__item"
-          :style="`--link-transition-delay: ${500 + index * 50}ms`"
+          :style="`--link-index: ${index}`"
         >
           <StoryblokLink
             class="app-header-navigation__link"
@@ -130,6 +130,12 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
 }
 
 .app-header-navigation__item {
+  --animation-delay: calc(300ms + (var(--link-index) * 50ms));
+
+  @screen md {
+    --animation-delay: calc(800ms + (var(--link-index) * 80ms));
+  }
+
   translate: calc(-1 * var(--link-nudge)) 0 0;
   opacity: 0;
 
@@ -139,8 +145,8 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
   }
 
   .app-header-navigation--is-open & {
-    animation: link-show theme('transitionDuration.300') theme('transitionTimingFunction.smooth')
-      var(--link-transition-delay) forwards;
+    animation: link-show theme('transitionDuration.500') theme('transitionTimingFunction.smooth')
+      var(--animation-delay) forwards;
   }
 }
 
@@ -196,10 +202,10 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
     translate: 0 0 0;
     opacity: 1;
     transition:
-      opacity theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo')
-        theme('transitionDelay.400'),
-      translate theme('transitionDuration.200') theme('transitionTimingFunction.inOutExpo')
-        theme('transitionDelay.400');
+      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
+        theme('transitionDelay.700'),
+      translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
+        theme('transitionDelay.700');
   }
 
   @screen md {
