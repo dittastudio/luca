@@ -133,7 +133,7 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
   --animation-delay: calc(300ms + (var(--link-index) * 50ms));
 
   @screen md {
-    --animation-delay: calc(800ms + (var(--link-index) * 80ms));
+    --animation-delay: calc(500ms + (var(--link-index) * 80ms));
   }
 
   translate: calc(-1 * var(--link-nudge)) 0 0;
