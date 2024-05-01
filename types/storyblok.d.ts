@@ -151,6 +151,17 @@ export interface BlockSplitStoryblok {
   [k: string]: any;
 }
 
+export interface BlockSplitEditorialStoryblok {
+  media: AssetStoryblok;
+  ratio: number | string;
+  text: RichtextStoryblok;
+  reversed?: boolean;
+  connecting_line?: boolean;
+  _uid: string;
+  component: "block_split_editorial";
+  [k: string]: any;
+}
+
 export interface BlockTextStoryblok {
   text: RichtextStoryblok;
   connecting_line?: boolean;
@@ -213,6 +224,7 @@ export interface PageStoryblok {
     | BlockMenusStoryblok
     | BlockPlayerStoryblok
     | BlockSplitStoryblok
+    | BlockSplitEditorialStoryblok
     | BlockTextStoryblok
     | BlockTextEditorialStoryblok
   )[];

@@ -535,6 +535,83 @@
       "component_group_name": "block"
     },
     {
+      "name": "block_split_editorial",
+      "display_name": "Split Editorial",
+      "created_at": "2024-05-01T21:49:01.133Z",
+      "updated_at": "2024-05-01T21:49:21.744Z",
+      "id": 5738486,
+      "schema": {
+        "media": {
+          "type": "asset",
+          "pos": 0,
+          "required": true,
+          "filetypes": [
+            "images",
+            "videos"
+          ],
+          "asset_folder_id": 530535
+        },
+        "ratio": {
+          "type": "option",
+          "pos": 2,
+          "use_uuid": true,
+          "required": true,
+          "source": "internal",
+          "datasource_slug": "ratio",
+          "exclude_empty_option": true,
+          "key": "ratio"
+        },
+        "text": {
+          "type": "richtext",
+          "required": true,
+          "display_name": "Text",
+          "key": "text",
+          "pos": 3,
+          "customize_toolbar": true,
+          "toolbar": [
+            "bold",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "italic",
+            "link",
+            "paragraph",
+            "quote"
+          ]
+        },
+        "reversed": {
+          "type": "boolean",
+          "inline_label": true,
+          "pos": 4,
+          "key": "reversed"
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "pos": 5,
+          "inline_label": true,
+          "key": "connecting_line"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": "<p>{{it.text.content[0].content[0].text}}</p>",
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Split Editorial",
+      "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
+      "color": "#00b3b0",
+      "icon": "block-1-2block",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "block"
+    },
+    {
       "name": "block_text",
       "display_name": "Text",
       "created_at": "2024-04-18T15:49:06.779Z",

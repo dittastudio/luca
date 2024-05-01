@@ -8,9 +8,7 @@ interface Props {
 
 const { block } = defineProps<Props>()
 
-const route = useRoute()
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
-const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9) // Hack!
 </script>
 
 <template>
@@ -46,8 +44,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     <div class="block-split__text">
       <div
         v-if="hasRichTextContent(block.text)"
-        class="block-split__copy prose"
-        :class="{ 'prose--large': !isStoryPage }"
+        class="block-split__copy prose prose--large"
       >
         <StoryblokRichText :content="block.text" />
       </div>
@@ -97,9 +94,6 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 }
 
 .block-split__text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
 
   @screen md {
@@ -113,7 +107,6 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 
   @screen lg {
     grid-column: 8 / span 5;
-    text-align: left;
 
     .block-split--reverse & {
       grid-column: 2 / span 5;

@@ -48,6 +48,10 @@ const { block } = defineProps<Props>()
   @screen md {
     grid-column: 2 / span 10;
   }
+
+  @screen 3xl {
+    grid-column: 3 / span 8;
+  }
 }
 
 .block-text-editorial__title {
