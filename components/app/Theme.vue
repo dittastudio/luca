@@ -20,25 +20,27 @@ const setAppTheme = (theme: Luca.Theme) => {
   document.documentElement.style.setProperty('--app-text-color', theme.text)
 }
 
-onMounted(async () => {
+const setSpeeds = (background: string, element: string, header: string) => {
+  document.documentElement.style.setProperty('--app-background-speed', background)
+  document.documentElement.style.setProperty('--app-element-speed', element)
+  document.documentElement.style.setProperty('--app-header-speed', header)
+}
+
+onMounted(() => {
   if (!isStoryPage.value && !themes.length) {
     setAppTheme({
       background: colours.greenHex,
       text: colours.whiteHex,
     })
   }
+})
+
+onUnmounted(async () => {
+  setSpeeds('500ms', '500ms', '0ms')
 
   await wait(500)
 
-  document.documentElement.style.setProperty('--app-background-speed', '3000ms')
-  document.documentElement.style.setProperty('--app-element-speed', '200ms')
-  document.documentElement.style.setProperty('--app-header-speed', '200ms')
-})
-
-onUnmounted(() => {
-  document.documentElement.style.setProperty('--app-background-speed', '500ms')
-  document.documentElement.style.setProperty('--app-element-speed', '500ms')
-  document.documentElement.style.setProperty('--app-header-speed', '0ms')
+  setSpeeds('3000ms', '200ms', '200ms')
 })
 
 useIntersectionObserver(
