@@ -68,6 +68,8 @@ useState('navigationOpen', () => false)
         <DevOnly>
           <ToolGrid />
         </DevOnly>
+
+        <ToolGrid v-if="isStoryblokEditor(route.query)" />
       </template>
     </AppLayout>
 
