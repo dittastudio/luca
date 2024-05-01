@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { SwiperOptions } from 'swiper/types'
 import type { BlockMenusStoryblok } from '@/types/storyblok'
 import { storyblokImageDimensions } from '@/utilities/helpers'
 
@@ -9,6 +10,11 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
+
+const swiperOptions: SwiperOptions = {
+  loop: false,
+  spaceBetween: 20,
+}
 </script>
 
 <template>
@@ -60,9 +66,9 @@ const { block } = defineProps<Props>()
 
             <div class="block-menus__carousel">
               <UiCarousel
-                :slides="menu.images"
                 ratio="1:1.414"
-                :loop="false"
+                :slides="menu.images"
+                :options="swiperOptions"
               >
                 <template #slide="{ slide }">
                   <NuxtImg
@@ -104,10 +110,7 @@ const { block } = defineProps<Props>()
 <style lang="postcss" scoped>
 .block-menus {
   position: relative;
-
-  @screen mdMax {
-    overflow: hidden;
-  }
+  overflow: hidden;
 
   @screen md {
     display: flex;

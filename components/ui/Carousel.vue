@@ -1,7 +1,7 @@
 <script lang="ts" setup generic="T">
-import { useKeenSlider } from 'keen-slider/vue.es'
-import type { KeenSliderInstance } from 'keen-slider/vue.es'
-import { screenSizes } from '@/tailwind.config'
+import Swiper from 'swiper'
+import type { SwiperOptions } from 'swiper/types'
+import { Autoplay, EffectFade, Pagination, Keyboard } from 'swiper/modules'
 import { ratioMap } from '@/utilities/maps'
 
 type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
@@ -9,10 +9,11 @@ type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
 interface Props {
   ratio: Luca.TAspectRatios | string | number
   slides: ArrayOrWrappedInArray<T>
-  loop?: boolean
-  autoplay?: boolean
   pagination?: boolean
+  options?: SwiperOptions
 }
+
+const { slides, ratio, pagination = true, options } = defineProps<Props>()
 
 interface Emits {
   (event: 'current-slide', payload: number): void
@@ -20,128 +21,68 @@ interface Emits {
 
 const emit = defineEmits<Emits>()
 
-const { slides, ratio, loop = true, autoplay = false, pagination = true } = defineProps<Props>()
-
-const isFocused = ref(false)
+const swiper = ref<Swiper>()
+const swiperEl = ref<any>()
 const current = ref(0)
-const opacities = ref<number[]>([])
 
-const initAutoplay = (slider: KeenSliderInstance) => {
-  let timeout: ReturnType<typeof setTimeout>
-  const delay = 2500
-  let mouseOver = false
-
-  function clearNextTimeout() {
-    clearTimeout(timeout)
-  }
-
-  function nextTimeout() {
-    clearTimeout(timeout)
-    if (mouseOver) return
-    timeout = setTimeout(() => {
-      slider.next()
-    }, delay)
-  }
-
-  slider.on('created', () => {
-    slider.container.addEventListener('mouseover', () => {
-      mouseOver = true
-      clearNextTimeout()
-    })
-    slider.container.addEventListener('mouseout', () => {
-      mouseOver = false
-      nextTimeout()
-    })
-    nextTimeout()
-  })
-
-  slider.on('dragStarted', clearNextTimeout)
-  slider.on('animationEnded', nextTimeout)
-  slider.on('updated', nextTimeout)
-}
-
-const [container, slider] = useKeenSlider({
-  disabled: slides.length <= 1,
-  slides: {
-    number: slides.length,
-    spacing: 20,
-  },
-  loop,
-  defaultAnimation: {
-    duration: 1000,
-  },
-  initial: current.value,
-  created: () => {
-    emit('current-slide', current.value + 1)
-  },
-  slideChanged: (s) => {
-    current.value = s.track.details.rel
-    emit('current-slide', current.value + 1)
-  },
-  breakpoints: {
-    [`(min-width: ${screenSizes.md}px)`]: {
-      renderMode: 'custom',
-      detailsChanged: (s) => {
-        opacities.value = s.track.details.slides.map(slide => slide.portion)
+const initSwiper = () => {
+  swiper.value = new Swiper(swiperEl.value, {
+    modules: [Autoplay, EffectFade, Pagination, Keyboard],
+    enabled: slides.length > 1,
+    speed: 500,
+    navigation: {
+      nextEl: '.ui-carousel__button--next',
+      prevEl: '.ui-carousel__button--prev',
+    },
+    pagination: pagination
+      ? {
+          el: '.ui-carousel__pagination',
+          clickable: true,
+          bulletClass: 'ui-carousel__bullet',
+          bulletActiveClass: 'ui-carousel__bullet--is-active',
+          renderBullet: function (index, className) {
+            return `
+              <button type="button" class="${className}">
+                <span class="ui-carousel__dot"></span>
+              </button>
+            `
+          },
+        }
+      : false,
+    slideToClickedSlide: true,
+    on: {
+      init: (slider) => {
+        current.value = slider.activeIndex + 1
+        emit('current-slide', current.value)
+      },
+      slideChange: (slider) => {
+        current.value = slider.activeIndex + 1
+        emit('current-slide', current.value)
       },
     },
-  },
-}, [(slider) => {
-  if (!autoplay) return
-  initAutoplay(slider)
-}])
-
-const dotHelper = computed(() => slider.value ? [...Array(slider.value.track.details.slides.length).keys()] : [])
-
-const goToSlide = (action: 'prev' | 'next') => {
-  if (slider.value) slider.value[action]()
+    ...options,
+  })
 }
 
-const eventKeyboardFocus = () => {
-  isFocused.value = true
-}
+onMounted(() => initSwiper())
 
-const eventKeyboardBlur = () => {
-  isFocused.value = false
-}
-
-const eventKeydown = (event: KeyboardEvent) => {
-  if (!isFocused.value) return
-  switch (event.key) {
-    case 'Left':
-    case 'ArrowLeft':
-      goToSlide('prev')
-      break
-    case 'Right':
-    case 'ArrowRight':
-      goToSlide('next')
-      break
-    default:
-      break
-  }
-}
+onUnmounted(() => {
+  if (swiper.value) swiper.value.destroy()
+})
 </script>
 
 <template>
   <div
-    class="ui-carousel"
-    tabindex="0"
-    @keydown="eventKeydown"
-    @focus="eventKeyboardFocus"
-    @blur="eventKeyboardBlur"
-    @click="goToSlide('next')"
+    ref="swiperEl"
+    class="ui-carousel swiper"
   >
-    <div
-      ref="container"
-      class="ui-carousel__container keen-slider"
-      :class="ratioMap[ratio]"
-    >
+    <div class="ui-carousel__wrapper swiper-wrapper">
       <div
         v-for="(slide, index) in slides"
         :key="index"
-        class="ui-carousel__slide keen-slider__slide"
-        :class="{ 'ui-carousel__slide--is-active': current === index }"
-        :style="{ '--slide-opacity': opacities[index] }"
+        class="ui-carousel__slide swiper-slide"
+        :class="ratioMap[ratio]"
+        @click="swiper?.slideNext()"
       >
         <slot
           name="slide"
@@ -152,86 +93,41 @@ const eventKeydown = (event: KeyboardEvent) => {
 
     <div
       v-if="slides.length > 1 && pagination"
-      class="ui-carousel__dots"
-    >
-      <button
-        v-for="(_slide, index) in dotHelper"
-        :key="index"
-        class="ui-carousel__dot"
-        :class="{ 'ui-carousel__dot--is-active': current === index }"
-        @click="slider?.moveToIdx(index)"
-        @focus="eventKeyboardFocus"
-        @blur="eventKeyboardBlur"
-      >
-        <span class="ui-carousel__circle" />
-
-        <span class="sr-only">Slide {{ index }}</span>
-      </button>
-    </div>
+      ref="paginationEl"
+      class="ui-carousel__pagination"
+    />
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .ui-carousel {
+  user-select: none;
+  position: relative;
   height: inherit;
-
-  &:focus {
-    outline: none;
-  }
 }
 
-.ui-carousel__container {
-  position: relative;
+.ui-carousel__wrapper {
+  display: flex;
+
   width: 100%;
-  height: inherit;
+  height: 100%;
 
-  &:not([data-keen-slider-disabled]) {
-    touch-action: pan-y pinch-zoom;
-    cursor: grab;
-    user-select: none;
-
-    -webkit-touch-callout: none;
-
-    &:active {
-      cursor: grabbing;
-    }
-
-    &[data-keen-slider-reverse] {
-      flex-direction: row-reverse;
-    }
-
-    &[data-keen-slider-v] {
-      flex-wrap: wrap;
-    }
-
-    @screen mdMax {
-      display: flex;
-    }
-
-    @screen md {
-      overflow: hidden;
-    }
-  }
+  transition-timing-function: theme('transitionTimingFunction.out');
+  transition-property: transform;
 }
 
 .ui-carousel__slide {
-  pointer-events: none;
+  touch-action: pan-y pinch-zoom;
+
+  flex-shrink: 0;
+
   width: 100%;
   height: 100%;
-  min-height: 100%;
 
-  @screen md {
-    position: absolute;
-    top: 0;
-    opacity: var(--slide-opacity);
-  }
-
-  &--is-active {
-    pointer-events: auto;
-  }
+  transition-property: transform;
 }
 
-.ui-carousel__dots {
+.ui-carousel__pagination {
   --dot-size: 8px;
 
   display: flex;
@@ -240,11 +136,11 @@ const eventKeydown = (event: KeyboardEvent) => {
   margin-block-start: calc(theme('spacing.30') - var(--dot-size));
 }
 
-.ui-carousel__dot {
+.ui-carousel__bullet {
   padding: calc(var(--dot-size) / 2);
 }
 
-.ui-carousel__circle {
+.ui-carousel__dot {
   cursor: pointer;
 
   display: block;
@@ -252,13 +148,29 @@ const eventKeydown = (event: KeyboardEvent) => {
   width: var(--dot-size);
   height: var(--dot-size);
 
-  background-color: theme('colors.white/20%');
+  opacity: 0.2;
+  background-color: currentcolor;
   border-radius: 50%;
 
-  transition: background-color theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-  .ui-carousel__dot--is-active & {
-    background-color: currentcolor;
+  .ui-carousel__bullet--is-active & {
+    opacity: 1;
   }
+}
+
+.swiper-android .swiper-slide,
+.swiper-ios .swiper-slide,
+.swiper-wrapper {
+  transform: translate3d(0, 0, 0);
+}
+
+.swiper-fade .swiper-slide {
+  pointer-events: none;
+  transition-property: opacity;
+}
+
+.swiper-fade .swiper-slide-active {
+  pointer-events: auto;
 }
 </style>

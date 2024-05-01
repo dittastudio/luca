@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { SwiperOptions } from 'swiper/types'
 import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/helpers'
 import type { BlockGalleryStoryblok } from '@/types/storyblok'
 
@@ -13,15 +14,22 @@ const currentSlide = ref(1)
 const setCurrentSlide = (slide: number) => {
   currentSlide.value = slide
 }
+2
+const swiperOptions: SwiperOptions = {
+  effect: 'fade',
+  keyboard: {
+    enabled: true,
+  },
+}
 </script>
 
 <template>
   <div class="block-gallery">
     <UiCarousel
-      :slides="block.slides"
       :ratio="'auto'"
-      :loop="false"
+      :slides="block.slides"
       :pagination="false"
+      :options="swiperOptions"
       @current-slide="setCurrentSlide"
     >
       <template #slide="{ slide }">
@@ -37,10 +45,10 @@ const setCurrentSlide = (slide: number) => {
                 :width="storyblokImageDimensions(slide.filename).width"
                 :height="storyblokImageDimensions(slide.filename).height"
                 :sizes="`
-                      100vw
-                      md:${8 / 12 * 100}vw
-                      3xl:${8 / 12 * 1800}px
-                    `"
+                  100vw
+                  md:${8 / 12 * 100}vw
+                  3xl:${8 / 12 * 1800}px
+                `"
               />
 
               <MediaVideo
@@ -69,15 +77,21 @@ const setCurrentSlide = (slide: number) => {
   position: relative;
   overflow: hidden;
   height: 100vh;
+}
 
-  @screen mdMax {
-    padding-inline: theme('spacing.60');
+.block-gallery__item {
+  height: inherit;
+  padding-block: var(--app-header-height);
+  background-color: theme('colors.offwhite');
+
+  @screen md {
+    padding-block: calc(var(--app-header-height) / 1.5);
   }
 }
 
 .block-gallery__grid {
   display: grid;
-  height: 100%;
+  height: inherit;
 
   &::after {
     content: '';
@@ -119,15 +133,6 @@ const setCurrentSlide = (slide: number) => {
   @screen md {
     bottom: theme('spacing.50');
     gap: theme('spacing.40');
-  }
-}
-
-.block-gallery__item {
-  height: 100%;
-  padding-block: var(--app-header-height);
-
-  @screen md {
-    padding-block: calc(var(--app-header-height) / 1.5);
   }
 }
 
