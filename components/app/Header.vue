@@ -365,8 +365,8 @@ const toggleNavigation = () => {
     scale: 1 1 1;
     opacity: 1;
     transition:
-      scale theme('transitionDuration.1000') theme('transitionTimingFunction.smooth'),
-      opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+      scale theme('transitionDuration.800') theme('transitionTimingFunction.smooth'),
+      opacity theme('transitionDuration.800') theme('transitionTimingFunction.smooth');
   }
 
   @screen mdMax {
