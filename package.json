@@ -4,17 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "sb:pull-components": "storyblok pull-components --space 285210",
+    "sb:types": "npm run sb:pull-components && storyblok-generate-ts source=./components.285210.json target=./types/storyblok",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "npm run sb:types && nuxt dev",
     "dev:ssl": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "nuke": "del-cli '.output' 'dist' '.nuxt' 'node_modules' 'package-lock.json'",
-    "postinstall": "nuxt prepare",
-    "sb:pull-components": "storyblok pull-components --space 285210",
-    "sb:types": "npm run sb:pull-components && storyblok-generate-ts source=./components.285210.json target=./types/storyblok"
+    "postinstall": "nuxt prepare"
   },
   "overrides": {
     "@pinia/nuxt": "^0.5.1"

@@ -228,7 +228,7 @@
       "name": "block_carousel",
       "display_name": "Carousel",
       "created_at": "2024-04-24T16:17:24.822Z",
-      "updated_at": "2024-04-27T11:59:23.899Z",
+      "updated_at": "2024-05-01T13:09:37.836Z",
       "id": 5704567,
       "schema": {
         "slides": {
@@ -244,15 +244,28 @@
           "description": "All slides with one item are 16:9 aspect ratio and two items will be 8:9 aspect ratio each.",
           "tooltip": false
         },
+        "slides_new": {
+          "type": "multiasset",
+          "pos": 1,
+          "filetypes": [
+            "images",
+            "videos"
+          ]
+        },
+        "two_per_slide": {
+          "type": "boolean",
+          "pos": 2,
+          "inline_label": true
+        },
         "autoplay": {
           "type": "boolean",
-          "pos": 1,
-          "inline_label": false
+          "pos": 3,
+          "inline_label": true
         },
         "connecting_line": {
           "type": "boolean",
           "inline_label": true,
-          "pos": 2
+          "pos": 4
         }
       },
       "image": null,
