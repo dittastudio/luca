@@ -33,17 +33,22 @@ onMounted(async () => {
 <style lang="postcss" scoped>
 .page-cover {
   pointer-events: none;
+
   position: sticky;
   z-index: var(--app-layer-three);
   top: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   height: 100vh;
   height: 100dvh;
   margin-block-start: calc(-1 * 100vh);
   margin-block-start: calc(-1 * 100dvh);
+
   color: var(--app-text-color);
+
   background-color: var(--app-background-color);
 
   &.is-active {
@@ -61,6 +66,8 @@ onMounted(async () => {
   }
 
   &__message {
+    position: relative;
+    top: -0.065em;
     text-align: center;
     text-wrap: balance;
   }
