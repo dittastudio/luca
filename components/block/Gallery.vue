@@ -77,6 +77,20 @@ const swiperOptions: SwiperOptions = {
   position: relative;
   overflow: hidden;
   height: 100vh;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: calc(100% - (var(--app-outer-gutter) * 2));
+    margin-inline: auto;
+
+    border-block-end: 1px solid currentcolor;
+  }
 }
 
 .block-gallery__item {
@@ -92,18 +106,6 @@ const swiperOptions: SwiperOptions = {
 .block-gallery__grid {
   display: grid;
   height: inherit;
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-
-    border-block-end: 1px solid currentcolor;
-  }
 
   @screen md {
     grid-template-columns: var(--app-grid);

@@ -142,16 +142,21 @@ const isHome = computed(() => route.path === '/')
     padding-block-start: var(--line-spacing);
   }
 
-  &--block_text + &--block_button {
-    padding-block-start: var(--line-spacing);
-  }
-
   &--block_menus:first-child {
     padding-block-start: theme('spacing.40');
 
     @screen md {
       padding-block-start: theme('spacing.20');
     }
+  }
+
+  /* Bespoke recipes */
+  &--block_text + &--block_button {
+    padding-block-start: var(--line-spacing);
+  }
+
+  &--block_gallery + &--block_text_editorial {
+    padding-block-start: var(--line-spacing);
   }
 }
 </style>
