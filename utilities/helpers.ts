@@ -109,15 +109,15 @@ const objectToUrlParams = (obj: Record<string, any>) => {
   return params.toString()
 }
 
-const arrayToTuples = (imageArray: any) => {
+const arrayToTuples = (items: any) => {
   const tuples = []
 
-  for (let i = 0; i < imageArray.length; i += 2) {
-    if (i + 1 < imageArray.length) {
-      tuples.push([imageArray[i], imageArray[i + 1]])
+  for (let i = 0; i < items.length; i += 2) {
+    if (i + 1 < items.length) {
+      tuples.push([items[i], items[i + 1]])
     }
     else {
-      tuples.push([imageArray[i]])
+      tuples.push([items[i]])
     }
   }
 
