@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { SwiperOptions } from 'swiper/types'
 import { ratioMap } from '@/utilities/maps'
-import { storyblokAssetType } from '@/utilities/helpers'
+import { storyblokAssetType, arrayToTuples } from '@/utilities/helpers'
 import type { BlockCarouselStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -8,52 +9,66 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
+
+const swiperOptions: SwiperOptions = {
+  effect: 'fade',
+  loop: true,
+  autoplay: block.autoplay ? { delay: 3000 } : false,
+  keyboard: {
+    enabled: true,
+  },
+}
+
+const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides) : block.slides?.map(item => [item]))
 </script>
 
 <template>
-  <div class="block-carousel">
+  <div
+    v-editable="block"
+    class="block-carousel"
+  >
     <div class="block-carousel__grid wrapper">
       <div class="block-carousel__container">
         <UiCarousel
-          :slides="block.slides"
           ratio="16:9"
-          :autoplay="block.autoplay"
+          :slides="slides"
+          :options="swiperOptions"
         >
           <template #slide="{ slide }">
             <div class="block-carousel__slide">
               <div
-                v-for="media in slide.media"
+                v-for="media in slide"
                 :key="media._uid"
                 class="block-carousel__item"
+                :class="block.two_per_slide ? 'block-carousel__item--two' : 'block-carousel__item--one'"
               >
                 <NuxtImg
-                  v-if="media.media && storyblokAssetType(media.media.filename) === 'image'"
-                  class="block-carousel__image"
-                  :class="slide.media.length === 1 ? ratioMap['16:9'] : ratioMap['8:9']"
-                  provider="storyblok"
-                  :src="media.media.filename"
-                  :alt="media.media.alt"
-                  :width="slide.media.length === 1 ? '16' : '8'"
+                  v-if="media && storyblokAssetType(media.filename) === 'image'"
+                  class="block-carousel__media"
+                  :class="block.two_per_slide ? ratioMap['8:9'] : ratioMap['16:9']"
+                  :src="media.filename"
+                  :alt="media.alt"
+                  :width="block.two_per_slide ? '8' : '16'"
                   height="9"
-                  :sizes="slide.media.length === 1
-                    ? `
-                      100vw
-                      md:${(10 / 12 * 100)}vw
-                      3xl:${(10 / 12 * 1800)}px
-                    `
-                    :`
+                  :sizes="
+                    block.two_per_slide ? `
                       50vw
                       md:${(5 / 12 * 100)}vw
                       3xl:${(5 / 12 * 1800)}px
+                    ` : `
+                      100vw
+                      md:${(10 / 12 * 100)}vw
+                      3xl:${(10 / 12 * 1800)}px
                     `
                   "
                   loading="lazy"
                 />
 
                 <MediaVideo
-                  v-else-if="media.media && storyblokAssetType(media.media.filename) === 'video'"
+                  v-else-if="media.media && storyblokAssetType(media.filename) === 'video'"
+                  class="block-carousel__media"
                   :asset="media.video"
-                  :ratio="slide.media.length === 1 ? '16:9' : '8:9'"
+                  :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
               </div>
             </div>
@@ -65,10 +80,6 @@ const { block } = defineProps<Props>()
 </template>
 
 <style lang="postcss">
-.block-carousel {
-  overflow: hidden;
-}
-
 .block-carousel__grid {
   @screen md {
     display: grid;
@@ -78,6 +89,8 @@ const { block } = defineProps<Props>()
 }
 
 .block-carousel__container {
+  overflow: hidden;
+
   @screen md {
     grid-column: 2 / span 10;
   }
@@ -85,18 +98,25 @@ const { block } = defineProps<Props>()
 
 .block-carousel__slide {
   display: flex;
-  gap: var(--app-inner-gutter);
+  justify-content: space-between;
   height: 100%;
+  background-color: var(--app-background-color);
 }
 
 .block-carousel__item {
-  flex-basis: 50%;
-  flex-grow: 1;
+  &--one {
+    width: 100%;
+  }
+
+  &--two {
+    width: calc(50% - (var(--app-inner-gutter) / 2));
+  }
 }
 
-.block-carousel__image {
+.block-carousel__media {
   height: 100%;
   object-fit: cover;
+  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 </style>

@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     id: '',
   },
   image: {
+    provider: 'storyblok',
     storyblok: {
       baseURL: 'https://a.storyblok.com',
     },

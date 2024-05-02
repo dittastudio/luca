@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { SwiperOptions } from 'swiper/types'
 import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/helpers'
 import type { BlockGalleryStoryblok } from '@/types/storyblok'
 
@@ -13,15 +14,25 @@ const currentSlide = ref(1)
 const setCurrentSlide = (slide: number) => {
   currentSlide.value = slide
 }
+2
+const swiperOptions: SwiperOptions = {
+  effect: 'fade',
+  keyboard: {
+    enabled: true,
+  },
+}
 </script>
 
 <template>
-  <div class="block-gallery">
+  <div
+    v-editable="block"
+    class="block-gallery"
+  >
     <UiCarousel
-      :slides="block.slides"
       :ratio="'auto'"
-      :loop="false"
+      :slides="block.slides"
       :pagination="false"
+      :options="swiperOptions"
       @current-slide="setCurrentSlide"
     >
       <template #slide="{ slide }">
@@ -31,16 +42,15 @@ const setCurrentSlide = (slide: number) => {
               <NuxtImg
                 v-if="slide && storyblokAssetType(slide.filename) === 'image'"
                 class="block-gallery__media"
-                provider="storyblok"
                 :src="slide.filename"
                 :alt="slide.alt"
                 :width="storyblokImageDimensions(slide.filename).width"
                 :height="storyblokImageDimensions(slide.filename).height"
                 :sizes="`
-                      100vw
-                      md:${8 / 12 * 100}vw
-                      3xl:${8 / 12 * 1800}px
-                    `"
+                  100vw
+                  md:${8 / 12 * 100}vw
+                  3xl:${8 / 12 * 1800}px
+                `"
               />
 
               <MediaVideo
@@ -69,27 +79,37 @@ const setCurrentSlide = (slide: number) => {
   position: relative;
   overflow: hidden;
   height: 100vh;
-
-  @screen mdMax {
-    padding-inline: theme('spacing.60');
-  }
-}
-
-.block-gallery__grid {
-  display: grid;
-  height: 100%;
+  height: 100dvh;
 
   &::after {
     content: '';
 
     position: absolute;
+    right: 0;
     bottom: 0;
     left: 0;
 
-    width: 100%;
+    width: calc(100% - (var(--app-outer-gutter) * 2));
+    margin-inline: auto;
 
+    opacity: 0.2;
     border-block-end: 1px solid currentcolor;
   }
+}
+
+.block-gallery__item {
+  height: inherit;
+  padding-block: var(--app-header-height);
+  background-color: theme('colors.offwhite');
+
+  @screen md {
+    padding-block: calc(var(--app-header-height) / 1.5);
+  }
+}
+
+.block-gallery__grid {
+  display: grid;
+  height: inherit;
 
   @screen md {
     grid-template-columns: var(--app-grid);
@@ -108,6 +128,8 @@ const setCurrentSlide = (slide: number) => {
 }
 
 .block-gallery__caption {
+  pointer-events: none;
+
   position: absolute;
   right: 0;
   bottom: theme('spacing.20');
@@ -119,15 +141,6 @@ const setCurrentSlide = (slide: number) => {
   @screen md {
     bottom: theme('spacing.50');
     gap: theme('spacing.40');
-  }
-}
-
-.block-gallery__item {
-  height: 100%;
-  padding-block: var(--app-header-height);
-
-  @screen md {
-    padding-block: calc(var(--app-header-height) / 1.5);
   }
 }
 

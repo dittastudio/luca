@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
+
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
 </script>
 
@@ -15,11 +16,10 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     v-editable="block"
     :class="['block-split wrapper', { 'block-split--reverse': block?.reversed }]"
   >
-    <div class="block-split__media">
+    <div class="block-split__picture">
       <NuxtImg
         v-if="block.media && assetType === 'image'"
-        provider="storyblok"
-        class="block-split__image"
+        class="block-split__media"
         :src="block.media.filename"
         :alt="block.media.alt"
         :width="ratioDimensions(block.ratio).width"
@@ -35,6 +35,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 
       <MediaVideo
         v-else-if="block.media && assetType === 'video'"
+        class="block-split__media"
         :asset="block.media"
         :ratio="block.ratio"
       />
@@ -61,7 +62,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
-.block-split__media {
+.block-split__picture {
   @screen md {
     grid-column: 1 / span 5;
 
@@ -88,14 +89,12 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
-.block-split__image {
+.block-split__media {
+  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 
 .block-split__text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
 
   @screen md {
@@ -109,7 +108,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 
   @screen lg {
     grid-column: 8 / span 5;
-    text-align: left;
 
     .block-split--reverse & {
       grid-column: 2 / span 5;
@@ -125,7 +123,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 
   @screen mdMax {
-    .block-split__media + & {
+    .block-split__picture + & {
       margin-block-start: theme('spacing.60');
     }
   }

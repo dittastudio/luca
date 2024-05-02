@@ -8,6 +8,7 @@ const toggleGrid = () => {
 
 <template>
   <button
+    data-grid-toggle
     type="button"
     :class="[
       'fixed z-50 bottom-20 right-20',

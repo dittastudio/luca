@@ -30,8 +30,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           <template #media>
             <NuxtImg
               v-if="block.media && assetType === 'image'"
-              class="block-card__image"
-              provider="storyblok"
+              class="block-card__media"
               :src="block.media.filename"
               :alt="block.media.alt"
               :width="ratioDimensions(block.ratio).width"
@@ -47,6 +46,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 
             <MediaVideo
               v-else-if="block.media && assetType === 'video'"
+              class="block-card__media"
               :asset="block.media"
               :ratio="block.ratio"
             />
@@ -66,7 +66,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
-.block-card__image {
+.block-card__media {
+  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 </style>

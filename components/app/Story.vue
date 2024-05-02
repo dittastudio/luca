@@ -73,12 +73,16 @@ watch(() => isOpen, (value) => {
 
   color: theme('colors.green');
 
+  opacity: 0;
   background-color: theme('colors.offwhite');
 
-  transition: translate theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  transition:
+    translate theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
+    opacity 0s theme('transitionDelay.500');
 
   .app-story--is-open & {
     translate: 0 0 0;
+    opacity: 1;
     transition: translate theme('transitionDuration.700') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.500');
   }
 

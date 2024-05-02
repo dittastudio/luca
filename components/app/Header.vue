@@ -80,7 +80,7 @@ const toggleNavigation = () => {
   <div
     class="app-header"
     :class="headerClasses"
-    @keydown.esc="closeNavigation"
+    @keyup.esc="closeNavigation"
   >
     <button
       tabindex="-1"

@@ -38,10 +38,10 @@ const { isOpen = false } = defineProps<Props>()
 
   &::before,
   &::after {
-    --trans-out-open: theme('transitionDuration.200') theme('transitionTimingFunction.outExpo') theme('transitionDelay.200');
-    --trans-in-open: theme('transitionDuration.200') theme('transitionTimingFunction.inExpo');
-    --trans-out-close: theme('transitionDuration.200') theme('transitionTimingFunction.outExpo') theme('transitionDelay.200');
-    --trans-in-close: theme('transitionDuration.200') theme('transitionTimingFunction.inExpo');
+    --trans-out-open: theme('transitionDuration.250') theme('transitionTimingFunction.outExpo') theme('transitionDelay.250');
+    --trans-in-open: theme('transitionDuration.250') theme('transitionTimingFunction.inExpo');
+    --trans-out-close: theme('transitionDuration.250') theme('transitionTimingFunction.outExpo') theme('transitionDelay.250');
+    --trans-in-close: theme('transitionDuration.250') theme('transitionTimingFunction.inExpo');
 
     content: '';
 

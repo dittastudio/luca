@@ -109,6 +109,21 @@ const objectToUrlParams = (obj: Record<string, any>) => {
   return params.toString()
 }
 
+const arrayToTuples = (imageArray: any) => {
+  const tuples = []
+
+  for (let i = 0; i < imageArray.length; i += 2) {
+    if (i + 1 < imageArray.length) {
+      tuples.push([imageArray[i], imageArray[i + 1]])
+    }
+    else {
+      tuples.push([imageArray[i]])
+    }
+  }
+
+  return tuples
+}
+
 export {
   hasRichTextContent,
   isStoryblokEditor,
@@ -116,6 +131,7 @@ export {
   ratioDimensions,
   requestDelay,
   safeKebabCase,
+  arrayToTuples,
   storyblokAssetType,
   storyblokImage,
   storyblokImageDimensions,
