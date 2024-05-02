@@ -46,7 +46,6 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides) 
                   v-if="media && storyblokAssetType(media.filename) === 'image'"
                   class="block-carousel__media"
                   :class="block.two_per_slide ? ratioMap['8:9'] : ratioMap['16:9']"
-                  provider="storyblok"
                   :src="media.filename"
                   :alt="media.alt"
                   :width="block.two_per_slide ? '8' : '16'"

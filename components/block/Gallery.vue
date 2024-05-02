@@ -42,7 +42,6 @@ const swiperOptions: SwiperOptions = {
               <NuxtImg
                 v-if="slide && storyblokAssetType(slide.filename) === 'image'"
                 class="block-gallery__media"
-                provider="storyblok"
                 :src="slide.filename"
                 :alt="slide.alt"
                 :width="storyblokImageDimensions(slide.filename).width"

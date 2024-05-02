@@ -19,7 +19,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     <div class="block-split__picture">
       <NuxtImg
         v-if="block.media && assetType === 'image'"
-        provider="storyblok"
         class="block-split__media"
         :src="block.media.filename"
         :alt="block.media.alt"

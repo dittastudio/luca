@@ -27,7 +27,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           <NuxtImg
             v-if="block.media && assetType === 'image'"
             class="block-card-editorial__video"
-            provider="storyblok"
             :src="block.media.filename"
             :alt="block.media.alt"
             :width="ratioDimensions(block.ratio).width"
