@@ -89,6 +89,7 @@ const swiperOptions: SwiperOptions = {
     width: calc(100% - (var(--app-outer-gutter) * 2));
     margin-inline: auto;
 
+    opacity: 0.2;
     border-block-end: 1px solid currentcolor;
   }
 }
