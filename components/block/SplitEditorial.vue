@@ -149,7 +149,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 
   @screen mdMax {
-    .block-split-editorial__media + & {
+    .block-split-editorial__picture + & {
       margin-block-start: theme('spacing.60');
     }
   }
