@@ -19,6 +19,7 @@ const swiperOptions: SwiperOptions = {
 
 <template>
   <div
+    v-editable="block"
     class="block-menus wrapper"
   >
     <div class="block-menus__grid">
@@ -73,7 +74,6 @@ const swiperOptions: SwiperOptions = {
                 <template #slide="{ slide }">
                   <NuxtImg
                     class="block-menus__image"
-                    provider="storyblok"
                     :src="slide.filename"
                     :alt="slide.alt"
                     :width="storyblokImageDimensions(slide.filename).width"

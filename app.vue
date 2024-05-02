@@ -70,9 +70,9 @@ useState('navigationOpen', () => false)
       </template>
     </AppLayout>
 
-    <!-- <AppCover
-      v-if="story.content.cover_message"
+    <AppCover
+      v-if="!isDev && story.content.cover_message"
       :message="story.content.cover_message"
-    /> -->
+    />
   </div>
 </template>
