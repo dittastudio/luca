@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
 import { ratioMap } from '@/utilities/maps'
-import { storyblokAssetType } from '@/utilities/helpers'
+import { storyblokAssetType, arrayToTuples } from '@/utilities/helpers'
 import type { BlockCarouselStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -19,32 +19,14 @@ const swiperOptions: SwiperOptions = {
   },
 }
 
-const splitArrayIntoTuples = (imageArray: any) => {
-  const tuples = []
-
-  if (block.two_per_slide) {
-    for (let i = 0; i < imageArray.length; i += 2) {
-      if (i + 1 < imageArray.length) {
-        tuples.push([imageArray[i], imageArray[i + 1]])
-      }
-      else {
-        tuples.push([imageArray[i]])
-      }
-    }
-  }
-  else {
-    for (let i = 0; i < imageArray.length; i += 1) {
-      tuples.push([imageArray[i]])
-    }
-  }
-  return tuples
-}
-
-const slides = splitArrayIntoTuples(block.slides)
+const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides) : block.slides?.map(item => [item]))
 </script>
 
 <template>
-  <div class="block-carousel">
+  <div
+    v-editable="block"
+    class="block-carousel"
+  >
     <div class="block-carousel__grid wrapper">
       <div class="block-carousel__container">
         <UiCarousel

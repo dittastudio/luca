@@ -40,7 +40,7 @@ const initSwiper = () => {
           clickable: true,
           bulletClass: 'ui-carousel__bullet',
           bulletActiveClass: 'ui-carousel__bullet--is-active',
-          renderBullet: function (index, className) {
+          renderBullet: function (_, className) {
             return `
               <button type="button" class="${className}">
                 <span class="ui-carousel__dot"></span>
@@ -50,6 +50,7 @@ const initSwiper = () => {
         }
       : false,
     slideToClickedSlide: true,
+    observeSlideChildren: true,
     on: {
       init: (slider) => {
         current.value = slider.activeIndex + 1
@@ -66,8 +67,11 @@ const initSwiper = () => {
 
 onMounted(() => initSwiper())
 
-onUnmounted(() => {
-  if (swiper.value) swiper.value.destroy()
+onUnmounted(() => swiper.value?.destroy())
+
+watch(() => slides, () => {
+  swiper.value?.update()
+  swiper.value?.updateSlides()
 })
 </script>
 

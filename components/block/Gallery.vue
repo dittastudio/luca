@@ -24,7 +24,10 @@ const swiperOptions: SwiperOptions = {
 </script>
 
 <template>
-  <div class="block-gallery">
+  <div
+    v-editable="block"
+    class="block-gallery"
+  >
     <UiCarousel
       :ratio="'auto'"
       :slides="block.slides"

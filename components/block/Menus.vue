@@ -19,6 +19,7 @@ const swiperOptions: SwiperOptions = {
 
 <template>
   <div
+    v-editable="block"
     class="block-menus wrapper"
   >
     <div class="block-menus__grid">

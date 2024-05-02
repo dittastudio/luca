@@ -9,6 +9,7 @@ const story = await useStoryblokStory<SettingsStoryblok>('/settings')
 const isMd = useAtMedia(`(min-width: ${screenSizes.md}px)`)
 const isHome = computed(() => route.path === '/' && isMd.value)
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
+const isDev = import.meta.dev
 
 const globalClasses = computed(() => ({
   'is-storyblok-editor': isStoryblokEditor(route.query),
@@ -65,16 +66,12 @@ useState('navigationOpen', () => false)
       </template>
 
       <template #dev>
-        <DevOnly>
-          <ToolGrid />
-        </DevOnly>
-
-        <ToolGrid v-if="isStoryblokEditor(route.query)" />
+        <ToolGrid v-if="isDev || isStoryblokEditor(route.query)" />
       </template>
     </AppLayout>
 
     <AppCover
-      v-if="story.content.cover_message"
+      v-if="!isDev && story.content.cover_message"
       :message="story.content.cover_message"
     />
   </div>

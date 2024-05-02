@@ -16,7 +16,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     v-editable="block"
     :class="['block-split wrapper', { 'block-split--reverse': block?.reversed }]"
   >
-    <div class="block-split__media">
+    <div class="block-split__picture">
       <NuxtImg
         v-if="block.media && assetType === 'image'"
         provider="storyblok"
@@ -63,7 +63,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
-.block-split__media {
+.block-split__picture {
   @screen md {
     grid-column: 1 / span 5;
 
