@@ -12,8 +12,6 @@ const { isOpen = false } = defineProps<Props>()
     :class="{ 'app-footer-accordion-icon--is-open': isOpen }"
   >
     <span class="app-footer-accordion-icon__inner" />
-
-    <span class="sr-only">Toggle menu</span>
   </span>
 </template>
 
@@ -28,13 +26,12 @@ const { isOpen = false } = defineProps<Props>()
 }
 
 .app-footer-accordion-icon__inner {
-  --burger-height: 1px;
-  --burger-offset: 0;
+  --cross-height: 1px;
 
   position: relative;
   display: block;
   width: 100%;
-  height: var(--burger-height);
+  height: var(--cross-height);
 
   &::before,
   &::after {
