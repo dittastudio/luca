@@ -31,7 +31,7 @@ const { block } = defineProps<Props>()
 
 .block-player__item {
   overflow: hidden;
-  background-color: theme('colors.black/10%');
+  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 
   @screen md {

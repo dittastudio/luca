@@ -19,11 +19,11 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
       { 'block-split-editorial--reverse': block?.reversed },
     ]"
   >
-    <div class="block-split-editorial__media">
+    <div class="block-split-editorial__picture">
       <NuxtImg
         v-if="block.media && assetType === 'image'"
         provider="storyblok"
-        class="block-split-editorial__image"
+        class="block-split-editorial__media"
         :src="block.media.filename"
         :alt="block.media.alt"
         :width="ratioDimensions(block.ratio).width"
@@ -39,6 +39,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 
       <MediaVideo
         v-else-if="block.media && assetType === 'video'"
+        class="block-split-editorial__media"
         :asset="block.media"
         :ratio="block.ratio"
       />
@@ -63,7 +64,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   align-items: flex-start;
 }
 
-.block-split-editorial__media {
+.block-split-editorial__picture {
   grid-column: 1 / span 1;
 
   .block-split-editorial--reverse & {
@@ -112,8 +113,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
-.block-split-editorial__image {
-  background-color: theme('colors.black/10%');
+.block-split-editorial__media {
+  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 

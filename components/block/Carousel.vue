@@ -62,7 +62,7 @@ const slides = splitArrayIntoTuples(block.slides)
               >
                 <NuxtImg
                   v-if="media && storyblokAssetType(media.filename) === 'image'"
-                  class="block-carousel__image"
+                  class="block-carousel__media"
                   :class="block.two_per_slide ? ratioMap['8:9'] : ratioMap['16:9']"
                   provider="storyblok"
                   :src="media.filename"
@@ -85,6 +85,7 @@ const slides = splitArrayIntoTuples(block.slides)
 
                 <MediaVideo
                   v-else-if="media.media && storyblokAssetType(media.filename) === 'video'"
+                  class="block-carousel__media"
                   :asset="media.video"
                   :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
@@ -131,10 +132,10 @@ const slides = splitArrayIntoTuples(block.slides)
   }
 }
 
-.block-carousel__image {
+.block-carousel__media {
   height: 100%;
   object-fit: cover;
-  background-color: theme('colors.black/10%');
+  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 </style>
