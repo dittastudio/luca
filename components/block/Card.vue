@@ -67,6 +67,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-card__image {
+  background-color: theme('colors.black/10%');
   border-radius: theme('borderRadius.sm');
 }
 </style>

@@ -134,6 +134,7 @@ const slides = splitArrayIntoTuples(block.slides)
 .block-carousel__image {
   height: 100%;
   object-fit: cover;
+  background-color: theme('colors.black/10%');
   border-radius: theme('borderRadius.sm');
 }
 </style>
