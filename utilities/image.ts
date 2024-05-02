@@ -1,66 +1,45 @@
-export const IMAGE_TRANSFORM_URL = 'https://yco-serverless.netlify.app/images'
+const storyblokImage = (
+  filename: string | null | undefined,
+  options?: Luca.ImageTransformOptions | undefined,
+): string => {
+  if (!filename?.length) return ''
 
-export function generateTransformParamsString({
-  f = 'auto',
-  q = '70',
-  c = 'fill',
-  ...transformationParams
-}: TransformParamTypes): string {
-  return Object.entries({ f, q, c, ...transformationParams })
-    .map(([key, value]) => `${key}_${value}`)
-    .join(',')
-}
-
-export function getAssetFilepathWithTransforms(
-  path: string = '',
-  transformsStr: string = '',
-): string {
-  const splitValue = '/upload/'
-  if (!path?.includes(splitValue)) return path
-
-  const [firstPt = '', secondPt = ''] = path.split(splitValue)
-  const transformPt = transformsStr ? `${transformsStr}/` : ''
-
-  return `${firstPt}${splitValue}${transformPt}${secondPt}`
-}
-
-export function removeOriginHostFromAssetUrl(assetUrl: string): string {
-  try {
-    const { pathname } = new URL(assetUrl)
-    return pathname
+  const settings: Luca.ImageTransformOptions = {
+    width: 0,
+    height: 0,
+    smart: false,
+    quality: 90,
+    blur: 0,
+    ...options,
   }
-  catch (error) {
-    console.warn('Error parsing asset url', error)
-    return assetUrl
+
+  const filterProperties: Record<string, string> = {
+    blur: settings.blur && settings.blur > 0 ? `:blur(${settings.blur})` : '',
+    quality: `:quality(${settings.quality})`,
   }
+
+  const filters: string = Object.values(filterProperties)
+    .map(item => item.trim())
+    .filter(item => item.length)
+    .join('')
+
+  const transforms = `m/${settings.width}x${settings.height}${
+    settings.smart ? '/smart' : ''
+  }/filters${filters}`
+  const path = `${filename}/${transforms}`.replace('//a.storyblok.com', '//a2.storyblok.com')
+
+  return path
 }
 
-export const getRatio = (ratio: keyof AspectRatioInterface) => {
-  const ar = ASPECT_RATIO_MAP[ratio]
-  const [ratioWidth, ratioHeight] = ar.split(':')
+const ratioDimensions = (
+  ratio: Luca.TAspectRatios | string | number,
+): Luca.ImageDimensions => {
+  const parts = ratio.toString().split(':').map((num: string): number => Number(num))
 
   return {
-    width: ratioWidth,
-    height: ratioHeight,
-    ar,
+    width: parts[0],
+    height: parts[1],
   }
-}
-
-export const isStaticUrl = (url: string) =>
-  url ? !url.includes('https') : false
-
-export function generateSrc(
-  assetUrl: string,
-  transformationParams: TransformParamTypes,
-  width: number,
-): string {
-  const assetFilePath = removeOriginHostFromAssetUrl(assetUrl)
-  const transformsStr = generateTransformParamsString({
-    ...transformationParams,
-    w: width,
-  })
-
-  return getAssetFilepathWithTransforms(assetFilePath, transformsStr)
 }
 
 function generateSrcsetEntry(src: string, width: number): string {
@@ -92,53 +71,4 @@ export function generateImageSrcset(
       ),
     )
     .join(', ')
-}
-
-export function calculateTransformationParams(
-  providedWidth: string | number,
-  providedHeight: string | number | undefined,
-  ratio?: keyof AspectRatioInterface,
-): {
-    width: string | number
-    height: string | number | undefined
-    transformationParams: TransformParamTypes
-  } {
-  let width: string | number = providedWidth
-  let height: string | number | undefined = providedHeight
-  const transformationParams: TransformParamTypes = {}
-
-  if (ratio && ASPECT_RATIO_MAP[ratio]) {
-    const aspectRatio = getRatio(ratio)
-    width = aspectRatio.width
-    height = aspectRatio.height
-    transformationParams.ar = aspectRatio.ar
-  }
-
-  return { width, height, transformationParams }
-}
-
-export function parseMediaObject(media: ImageType | VideoType): (
-  | ImageType
-  | VideoType
-) & {
-  isImage: boolean
-  isVideo: boolean
-  isValidImage: boolean
-} {
-  const invalidImageFormats = ['svg']
-
-  const { format, resource_type } = media
-
-  const isImage = !!(resource_type && resource_type === 'image')
-
-  return {
-    ...media,
-    isImage,
-    isValidImage: !!(
-      isImage
-      && format
-      && !invalidImageFormats.includes(format)
-    ),
-    isVideo: !!(resource_type && resource_type === 'video'),
-  }
 }
