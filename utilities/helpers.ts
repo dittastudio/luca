@@ -88,9 +88,7 @@ const requestDelay = async <T>(promise: T, ms: number = 1000) => {
   return p
 }
 
-const hasRichTextContent = (richtext: RichtextStoryblok | undefined): boolean => {
-  return Boolean(richtext?.content?.[0]?.content?.length)
-}
+const hasRichTextContent = (richtext: RichtextStoryblok | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
 
 const safeKebabCase = (str: string) =>
   deburr(str)
@@ -99,9 +97,22 @@ const safeKebabCase = (str: string) =>
     .toLowerCase()
     .trim()
 
+const objectToUrlParams = (obj: Record<string, any>) => {
+  const params = new URLSearchParams()
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      params.append(key, obj[key])
+    }
+  }
+
+  return params.toString()
+}
+
 export {
   hasRichTextContent,
   isStoryblokEditor,
+  objectToUrlParams,
   ratioDimensions,
   requestDelay,
   safeKebabCase,

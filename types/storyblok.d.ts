@@ -89,8 +89,7 @@ export type MultiassetStoryblok = {
 }[];
 
 export interface BlockCarouselStoryblok {
-  slides: SlideStoryblok[];
-  slides_new?: MultiassetStoryblok;
+  slides?: MultiassetStoryblok;
   two_per_slide?: boolean;
   autoplay?: boolean;
   connecting_line?: boolean;
@@ -127,6 +126,7 @@ export interface BlockMenusStoryblok {
 }
 
 export interface BlockPlayerStoryblok {
+  autoplay?: boolean;
   _uid: string;
   component: "block_player";
   [k: string]: any;
@@ -149,6 +149,17 @@ export interface BlockSplitStoryblok {
   connecting_line?: boolean;
   _uid: string;
   component: "block_split";
+  [k: string]: any;
+}
+
+export interface BlockSplitEditorialStoryblok {
+  media: AssetStoryblok;
+  ratio: number | string;
+  text?: RichtextStoryblok;
+  reversed?: boolean;
+  connecting_line?: boolean;
+  _uid: string;
+  component: "block_split_editorial";
   [k: string]: any;
 }
 
@@ -214,6 +225,7 @@ export interface PageStoryblok {
     | BlockMenusStoryblok
     | BlockPlayerStoryblok
     | BlockSplitStoryblok
+    | BlockSplitEditorialStoryblok
     | BlockTextStoryblok
     | BlockTextEditorialStoryblok
   )[];
