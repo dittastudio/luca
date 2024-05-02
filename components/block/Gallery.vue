@@ -77,6 +77,7 @@ const swiperOptions: SwiperOptions = {
   position: relative;
   overflow: hidden;
   height: 100vh;
+  height: 100dvh;
 
   &::after {
     content: '';
@@ -125,6 +126,8 @@ const swiperOptions: SwiperOptions = {
 }
 
 .block-gallery__caption {
+  pointer-events: none;
+
   position: absolute;
   right: 0;
   bottom: theme('spacing.20');
