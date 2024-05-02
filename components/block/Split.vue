@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { BlockSplitStoryblok } from '@/types/storyblok'
-import { hasRichTextContent, ratioDimensions, storyblokAssetType } from '@/utilities/helpers'
+import { hasRichTextContent, storyblokAssetType } from '@/utilities/helpers'
 
 interface Props {
   block: BlockSplitStoryblok
@@ -17,20 +17,18 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     :class="['block-split wrapper', { 'block-split--reverse': block?.reversed }]"
   >
     <div class="block-split__picture">
-      <NuxtImg
+      <MediaImage
         v-if="block.media && assetType === 'image'"
         class="block-split__media"
-        :src="block.media.filename"
-        :alt="block.media.alt"
-        :width="ratioDimensions(block.ratio).width"
-        :height="ratioDimensions(block.ratio).height"
+        :asset="block.media"
+        :ratio="block.ratio"
         :sizes="`
           100vw
           sm:100vw
           md:${(5 / 12 * 100)}vw
           3xl:${(5 / 12 * 1800)}px
         `"
-        loading="lazy"
+        :lazy="false"
       />
 
       <MediaVideo
@@ -52,7 +50,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   </div>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .block-split {
   @screen md {
     display: grid;
@@ -90,7 +88,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-split__media {
-  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 
@@ -130,7 +127,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-split__copy {
-  & p {
+  & :deep(p) {
     max-width: 27.5em;
     margin-inline: auto;
 
