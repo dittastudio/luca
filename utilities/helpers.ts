@@ -98,10 +98,15 @@ const safeKebabCase = (str: string) =>
     .trim()
 
 const objectToUrlParams = (obj: Record<string, any>) => {
+  // Begin: TODO
+  // Maybe this?
+  // Object.entries(obj).filter(([key, val]) => val).map(([key, val]) => `${key}=${val}`).join('&')
+  // End: TODO
+
   const params = new URLSearchParams()
 
   for (const key in obj) {
-    if (Object.hasOwn(obj, key)) {
+    if (Object.hasOwn(obj, key) && obj[key]) {
       params.append(key, obj[key])
     }
   }

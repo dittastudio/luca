@@ -28,7 +28,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           md:${(5 / 12 * 100)}vw
           3xl:${(5 / 12 * 1800)}px
         `"
-        :lazy="false"
       />
 
       <MediaVideo

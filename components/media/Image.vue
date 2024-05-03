@@ -14,31 +14,31 @@ interface Props {
 const { asset, ratio, sizes, lazy = true } = defineProps<Props>()
 
 const container = ref<HTMLDivElement | null>(null)
-const loaded = ref(!lazy)
 const seen = ref(false)
-const src = ref(lazy ? '' : asset.filename)
-const img = useImage()
+const loaded = ref(!lazy)
+const src = ref(lazy || !seen.value ? undefined : asset.filename)
 const size = {
   width: ratioDimensions(ratio).width * 100,
   height: ratioDimensions(ratio).height * 100,
 }
+const img = useImage()
 const placeholder = img(asset.filename,
   {
     width: size.width,
     height: size.height,
-    quality: 50,
-    blur: 50,
+    quality: 10,
   },
 )
 
 useIntersectionObserver(
   container,
-  ([{ target, isIntersecting }]) => {
+  ([{ target, isIntersecting }], observerElement) => {
     if (!(target instanceof HTMLDivElement)) return
 
     if (isIntersecting && !seen.value) {
-      seen.value = true
       src.value = asset.filename
+      seen.value = true
+      observerElement.disconnect()
     }
   },
   { rootMargin: '0px 0px 0px 0px', threshold: 0.5 },
@@ -50,15 +50,16 @@ useIntersectionObserver(
     ref="container"
     class="media-image"
   >
+    <!-- v-if="!lazy || seen" -->
+    <!-- :placeholder="placeholder" -->
     <NuxtImg
-      v-if="!lazy || seen"
       class="media-image__asset"
       :class="['media-image__asset', { 'is-loaded': loaded, 'is-lazy': lazy }]"
       :src="src"
-      :alt="alt || asset.alt"
+      :sizes="sizes"
       :width="size.width"
       :height="size.height"
-      :sizes="sizes"
+      :alt="alt || asset.alt"
       loading="lazy"
       @load="loaded = true"
     />
@@ -66,7 +67,7 @@ useIntersectionObserver(
     <img
       v-if="lazy"
       class="media-image__placeholder"
-      :src="`${placeholder}:blur(50)`"
+      :src="placeholder"
       :width="size.width"
       :height="size.height"
       alt=""
@@ -98,6 +99,7 @@ useIntersectionObserver(
   }
 
   &__placeholder {
+    filter: blur(20px);
     pointer-events: none;
     width: 100%;
     height: auto;
