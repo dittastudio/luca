@@ -157,8 +157,8 @@ const toggleNavigation = () => {
             src="https://www.sevenrooms.com/reservations/luca"
             width="100%"
             height="700"
-            loading="lazy"
             frameborder="0"
+            loading="lazy"
           />
         </AppModal>
       </div>

@@ -26,12 +26,13 @@ const params = objectToUrlParams(options)
     <iframe
       v-if="block.vimeo?.vimeo_oembed?.response"
       class="block-player__item aspect-16/9"
+      :title="block.vimeo.vimeo_oembed.response.title"
       :src="`https://player.vimeo.com/video/${block.vimeo.vimeo_oembed.response.video_id}?${params}`"
       :width="block.vimeo.vimeo_oembed.response.width"
       :height="block.vimeo.vimeo_oembed.response.height"
       frameborder="0"
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-      :title="block.vimeo.vimeo_oembed.response.title"
+      loading="lazy"
     />
   </div>
 </template>
