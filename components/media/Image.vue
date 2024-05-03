@@ -22,11 +22,12 @@ const { asset, ratio, sizes, lazy = true } = defineProps<Props>()
 const container = ref<HTMLDivElement | null>(null)
 const ready = ref(!lazy)
 const loaded = ref(!lazy)
-const src = ref(lazy || !ready.value ? undefined : asset.filename)
+
 const size = {
   width: ratioDimensions(ratio).width * 100,
   height: ratioDimensions(ratio).height * 100,
 }
+
 const placeholderImg = useImage()
 const placeholder = placeholderImg(asset.filename,
   {
@@ -42,7 +43,6 @@ useIntersectionObserver(
     if (!(target instanceof HTMLDivElement)) return
 
     if (isIntersecting && !ready.value) {
-      src.value = asset.filename
       ready.value = true
       observerElement.disconnect()
     }
@@ -50,9 +50,9 @@ useIntersectionObserver(
   { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
 )
 
-const imgInfo = useImage()
+const imgMain = useImage()
 
-const getSizes = computed(() => imgInfo.getSizes(asset.filename, {
+const imgInfo = computed(() => imgMain.getSizes(asset.filename, {
   provider: 'storyblok',
   sizes: sizes,
   modifiers: {
@@ -66,9 +66,11 @@ const imgAttrs = computed(() => ({
   ...attrs,
   width: size.width,
   height: size.height,
-  sizes: ready.value ? getSizes.value.sizes : '',
-  srcset: ready.value ? getSizes.value.srcset : '',
+  src: ready.value ? asset.filename : '',
+  sizes: ready.value ? imgInfo.value.sizes : '',
+  srcset: ready.value ? imgInfo.value.srcset : '',
   alt: attrs.value?.alt ?? asset.alt ?? '',
+  loading: 'lazy' as 'lazy' | 'eager',
 }))
 </script>
 
@@ -80,8 +82,6 @@ const imgAttrs = computed(() => ({
     <img
       v-bind="imgAttrs"
       :class="['media-image__asset', { 'is-loaded': loaded, 'is-lazy': lazy }]"
-      :src="src"
-      loading="lazy"
       @load="loaded = true"
     >
 
