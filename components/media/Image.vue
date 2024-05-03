@@ -3,6 +3,12 @@ import { useIntersectionObserver } from '@vueuse/core'
 import { ratioDimensions } from '@/utilities/helpers'
 import type { AssetStoryblok } from '@/types/storyblok'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
+const attrs = useAttrs() as { [key: string]: any }
+
 interface Props {
   asset: AssetStoryblok
   ratio: number | string
@@ -14,15 +20,15 @@ interface Props {
 const { asset, ratio, sizes, lazy = true } = defineProps<Props>()
 
 const container = ref<HTMLDivElement | null>(null)
-const seen = ref(false)
+const seen = ref(!lazy)
 const loaded = ref(!lazy)
 const src = ref(lazy || !seen.value ? undefined : asset.filename)
 const size = {
   width: ratioDimensions(ratio).width * 100,
   height: ratioDimensions(ratio).height * 100,
 }
-const img = useImage()
-const placeholder = img(asset.filename,
+const placeholderImg = useImage()
+const placeholder = placeholderImg(asset.filename,
   {
     width: size.width,
     height: size.height,
@@ -43,6 +49,25 @@ useIntersectionObserver(
   },
   { rootMargin: '0px 0px 0px 0px', threshold: 0.5 },
 )
+
+const imgInfo = useImage()
+
+const getSizes = computed(() => imgInfo.getSizes(asset.filename, {
+  sizes: sizes,
+  modifiers: {
+    width: size.width,
+    height: size.height,
+  },
+}))
+
+const imgAttrs = computed(() => ({
+  ...attrs,
+  width: size.width,
+  height: size.height,
+  sizes: lazy || !seen.value ? '' : getSizes.value.sizes,
+  srcset: lazy || !seen.value ? '' : getSizes.value.srcset,
+  alt: attrs.value?.alt ?? asset.alt ?? '',
+}))
 </script>
 
 <template>
@@ -50,19 +75,13 @@ useIntersectionObserver(
     ref="container"
     class="media-image"
   >
-    <!-- v-if="!lazy || seen" -->
-    <!-- :placeholder="placeholder" -->
-    <NuxtImg
-      class="media-image__asset"
+    <img
+      v-bind="imgAttrs"
       :class="['media-image__asset', { 'is-loaded': loaded, 'is-lazy': lazy }]"
       :src="src"
-      :sizes="sizes"
-      :width="size.width"
-      :height="size.height"
-      :alt="alt || asset.alt"
       loading="lazy"
       @load="loaded = true"
-    />
+    >
 
     <img
       v-if="lazy"
