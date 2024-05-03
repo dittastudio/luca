@@ -20,9 +20,9 @@ interface Props {
 const { asset, ratio, sizes, lazy = true } = defineProps<Props>()
 
 const container = ref<HTMLDivElement | null>(null)
-const seen = ref(!lazy)
+const ready = ref(!lazy)
 const loaded = ref(!lazy)
-const src = ref(lazy || !seen.value ? undefined : asset.filename)
+const src = ref(lazy || !ready.value ? undefined : asset.filename)
 const size = {
   width: ratioDimensions(ratio).width * 100,
   height: ratioDimensions(ratio).height * 100,
@@ -41,9 +41,9 @@ useIntersectionObserver(
   ([{ target, isIntersecting }], observerElement) => {
     if (!(target instanceof HTMLDivElement)) return
 
-    if (isIntersecting && !seen.value) {
+    if (isIntersecting && !ready.value) {
       src.value = asset.filename
-      seen.value = true
+      ready.value = true
       observerElement.disconnect()
     }
   },
@@ -53,10 +53,12 @@ useIntersectionObserver(
 const imgInfo = useImage()
 
 const getSizes = computed(() => imgInfo.getSizes(asset.filename, {
+  provider: 'storyblok',
   sizes: sizes,
   modifiers: {
     width: size.width,
     height: size.height,
+    quality: 80,
   },
 }))
 
@@ -64,8 +66,8 @@ const imgAttrs = computed(() => ({
   ...attrs,
   width: size.width,
   height: size.height,
-  sizes: lazy || !seen.value ? '' : getSizes.value.sizes,
-  srcset: lazy || !seen.value ? '' : getSizes.value.srcset,
+  sizes: ready.value ? getSizes.value.sizes : '',
+  srcset: ready.value ? getSizes.value.srcset : '',
   alt: attrs.value?.alt ?? asset.alt ?? '',
 }))
 </script>
