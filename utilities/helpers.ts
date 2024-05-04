@@ -97,7 +97,7 @@ const safeKebabCase = (str: string) =>
     .toLowerCase()
     .trim()
 
-const objectToUrlParams = (obj: Record<string, any>) => {
+const objectToUrlParams = (obj: Record<string, unknown>) => {
   // Begin: TODO
   // Maybe this?
   // Object.entries(obj).filter(([key, val]) => val).map(([key, val]) => `${key}=${val}`).join('&')
@@ -107,14 +107,14 @@ const objectToUrlParams = (obj: Record<string, any>) => {
 
   for (const key in obj) {
     if (Object.hasOwn(obj, key) && obj[key]) {
-      params.append(key, obj[key])
+      params.append(key, String(obj[key]))
     }
   }
 
   return params.toString()
 }
 
-const arrayToTuples = (items: any) => {
+const arrayToTuples = (items: unknown[]) => {
   const tuples = []
 
   for (let i = 0; i < items.length; i += 2) {
