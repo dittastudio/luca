@@ -95,8 +95,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/sitemap',
     '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
     'nuxt-gtag',
   ],
