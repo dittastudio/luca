@@ -1,40 +1,29 @@
 <script lang="ts" setup>
-import {
-  calculateTransformationParams,
-  generateImageSrc,
-  generateImageSrcset,
-} from '@/utilities/image'
-
 interface Props {
-  class?: string
   url: string
-  ratio?: Luca.TAspectRatios
-  sizes?: string
-  alt?: string
+  alt: string
   width: number
   height?: number
   widths?: number[]
-  loading?: 'lazy' | 'eager'
+  sizes?: string
 }
 
 const {
   url,
-  ratio,
-  sizes,
   alt,
-  width: providedWidth,
-  height: providedHeight,
+  width,
+  height,
   widths = [500, 300, 100],
-  loading = 'lazy',
+  sizes,
 } = defineProps<Props>()
 
-const { width, height, transformationParams } = calculateTransformationParams(
-  providedWidth,
-  providedHeight,
-  ratio,
-)
-const src = generateImageSrc(url, transformationParams, providedWidth)
-const srcset = generateImageSrcset(url, transformationParams, widths)
+// const { width, height, transformationParams } = calculateTransformationParams(
+//   providedWidth,
+//   providedHeight,
+//   ratio,
+// )
+// const src = generateImageSrc(url, transformationParams, providedWidth)
+// const srcset = generateImageSrcset(url, transformationParams, widths)
 </script>
 
 <template>
