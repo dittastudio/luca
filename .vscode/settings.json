@@ -1,6 +1,8 @@
 {
   "eslint.experimental.useFlatConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
   "files.associations": {
     "*.css": "tailwindcss"
   },

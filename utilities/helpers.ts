@@ -88,9 +88,7 @@ const requestDelay = async <T>(promise: T, ms: number = 1000) => {
   return p
 }
 
-const hasRichTextContent = (richtext: RichtextStoryblok | undefined): boolean => {
-  return Boolean(richtext?.content?.[0]?.content?.length)
-}
+const hasRichTextContent = (richtext: RichtextStoryblok | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
 
 const safeKebabCase = (str: string) =>
   deburr(str)
@@ -99,15 +97,32 @@ const safeKebabCase = (str: string) =>
     .toLowerCase()
     .trim()
 
-const arrayToTuples = (imageArray: any) => {
+const objectToUrlParams = (obj: Record<string, any>) => {
+  // Begin: TODO
+  // Maybe this?
+  // Object.entries(obj).filter(([key, val]) => val).map(([key, val]) => `${key}=${val}`).join('&')
+  // End: TODO
+
+  const params = new URLSearchParams()
+
+  for (const key in obj) {
+    if (Object.hasOwn(obj, key) && obj[key]) {
+      params.append(key, obj[key])
+    }
+  }
+
+  return params.toString()
+}
+
+const arrayToTuples = (items: any) => {
   const tuples = []
 
-  for (let i = 0; i < imageArray.length; i += 2) {
-    if (i + 1 < imageArray.length) {
-      tuples.push([imageArray[i], imageArray[i + 1]])
+  for (let i = 0; i < items.length; i += 2) {
+    if (i + 1 < items.length) {
+      tuples.push([items[i], items[i + 1]])
     }
     else {
-      tuples.push([imageArray[i]])
+      tuples.push([items[i]])
     }
   }
 
@@ -117,6 +132,7 @@ const arrayToTuples = (imageArray: any) => {
 export {
   hasRichTextContent,
   isStoryblokEditor,
+  objectToUrlParams,
   ratioDimensions,
   requestDelay,
   safeKebabCase,

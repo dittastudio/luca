@@ -1,17 +1,29 @@
 <script lang="ts" setup>
+import { wait } from '@/utilities/helpers'
+
 const dialog = ref<HTMLDialogElement | null>(null)
 
 interface Props {
   isOpen: boolean
+  lazy?: boolean
 }
 
-const { isOpen } = defineProps<Props>()
+const { isOpen, lazy = true } = defineProps<Props>()
 
 interface Emits {
   (event: 'close'): void
 }
 
 const emit = defineEmits<Emits>()
+
+const ready = ref(!lazy)
+
+watchEffect(async () => {
+  if (isOpen && lazy && !ready.value) {
+    await wait(1000)
+    ready.value = true
+  }
+})
 
 const openModal = () => {
   dialog.value?.showModal()
@@ -23,7 +35,7 @@ const closeModal = () => {
 }
 
 const animationend = (event: AnimationEvent) => {
-  if (event.animationName !== 'dialog-close') return
+  if (!event.animationName.startsWith('dialog-close')) return
 
   dialog.value?.classList.remove('app-modal--close')
   dialog.value?.close()
@@ -63,7 +75,7 @@ watch(
     @click.self="setClose"
   >
     <div class="app-modal__container">
-      <div class="app-modal__content">
+      <div class="app-modal__wrapper">
         <button
           class="app-modal__button"
           @click="setClose"
@@ -77,13 +89,21 @@ watch(
           </span>
         </button>
 
-        <slot />
+        <div class="app-modal__content">
+          <template v-if="ready">
+            <slot />
+          </template>
+
+          <template v-else>
+            <AppSpinner class="app-modal__spinner" />
+          </template>
+        </div>
       </div>
     </div>
   </dialog>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .app-modal {
   overflow-x: hidden;
   display: block;
@@ -105,7 +125,7 @@ watch(
     opacity: 0;
   }
 
-  html:has(&[open]) {
+  :global(html:has(&[open])) {
     overflow: hidden;
   }
 
@@ -143,14 +163,26 @@ watch(
   }
 }
 
-.app-modal__content {
+.app-modal__wrapper {
   position: relative;
+}
 
-  & iframe {
-    height: 100%;
-    min-height: 664px;
-    border-radius: theme('borderRadius.sm');
-  }
+.app-modal__content {
+  display: flex;
+  width: 100%;
+  min-height: 200px;
+  background-color: white;
+  color: theme('colors.green');
+  border-radius: theme('borderRadius.sm');
+}
+
+.app-modal__spinner {
+  --spinner-size: theme('spacing.30');
+
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  align-self: center;
+  margin: 0 auto;
 }
 
 .app-modal__button {

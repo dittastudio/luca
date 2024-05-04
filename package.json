@@ -4,17 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "sb:pull-components": "storyblok pull-components --space 285210",
+    "sb:types": "npm run sb:pull-components && storyblok-generate-ts source=./components.285210.json target=./types/storyblok",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "npm run sb:types && nuxt dev",
     "dev:ssl": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "nuke": "del-cli '.output' 'dist' '.nuxt' 'node_modules' 'package-lock.json'",
-    "postinstall": "nuxt prepare",
-    "sb:pull-components": "storyblok pull-components --space 285210",
-    "sb:types": "npm run sb:pull-components && storyblok-generate-ts source=./components.285210.json target=./types/storyblok"
+    "postinstall": "nuxt prepare"
   },
   "overrides": {
     "@pinia/nuxt": "^0.5.1"
@@ -44,7 +44,7 @@
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/lodash-es": "^4.17.12",
     "@types/mailchimp__mailchimp_marketing": "^3.0.20",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.8",
     "del-cli": "^5.1.0",
     "eslint": "^9.1.1",
     "eslint-config-prettier": "^9.1.0",
@@ -55,7 +55,7 @@
     "postcss-import": "^16.1.0",
     "prettier": "^3.2.5",
     "storyblok-generate-ts": "^2.1.0",
-    "stylelint": "^16.4.0",
+    "stylelint": "^16.5.0",
     "stylelint-config-clean-order": "^5.4.2",
     "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-config-standard": "^36.0.0",

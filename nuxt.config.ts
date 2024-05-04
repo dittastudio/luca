@@ -37,6 +37,27 @@ export default defineNuxtConfig({
           href: '/favicon-16x16.png',
         },
         { rel: 'manifest', href: '/site.webmanifest' },
+        {
+          rel: 'preload',
+          type: 'font/woff2',
+          href: '/fonts/Magister-Regular.woff2',
+          as: 'font',
+          crossorigin: '',
+        },
+        {
+          rel: 'preload',
+          type: 'font/woff2',
+          href: '/fonts/Magister-Italic.woff2',
+          as: 'font',
+          crossorigin: '',
+        },
+        {
+          rel: 'preload',
+          type: 'font/woff2',
+          href: '/fonts/Sebenta-Medium.woff2',
+          as: 'font',
+          crossorigin: '',
+        },
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -57,6 +78,7 @@ export default defineNuxtConfig({
     storyblok: {
       baseURL: 'https://a.storyblok.com',
     },
+    domains: ['storyblok.com', 'luca.restaurant'],
     quality: 80,
     screens: {
       'xs': 375,

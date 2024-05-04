@@ -126,6 +126,7 @@ export interface BlockMenusStoryblok {
 }
 
 export interface BlockPlayerStoryblok {
+  autoplay?: boolean;
   _uid: string;
   component: "block_player";
   [k: string]: any;
@@ -154,7 +155,7 @@ export interface BlockSplitStoryblok {
 export interface BlockSplitEditorialStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
-  text: RichtextStoryblok;
+  text?: RichtextStoryblok;
   reversed?: boolean;
   connecting_line?: boolean;
   _uid: string;
