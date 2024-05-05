@@ -1,8 +1,8 @@
 [dev]
-  functions = "functions"
+functions = "functions"
 
 [build]
-  functions = "functions"
+functions = "functions"
 
 [functions]
-  node_bundler = "esbuild"
+node_bundler = "esbuild"

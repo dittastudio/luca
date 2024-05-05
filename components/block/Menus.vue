@@ -44,7 +44,6 @@ const swiperOptions: SwiperOptions = {
             :class="{ 'block-menus__label--is-active': activeIndex === index }"
             :data-title="menu.title"
           >
-
             {{ menu.title }}
           </label>
         </div>

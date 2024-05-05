@@ -11,20 +11,20 @@ declare namespace Luca {
     | '1:1.414'
     | '1:1'
 
-  export type ImageDimensions = {
+  export interface ImageDimensions {
     width: number
     height: number
   }
 
-  export type ImageTransformOptions = {
-    width?: number
-    height?: number
+  export interface ImageTransformOptions {
+    width: number
+    height: number
     smart?: boolean
     quality?: number
     blur?: number
   }
 
-  export type Theme = {
+  export interface Theme {
     background: string
     text: string
   }

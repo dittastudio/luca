@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
 import { ratioMap } from '@/utilities/maps'
-import { storyblokAssetType, arrayToTuples } from '@/utilities/helpers'
+import { arrayToTuples, storyblokAssetType } from '@/utilities/helpers'
 import type { BlockCarouselStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -19,7 +19,7 @@ const swiperOptions: SwiperOptions = {
   },
 }
 
-const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides) : block.slides?.map(item => [item]))
+const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides || []) : block.slides?.map(item => [item]))
 </script>
 
 <template>

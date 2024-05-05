@@ -7,14 +7,13 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
-
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
 </script>
 
 <template>
   <div
     v-editable="block"
-    :class="['block-split wrapper', { 'block-split--reverse': block?.reversed }]"
+    class="block-split wrapper" :class="[{ 'block-split--reverse': block?.reversed }]"
   >
     <div class="block-split__picture">
       <MediaImage

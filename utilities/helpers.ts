@@ -9,12 +9,19 @@ const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp']
 const videoExtensions = ['mp4', 'webm', 'ogg']
 
 const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
-  if (typeof filename !== 'string' || !filename?.trim().length) return 'other'
+  if (typeof filename !== 'string' || !filename?.trim().length) {
+    return 'other'
+  }
 
   const ext = filename.split('.').pop() || ''
 
-  if (imageExtensions.includes(ext)) return 'image'
-  if (videoExtensions.includes(ext)) return 'video'
+  if (imageExtensions.includes(ext)) {
+    return 'image'
+  }
+
+  if (videoExtensions.includes(ext)) {
+    return 'video'
+  }
 
   return 'other'
 }
@@ -41,7 +48,8 @@ const storyblokImage = (
   filename: string | null | undefined,
   options?: Luca.ImageTransformOptions | undefined,
 ): string => {
-  if (!filename?.length) return ''
+  if (!filename?.length)
+    return ''
 
   const settings: Luca.ImageTransformOptions = {
     width: 0,
@@ -100,7 +108,7 @@ const safeKebabCase = (str: string) =>
     .toLowerCase()
     .trim()
 
-const objectToUrlParams = (obj: Record<string, any>) => {
+const objectToUrlParams = (obj: Record<string, unknown>) => {
   // Begin: TODO
   // Maybe this?
   // Object.entries(obj).filter(([key, val]) => val).map(([key, val]) => `${key}=${val}`).join('&')
@@ -110,14 +118,14 @@ const objectToUrlParams = (obj: Record<string, any>) => {
 
   for (const key in obj) {
     if (Object.hasOwn(obj, key) && obj[key]) {
-      params.append(key, obj[key])
+      params.append(key, String(obj[key]))
     }
   }
 
   return params.toString()
 }
 
-const arrayToTuples = (items: any) => {
+const arrayToTuples = (items: unknown[]) => {
   const tuples = []
 
   for (let i = 0; i < items.length; i += 2) {

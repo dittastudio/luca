@@ -14,8 +14,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 <template>
   <div
     v-editable="block"
+    class="block-split-editorial wrapper"
     :class="[
-      'block-split-editorial wrapper',
       { 'block-split-editorial--reverse': block?.reversed },
     ]"
   >

@@ -29,18 +29,17 @@ const size = {
 }
 
 const placeholderImg = useImage()
-const placeholder = placeholderImg(asset.filename,
-  {
-    width: size.width,
-    height: size.height,
-    quality: 10,
-  },
-)
+const placeholder = placeholderImg(asset.filename, {
+  width: size.width,
+  height: size.height,
+  quality: 10,
+})
 
 useIntersectionObserver(
   container,
   ([{ target, isIntersecting }], observerElement) => {
-    if (!(target instanceof HTMLDivElement)) return
+    if (!(target instanceof HTMLDivElement))
+      return
 
     if (isIntersecting && !ready.value) {
       ready.value = true
@@ -54,7 +53,7 @@ const imgMain = useImage()
 
 const imgInfo = computed(() => imgMain.getSizes(asset.filename, {
   provider: 'storyblok',
-  sizes: sizes,
+  sizes,
   modifiers: {
     width: size.width,
     height: size.height,
@@ -81,7 +80,8 @@ const imgAttrs = computed(() => ({
   >
     <img
       v-bind="imgAttrs"
-      :class="['media-image__asset', { 'is-loaded': loaded, 'is-lazy': lazy }]"
+      class="media-image__asset"
+      :class="[{ 'is-loaded': loaded, 'is-lazy': lazy }]"
       @load="loaded = true"
     >
 

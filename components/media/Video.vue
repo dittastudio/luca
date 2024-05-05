@@ -23,7 +23,9 @@ const src = computed(() => seen.value ? asset?.filename : '')
 useIntersectionObserver(
   video,
   ([{ target, isIntersecting }]) => {
-    if (!(target instanceof HTMLVideoElement)) return
+    if (!(target instanceof HTMLVideoElement)) {
+      return
+    }
 
     if (isIntersecting && !seen.value) {
       emit('seen', true)

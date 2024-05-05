@@ -32,7 +32,7 @@ const onInput = (event: Event) => {
   <template v-if="field === 'textarea'">
     <textarea
       :id="id"
-      :class="['min-h-[110px]']"
+      class="min-h-[110px]"
       :value="modelValue"
       autocomplete="off"
       spellcheck="false"

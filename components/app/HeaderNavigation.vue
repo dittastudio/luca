@@ -6,8 +6,8 @@ interface Props {
   list?: LinkListStoryblok
 }
 
-const isInteracted = ref(false)
 const { isOpen, list } = defineProps<Props>()
+const isInteracted = ref(false)
 const items = computed(() => list?.items ?? [])
 
 watch(

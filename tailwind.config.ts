@@ -19,9 +19,7 @@ const clamp = ({
   const maxValueRems = pixelsToRemsUnit(maxPixels)
   const minViewportWidthRems = pixelsToRemsUnit(minViewportWidthPixels)
   const maxViewportWidthRems = pixelsToRemsUnit(maxViewportWidthPixels)
-
   const slope = (maxValueRems - minValueRems) / (maxViewportWidthRems - minViewportWidthRems)
-
   const intercept = minValueRems - slope * minViewportWidthRems
 
   return `clamp(${minValueRems}rem, ${intercept}rem + ${slope * 100}vw, ${maxValueRems}rem)`

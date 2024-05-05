@@ -2,7 +2,7 @@ import mailchimp from '@mailchimp/mailchimp_marketing'
 import { z } from 'zod'
 import type { HandlerEvent } from '@netlify/functions'
 
-type Fields = {
+interface Fields {
   fname: string
   lname: string
   email: string

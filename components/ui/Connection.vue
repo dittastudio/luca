@@ -21,7 +21,8 @@ useIntersectionObserver(
     class="ui-connection"
   >
     <div
-      :class="['ui-connection__line', {
+      class="ui-connection__line"
+      :class="[{
         'ui-connection__line--seen': seen,
       }]"
     />

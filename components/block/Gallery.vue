@@ -14,7 +14,7 @@ const currentSlide = ref(1)
 const setCurrentSlide = (slide: number) => {
   currentSlide.value = slide
 }
-2
+
 const swiperOptions: SwiperOptions = {
   effect: 'fade',
   keyboard: {
@@ -29,7 +29,7 @@ const swiperOptions: SwiperOptions = {
     class="block-gallery"
   >
     <UiCarousel
-      :ratio="'auto'"
+      ratio="auto"
       :slides="block.slides"
       :pagination="false"
       :options="swiperOptions"

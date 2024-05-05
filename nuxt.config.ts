@@ -67,6 +67,7 @@ export default defineNuxtConfig({
   css: process.env.LOCAL === 'true' ? ['@michaelpumo/screen/app.css'] : [],
   eslint: {
     config: {
+      standalone: false,
       stylistic: true,
     },
   },
@@ -95,14 +96,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/sitemap',
     '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
     'nuxt-gtag',
   ],
-  tailwindcss: {
-    cssPath: '@/assets/css/app.css',
-  },
   postcss: {
     plugins: {
       'postcss-import': {},
@@ -122,7 +118,10 @@ export default defineNuxtConfig({
   site: {
     url: 'https://luca.restaurant',
   },
-  ssr: process.env.NUXT_SSR === 'true' ? true : false,
+  ssr: process.env.NUXT_SSR === 'true',
+  tailwindcss: {
+    cssPath: '@/assets/css/app.css',
+  },
   typescript: {
     strict: true,
   },

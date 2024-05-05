@@ -7,7 +7,6 @@ interface Props {
 }
 
 const { id } = defineProps<Props>()
-
 const isOpen = ref<boolean>(false)
 
 const toggleAccordion = () => {
@@ -17,9 +16,11 @@ const toggleAccordion = () => {
 const isScreenSm = useAtMedia(`(min-width: ${screenSizes.sm}px)`)
 
 watchEffect(() => {
-  if (!import.meta.client) return
+  if (!import.meta.client) {
+    return
+  }
 
-  return isOpen.value = isScreenSm.value
+  isOpen.value = isScreenSm.value
 })
 
 const headerId = `accordion-header-${safeKebabCase(id)}`
