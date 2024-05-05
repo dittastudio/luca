@@ -5,7 +5,6 @@ import type { SettingsStoryblok } from '@/types/storyblok'
 
 const route = useRoute()
 const story = await useStoryblokStory<SettingsStoryblok>('/settings')
-
 const isMd = useAtMedia(`(min-width: ${screenSizes.md}px)`)
 const isHome = computed(() => route.path === '/' && isMd.value)
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)

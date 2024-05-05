@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { wait } from '@/utilities/helpers'
 
-const dialog = ref<HTMLDialogElement | null>(null)
-
 interface Props {
   isOpen: boolean
   lazy?: boolean
@@ -16,6 +14,7 @@ interface Emits {
 
 const emit = defineEmits<Emits>()
 
+const dialog = ref<HTMLDialogElement | null>(null)
 const ready = ref(!lazy)
 
 watchEffect(async () => {
@@ -29,16 +28,18 @@ const openModal = () => {
   dialog.value?.showModal()
 }
 
-const closeModal = () => {
-  dialog.value?.classList.add('app-modal--close')
-  dialog.value?.addEventListener('animationend', animationend)
-}
-
 const animationend = (event: AnimationEvent) => {
-  if (!event.animationName.startsWith('dialog-close')) return
+  if (!event.animationName.startsWith('dialog-close')) {
+    return
+  }
 
   dialog.value?.classList.remove('app-modal--close')
   dialog.value?.close()
+}
+
+const closeModal = () => {
+  dialog.value?.classList.add('app-modal--close')
+  dialog.value?.addEventListener('animationend', animationend)
 }
 
 const setClose = () => {

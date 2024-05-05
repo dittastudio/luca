@@ -8,12 +8,19 @@ const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp']
 const videoExtensions = ['mp4', 'webm', 'ogg']
 
 const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
-  if (typeof filename !== 'string' || !filename?.trim().length) return 'other'
+  if (typeof filename !== 'string' || !filename?.trim().length) {
+    return 'other'
+  }
 
   const ext = filename.split('.').pop() || ''
 
-  if (imageExtensions.includes(ext)) return 'image'
-  if (videoExtensions.includes(ext)) return 'video'
+  if (imageExtensions.includes(ext)) {
+    return 'image'
+  }
+
+  if (videoExtensions.includes(ext)) {
+    return 'video'
+  }
 
   return 'other'
 }
@@ -40,7 +47,8 @@ const storyblokImage = (
   filename: string | null | undefined,
   options?: Luca.ImageTransformOptions | undefined,
 ): string => {
-  if (!filename?.length) return ''
+  if (!filename?.length)
+    return ''
 
   const settings: Luca.ImageTransformOptions = {
     width: 0,

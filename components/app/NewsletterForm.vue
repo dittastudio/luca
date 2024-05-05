@@ -4,7 +4,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
 import { requestDelay } from '@/utilities/helpers'
 
-type Response = {
+interface Response {
   message: string
   error: boolean
   errors?: any[]
@@ -16,7 +16,7 @@ type Response = {
   }
 }
 
-type FieldError = {
+interface FieldError {
   code: string
   message: string
   validation?: string

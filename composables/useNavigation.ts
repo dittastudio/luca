@@ -4,6 +4,4 @@ export default function useNavigation(open: boolean) {
   onMounted(() => {
     navigationOpen.value = open
   })
-
-  return
 }

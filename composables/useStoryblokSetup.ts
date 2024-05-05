@@ -15,7 +15,7 @@ export const useStoryblokSetup = async (story: Ref) => {
 
   useSeoMeta({
     title: title ?? story.value.name,
-    description: description,
+    description,
     ogTitle: title ?? story.value.name,
     ogDescription: description,
     ogImage: storyblokImage(image?.filename, { width: 1230, height: 630 }) || null,
@@ -32,6 +32,4 @@ export const useStoryblokSetup = async (story: Ref) => {
       })
     }
   })
-
-  return
 }

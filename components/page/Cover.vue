@@ -21,9 +21,15 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div :class="['page-cover', { 'is-active': coverVisible }]">
+  <div
+    class="page-cover"
+    :class="[{ 'is-active': coverVisible }]"
+  >
     <div class="wrapper">
-      <h1 :class="['page-cover__message type-responsive-page-cover', { 'is-active': messageVisible }]">
+      <h1
+        class="page-cover__message type-responsive-page-cover"
+        :class="[{ 'is-active': messageVisible }]"
+      >
         {{ message }}
       </h1>
     </div>

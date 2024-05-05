@@ -1,7 +1,7 @@
 <script lang="ts" setup generic="T">
 import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
-import { Autoplay, EffectFade, Pagination, Keyboard } from 'swiper/modules'
+import { Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
 import { ratioMap } from '@/utilities/maps'
 
 type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
@@ -40,7 +40,7 @@ const initSwiper = () => {
           clickable: true,
           bulletClass: 'ui-carousel__bullet',
           bulletActiveClass: 'ui-carousel__bullet--is-active',
-          renderBullet: function (_, className) {
+          renderBullet(_, className) {
             return `
               <button type="button" class="${className}">
                 <span class="ui-carousel__dot"></span>
@@ -97,7 +97,6 @@ watch(() => slides, () => {
 
     <div
       v-if="slides.length > 1 && pagination"
-      ref="paginationEl"
       class="ui-carousel__pagination"
     />
   </div>

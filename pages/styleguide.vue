@@ -127,35 +127,19 @@
         </div>
 
         <div
-          :class="[
-            'col-span-4 col-start-8',
-            'row-start-1',
-            'aspect-9/16 bg-[#CDBB9E]',
-          ]"
+          class="col-span-4 col-start-8 row-start-1 aspect-9/16 bg-[#CDBB9E]"
         />
 
         <div
-          :class="[
-            'col-span-5 col-start-2',
-            'row-start-4',
-            'aspect-1/1 bg-[#200E02]',
-          ]"
+          class="col-span-5 col-start-2 row-start-4 aspect-1/1 bg-[#200E02]"
         />
 
         <div
-          :class="[
-            'col-span-4 col-start-9',
-            'row-start-9',
-            'aspect-2/3 bg-[#2D456B]',
-          ]"
+          class="col-span-4 col-start-9 row-start-9 aspect-2/3 bg-[#2D456B]"
         />
 
         <div
-          :class="[
-            'col-span-4 col-start-1',
-            'row-start-[12]',
-            'aspect-2/3 bg-[#2D456B]',
-          ]"
+          class="col-span-4 col-start-1 row-start-[12] aspect-2/3 bg-[#2D456B]"
         />
       </div>
     </div>

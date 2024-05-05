@@ -10,11 +10,8 @@ const toggleGrid = () => {
   <button
     data-grid-toggle
     type="button"
+    class="fixed z-50 bottom-20 right-20 font-[monospace] text-14 text-offwhite p-10 shadow-lg backdrop-blur-sm rounded-md transition-all duration-200 ease-smooth"
     :class="[
-      'fixed z-50 bottom-20 right-20',
-      'font-[monospace] text-14 text-offwhite',
-      'p-10 shadow-lg backdrop-blur-sm rounded-md',
-      'transition-all duration-200 ease-smooth',
       { 'bg-black/20 hover:bg-black/60 active:shadow-sm': !isOpen },
       { 'bg-black/60 active:shadow-sm': isOpen },
     ]"
@@ -25,12 +22,10 @@ const toggleGrid = () => {
 
   <div
     :class="[
-      'fixed z-40 inset-x-0 w-full h-full pointer-events-none',
-      'transition-opacity duration-200 ease-smooth',
       { 'opacity-0': !isOpen },
       { 'opacity-100': isOpen },
     ]"
-    class="wrapper"
+    class="wrapper fixed z-40 inset-x-0 w-full h-full pointer-events-none transition-opacity duration-200 ease-smooth"
   >
     <div class="grid gap-x-[var(--app-inner-gutter)] grid-cols-2 sm:grid-cols-4 md:grid-cols-12 h-screen">
       <div
