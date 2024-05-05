@@ -3,11 +3,13 @@ import antfu from '@antfu/eslint-config'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
-  antfu({
+  {
     ignores: [
       'components.285210.json',
-      './types/storyblok.d.ts',
+      'types/storyblok.d.ts',
     ],
+  },
+  antfu({
     rules: {
       'antfu/top-level-function': 'off',
       'curly': 'off',
@@ -22,16 +24,5 @@ export default withNuxt(
         ignores: [],
       }],
     },
-  }, {
-    ignores: [
-      'components.285210.json',
-      './types/storyblok.d.ts',
-    ],
   }),
-  {
-    ignores: [
-      'components.285210.json',
-      './types/storyblok.d.ts',
-    ],
-  },
 )
