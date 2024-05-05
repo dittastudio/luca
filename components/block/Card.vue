@@ -38,21 +38,13 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
               :alt="block.media.alt || block.title"
               :ratio="block.ratio"
               :sizes="{
-                zero: gridColSpan('zero', 1, 1),
+                'zero': gridColSpan('zero', 1, 1),
+                'md': gridColSpan('md', Number(block.column_span)),
+                '2xl': gridColSpan('2xl', Number(block.column_span)),
+                '3xl': gridColSpan('3xl', Number(block.column_span)),
               }"
               loading="lazy"
-            >
-              <MediaPictureSource
-                :src="block.media.filename"
-                :media="'md'"
-                :ratio="'9:16'"
-                :sizes="{
-                  'md': gridColSpan('md', Number(block.column_span)),
-                  '2xl': gridColSpan('2xl', Number(block.column_span)),
-                  '3xl': gridColSpan('3xl', Number(block.column_span)),
-                }"
-              />
-            </MediaPicture>
+            />
 
             <MediaVideo
               v-else-if="block.media && assetType === 'video'"
