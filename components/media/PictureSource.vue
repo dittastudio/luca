@@ -7,32 +7,36 @@ defineOptions({
 })
 
 interface Props {
-  class?: string
   src: string
+  media: string
   ratio?: Luca.TAspectRatios | string | number | undefined
   widths?: number[]
   sizes?: typeof screenSizes
 }
 
 const {
-  class: className,
   src,
+  media,
   ratio,
   widths = [360, 480, 640, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400],
   sizes,
 } = defineProps<Props>()
 
-const setWidth = ref<number>(ratioDimensions(ratio).width || storyblokImageDimensions(src).width)
+const setWidth = ref<number>(ratioDimensions(ratio).width || storyblokImageDimensions($attrs.src).width)
 const setHeight = ref<number>(ratioDimensions(ratio).height || storyblokImageDimensions(src).height)
 
 const calculateHeight = (chosenWidth: number) => {
   return Math.round((setHeight.value / setWidth.value) * chosenWidth)
 }
 
-const setSrc = computed<string>(() => {
-  const largestWidth = widths[widths.length - 1]
+const setMedia = computed<typeof screenSizes | 'landscape' | 'portrait' | undefined>(() => {
+  if (!media) return
 
-  return storyblokImage(src, { width: largestWidth, height: calculateHeight(largestWidth) })
+  const mediaSize = screenSizes[media]
+
+  if (mediaSize) return `(min-width: ${mediaSize}px)`
+
+  return `(orientation: ${media})`
 })
 
 const setSrcset = computed<string>(() => {
@@ -67,27 +71,12 @@ const setSizes = computed<string | undefined>(() => {
 </script>
 
 <template>
-  <picture
-    :class="className"
-    class="media-picture"
+  <source
+    v-bind="$attrs"
+    :width="setWidth"
+    :height="setHeight"
+    :media="setMedia"
+    :srcset="setSrcset"
+    :sizes="setSizes"
   >
-    <slot />
-
-    <img
-      v-bind="$attrs"
-      :src="setSrc"
-      :width="setWidth"
-      :height="setHeight"
-      :srcset="setSrcset"
-      :sizes="setSizes"
-    >
-  </picture>
 </template>
-
-<style lang="postcss" scoped>
-.media-picture {
-  overflow: hidden;
-  display: block;
-  height: inheit;
-}
-</style>
