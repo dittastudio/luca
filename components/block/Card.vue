@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { BlockCardStoryblok } from '@/types/storyblok'
 import { colSpanMap, colStartMap } from '@/utilities/maps'
-import { ratioDimensions, storyblokAssetType } from '@/utilities/helpers'
+import { storyblokAssetType, gridColSpan } from '@/utilities/helpers'
 
 interface Props {
   block: BlockCardStoryblok
@@ -28,19 +28,17 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           :headline="block.headline"
         >
           <template #media>
-            <NuxtImg
+            <MediaPicture
               v-if="block.media && assetType === 'image'"
-              class="block-card__media"
               :src="block.media.filename"
-              :alt="block.media.alt"
-              :width="ratioDimensions(block.ratio).width"
-              :height="ratioDimensions(block.ratio).height"
-              :sizes="`
-                100vw
-                sm:100vw
-                md:${Number(block.column_span) / 12 * 100}vw
-                3xl:${Number(block.column_span) / 12 * 1800}px
-              `"
+              :alt="block.media.alt || block.title"
+              :ratio="block.ratio"
+              :sizes="{
+                'zero': gridColSpan('zero', 1, 1),
+                'md': gridColSpan('md', Number(block.column_span)),
+                '2xl': gridColSpan('2xl', Number(block.column_span)),
+                '3xl': gridColSpan('3xl', Number(block.column_span)),
+              }"
               loading="lazy"
             />
 

@@ -28,7 +28,7 @@ const clamp = ({
 }
 
 export const screenSizes = {
-  'zero': 1,
+  'zero': 0,
   'xs': 375,
   'sm': 640,
   'md': 768,
@@ -36,7 +36,7 @@ export const screenSizes = {
   'xl': 1200,
   '2xl': 1440,
   '3xl': 1920,
-}
+} as any
 
 export const colours = {
   white: 'rgb(255 255 255 / <alpha-value>)',
