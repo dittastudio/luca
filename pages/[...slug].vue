@@ -4,14 +4,14 @@ import type { PageStoryblok } from '@/types/storyblok'
 const route = useRoute()
 const story = await useStoryblokStory<PageStoryblok>(route.path)
 
-useStoryblokSetup(story)
+useStoryblokSetup<PageStoryblok>(story)
 useNavigation(false)
 
 const isHome = computed(() => route.path === '/')
 </script>
 
 <template>
-  <AppTheme :themes="story.content.themes">
+  <AppTheme v-if="story" :themes="story.content.themes">
     <AppCoverLogo v-if="isHome" />
 
     <PageCover

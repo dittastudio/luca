@@ -5,7 +5,11 @@ import { storyblokSlug } from '@/utilities/helpers'
 export const useStoryblokStory = async <T>(
   slug: string = '',
   options: ISbStoriesParams = {},
-): Promise<Ref<ISbStoryData<T>>> => {
+): Promise<Ref<ISbStoryData<T> | null>> => {
+  if (!slug?.length) {
+    return ref(null)
+  }
+
   const runtimeConfig = useRuntimeConfig()
   const route = useRoute()
   const storyblokApi = useStoryblokApi()

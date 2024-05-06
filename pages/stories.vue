@@ -4,12 +4,12 @@ import type { PageStoryblok } from '@/types/storyblok'
 const route = useRoute()
 const story = await useStoryblokStory<PageStoryblok>('/stories')
 
-useStoryblokSetup(story)
+useStoryblokSetup<PageStoryblok>(story)
 useNavigation(false)
 </script>
 
 <template>
-  <AppTheme :themes="story.content.themes">
+  <AppTheme v-if="story" :themes="story.content.themes">
     <AppStory :is-open="route.name === 'stories-page'">
       <transition
         name="fade"
