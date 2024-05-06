@@ -34,7 +34,7 @@ export const screenSizes = {
   'xl': 1200,
   '2xl': 1440,
   '3xl': 1920,
-} as any
+} as const
 
 export const colours = {
   white: 'rgb(255 255 255 / <alpha-value>)',

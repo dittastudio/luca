@@ -22,7 +22,7 @@ const {
   sizes,
 } = defineProps<Props>()
 
-const setWidth = ref<number>(ratioDimensions(ratio).width || storyblokImageDimensions($attrs.src).width)
+const setWidth = ref<number>(ratioDimensions(ratio).width || storyblokImageDimensions(src).width)
 const setHeight = ref<number>(ratioDimensions(ratio).height || storyblokImageDimensions(src).height)
 
 const calculateHeight = (chosenWidth: number) => {
@@ -30,11 +30,13 @@ const calculateHeight = (chosenWidth: number) => {
 }
 
 const setMedia = computed<typeof screenSizes | 'landscape' | 'portrait' | undefined>(() => {
-  if (!media) return
+  if (!media)
+    return
 
   const mediaSize = screenSizes[media]
 
-  if (mediaSize) return `(min-width: ${mediaSize}px)`
+  if (mediaSize)
+    return `(min-width: ${mediaSize}px)`
 
   return `(orientation: ${media})`
 })
@@ -46,20 +48,22 @@ const setSrcset = computed<string>(() => {
 })
 
 const setSizes = computed<string | undefined>(() => {
-  if (!sizes) return
+  if (!sizes)
+    return
 
   // Sort sizes keys in descending order based on screen size
   const sortedOrderSizes = Object.keys(sizes).sort((a, b) => {
-    const sizeA = screenSizes[a] || parseInt(a) || 0
-    const sizeB = screenSizes[b] || parseInt(b) || 0
+    const sizeA = screenSizes[a] || Number.parseInt(a) || 0
+    const sizeB = screenSizes[b] || Number.parseInt(b) || 0
     return sizeB - sizeA
   })
 
   // Format the sorted sizes into correct syntax
   const formattedSizes = sortedOrderSizes
     .map((size) => {
-      const screenSizesSize = screenSizes[size] || parseInt(size) || 0
-      if (screenSizesSize === 0 && size !== 'zero') return ''
+      const screenSizesSize = screenSizes[size] || Number.parseInt(size) || 0
+      if (screenSizesSize === 0 && size !== 'zero')
+        return ''
 
       const sizeKey = size === 'zero' ? '' : `(min-width: ${screenSizesSize}px) `
       const sizeValue = `${sizes[size]}`

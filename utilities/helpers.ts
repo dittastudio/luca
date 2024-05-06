@@ -1,7 +1,6 @@
 import type { LocationQuery } from 'vue-router'
 import { deburr } from 'lodash-es'
 import type { RichtextStoryblok } from '@/types/storyblok'
-import { screenSizes } from '@/tailwind.config'
 
 const isStoryblokEditor = (search: LocationQuery) => '_storyblok' in search
 
@@ -81,7 +80,8 @@ const storyblokImage = (
 const ratioDimensions = (
   ratio: Luca.TAspectRatios | string | number | undefined,
 ): Luca.ImageDimensions => {
-  if (!ratio) return { width: 0, height: 0 }
+  if (!ratio)
+    return { width: 0, height: 0 }
 
   const parts = ratio.toString().split(':').map((num: string): number => Number(num))
 
@@ -140,33 +140,7 @@ const arrayToTuples = (items: unknown[]) => {
   return tuples
 }
 
-const gridColSpan = (breakpoint: typeof screenSizes | number, columnSpan: number, totalColumns: number = 12) => {
-  const breakpointNumber: number = (typeof breakpoint === 'number') ? breakpoint : screenSizes[breakpoint]
-
-  const innerGutter = 20
-  let outerGutter
-
-  if (breakpointNumber >= screenSizes['2xl'] && breakpointNumber < screenSizes['3xl']) {
-    outerGutter = 60
-  }
-  else if (breakpointNumber >= screenSizes['md'] && breakpointNumber < screenSizes['2xl']) {
-    outerGutter = 40
-  }
-  else {
-    outerGutter = 20
-  }
-
-  const totalGutters = (outerGutter * 2) + (innerGutter * (totalColumns - 1))
-
-  if (breakpointNumber >= screenSizes['3xl']) {
-    return `calc((((${screenSizes['3xl']}px - ${totalGutters}px) / ${totalColumns}) * ${columnSpan}) + (${columnSpan - 1} * ${innerGutter}px))`
-  }
-
-  return `calc((((100vw - ${totalGutters}px) / ${totalColumns}) * ${columnSpan}) + (${columnSpan - 1} * ${innerGutter}px))`
-}
-
 export {
-  gridColSpan,
   hasRichTextContent,
   isStoryblokEditor,
   objectToUrlParams,

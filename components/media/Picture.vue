@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
-import { screenSizes } from '@/tailwind.config'
 import { ratioDimensions, storyblokImage, storyblokImageDimensions } from '@/utilities/helpers'
+import { screenSizes } from '@/tailwind.config'
+import { gridColSpan } from '@/utilities/images'
 
 defineOptions({
   inheritAttrs: false,
@@ -12,7 +13,7 @@ interface Props {
   src: string
   ratio?: Luca.TAspectRatios | string | number | undefined
   widths?: number[]
-  sizes?: typeof screenSizes
+  sizes?: any
   lazy?: boolean
 }
 
@@ -57,29 +58,39 @@ const setSizes = computed<string | undefined>(() => {
 
   // Format the sorted sizes into correct syntax
   const formattedSizes = sortedOrderSizes
-    .map((size) => {
+    .map((size: any) => {
+      // console.log(size)
       const screenSizesSize = screenSizes[size] || Number.parseInt(size) || 0
       if (screenSizesSize === 0 && size !== 'zero')
         return ''
 
       const sizeKey = size === 'zero' ? '' : `(min-width: ${screenSizesSize}px) `
-      const sizeValue = `${sizes[size]}`
+      const sizeValue = sizes[size]
+
+      if (typeof sizes[size] === 'object') {
+        return gridColSpan({
+          breakpoint: sizes[size],
+          columnSpan: sizes[size]?.columnSpan,
+          totalColumns: sizes[size]?.totalColumns | 12,
+        })
+      }
+
       return `${sizeKey}${sizeValue}`
     })
 
   return formattedSizes.join(', ')
 })
 
-const container = ref<HTMLDivElement | null>(null)
+const picture = ref<HTMLPictureElement | null>(null)
 const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
 const blurryPlaceholder = (size: number) => storyblokImage(src, { width: size, height: calculateHeight(size), blur: 3 })
 
 useIntersectionObserver(
-  container,
+  picture,
   ([{ target, isIntersecting }], observerElement) => {
-    if (!(target instanceof HTMLDivElement))
+    if (!(target instanceof HTMLPictureElement))
       return
 
     if (isIntersecting && !ready.value) {
@@ -90,44 +101,51 @@ useIntersectionObserver(
   { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
 )
 
-const attrs = useAttrs() as { [key: string]: any }
+// const attrs = useAttrs() as { [key: string]: any }
 
-const imgAttrs = computed(() => ({
-  ...attrs,
-  width: setWidth.value,
-  height: setHeight.value,
-  src: ready.value ? setSrc.value : '',
-  srcset: ready.value ? setSrcset.value : '',
-  sizes: ready.value ? setSizes.value : '',
-  alt: attrs.value?.alt ?? '',
-}))
+// const imgAttrs = computed(() => ({
+//   ...attrs,
+//   width: setWidth.value,
+//   height: setHeight.value,
+//   src: ready.value ? setSrc.value : '',
+//   srcset: ready.value ? setSrcset.value : '',
+//   sizes: ready.value ? setSizes.value : '',
+//   alt: attrs.value?.alt ?? '',
+// }))
 </script>
 
 <template>
-  <div ref="container">
-    <picture
-      :class="className"
-      class="media-picture"
-    >
+  <picture
+    ref="picture"
+    :class="className"
+    class="media-picture"
+  >
+    <Transition name="placeholder">
       <img
-        v-if="lazy"
+        v-if="lazy && !loaded"
         class="media-picture__placeholder"
         :src="blurryPlaceholder(100)"
         alt="Placeholder"
         :width="100"
         :height="100"
       >
+    </Transition>
 
-      <slot />
+    <slot />
 
-      <img
-        v-bind="imgAttrs"
-        class="media-picture__image"
-        :class="[{ 'is-loaded': loaded, 'is-lazy': lazy }]"
-        @load="loaded = true"
-      >
-    </picture>
-  </div>
+    <img
+      v-bind="$attrs"
+      :width="setWidth"
+      :height="setHeight"
+      :src="ready ? setSrc : ''"
+      :srcset="ready ? setSrcset : ''"
+      :sizes="ready ? setSizes : ''"
+      alt=""
+      class="media-picture__image"
+      :class="{ 'media-picture__image--hidden': lazy && !ready && !loaded }"
+      @load="loaded = true"
+    >
+  </picture>
 </template>
 
 <style lang="postcss" scoped>
@@ -139,23 +157,27 @@ const imgAttrs = computed(() => ({
 }
 
 .media-picture__image {
-  &.is-lazy {
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-
+  &--hidden {
     opacity: 0;
-
-    transition: opacity theme('transitionDuration.1500') theme('transitionTimingFunction.out');
   }
+}
 
-  &.is-loaded {
-    opacity: 1;
-  }
+.placeholder-enter-active,
+.placeholder-leave-active {
+  transition: opacity theme('transitionDuration.1500') theme('transitionTimingFunction.out');
+}
+.placeholder-enter-from,
+.placeholder-leave-to {
+  opacity: 0;
 }
 
 .media-picture__placeholder {
   pointer-events: none;
+
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+
   filter: blur(8px);
 }
 </style>
