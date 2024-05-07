@@ -14,7 +14,6 @@ const colStartMap: Record<string, string> = {
 } as const
 
 const colEndMap: Record<string, string> = {
-  1: 'col-end-1',
   2: 'col-end-2',
   3: 'col-end-3',
   4: 'col-end-4',
@@ -26,6 +25,7 @@ const colEndMap: Record<string, string> = {
   10: 'col-end-10',
   11: 'col-end-11',
   12: 'col-end-12',
+  13: 'col-end-13',
 } as const
 
 const ratioMap: Record<string, string> = {
