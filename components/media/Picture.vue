@@ -90,13 +90,9 @@ useIntersectionObserver(
 </script>
 
 <template>
-  <div ref="container">
-    <picture
-      :class="className"
-      class="media-picture"
-    >
+  <div ref="container" class="media-picture" :class="className">
+    <picture class="block">
       <source
-        v-bind="$attrs"
         :media="setMedia"
         :width="setMediaWidth"
         :height="setMediaHeight"
@@ -105,38 +101,34 @@ useIntersectionObserver(
       >
 
       <img
+        class="media-image__asset"
+        :class="{ 'is-loaded': loaded, 'is-lazy': lazy }"
         v-bind="$attrs"
         :width="setWidth"
         :height="setHeight"
         :src="ready ? setSrc : ''"
         :srcset="ready ? setSrcset : ''"
         :sizes="setSizes(sizes)"
-        alt=""
-        class="media-picture__image"
-        :class="{ 'media-picture__image--hidden': lazy && !ready && !loaded }"
         @load="loaded = true"
       >
-
     </picture>
 
-    <Transition name="placeholder">
-      <picture v-if="lazy && !loaded">
-        <source
-          :media="setMedia"
-          :width="setMediaWidth"
-          :height="setMediaHeight"
-          :srcset="setBlurryPlaceholder(src, setMediaWidth, setMediaHeight, 100)"
-        >
+    <picture v-if="lazy" class="block">
+      <source
+        :media="setMedia"
+        :width="setMediaWidth"
+        :height="setMediaHeight"
+        :srcset="setBlurryPlaceholder(src, setMediaWidth, setMediaHeight, 100)"
+      >
 
-        <img
-          class="media-picture__placeholder"
-          :src="setBlurryPlaceholder(src, setWidth, setHeight, 100)"
-          alt="Placeholder"
-          :width="setWidth"
-          :height="setHeight"
-        >
-      </picture>
-    </Transition>
+      <img
+        class="media-picture__placeholder"
+        :src="setBlurryPlaceholder(src, setWidth, setHeight, 100)"
+        alt="Placeholder"
+        :width="setWidth"
+        :height="setHeight"
+      >
+    </picture>
   </div>
 </template>
 
@@ -148,28 +140,25 @@ useIntersectionObserver(
   height: inherit;
 }
 
-.media-picture__image {
-  &--hidden {
-    opacity: 0;
-  }
-}
+.media-picture__asset {
+  &.is-lazy {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
 
-.placeholder-enter-active,
-.placeholder-leave-active {
-  transition: opacity theme('transitionDuration.3000') theme('transitionTimingFunction.out');
-}
-.placeholder-enter-from,
-.placeholder-leave-to {
-  opacity: 0;
+    backface-visibility: hidden;
+    opacity: 0;
+
+    transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+  }
+
+  &.is-loaded {
+    opacity: 1;
+  }
 }
 
 .media-picture__placeholder {
   pointer-events: none;
-
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-
   backface-visibility: hidden;
 }
 </style>
