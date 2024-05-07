@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { BlockMediaStoryblok } from '@/types/storyblok'
-import { colSpanMap, colStartMap } from '@/utilities/maps'
+import { colEndMap, colStartMap } from '@/utilities/maps'
 import { ratioDimensions, storyblokAssetType } from '@/utilities/helpers'
 
 interface Props {
@@ -18,8 +18,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   >
     <div
       :class="[
-        colSpanMap[block.column_span],
         colStartMap[block.column_start],
+        colEndMap[block.column_end],
       ]"
     >
       <NuxtImg
