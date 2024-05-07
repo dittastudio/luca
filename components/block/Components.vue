@@ -67,18 +67,13 @@ const isHome = computed(() => route.path === '/')
         :block="block"
       />
 
-      <BlockSplitEditorial
-        v-else-if="block.component === 'block_split_editorial'"
-        :block="block"
-      />
-
       <BlockText
         v-else-if="block.component === 'block_text'"
         :block="block"
       />
 
-      <BlockTextEditorial
-        v-else-if="block.component === 'block_text_editorial'"
+      <BlockTextColumns
+        v-else-if="block.component === 'block_text_columns'"
         :block="block"
       />
 
@@ -159,16 +154,8 @@ const isHome = computed(() => route.path === '/')
     padding-block-start: var(--line-spacing);
   }
 
-  &--block_gallery + &--block_text_editorial {
+  &--block_gallery + &--block_text_columns {
     padding-block-start: var(--line-spacing);
-  }
-
-  &--block_split_editorial + &--block_split_editorial {
-    padding-block-start: theme('spacing.60');
-
-    @screen md {
-      padding-block-start: theme('spacing.90');
-    }
   }
 }
 </style>

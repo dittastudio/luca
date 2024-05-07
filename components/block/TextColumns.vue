@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { hasRichTextContent } from '@/utilities/helpers'
-import type { BlockTextEditorialStoryblok } from '@/types/storyblok'
+import type { BlockTextColumnsStoryblok } from '@/types/storyblok'
 
 interface Props {
-  block: BlockTextEditorialStoryblok
+  block: BlockTextColumnsStoryblok
 }
 
 const { block } = defineProps<Props>()
@@ -12,12 +12,12 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-text-editorial wrapper"
+    class="block-text-columns wrapper"
   >
-    <div class="block-text-editorial__container prose">
+    <div class="block-text-columns__container prose">
       <h2
         v-if="block.title"
-        class="block-text-editorial__title"
+        class="block-text-columns__title"
       >
         {{ block.title }}
       </h2>
@@ -25,7 +25,7 @@ const { block } = defineProps<Props>()
       <StoryblokRichText
         v-if="hasRichTextContent(block.text)"
         :content="block.text"
-        class="block-text-editorial__columns"
+        class="block-text-columns__columns"
       />
     </div>
   </div>
@@ -36,7 +36,7 @@ const { block } = defineProps<Props>()
   max-width: none;
 }
 
-.block-text-editorial {
+.block-text-columns {
   @screen md {
     display: grid;
     grid-template-columns: var(--app-grid);
@@ -44,7 +44,7 @@ const { block } = defineProps<Props>()
   }
 }
 
-.block-text-editorial__container {
+.block-text-columns__container {
   @screen md {
     grid-column: 2 / span 10;
   }
@@ -54,7 +54,7 @@ const { block } = defineProps<Props>()
   }
 }
 
-.block-text-editorial__title {
+.block-text-columns__title {
   margin-bottom: theme('spacing.30');
   font-size: theme('fontSize.14');
   text-align: center;
@@ -64,7 +64,7 @@ const { block } = defineProps<Props>()
   }
 }
 
-.block-text-editorial__columns {
+.block-text-columns__columns {
   text-align: left;
 
   @screen lg {

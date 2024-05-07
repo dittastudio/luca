@@ -46,16 +46,6 @@
           Button
         </AppearanceButton>
       </button>
-
-      <br>
-
-      <br>
-
-      <button type="button">
-        <AppearanceLink>
-          Link
-        </AppearanceLink>
-      </button>
     </div>
 
     <div class="bg-offwhite text-green">
@@ -100,16 +90,6 @@
           <AppearanceButton>
             Button
           </AppearanceButton>
-        </button>
-
-        <br>
-
-        <br>
-
-        <button type="button">
-          <AppearanceLink>
-            Link
-          </AppearanceLink>
         </button>
       </div>
     </div>

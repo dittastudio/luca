@@ -6,7 +6,7 @@ import type { SettingsStoryblok } from '@/types/storyblok'
 const route = useRoute()
 const story = await useStoryblokStory<SettingsStoryblok>('/settings')
 const isMd = useAtMedia(`(min-width: ${screenSizes.md}px)`)
-const isHome = computed(() => route.path === '/' && isMd.value)
+const isHome = computed(() => ['/', '/home'].includes(route.path) && isMd.value)
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
 const isDev = import.meta.dev
 
@@ -34,6 +34,7 @@ useState('navigationOpen', () => false)
     <AppLayout>
       <template #header>
         <AppHeader
+          v-if="story"
           :links="story.content.navigation?.[0]"
           :logo-hidden="isHome || isStoryPage"
           :reservation-hidden="isStoryPage"
@@ -46,6 +47,7 @@ useState('navigationOpen', () => false)
 
       <template #footer>
         <AppFooter
+          v-if="story"
           :opening-times-title="story.content.opening_times_title"
           :opening-times="story.content.opening_times"
           :contact-title="story.content.contact_title"
@@ -70,7 +72,7 @@ useState('navigationOpen', () => false)
     </AppLayout>
 
     <AppCover
-      v-if="!isDev && story.content.cover_message"
+      v-if="story && !isDev && story.content.cover_message"
       :message="story.content.cover_message"
     />
   </div>

@@ -58,7 +58,7 @@ export interface BlockCardStoryblok {
   ratio: number | string;
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
-  column_span: number | string;
+  column_end: number | string;
   connecting_line?: boolean;
   _uid: string;
   component: "block_card";
@@ -71,7 +71,7 @@ export interface BlockCardEditorialStoryblok {
   ratio: number | string;
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
-  column_span: number | string;
+  column_end: number | string;
   connecting_line?: boolean;
   _uid: string;
   component: "block_card_editorial";
@@ -111,7 +111,7 @@ export interface BlockMediaStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
   column_start: number | string;
-  column_span: number | string;
+  column_end: number | string;
   connecting_line?: boolean;
   _uid: string;
   component: "block_media";
@@ -152,17 +152,6 @@ export interface BlockSplitStoryblok {
   [k: string]: any;
 }
 
-export interface BlockSplitEditorialStoryblok {
-  media: AssetStoryblok;
-  ratio: number | string;
-  text?: RichtextStoryblok;
-  reversed?: boolean;
-  connecting_line?: boolean;
-  _uid: string;
-  component: "block_split_editorial";
-  [k: string]: any;
-}
-
 export interface BlockTextStoryblok {
   text: RichtextStoryblok;
   connecting_line?: boolean;
@@ -171,12 +160,12 @@ export interface BlockTextStoryblok {
   [k: string]: any;
 }
 
-export interface BlockTextEditorialStoryblok {
+export interface BlockTextColumnsStoryblok {
   title?: string;
   text: RichtextStoryblok;
   connecting_line?: boolean;
   _uid: string;
-  component: "block_text_editorial";
+  component: "block_text_columns";
   [k: string]: any;
 }
 
@@ -225,9 +214,8 @@ export interface PageStoryblok {
     | BlockMenusStoryblok
     | BlockPlayerStoryblok
     | BlockSplitStoryblok
-    | BlockSplitEditorialStoryblok
     | BlockTextStoryblok
-    | BlockTextEditorialStoryblok
+    | BlockTextColumnsStoryblok
   )[];
   _uid: string;
   component: "page";

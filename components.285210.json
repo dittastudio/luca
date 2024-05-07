@@ -46,7 +46,7 @@
       "name": "block_card",
       "display_name": "Card",
       "created_at": "2024-04-23T14:44:41.343Z",
-      "updated_at": "2024-04-26T15:55:13.666Z",
+      "updated_at": "2024-05-07T13:03:32.431Z",
       "id": 5697381,
       "schema": {
         "title": {
@@ -69,11 +69,12 @@
             "images",
             "videos"
           ],
-          "asset_folder_id": 530535
+          "asset_folder_id": 530535,
+          "key": "media"
         },
         "ratio": {
           "type": "option",
-          "pos": 4,
+          "pos": 3,
           "use_uuid": true,
           "required": true,
           "source": "internal",
@@ -88,7 +89,7 @@
             "page"
           ],
           "required": true,
-          "pos": 5,
+          "pos": 4,
           "key": "link"
         },
         "column_start": {
@@ -96,27 +97,27 @@
           "required": true,
           "use_uuid": true,
           "source": "internal",
-          "datasource_slug": "columns",
+          "datasource_slug": "column-start",
           "exclude_empty_option": true,
           "default_value": "3",
-          "pos": 6,
+          "pos": 5,
           "key": "column_start"
         },
-        "column_span": {
+        "column_end": {
           "type": "option",
           "use_uuid": true,
           "required": true,
           "source": "internal",
-          "datasource_slug": "columns",
+          "datasource_slug": "column-end",
           "exclude_empty_option": true,
-          "default_value": "8",
+          "default_value": "12",
           "pos": 7,
           "key": "column_span"
         },
         "connecting_line": {
           "type": "boolean",
           "inline_label": true,
-          "pos": 8,
+          "pos": 7,
           "key": "connecting_line"
         }
       },
@@ -140,7 +141,7 @@
       "name": "block_card_editorial",
       "display_name": " Card Editorial",
       "created_at": "2024-04-26T21:53:11.867Z",
-      "updated_at": "2024-04-26T23:07:28.262Z",
+      "updated_at": "2024-05-07T13:04:07.048Z",
       "id": 5719290,
       "schema": {
         "title": {
@@ -151,17 +152,18 @@
         },
         "media": {
           "type": "asset",
-          "pos": 2,
+          "pos": 1,
           "required": true,
           "filetypes": [
             "images",
             "videos"
           ],
-          "asset_folder_id": 532889
+          "asset_folder_id": 532889,
+          "key": "media"
         },
         "ratio": {
           "type": "option",
-          "pos": 4,
+          "pos": 2,
           "use_uuid": true,
           "required": true,
           "source": "internal",
@@ -176,7 +178,7 @@
             "page"
           ],
           "required": true,
-          "pos": 5,
+          "pos": 3,
           "key": "link"
         },
         "column_start": {
@@ -184,27 +186,27 @@
           "required": true,
           "use_uuid": true,
           "source": "internal",
-          "datasource_slug": "columns",
+          "datasource_slug": "column-start",
           "exclude_empty_option": true,
           "default_value": "3",
-          "pos": 6,
+          "pos": 4,
           "key": "column_start"
         },
-        "column_span": {
+        "column_end": {
           "type": "option",
           "use_uuid": true,
           "required": true,
           "source": "internal",
-          "datasource_slug": "columns",
+          "datasource_slug": "column-end",
           "exclude_empty_option": true,
           "default_value": "8",
-          "pos": 7,
+          "pos": 5,
           "key": "column_span"
         },
         "connecting_line": {
           "type": "boolean",
           "inline_label": true,
-          "pos": 8,
+          "pos": 6,
           "key": "connecting_line"
         }
       },
@@ -324,7 +326,7 @@
       "name": "block_media",
       "display_name": "Media",
       "created_at": "2024-04-18T16:33:02.808Z",
-      "updated_at": "2024-04-26T15:45:25.333Z",
+      "updated_at": "2024-05-07T13:03:46.211Z",
       "id": 5676129,
       "schema": {
         "media": {
@@ -335,11 +337,12 @@
             "images",
             "videos"
           ],
-          "asset_folder_id": 530535
+          "asset_folder_id": 530535,
+          "key": "media"
         },
         "ratio": {
           "type": "option",
-          "pos": 2,
+          "pos": 1,
           "use_uuid": true,
           "source": "internal",
           "datasource_slug": "ratio",
@@ -353,25 +356,25 @@
           "options": [],
           "required": true,
           "source": "internal",
-          "datasource_slug": "columns",
+          "datasource_slug": "column-start",
           "exclude_empty_option": true,
-          "pos": 3,
+          "pos": 2,
           "key": "column_start"
         },
-        "column_span": {
+        "column_end": {
           "type": "option",
           "use_uuid": true,
           "required": true,
           "source": "internal",
-          "datasource_slug": "columns",
+          "datasource_slug": "column-end",
           "exclude_empty_option": true,
-          "pos": 4,
+          "pos": 3,
           "key": "column_span"
         },
         "connecting_line": {
           "type": "boolean",
           "inline_label": true,
-          "pos": 5,
+          "pos": 4,
           "key": "connecting_line"
         }
       },
@@ -539,83 +542,6 @@
       "component_group_name": "block"
     },
     {
-      "name": "block_split_editorial",
-      "display_name": "Split Editorial",
-      "created_at": "2024-05-01T21:49:01.133Z",
-      "updated_at": "2024-05-01T22:26:27.633Z",
-      "id": 5738486,
-      "schema": {
-        "media": {
-          "type": "asset",
-          "pos": 0,
-          "required": true,
-          "filetypes": [
-            "images",
-            "videos"
-          ],
-          "asset_folder_id": 530535
-        },
-        "ratio": {
-          "type": "option",
-          "pos": 2,
-          "use_uuid": true,
-          "required": true,
-          "source": "internal",
-          "datasource_slug": "ratio",
-          "exclude_empty_option": true,
-          "key": "ratio"
-        },
-        "text": {
-          "type": "richtext",
-          "required": false,
-          "display_name": "Text",
-          "key": "text",
-          "pos": 3,
-          "customize_toolbar": true,
-          "toolbar": [
-            "bold",
-            "h1",
-            "h2",
-            "h3",
-            "h4",
-            "h5",
-            "h6",
-            "italic",
-            "link",
-            "paragraph",
-            "quote"
-          ]
-        },
-        "reversed": {
-          "type": "boolean",
-          "inline_label": true,
-          "pos": 4,
-          "key": "reversed"
-        },
-        "connecting_line": {
-          "type": "boolean",
-          "pos": 5,
-          "inline_label": true,
-          "key": "connecting_line"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": "{{@image(it.media.filename)/}}\n{{@if(it.text.content[0].content[0].text)}}\n<p>{{it.text.content[0].content[0].text}}</p>\n{{/if}}",
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "Split Editorial",
-      "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
-      "color": "#00b3b0",
-      "icon": "block-1-2block",
-      "internal_tags_list": [],
-      "internal_tag_ids": [],
-      "content_type_asset_preview": null,
-      "component_group_name": "block"
-    },
-    {
       "name": "block_text",
       "display_name": "Text",
       "created_at": "2024-04-18T15:49:06.779Z",
@@ -662,10 +588,10 @@
       "component_group_name": "block"
     },
     {
-      "name": "block_text_editorial",
-      "display_name": "Text Editorial",
+      "name": "block_text_columns",
+      "display_name": "Text Columns",
       "created_at": "2024-04-18T22:14:01.150Z",
-      "updated_at": "2024-04-25T13:57:19.161Z",
+      "updated_at": "2024-05-07T11:57:37.407Z",
       "id": 5677158,
       "schema": {
         "title": {
@@ -697,10 +623,10 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "Text Editorial",
+      "real_name": "Text Columns",
       "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
       "color": "#1b243f",
-      "icon": "block-text-img-l",
+      "icon": "block-text-img-r-l",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
