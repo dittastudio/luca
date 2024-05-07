@@ -1,7 +1,13 @@
 import type { Ref } from 'vue'
+import type { ISbStoryData } from 'storyblok-js-client'
+import type { SeoStoryblok } from '@/types/storyblok'
 import { storyblokImage } from '@/utilities/helpers'
 
-export const useStoryblokSetup = async (story: Ref) => {
+interface Seo {
+  seo: SeoStoryblok[]
+}
+
+export const useStoryblokSetup = async <T extends Seo>(story: Ref<ISbStoryData<T> | null>) => {
   if (!story.value) {
     throw createError({
       statusCode: 404,

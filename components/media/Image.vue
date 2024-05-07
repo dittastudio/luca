@@ -61,8 +61,10 @@ const imgInfo = computed(() => imgMain.getSizes(asset.filename, {
   },
 }))
 
+const { class: className, ...rest } = attrs
+
 const imgAttrs = computed(() => ({
-  ...attrs,
+  ...rest,
   width: size.width,
   height: size.height,
   src: ready.value ? asset.filename : '',
@@ -77,6 +79,7 @@ const imgAttrs = computed(() => ({
   <div
     ref="container"
     class="media-image"
+    :class="className"
   >
     <img
       v-bind="imgAttrs"
