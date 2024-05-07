@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
-import { ratioDimensions } from '@/utilities/helpers'
+import { calculateAspectRatio, ratioDimensions, storyblokImageDimensions } from '@/utilities/helpers'
 import type { AssetStoryblok } from '@/types/storyblok'
 
 defineOptions({
@@ -11,7 +11,7 @@ const attrs = useAttrs() as { [key: string]: any }
 
 interface Props {
   asset: AssetStoryblok
-  ratio: number | string
+  ratio?: string | number
   sizes: string
   alt?: string
   lazy?: boolean
@@ -23,9 +23,12 @@ const container = ref<HTMLDivElement | null>(null)
 const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
+const { width, height } = storyblokImageDimensions(asset.filename)
+const ratioFormat = String(ratio) || calculateAspectRatio(width, height)
+
 const size = {
-  width: ratioDimensions(ratio).width * 100,
-  height: ratioDimensions(ratio).height * 100,
+  width: ratioDimensions(ratioFormat).width * 100,
+  height: ratioDimensions(ratioFormat).height * 100,
 }
 
 const placeholderImg = useImage()

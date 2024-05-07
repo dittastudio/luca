@@ -2,6 +2,23 @@ import type { LocationQuery } from 'vue-router'
 import { deburr } from 'lodash-es'
 import type { RichtextStoryblok } from '@/types/storyblok'
 
+const calculateAspectRatio = (width: number, height: number): string => {
+  const gcd = (a: number, b: number): number => {
+    if (b === 0) {
+      return a
+    }
+    else {
+      return gcd(b, a % b)
+    }
+  }
+
+  const divisor = gcd(width, height)
+  const aspectRatioWidth = width / divisor
+  const aspectRatioHeight = height / divisor
+
+  return `${aspectRatioWidth}:${aspectRatioHeight}`
+}
+
 const isStoryblokEditor = (search: LocationQuery) => '_storyblok' in search
 
 const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp']
@@ -138,6 +155,7 @@ const arrayToTuples = (items: unknown[]) => {
 }
 
 export {
+  calculateAspectRatio,
   hasRichTextContent,
   isStoryblokEditor,
   objectToUrlParams,
