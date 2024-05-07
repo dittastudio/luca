@@ -2,7 +2,6 @@
 import type { BlockCardStoryblok } from '@/types/storyblok'
 import { colSpanMap, colStartMap } from '@/utilities/maps'
 import { storyblokAssetType } from '@/utilities/helpers'
-import { gridColSpan } from '@/utilities/images'
 
 interface Props {
   block: BlockCardStoryblok
@@ -32,71 +31,35 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           :headline="block.headline"
         >
           <template #media>
-            <!-- <MediaPicture
-              v-if="block.media && assetType === 'image'"
-              class="block-card__media"
-              :src="block.media.filename"
-              :alt="block.media.alt || block.title"
-              :ratio="block.ratio"
-
-              :sizes="{
-                'zero': { columnSpan: 12 },
-                'md': gridColSpan('md', Number(block.column_span)),
-                '2xl': gridColSpan('2xl', Number(block.column_span)),
-                '3xl': gridColSpan('3xl', Number(block.column_span)),
-              }"
-              loading="lazy"
-            /> -->
-
             <MediaPicture
               v-if="block.media && assetType === 'image'"
               class="block-card__media"
               :src="block.media.filename"
               :alt="block.media.alt || block.title"
               :ratio="block.ratio"
-
               :sizes="{
-                'zero': { columnSpan: 12 },
+                zero: { columnSpan: 12 },
+              }"
+              media="md"
+              media-ratio="16:9"
+              :media-sizes="{
                 'md': { columnSpan: block.column_span },
                 '2xl': { columnSpan: block.column_span },
                 '3xl': { columnSpan: block.column_span },
               }"
-              loading="lazy"
             />
-
-            <!-- <MediaPicture
-              v-if="block.media && assetType === 'image'"
-              class="block-card__media"
-              :src="block.media.filename"
-              :alt="block.media.alt || block.title"
-              :ratio="block.ratio"
-              :sizes="{
-                zero: gridColSpan('zero', 1, 1),
-              }"
-              loading="lazy"
-            >
-              <MediaPictureSource
-                media="sm"
-                ratio="9:16"
+            <!-- <MediaPictureSource
+                v-if="block.media && assetType === 'image'"
                 :src="block.media.filename"
+                :media="block.media.media"
+                :ratio="block.ratio"
                 :sizes="{
-                  'md': gridColSpan('md', Number(block.column_span)),
-                  '2xl': gridColSpan('2xl', Number(block.column_span)),
-                  '3xl': gridColSpan('3xl', Number(block.column_span)),
+                  zero: { columnSpan: 12 },
+                  'md': { columnSpan: block.column_span },
+                  '2xl': { columnSpan: block.column_span },
+                  '3xl': { columnSpan: block.column_span },
                 }"
-              />
-
-              <MediaPictureSource
-                media="lg"
-                ratio="9:16"
-                :src="block.media.filename"
-                :sizes="{
-                  'md': gridColSpan('md', Number(block.column_span)),
-                  '2xl': gridColSpan('2xl', Number(block.column_span)),
-                  '3xl': gridColSpan('3xl', Number(block.column_span)),
-                }"
-              />
-            </MediaPicture> -->
+              /> -->
 
             <MediaVideo
               v-else-if="block.media && assetType === 'video'"

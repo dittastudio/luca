@@ -2,7 +2,7 @@
 import { useIntersectionObserver } from '@vueuse/core'
 import { ratioDimensions, storyblokImage, storyblokImageDimensions } from '@/utilities/helpers'
 import { screenSizes } from '@/tailwind.config'
-import { gridColSpan } from '@/utilities/images'
+import { calculateHeight, setBlurryPlaceholder, setSizes } from '@/utilities/images'
 
 defineOptions({
   inheritAttrs: false,
@@ -15,6 +15,10 @@ interface Props {
   widths?: number[]
   sizes?: any
   lazy?: boolean
+  media?: string
+  mediaSrc?: string
+  mediaRatio?: Luca.TAspectRatios | string | number | undefined
+  mediaSizes?: any
 }
 
 const {
@@ -24,73 +28,56 @@ const {
   widths = [360, 480, 640, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400],
   sizes,
   lazy = true,
+  media,
+  mediaSrc,
+  mediaRatio,
+  mediaSizes,
 } = defineProps<Props>()
 
 const setWidth = ref<number>(ratioDimensions(ratio).width || storyblokImageDimensions(src).width)
 const setHeight = ref<number>(ratioDimensions(ratio).height || storyblokImageDimensions(src).height)
 
-const calculateHeight = (chosenWidth: number) => {
-  return Math.round((setHeight.value / setWidth.value) * chosenWidth)
-}
+const setMediaWidth = ref<number>(ratioDimensions(mediaRatio).width || storyblokImageDimensions(mediaSrc).width || setWidth.value)
+const setMediaHeight = ref<number>(ratioDimensions(mediaRatio).height || storyblokImageDimensions(mediaSrc).height || setHeight.value)
 
 const setSrc = computed<string>(() => {
   const largestWidth = widths[widths.length - 1]
 
-  return storyblokImage(src, { width: largestWidth, height: calculateHeight(largestWidth) })
+  return storyblokImage(src, { width: largestWidth, height: calculateHeight(setWidth.value, setHeight.value, largestWidth) })
 })
 
 const setSrcset = computed<string>(() => {
   return widths
-    .map(w => `${storyblokImage(src, { width: w, height: calculateHeight(w) })} ${w}w`)
+    .map(w => `${storyblokImage(src, { width: w, height: calculateHeight(setWidth.value, setHeight.value, w) })} ${w}w`)
     .join(', ')
 })
 
-const setSizes = computed<string | undefined>(() => {
-  if (!sizes)
-    return
-
-  // Sort sizes keys in descending order based on screen size
-  const sortedOrderSizes = Object.keys(sizes).sort((a, b) => {
-    const sizeA = screenSizes[a] || Number.parseInt(a) || 0
-    const sizeB = screenSizes[b] || Number.parseInt(b) || 0
-    return sizeB - sizeA
-  })
-
-  // Format the sorted sizes into correct syntax
-  const formattedSizes = sortedOrderSizes
-    .map((size: any) => {
-      // console.log(size)
-      const screenSizesSize = screenSizes[size] || Number.parseInt(size) || 0
-      if (screenSizesSize === 0 && size !== 'zero')
-        return ''
-
-      const sizeKey = size === 'zero' ? '' : `(min-width: ${screenSizesSize}px) `
-      const sizeValue = sizes[size]
-
-      if (typeof sizes[size] === 'object') {
-        return gridColSpan({
-          breakpoint: sizes[size],
-          columnSpan: sizes[size]?.columnSpan,
-          totalColumns: sizes[size]?.totalColumns | 12,
-        })
-      }
-
-      return `${sizeKey}${sizeValue}`
-    })
-
-  return formattedSizes.join(', ')
+const setMediaSrcset = computed<string>(() => {
+  return widths
+    .map(w => `${storyblokImage(src, { width: w, height: calculateHeight(setMediaWidth.value, setMediaHeight.value, w) })} ${w}w`)
+    .join(', ')
 })
 
-const picture = ref<HTMLPictureElement | null>(null)
+const setMedia = computed<keyof typeof screenSizes | 'landscape' | 'portrait' | any>(() => {
+  if (!media)
+    return
+
+  const mediaBreakpoint = screenSizes[media]
+
+  if (mediaBreakpoint)
+    return `(min-width: ${mediaBreakpoint}px)`
+
+  return `(orientation: ${media})`
+})
+
+const container = ref<HTMLDivElement | null>(null)
 const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
-const blurryPlaceholder = (size: number) => storyblokImage(src, { width: size, height: calculateHeight(size), blur: 3 })
-
 useIntersectionObserver(
-  picture,
+  container,
   ([{ target, isIntersecting }], observerElement) => {
-    if (!(target instanceof HTMLPictureElement))
+    if (!(target instanceof HTMLDivElement))
       return
 
     if (isIntersecting && !ready.value) {
@@ -98,54 +85,59 @@ useIntersectionObserver(
       observerElement.disconnect()
     }
   },
-  { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
+  { rootMargin: '0px 0px 0px 0px', threshold: 0.5 },
 )
-
-// const attrs = useAttrs() as { [key: string]: any }
-
-// const imgAttrs = computed(() => ({
-//   ...attrs,
-//   width: setWidth.value,
-//   height: setHeight.value,
-//   src: ready.value ? setSrc.value : '',
-//   srcset: ready.value ? setSrcset.value : '',
-//   sizes: ready.value ? setSizes.value : '',
-//   alt: attrs.value?.alt ?? '',
-// }))
 </script>
 
 <template>
-  <picture
-    ref="picture"
-    :class="className"
-    class="media-picture"
-  >
-    <Transition name="placeholder">
-      <img
-        v-if="lazy && !loaded"
-        class="media-picture__placeholder"
-        :src="blurryPlaceholder(100)"
-        alt="Placeholder"
-        :width="100"
-        :height="100"
-      >
-    </Transition>
-
-    <slot />
-
-    <img
-      v-bind="$attrs"
-      :width="setWidth"
-      :height="setHeight"
-      :src="ready ? setSrc : ''"
-      :srcset="ready ? setSrcset : ''"
-      :sizes="ready ? setSizes : ''"
-      alt=""
-      class="media-picture__image"
-      :class="{ 'media-picture__image--hidden': lazy && !ready && !loaded }"
-      @load="loaded = true"
+  <div ref="container">
+    <picture
+      :class="className"
+      class="media-picture"
     >
-  </picture>
+      <source
+        v-bind="$attrs"
+        :media="setMedia"
+        :width="setMediaWidth"
+        :height="setMediaHeight"
+        :srcset="ready ? setMediaSrcset : ''"
+        :sizes="setSizes(mediaSizes)"
+      >
+
+      <img
+        v-bind="$attrs"
+        :width="setWidth"
+        :height="setHeight"
+        :src="ready ? setSrc : ''"
+        :srcset="ready ? setSrcset : ''"
+        :sizes="setSizes(sizes)"
+        alt=""
+        class="media-picture__image"
+        :class="{ 'media-picture__image--hidden': lazy && !ready && !loaded }"
+        @load="loaded = true"
+      >
+
+    </picture>
+
+    <Transition name="placeholder">
+      <picture v-if="lazy && !loaded">
+        <source
+          :media="setMedia"
+          :width="setMediaWidth"
+          :height="setMediaHeight"
+          :srcset="setBlurryPlaceholder(src, setMediaWidth, setMediaHeight, 100)"
+        >
+
+        <img
+          class="media-picture__placeholder"
+          :src="setBlurryPlaceholder(src, setWidth, setHeight, 100)"
+          alt="Placeholder"
+          :width="setWidth"
+          :height="setHeight"
+        >
+      </picture>
+    </Transition>
+  </div>
 </template>
 
 <style lang="postcss" scoped>
@@ -164,7 +156,7 @@ useIntersectionObserver(
 
 .placeholder-enter-active,
 .placeholder-leave-active {
-  transition: opacity theme('transitionDuration.1500') theme('transitionTimingFunction.out');
+  transition: opacity theme('transitionDuration.3000') theme('transitionTimingFunction.out');
 }
 .placeholder-enter-from,
 .placeholder-leave-to {
@@ -178,6 +170,6 @@ useIntersectionObserver(
   z-index: 1;
   inset: 0;
 
-  filter: blur(8px);
+  backface-visibility: hidden;
 }
 </style>

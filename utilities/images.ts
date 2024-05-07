@@ -1,12 +1,13 @@
 import { screenSizes } from '@/tailwind.config'
+import { storyblokImage } from '@/utilities/helpers'
 
-export interface gridColSpanOptions {
+interface gridColSpanOptions {
   breakpoint: keyof typeof screenSizes | number
   columnSpan: number
   totalColumns: number
 }
 
-export const gridColSpan = ({ breakpoint, columnSpan, totalColumns }: gridColSpanOptions) => {
+const gridColSpan = ({ breakpoint, columnSpan, totalColumns }: gridColSpanOptions) => {
   const breakpointNumber: number = (typeof breakpoint === 'number') ? breakpoint : screenSizes[breakpoint]
 
   const innerGutter = 20
@@ -32,4 +33,49 @@ export const gridColSpan = ({ breakpoint, columnSpan, totalColumns }: gridColSpa
   }
 
   return `calc((((100vw - ${totalGutters}px) / ${totalColumns}) * ${columnSpan}) + (${columnSpan - 1} * ${innerGutter}px))`
+}
+
+export const calculateHeight = (imageWidth: number, imageHeight: number, chosenWidth: number) => {
+  return Math.round((imageHeight / imageWidth) * chosenWidth)
+}
+
+export const setSizes = (sizes: any) => {
+  if (!sizes)
+    return
+
+  // Sort sizes keys in descending order based on screen size
+  const sortedOrderSizes = Object.keys(sizes).sort((a, b) => {
+    const sizeA = screenSizes[a] || Number.parseInt(a) || 0
+    const sizeB = screenSizes[b] || Number.parseInt(b) || 0
+    return sizeB - sizeA
+  })
+
+  // Format the sorted sizes into correct syntax
+  const formattedSizes = sortedOrderSizes
+    .map((size: any) => {
+      // console.log(size)
+      const screenSizesSize = screenSizes[size] || Number.parseInt(size) || 0
+      if (screenSizesSize === 0 && size !== 'zero')
+        return ''
+
+      const sizeKey = size === 'zero' ? '' : `(min-width: ${screenSizesSize}px) `
+      const sizeScreen = sizes[size]
+      let sizeValue
+
+      if (typeof sizeScreen === 'object') {
+        sizeValue = gridColSpan({
+          breakpoint: sizeScreen,
+          columnSpan: sizeScreen?.columnSpan,
+          totalColumns: sizeScreen?.totalColumns | 12,
+        })
+      }
+
+      return `${sizeKey}${sizeValue}`
+    })
+
+  return formattedSizes.join(', ')
+}
+
+export const setBlurryPlaceholder = (src: string, imageWidth: number, imageHeight: number, chosenWidth: number) => {
+  return storyblokImage(src, { width: chosenWidth, height: calculateHeight(imageWidth, imageHeight, chosenWidth), blur: 3 })
 }
