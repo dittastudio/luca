@@ -58,7 +58,7 @@ export interface BlockCardStoryblok {
   ratio: number | string;
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
-  column_span: number | string;
+  column_end: number | string;
   connecting_line?: boolean;
   _uid: string;
   component: "block_card";
