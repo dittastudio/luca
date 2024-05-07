@@ -42,14 +42,11 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
                 class="block-carousel__item"
                 :class="block.two_per_slide ? 'block-carousel__item--two' : 'block-carousel__item--one'"
               >
-                <NuxtImg
+                <MediaImage
                   v-if="media && storyblokAssetType(media.filename) === 'image'"
                   class="block-carousel__media"
-                  :class="block.two_per_slide ? ratioMap['8:9'] : ratioMap['16:9']"
-                  :src="media.filename"
-                  :alt="media.alt"
-                  :width="block.two_per_slide ? '8' : '16'"
-                  height="9"
+                  :asset="media"
+                  :ratio="block.two_per_slide ? '8:9' : '16:9'"
                   :sizes="
                     block.two_per_slide ? `
                       50vw
@@ -61,7 +58,6 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
                       3xl:${(10 / 12 * 1800)}px
                     `
                   "
-                  loading="lazy"
                 />
 
                 <MediaVideo
@@ -116,7 +112,6 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
 .block-carousel__media {
   height: 100%;
   object-fit: cover;
-  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 </style>

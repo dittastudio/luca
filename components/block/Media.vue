@@ -22,20 +22,17 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         colEndMap[block.column_end],
       ]"
     >
-      <NuxtImg
+      <MediaImage
         v-if="block.media && assetType === 'image'"
         class="block-media__media"
-        :src="block.media.filename"
-        :alt="block.media.alt"
-        :width="ratioDimensions(block.ratio).width"
-        :height="ratioDimensions(block.ratio).height"
+        :asset="block.media"
+        :ratio="block.ratio"
         :sizes="`
           100vw
           sm:100vw
           md:${Number(block.column_span) / 12 * 100}vw
           3xl:${Number(block.column_span) / 12 * 1800}px
         `"
-        loading="lazy"
       />
 
       <MediaVideo
@@ -58,7 +55,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-media__media {
-  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 </style>
