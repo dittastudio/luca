@@ -539,83 +539,6 @@
       "component_group_name": "block"
     },
     {
-      "name": "block_split_editorial",
-      "display_name": "Split Editorial",
-      "created_at": "2024-05-01T21:49:01.133Z",
-      "updated_at": "2024-05-01T22:26:27.633Z",
-      "id": 5738486,
-      "schema": {
-        "media": {
-          "type": "asset",
-          "pos": 0,
-          "required": true,
-          "filetypes": [
-            "images",
-            "videos"
-          ],
-          "asset_folder_id": 530535
-        },
-        "ratio": {
-          "type": "option",
-          "pos": 2,
-          "use_uuid": true,
-          "required": true,
-          "source": "internal",
-          "datasource_slug": "ratio",
-          "exclude_empty_option": true,
-          "key": "ratio"
-        },
-        "text": {
-          "type": "richtext",
-          "required": false,
-          "display_name": "Text",
-          "key": "text",
-          "pos": 3,
-          "customize_toolbar": true,
-          "toolbar": [
-            "bold",
-            "h1",
-            "h2",
-            "h3",
-            "h4",
-            "h5",
-            "h6",
-            "italic",
-            "link",
-            "paragraph",
-            "quote"
-          ]
-        },
-        "reversed": {
-          "type": "boolean",
-          "inline_label": true,
-          "pos": 4,
-          "key": "reversed"
-        },
-        "connecting_line": {
-          "type": "boolean",
-          "pos": 5,
-          "inline_label": true,
-          "key": "connecting_line"
-        }
-      },
-      "image": null,
-      "preview_field": null,
-      "is_root": false,
-      "preview_tmpl": "{{@image(it.media.filename)/}}\n{{@if(it.text.content[0].content[0].text)}}\n<p>{{it.text.content[0].content[0].text}}</p>\n{{/if}}",
-      "is_nestable": true,
-      "all_presets": [],
-      "preset_id": null,
-      "real_name": "Split Editorial",
-      "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
-      "color": "#00b3b0",
-      "icon": "block-1-2block",
-      "internal_tags_list": [],
-      "internal_tag_ids": [],
-      "content_type_asset_preview": null,
-      "component_group_name": "block"
-    },
-    {
       "name": "block_text",
       "display_name": "Text",
       "created_at": "2024-04-18T15:49:06.779Z",
@@ -662,10 +585,10 @@
       "component_group_name": "block"
     },
     {
-      "name": "block_text_editorial",
-      "display_name": "Text Editorial",
+      "name": "block_text_columns",
+      "display_name": "Text Columns",
       "created_at": "2024-04-18T22:14:01.150Z",
-      "updated_at": "2024-04-25T13:57:19.161Z",
+      "updated_at": "2024-05-07T11:57:37.407Z",
       "id": 5677158,
       "schema": {
         "title": {
@@ -697,10 +620,10 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "Text Editorial",
+      "real_name": "Text Columns",
       "component_group_uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
       "color": "#1b243f",
-      "icon": "block-text-img-l",
+      "icon": "block-text-img-r-l",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
