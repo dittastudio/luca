@@ -43,7 +43,6 @@ const swiperOptions: SwiperOptions = {
                 v-if="slide && storyblokAssetType(slide.filename) === 'image'"
                 class="block-gallery__media"
                 :asset="slide"
-                ratio="16:9"
                 :sizes="`
                   100vw
                   md:${8 / 12 * 100}vw

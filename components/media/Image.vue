@@ -24,7 +24,7 @@ const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
 const { width, height } = storyblokImageDimensions(asset.filename)
-const ratioFormat = String(ratio) || calculateAspectRatio(width, height)
+const ratioFormat = ratio ? String(ratio) : calculateAspectRatio(width, height)
 
 const size = {
   width: ratioDimensions(ratioFormat).width * 100,
