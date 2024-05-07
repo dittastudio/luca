@@ -7,7 +7,7 @@ const story = await useStoryblokStory<PageStoryblok>(route.path)
 useStoryblokSetup<PageStoryblok>(story)
 useNavigation(false)
 
-const isHome = computed(() => route.path === '/')
+const isHome = computed(() => ['/', '/home'].includes(route.path))
 </script>
 
 <template>

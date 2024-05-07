@@ -36,6 +36,23 @@ export const screenSizes = {
   '3xl': 1920,
 }
 
+export const screens = {
+  'xs': `${screenSizes.xs}px`,
+  'xsMax': { max: `${screenSizes.xs - 1}px` },
+  'sm': `${screenSizes.sm}px`,
+  'smMax': { max: `${screenSizes.sm - 1}px` },
+  'md': `${screenSizes.md}px`,
+  'mdMax': { max: `${screenSizes.md - 1}px` },
+  'lg': `${screenSizes.lg}px`,
+  'lgMax': { max: `${screenSizes.lg - 1}px` },
+  'xl': `${screenSizes.xl}px`,
+  'xlMax': { max: `${screenSizes.xl - 1}px` },
+  '2xl': `${screenSizes['2xl']}px`,
+  '2xlMax': { max: `${screenSizes['2xl'] - 1}px` },
+  '3xl': `${screenSizes['3xl']}px`,
+  '3xlMax': { max: `${screenSizes['3xl'] - 1}px` },
+}
+
 export const colours = {
   white: 'rgb(255 255 255 / <alpha-value>)',
   whiteHex: '#ffffff',
@@ -141,22 +158,7 @@ export default {
       wider: '0.05em',
       widest: '0.2em',
     },
-    screens: {
-      'xs': `${screenSizes.xs}px`,
-      'xsMax': { max: `${screenSizes.xs - 1}px` },
-      'sm': `${screenSizes.sm}px`,
-      'smMax': { max: `${screenSizes.sm - 1}px` },
-      'md': `${screenSizes.md}px`,
-      'mdMax': { max: `${screenSizes.md - 1}px` },
-      'lg': `${screenSizes.lg}px`,
-      'lgMax': { max: `${screenSizes.lg - 1}px` },
-      'xl': `${screenSizes.xl}px`,
-      'xlMax': { max: `${screenSizes.xl - 1}px` },
-      '2xl': `${screenSizes['2xl']}px`,
-      '2xlMax': { max: `${screenSizes['2xl'] - 1}px` },
-      '3xl': `${screenSizes['3xl']}px`,
-      '3xlMax': { max: `${screenSizes['3xl'] - 1}px` },
-    },
+    screens,
     transitionTimingFunction: {
       smooth: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
       in: 'cubic-bezier(0.4, 0.0, 1, 1)',
