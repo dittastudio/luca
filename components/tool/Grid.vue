@@ -31,8 +31,11 @@ const toggleGrid = () => {
       <div
         v-for="i in 12"
         :key="i"
-        class="opacity-10 bg-[red]"
-      />
+        class="flex items-end justify-center bg-[red]/10"
+        :class="[{ 'smMax:hidden': i > 2, 'mdMax:hidden': i > 4 }]"
+      >
+        <span class="text-white font-[monospace] opacity-50 text-32 pb-20">{{ i }}</span>
+      </div>
     </div>
   </div>
 </template>
