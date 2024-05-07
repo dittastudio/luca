@@ -134,7 +134,7 @@ const toggleNavigation = () => {
           type="button"
           @click="reservationsOpen = true"
         >
-          <AppearanceButton slim-on="mdMax">
+          <AppearanceButton class="mdMax:!p-10 mdMax:!text-10">
             <span class="md:hidden">Book</span>
 
             <span class="mdMax:hidden">Reservations</span>
