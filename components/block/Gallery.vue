@@ -39,13 +39,11 @@ const swiperOptions: SwiperOptions = {
         <div class="block-gallery__item wrapper">
           <div class="block-gallery__grid">
             <div class="block-gallery__inner">
-              <NuxtImg
+              <MediaImage
                 v-if="slide && storyblokAssetType(slide.filename) === 'image'"
                 class="block-gallery__media"
-                :src="slide.filename"
-                :alt="slide.alt"
-                :width="storyblokImageDimensions(slide.filename).width"
-                :height="storyblokImageDimensions(slide.filename).height"
+                :asset="slide"
+                ratio="16:9"
                 :sizes="`
                   100vw
                   md:${8 / 12 * 100}vw
@@ -145,8 +143,11 @@ const swiperOptions: SwiperOptions = {
 }
 
 .block-gallery__media {
-  height: 100%;
-  object-fit: contain;
-  border-radius: theme('borderRadius.sm');
+  height: 100%!important;
+
+  img {
+    height: 100%!important;
+    object-fit: contain;
+  }
 }
 </style>
