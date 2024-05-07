@@ -134,19 +134,11 @@ const toggleNavigation = () => {
           type="button"
           @click="reservationsOpen = true"
         >
-          <AppearanceButton>
-            Reservations
-          </AppearanceButton>
-        </button>
+          <AppearanceButton slim-on="mdMax">
+            <span class="md:hidden">Book</span>
 
-        <button
-          class="app-header__book"
-          type="button"
-          @click="reservationsOpen = true"
-        >
-          <AppearanceLink>
-            Book
-          </AppearanceLink>
+            <span class="mdMax:hidden">Reservations</span>
+          </AppearanceButton>
         </button>
 
         <AppModal
@@ -498,20 +490,13 @@ const toggleNavigation = () => {
 
 .app-header__reservations {
   @screen mdMax {
-    display: none;
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
-}
-
-.app-header__book {
-  opacity: 1;
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   .app-header--is-open & {
-    opacity: 0;
-  }
-
-  @screen md {
-    display: none;
+    @screen mdMax {
+      opacity: 0;
+    }
   }
 }
 </style>
