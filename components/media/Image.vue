@@ -104,6 +104,8 @@ const imgAttrs = computed(() => ({
 
 <style lang="postcss" scoped>
 .media-image {
+  --blur-transition-duration: 1s;
+
   isolation: isolate;
   position: relative;
 
@@ -125,7 +127,7 @@ const imgAttrs = computed(() => ({
       backface-visibility: hidden;
       opacity: 0;
 
-      transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.outExpo');
+      transition: opacity var(--blur-transition-duration) theme('transitionTimingFunction.outQuart');
     }
 
     &.is-loaded {
@@ -141,7 +143,7 @@ const imgAttrs = computed(() => ({
 
     .media-image__asset.is-loaded + & {
       opacity: 0;
-      transition: opacity 0s theme('transitionDelay.1500');
+      transition: opacity 0s var(--blur-transition-duration);
     }
   }
 }

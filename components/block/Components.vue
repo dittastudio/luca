@@ -8,7 +8,7 @@ interface Props {
 const { content } = defineProps<Props>()
 
 const route = useRoute()
-const isHome = computed(() => route.path === '/')
+const isHome = computed(() => ['/', '/home'].includes(route.path))
 </script>
 
 <template>
