@@ -142,10 +142,12 @@ const swiperOptions: SwiperOptions = {
 }
 
 .block-gallery__media {
-  height: 100%!important;
+  /* TODO: Remove this once the image is fixed */
+  height: 100% !important;
+  object-fit: contain;
 
-  img {
-    height: 100%!important;
+  & img {
+    height: 100% !important;
     object-fit: contain;
   }
 }
