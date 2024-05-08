@@ -25,6 +25,12 @@ const { block } = defineProps<Props>()
 .block-text {
   text-align: center;
 
+  & :is(h1, h2, h3, h4, h5, h6) {
+    max-width: 36em;
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+
   & p {
     max-width: 25em;
     margin-inline: auto;

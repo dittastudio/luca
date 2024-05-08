@@ -22,27 +22,24 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         colEndMap[block.column_end],
       ]"
     >
-      <StoryblokLink :item="block.link">
+      <StoryblokLink class="block-card-editorial__link" :item="block.link">
         <figure>
-          <NuxtImg
+          <MediaImage
             v-if="block.media && assetType === 'image'"
-            class="block-card-editorial__video"
-            :src="block.media.filename"
-            :alt="block.media.alt"
-            :width="ratioDimensions(block.ratio).width"
-            :height="ratioDimensions(block.ratio).height"
+            class="block-card-editorial__media"
+            :asset="block.media"
+            :ratio="block.ratio"
             :sizes="`
               100vw
               sm:100vw
               md:${Number(block.column_span) / 12 * 100}vw
               3xl:${Number(block.column_span) / 12 * 1800}px
             `"
-            loading="lazy"
           />
 
           <MediaVideo
             v-else-if="block.media && assetType === 'video'"
-            class="block-card-editorial__video"
+            class="block-card-editorial__media"
             :asset="block.media"
             :ratio="block.ratio"
           />
@@ -68,9 +65,21 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
-.block-card-editorial__video {
-  background-color: theme('colors.black/5%');
+.block-card-editorial__link {
+  display: block;
+}
+
+.block-card-editorial__media {
   border-radius: theme('borderRadius.sm');
+
+  @media (hover: hover) {
+    opacity: 1;
+    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.outQuart');
+
+    .block-card-editorial__link:hover & {
+      opacity: 0.8;
+    }
+  }
 }
 
 .block-card-editorial__caption {

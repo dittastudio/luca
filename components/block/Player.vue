@@ -48,10 +48,12 @@ const params = objectToUrlParams(options)
 
 .block-player__item {
   overflow: hidden;
-  background-color: theme('colors.black/5%');
-  border-radius: theme('borderRadius.sm');
+
   width: 100%;
   height: 100%;
+
+  background-color: theme('colors.black/5%');
+  border-radius: theme('borderRadius.sm');
 
   @screen md {
     grid-column: 3 / span 8;

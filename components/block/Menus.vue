@@ -71,17 +71,16 @@ const swiperOptions: SwiperOptions = {
                 :options="swiperOptions"
               >
                 <template #slide="{ slide }">
-                  <NuxtImg
-                    class="block-menus__image"
-                    :src="slide.filename"
-                    :alt="slide.alt"
-                    :width="storyblokImageDimensions(slide.filename).width"
-                    :height="storyblokImageDimensions(slide.filename).height"
+                  <MediaImage
+                    class="block-media__media"
+                    :asset="slide"
+                    ratio="1:1.414"
                     :sizes="`
                       100vw
                       md:${6 / 12 * 100}vw
                       3xl:${6 / 12 * 1800}px
                     `"
+                    :lazy="false"
                   />
                 </template>
               </UiCarousel>

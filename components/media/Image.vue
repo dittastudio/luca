@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
-import { ratioDimensions } from '@/utilities/helpers'
+import { calculateAspectRatio, ratioDimensions, storyblokImageDimensions } from '@/utilities/helpers'
 import type { AssetStoryblok } from '@/types/storyblok'
 
 defineOptions({
@@ -11,7 +11,7 @@ const attrs = useAttrs() as { [key: string]: any }
 
 interface Props {
   asset: AssetStoryblok
-  ratio: number | string
+  ratio?: string | number
   sizes: string
   alt?: string
   lazy?: boolean
@@ -19,13 +19,16 @@ interface Props {
 
 const { asset, ratio, sizes, lazy = true } = defineProps<Props>()
 
-const container = ref<HTMLDivElement | null>(null)
+const container = ref<HTMLPictureElement | null>(null)
 const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
+const { width, height } = storyblokImageDimensions(asset.filename)
+const ratioFormat = ratio ? String(ratio) : calculateAspectRatio(width, height)
+
 const size = {
-  width: ratioDimensions(ratio).width * 100,
-  height: ratioDimensions(ratio).height * 100,
+  width: ratioDimensions(ratioFormat).width * 100,
+  height: ratioDimensions(ratioFormat).height * 100,
 }
 
 const placeholderImg = useImage()
@@ -38,7 +41,7 @@ const placeholder = placeholderImg(asset.filename, {
 useIntersectionObserver(
   container,
   ([{ target, isIntersecting }], observerElement) => {
-    if (!(target instanceof HTMLDivElement))
+    if (!(target instanceof HTMLPictureElement))
       return
 
     if (isIntersecting && !ready.value) {
@@ -71,12 +74,12 @@ const imgAttrs = computed(() => ({
   sizes: ready.value ? imgInfo.value.sizes : '',
   srcset: ready.value ? imgInfo.value.srcset : '',
   alt: attrs.value?.alt ?? asset.alt ?? '',
-  loading: 'lazy' as 'lazy' | 'eager',
+  loading: lazy ? 'eager' : 'lazy',
 }))
 </script>
 
 <template>
-  <div
+  <picture
     ref="container"
     class="media-image"
     :class="className"
@@ -96,13 +99,21 @@ const imgAttrs = computed(() => ({
       :height="size.height"
       alt=""
     >
-  </div>
+  </picture>
 </template>
 
 <style lang="postcss" scoped>
 .media-image {
+  --blur-transition-duration: 1s;
+
+  isolation: isolate;
   position: relative;
+
   overflow: hidden;
+  display: block;
+
+  width: 100%;
+  height: inherit;
 
   &__asset {
     width: 100%;
@@ -110,11 +121,13 @@ const imgAttrs = computed(() => ({
 
     &.is-lazy {
       position: absolute;
-      inset: 0;
       z-index: 1;
-      transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+      inset: 0;
+
       backface-visibility: hidden;
       opacity: 0;
+
+      transition: opacity var(--blur-transition-duration) theme('transitionTimingFunction.outQuart');
     }
 
     &.is-loaded {
@@ -123,10 +136,15 @@ const imgAttrs = computed(() => ({
   }
 
   &__placeholder {
-    filter: blur(20px);
     pointer-events: none;
     width: 100%;
     height: auto;
+    filter: blur(20px);
+
+    .media-image__asset.is-loaded + & {
+      opacity: 0;
+      transition: opacity 0s var(--blur-transition-duration);
+    }
   }
 }
 </style>

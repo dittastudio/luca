@@ -48,6 +48,19 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
                 '3xl': { columnSpan: block.column_span },
               }"
             />
+
+            <!-- <MediaImage
+              v-if="block.media && assetType === 'image'"
+              class="block-card__media"
+              :asset="block.media"
+              :ratio="block.ratio"
+              :sizes="`
+                100vw
+                sm:100vw
+                md:${Number(block.column_span) / 12 * 100}vw
+                3xl:${Number(block.column_span) / 12 * 1800}px
+              `"
+            /> -->
             <!-- <MediaPictureSource
                 v-if="block.media && assetType === 'image'"
                 :src="block.media.filename"
@@ -84,7 +97,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-card__media {
-  background-color: theme('colors.black/5%');
   border-radius: theme('borderRadius.sm');
 }
 </style>
