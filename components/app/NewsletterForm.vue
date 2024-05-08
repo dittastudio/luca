@@ -229,6 +229,7 @@ const onSubmit = async () => {
 <style lang="postcss" scoped>
 .app-footer-form {
   position: relative;
+
   display: flex;
   gap: theme('spacing.10');
   align-items: baseline;
@@ -242,17 +243,21 @@ const onSubmit = async () => {
 .app-footer-form__field {
   position: relative;
   width: 100%;
-  margin: 0 0 theme('spacing.5') 0;
+  margin: 0 0 theme('spacing.5');
 
   &::after {
     content: '';
+
     position: absolute;
     bottom: 0;
     left: 0;
+
     width: 100%;
     height: 1px;
+
     opacity: 0.2;
     background-color: currentcolor;
+
     transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
@@ -264,25 +269,28 @@ const onSubmit = async () => {
 }
 
 .app-footer-form__error-list {
-  margin: theme('spacing.10') 0 0 0;
+  margin: theme('spacing.10') 0 0;
   text-align: left;
 }
 
 .app-footer-form__error {
-  text-align: left;
-  margin: 0 0 theme('spacing.10') 0;
+  margin: 0 0 theme('spacing.10');
   font-size: theme('fontSize.12');
   font-style: italic;
+  text-align: left;
 }
 
 .app-footer-form__input {
   --input-padding: 6px;
 
   flex-grow: 1;
+
   width: 100%;
   padding: var(--input-padding) 0;
-  outline: none;
+
   font-size: theme('fontSize.16');
+
+  outline: none;
 
   @screen md {
     font-size: theme('fontSize.14');
@@ -307,15 +315,19 @@ const onSubmit = async () => {
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
       font: inherit;
+
       box-shadow: none;
       caret-color: theme('colors.white');
+
       transition: background-color 5000s ease-in-out 0s;
+
       -webkit-text-fill-color: theme('colors.white');
   }
 }
 
 .app-footer-form__submit {
-  padding-block-start: theme('spacing.20');
+  margin: 0 calc(-1 * theme('spacing.20')) calc(-1 * theme('spacing.20'));
+  padding: theme('spacing.20');
   opacity: 1;
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
