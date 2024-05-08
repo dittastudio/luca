@@ -22,7 +22,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         colEndMap[block.column_end],
       ]"
     >
-      <StoryblokLink :item="block.link">
+      <StoryblokLink class="block-card-editorial__link" :item="block.link">
         <figure>
           <MediaImage
             v-if="block.media && assetType === 'image'"
@@ -65,8 +65,21 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   }
 }
 
+.block-card-editorial__link {
+  display: block;
+}
+
 .block-card-editorial__media {
   border-radius: theme('borderRadius.sm');
+
+  @media (hover: hover) {
+    opacity: 1;
+    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.outQuart');
+
+    .block-card-editorial__link:hover & {
+      opacity: 0.8;
+    }
+  }
 }
 
 .block-card-editorial__caption {
