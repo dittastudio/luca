@@ -104,9 +104,13 @@ const imgAttrs = computed(() => ({
 
 <style lang="postcss" scoped>
 .media-image {
+  isolation: isolate;
   position: relative;
+
   overflow: hidden;
   display: block;
+
+  width: 100%;
   height: inherit;
 
   &__asset {
@@ -121,7 +125,7 @@ const imgAttrs = computed(() => ({
       backface-visibility: hidden;
       opacity: 0;
 
-      transition: opacity theme('transitionDuration.1500') theme('transitionTimingFunction.out');
+      transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.outExpo');
     }
 
     &.is-loaded {
