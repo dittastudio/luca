@@ -19,12 +19,12 @@
   "dependencies": {
     "@netlify/functions": "^2.6.3",
     "@storyblok/nuxt": "^6.0.10",
-    "@vee-validate/zod": "^4.12.7",
+    "@vee-validate/zod": "^4.12.8",
     "@vueuse/core": "^10.9.0",
     "lodash-es": "^4.17.21",
     "swiper": "^11.1.1",
     "typescript": "^5.4.5",
-    "vee-validate": "^4.12.7",
+    "vee-validate": "^4.12.8",
     "zod": "^3.23.8"
   },
   "devDependencies": {
