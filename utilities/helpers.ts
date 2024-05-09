@@ -58,6 +58,12 @@ const safeKebabCase = (str: string) =>
     .toLowerCase()
     .trim()
 
+const validAspectRatio = (ratio: string) => {
+  const pattern = /[0-9.]+:[0-9.]+/gm
+
+  return pattern.test(ratio)
+}
+
 const objectToUrlParams = (obj: Record<string, unknown>) => {
   const params = new URLSearchParams()
 
@@ -77,5 +83,6 @@ export {
   ratioDimensions,
   requestDelay,
   safeKebabCase,
+  validAspectRatio,
   wait,
 }
