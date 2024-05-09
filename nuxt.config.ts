@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { name: 'author', content: 'Luca' },
+        { name: 'author', content: 'LUCA' },
         { name: 'revisit-after', content: '1 day' },
         { name: 'msapplication-TileColor', content: '#2D3F2F' },
         { name: 'theme-color', content: '#2D3F2F' },
