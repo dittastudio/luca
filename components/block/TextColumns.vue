@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { hasRichTextContent } from '@/utilities/helpers'
 import type { BlockTextColumnsStoryblok } from '@/types/storyblok'
+import { storyblokRichTextContent } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockTextColumnsStoryblok
@@ -23,7 +23,7 @@ const { block } = defineProps<Props>()
       </h2>
 
       <StoryblokRichText
-        v-if="hasRichTextContent(block.text)"
+        v-if="storyblokRichTextContent(block.text)"
         :content="block.text"
         class="block-text-columns__columns"
       />

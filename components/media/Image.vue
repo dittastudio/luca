@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
-import { calculateAspectRatio, ratioDimensions, storyblokImageDimensions } from '@/utilities/helpers'
+import { calculateAspectRatio, ratioDimensions } from '@/utilities/helpers'
+import { storyblokImageDimensions } from '@/utilities/storyblok'
 import type { AssetStoryblok } from '@/types/storyblok'
 
 defineOptions({

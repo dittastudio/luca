@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import type { ISbStoryData } from 'storyblok-js-client'
 import type { SeoStoryblok } from '@/types/storyblok'
-import { storyblokImage } from '@/utilities/helpers'
+import { storyblokImage } from '@/utilities/storyblok'
 
 interface Seo {
   seo: SeoStoryblok[]

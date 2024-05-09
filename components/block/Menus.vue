@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
 import type { BlockMenusStoryblok } from '@/types/storyblok'
-import { storyblokImageDimensions } from '@/utilities/helpers'
+import { storyblokImageDimensions } from '@/utilities/storyblok'
 
 const activeIndex = ref(0)
 

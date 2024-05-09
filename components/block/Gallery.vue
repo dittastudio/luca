@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
-import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/helpers'
 import type { BlockGalleryStoryblok } from '@/types/storyblok'
+import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockGalleryStoryblok

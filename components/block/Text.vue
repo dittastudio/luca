@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { hasRichTextContent } from '@/utilities/helpers'
+import { storyblokRichTextContent } from '@/utilities/storyblok'
 import type { BlockTextStoryblok } from '@/types/storyblok'
 
 interface Props {
@@ -15,7 +15,7 @@ const { block } = defineProps<Props>()
     class="block-text prose prose--large wrapper"
   >
     <StoryblokRichText
-      v-if="hasRichTextContent(block.text)"
+      v-if="storyblokRichTextContent(block.text)"
       :content="block.text"
     />
   </div>

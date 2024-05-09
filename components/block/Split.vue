@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { BlockSplitStoryblok } from '@/types/storyblok'
-import { hasRichTextContent, storyblokAssetType } from '@/utilities/helpers'
+import { storyblokAssetType, storyblokRichTextContent } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockSplitStoryblok
@@ -46,7 +46,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 
     <div class="block-split__text">
       <div
-        v-if="hasRichTextContent(block.text)"
+        v-if="storyblokRichTextContent(block.text)"
         class="block-split__copy prose"
         :class="{ 'prose--large': !isStoryPage }"
       >

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { BlockCardStoryblok } from '@/types/storyblok'
 import { colEndMap, colStartMap } from '@/utilities/maps'
-import { ratioDimensions, storyblokAssetType } from '@/utilities/helpers'
+import { ratioDimensions } from '@/utilities/helpers'
+import { storyblokAssetType } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockCardStoryblok
