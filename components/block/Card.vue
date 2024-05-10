@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { BlockCardStoryblok } from '@/types/storyblok'
 import { colEndMap, colStartMap } from '@/utilities/maps'
-// import { ratioDimensions } from '@/utilities/helpers'
 import { storyblokAssetType } from '@/utilities/storyblok'
 
 interface Props {
@@ -45,11 +44,11 @@ const columnSpan = computed(() => ((Number(block.column_end) - Number(block.colu
                 zero: { columnSpan: 12 },
               }"
               media="md"
-              media-ratio="16:9"
+              media-ratio="1:1"
               :media-sizes="{
-                'md': { columnSpan: block.column_span },
-                '2xl': { columnSpan: block.column_span },
-                '3xl': { columnSpan: block.column_span },
+                'md': { columnSpan },
+                '2xl': { columnSpan },
+                '3xl': { columnSpan },
               }"
             />
 

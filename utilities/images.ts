@@ -62,8 +62,6 @@ export const setSizes = (sizes: any) => {
       const sizeScreen = sizes[size]
       let sizeValue
 
-      console.log('sizeScreen', sizeScreen)
-
       if (typeof sizeScreen === 'object') {
         sizeValue = gridColSpan({
           breakpoint: sizeScreen?.breakpoint,
@@ -71,8 +69,6 @@ export const setSizes = (sizes: any) => {
           totalColumns: Number(sizeScreen?.totalColumns) | 12,
         })
       }
-
-      console.log('sizeValue', sizeValue)
 
       return `${sizeKey}${sizeValue}`
     })
