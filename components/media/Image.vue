@@ -76,7 +76,6 @@ const imgAttrs = computed(() => ({
   sizes: ready.value ? imgInfo.value.sizes : '',
   srcset: ready.value ? imgInfo.value.srcset : '',
   alt: attrs.value?.alt ?? asset.alt ?? '',
-  loading: lazy ? 'eager' : 'lazy',
 }))
 </script>
 
@@ -90,6 +89,7 @@ const imgAttrs = computed(() => ({
       v-bind="imgAttrs"
       class="media-image__asset"
       :class="[{ 'is-loaded': loaded, 'is-lazy': lazy }]"
+      :loading="lazy ? 'eager' : 'lazy'"
       @load="loaded = true"
     >
 
@@ -100,6 +100,7 @@ const imgAttrs = computed(() => ({
       :width="size.width"
       :height="size.height"
       alt=""
+      loading="lazy"
     >
   </picture>
 </template>
