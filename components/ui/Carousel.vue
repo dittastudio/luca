@@ -20,10 +20,14 @@ interface Emits {
 const emit = defineEmits<Emits>()
 
 const swiper = ref<Swiper>()
-const swiperEl = ref<any>()
+const swiperEl = ref<HTMLDivElement | null>(null)
 const current = ref(0)
 
 const initSwiper = () => {
+  if (!swiperEl.value) {
+    return
+  }
+
   swiper.value = new Swiper(swiperEl.value, {
     modules: [Autoplay, EffectFade, Pagination, Keyboard],
     enabled: slides.length > 1,
@@ -70,6 +74,19 @@ onUnmounted(() => swiper.value?.destroy())
 watch(() => slides, () => {
   swiper.value?.update()
   swiper.value?.updateSlides()
+})
+
+watch(() => options, () => {
+  if (!swiper.value) {
+    return
+  }
+
+  if (typeof options?.autoplay === 'boolean' && !options?.autoplay) {
+    swiper.value.autoplay.pause()
+  }
+  else if (typeof options?.autoplay === 'object') {
+    swiper.value.autoplay.start()
+  }
 })
 </script>
 
