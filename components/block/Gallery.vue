@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
-import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/helpers'
 import type { BlockGalleryStoryblok } from '@/types/storyblok'
+import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockGalleryStoryblok
@@ -142,10 +142,12 @@ const swiperOptions: SwiperOptions = {
 }
 
 .block-gallery__media {
-  height: 100%!important;
+  /* TODO: Remove this once the image is fixed */
+  height: 100% !important;
+  object-fit: contain;
 
-  img {
-    height: 100%!important;
+  & img {
+    height: 100% !important;
     object-fit: contain;
   }
 }

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { RichtextStoryblok } from '@/types/storyblok'
+import { storyblokRichTextContent } from '@/utilities/storyblok'
 import IconFacebook from '@/assets/icons/facebook.svg'
 import IconTikTok from '@/assets/icons/tiktok.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
-import { hasRichTextContent } from '@/utilities/helpers'
 
 interface Props {
   openingTimesTitle?: string
@@ -38,7 +38,7 @@ const {
     <div class="app-footer__inner">
       <div class="app-footer__newsletter">
         <div
-          v-if="newsletterTitle && hasRichTextContent(newsletter)"
+          v-if="newsletterTitle && storyblokRichTextContent(newsletter)"
           class="prose prose--small"
         >
           <h2 class="app-footer__title type-h4">
@@ -57,7 +57,7 @@ const {
       </div>
 
       <AppFooterAccordion
-        v-if="openingTimesTitle && hasRichTextContent(openingTimes)"
+        v-if="openingTimesTitle && storyblokRichTextContent(openingTimes)"
         :id="openingTimesTitle"
         class="app-footer__details prose prose--small"
       >
@@ -76,7 +76,7 @@ const {
       </AppFooterAccordion>
 
       <AppFooterAccordion
-        v-if="contactTitle && hasRichTextContent(contact)"
+        v-if="contactTitle && storyblokRichTextContent(contact)"
         :id="contactTitle"
         class="app-footer__details prose prose--small"
       >
@@ -95,7 +95,7 @@ const {
       </AppFooterAccordion>
 
       <AppFooterAccordion
-        v-if="reservationsTitle && hasRichTextContent(reservations)"
+        v-if="reservationsTitle && storyblokRichTextContent(reservations)"
         :id="reservationsTitle"
         class="app-footer__details prose prose--small"
       >

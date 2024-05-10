@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
-import { ratioMap } from '@/utilities/maps'
-import { arrayToTuples, storyblokAssetType } from '@/utilities/helpers'
 import type { BlockCarouselStoryblok } from '@/types/storyblok'
+import { ratioMap } from '@/utilities/maps'
+import { arrayToTuples } from '@/utilities/helpers'
+import { storyblokAssetType } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockCarouselStoryblok

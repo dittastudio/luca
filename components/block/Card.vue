@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { BlockCardStoryblok } from '@/types/storyblok'
 import { colEndMap, colStartMap } from '@/utilities/maps'
-import { storyblokAssetType } from '@/utilities/helpers'
+// import { ratioDimensions } from '@/utilities/helpers'
+import { storyblokAssetType } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockCardStoryblok
@@ -61,18 +62,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
                 3xl:${Number(block.column_span) / 12 * 1800}px
               `"
             /> -->
-            <!-- <MediaPictureSource
-                v-if="block.media && assetType === 'image'"
-                :src="block.media.filename"
-                :media="block.media.media"
-                :ratio="block.ratio"
-                :sizes="{
-                  zero: { columnSpan: 12 },
-                  'md': { columnSpan: block.column_span },
-                  '2xl': { columnSpan: block.column_span },
-                  '3xl': { columnSpan: block.column_span },
-                }"
-              /> -->
 
             <MediaVideo
               v-else-if="block.media && assetType === 'video'"

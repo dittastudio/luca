@@ -31,14 +31,11 @@ useIntersectionObserver(
       emit('seen', true)
       seen.value = true
     }
-
-    if (seen.value && src.value) {
-      if (isIntersecting && target.paused) {
-        target.play()
-      }
-      else if (!isIntersecting && !target.paused) {
-        target.pause()
-      }
+    else if (isIntersecting && seen.value && src.value && target.paused) {
+      target.play()
+    }
+    else if (!isIntersecting && seen.value && src.value && !target.paused) {
+      target.pause()
     }
   },
   { rootMargin: '50% 0px 50% 0px', threshold: 0 },

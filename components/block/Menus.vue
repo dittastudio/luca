@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
 import type { BlockMenusStoryblok } from '@/types/storyblok'
-import { storyblokImageDimensions } from '@/utilities/helpers'
-
-const activeIndex = ref(0)
+import { storyblokImageDimensions } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockMenusStoryblok
@@ -15,6 +13,8 @@ const swiperOptions: SwiperOptions = {
   loop: false,
   spaceBetween: 20,
 }
+
+const activeIndex = ref(0)
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { isStoryblokEditor } from '@/utilities/helpers'
+import { storyblokEditor } from '@/utilities/storyblok'
 import { screenSizes } from '@/tailwind.config'
 import type { SettingsStoryblok } from '@/types/storyblok'
 
@@ -11,7 +11,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 const isDev = import.meta.dev
 
 const globalClasses = computed(() => ({
-  'is-storyblok-editor': isStoryblokEditor(route.query),
+  'is-storyblok-editor': storyblokEditor(route.query),
 }))
 
 useHead({
@@ -67,7 +67,7 @@ useState('navigationOpen', () => false)
       </template>
 
       <template #dev>
-        <ToolGrid v-if="isDev || isStoryblokEditor(route.query)" />
+        <ToolGrid v-if="isDev || storyblokEditor(route.query)" />
       </template>
     </AppLayout>
 
