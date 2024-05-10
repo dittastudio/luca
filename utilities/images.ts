@@ -1,5 +1,5 @@
 import { screenSizes } from '@/tailwind.config'
-import { storyblokImage } from '@/utilities/helpers'
+import { storyblokImage } from '@/utilities/storyblok'
 
 interface gridColSpanOptions {
   breakpoint: keyof typeof screenSizes | number
@@ -62,13 +62,17 @@ export const setSizes = (sizes: any) => {
       const sizeScreen = sizes[size]
       let sizeValue
 
+      console.log('sizeScreen', sizeScreen)
+
       if (typeof sizeScreen === 'object') {
         sizeValue = gridColSpan({
-          breakpoint: sizeScreen,
-          columnSpan: sizeScreen?.columnSpan,
-          totalColumns: sizeScreen?.totalColumns | 12,
+          breakpoint: sizeScreen?.breakpoint,
+          columnSpan: Number(sizeScreen?.columnSpan),
+          totalColumns: Number(sizeScreen?.totalColumns) | 12,
         })
       }
+
+      console.log('sizeValue', sizeValue)
 
       return `${sizeKey}${sizeValue}`
     })

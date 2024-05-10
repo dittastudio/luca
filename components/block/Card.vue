@@ -32,6 +32,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           :headline="block.headline"
         >
           <template #media>
+            {{ block.column_span }}
+
             <MediaPicture
               v-if="block.media && assetType === 'image'"
               class="block-card__media"

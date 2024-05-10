@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
-import { ratioDimensions, storyblokImage, storyblokImageDimensions } from '@/utilities/helpers'
+import { ratioDimensions } from '@/utilities/helpers'
+import { storyblokImage, storyblokImageDimensions } from '@/utilities/storyblok'
 import { screenSizes } from '@/tailwind.config'
 import { calculateHeight, setBlurryPlaceholder, setSizes } from '@/utilities/images'
 
@@ -101,7 +102,7 @@ useIntersectionObserver(
       >
 
       <img
-        class="media-image__asset"
+        class="media-picture__asset"
         :class="{ 'is-loaded': loaded, 'is-lazy': lazy }"
         v-bind="$attrs"
         :width="setWidth"
@@ -132,7 +133,7 @@ useIntersectionObserver(
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .media-picture {
   position: relative;
   overflow: hidden;

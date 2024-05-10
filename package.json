@@ -31,7 +31,7 @@
     "@antfu/eslint-config": "^2.17.0",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@michaelpumo/screen": "^0.0.18",
-    "@nuxt/eslint": "^0.3.10",
+    "@nuxt/eslint": "^0.3.12",
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/sitemap": "^5.1.5",
     "@nuxtjs/stylelint-module": "^5.2.0",
