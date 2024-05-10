@@ -50,8 +50,8 @@ onMounted(async () => {
 
   height: 100vh;
   height: 100dvh;
-  margin-block-start: calc(-1 * 100vh);
-  margin-block-start: calc(-1 * 100dvh);
+  margin-block-end: calc(-1 * 100vh);
+  margin-block-end: calc(-1 * 100dvh);
 
   color: var(--app-text-color);
 
