@@ -2,18 +2,16 @@
 import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 import { Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
-import { ratioMap } from '@/utilities/maps'
 
 type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
 
 interface Props {
-  ratio: Luca.TAspectRatios | string | number
   slides: ArrayOrWrappedInArray<T>
   pagination?: boolean
   options?: SwiperOptions
 }
 
-const { slides, ratio, pagination = true, options } = defineProps<Props>()
+const { slides, pagination = true, options } = defineProps<Props>()
 
 interface Emits {
   (event: 'current-slide', payload: number): void
@@ -85,7 +83,6 @@ watch(() => slides, () => {
         v-for="(slide, index) in slides"
         :key="index"
         class="ui-carousel__slide swiper-slide"
-        :class="ratioMap[ratio]"
         @click="swiper?.slideNext()"
       >
         <slot
