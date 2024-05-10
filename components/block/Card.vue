@@ -10,6 +10,7 @@ interface Props {
 
 const { block } = defineProps<Props>()
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
+const columnSpan = computed(() => ((Number(block.column_end) - Number(block.column_start)) + 1))
 </script>
 
 <template>
@@ -60,8 +61,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
               :sizes="`
                 100vw
                 sm:100vw
-                md:${Number(block.column_span) / 12 * 100}vw
-                3xl:${Number(block.column_span) / 12 * 1800}px
+                md:${Number(columnSpan) / 12 * 100}vw
+                3xl:${Number(columnSpan) / 12 * 1800}px
               `"
             /> -->
 

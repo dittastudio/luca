@@ -230,7 +230,7 @@
       "name": "block_carousel",
       "display_name": "Carousel",
       "created_at": "2024-04-24T16:17:24.822Z",
-      "updated_at": "2024-05-01T19:17:17.564Z",
+      "updated_at": "2024-05-10T09:41:14.456Z",
       "id": 5704567,
       "schema": {
         "slides": {
@@ -242,22 +242,29 @@
           ],
           "key": "slides_new"
         },
+        "ratio": {
+          "type": "option",
+          "pos": 1,
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "ratio"
+        },
         "two_per_slide": {
           "type": "boolean",
-          "pos": 1,
+          "pos": 2,
           "inline_label": true,
           "key": "two_per_slide"
         },
         "autoplay": {
           "type": "boolean",
-          "pos": 2,
+          "pos": 3,
           "inline_label": true,
           "key": "autoplay"
         },
         "connecting_line": {
           "type": "boolean",
           "inline_label": true,
-          "pos": 3,
+          "pos": 4,
           "key": "connecting_line"
         }
       },

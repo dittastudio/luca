@@ -31,7 +31,6 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
     <div class="block-carousel__grid wrapper">
       <div class="block-carousel__container">
         <UiCarousel
-          ratio="16:9"
           :slides="slides"
           :options="swiperOptions"
         >
@@ -47,7 +46,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
                   v-if="media && storyblokAssetType(media.filename) === 'image'"
                   class="block-carousel__media"
                   :asset="media"
-                  :ratio="block.two_per_slide ? '8:9' : '16:9'"
+                  :ratio="block.ratio"
                   :sizes="
                     block.two_per_slide ? `
                       50vw
