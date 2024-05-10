@@ -30,7 +30,7 @@ const initSwiper = () => {
 
   swiper.value = new Swiper(swiperEl.value, {
     modules: [Autoplay, EffectFade, Pagination, Keyboard],
-    enabled: slides.length > 1,
+    enabled: slides && slides.length > 1,
     speed: 500,
     navigation: {
       nextEl: '.ui-carousel__button--next',
@@ -110,7 +110,7 @@ watch(() => options, () => {
     </div>
 
     <div
-      v-if="slides.length > 1 && pagination"
+      v-if="slides && slides.length > 1 && pagination"
       class="ui-carousel__pagination"
     />
   </div>

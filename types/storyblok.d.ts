@@ -89,8 +89,7 @@ export type MultiassetStoryblok = {
 }[];
 
 export interface BlockCarouselStoryblok {
-  slides?: MultiassetStoryblok;
-  ratio?: number | string;
+  slides: MultiassetStoryblok;
   two_per_slide?: boolean;
   autoplay?: boolean;
   connecting_line?: boolean;
