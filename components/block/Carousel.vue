@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
+import { useIntersectionObserver } from '@vueuse/core'
 import type { BlockCarouselStoryblok } from '@/types/storyblok'
-import { ratioMap } from '@/utilities/maps'
 import { arrayToTuples } from '@/utilities/helpers'
 import { storyblokAssetType } from '@/utilities/storyblok'
 
@@ -11,14 +11,25 @@ interface Props {
 
 const { block } = defineProps<Props>()
 
-const swiperOptions: SwiperOptions = {
+const isVisible = ref(false)
+const container = ref<HTMLDivElement | null>(null)
+
+useIntersectionObserver(
+  container,
+  ([{ isIntersecting }]) => {
+    isVisible.value = isIntersecting
+  },
+  { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
+)
+
+const swiperOptions = computed<SwiperOptions>(() => ({
   effect: 'fade',
   loop: true,
-  autoplay: block.autoplay ? { delay: 3000 } : false,
+  autoplay: block.autoplay && isVisible.value ? { delay: 3000, pauseOnMouseEnter: true } : false,
   keyboard: {
     enabled: true,
   },
-}
+}))
 
 const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides || []) : block.slides?.map(item => [item]))
 </script>
@@ -29,7 +40,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
     class="block-carousel"
   >
     <div class="block-carousel__grid wrapper">
-      <div class="block-carousel__container">
+      <div ref="container" class="block-carousel__container">
         <UiCarousel
           :slides="slides"
           :options="swiperOptions"

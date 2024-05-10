@@ -20,13 +20,17 @@ interface Emits {
 const emit = defineEmits<Emits>()
 
 const swiper = ref<Swiper>()
-const swiperEl = ref<any>()
+const swiperEl = ref<HTMLDivElement | null>(null)
 const current = ref(0)
 
 const initSwiper = () => {
+  if (!swiperEl.value) {
+    return
+  }
+
   swiper.value = new Swiper(swiperEl.value, {
     modules: [Autoplay, EffectFade, Pagination, Keyboard],
-    enabled: slides.length > 1,
+    enabled: slides && slides.length > 1,
     speed: 500,
     navigation: {
       nextEl: '.ui-carousel__button--next',
@@ -71,6 +75,19 @@ watch(() => slides, () => {
   swiper.value?.update()
   swiper.value?.updateSlides()
 })
+
+watch(() => options, () => {
+  if (!swiper.value) {
+    return
+  }
+
+  if (typeof options?.autoplay === 'boolean' && !options?.autoplay) {
+    swiper.value.autoplay.pause()
+  }
+  else if (typeof options?.autoplay === 'object') {
+    swiper.value.autoplay.start()
+  }
+})
 </script>
 
 <template>
@@ -93,7 +110,7 @@ watch(() => slides, () => {
     </div>
 
     <div
-      v-if="slides.length > 1 && pagination"
+      v-if="slides && slides.length > 1 && pagination"
       class="ui-carousel__pagination"
     />
   </div>
