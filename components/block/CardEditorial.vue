@@ -26,17 +26,18 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
     >
       <StoryblokLink class="block-card-editorial__link" :item="block.link">
         <figure>
-          <MediaImage
+          <MediaPicture
             v-if="block.media && assetType === 'image'"
-            class="block-card-editorial__media"
-            :asset="block.media"
+            class="block-card-ditorial__media"
+            :src="block.media.filename"
+            :alt="block.media.alt || block.title"
             :ratio="block.ratio"
-            :sizes="`
-              100vw
-              sm:100vw
-              md:${columnSpan / 12 * 100}vw
-              3xl:${columnSpan / 12 * 1800}px
-            `"
+            :sizes="{
+              'zero': { columnSpan: 12 },
+              'md': { columnSpan },
+              '2xl': { columnSpan },
+              '3xl': { columnSpan },
+            }"
           />
 
           <MediaVideo

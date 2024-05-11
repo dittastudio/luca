@@ -1,12 +1,10 @@
-<script lang="ts" setup generic="T">
+<script lang="ts" setup>
 import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 import { Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
 
-type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
-
 interface Props {
-  slides: ArrayOrWrappedInArray<T>
+  slides: any
   pagination?: boolean
   options?: SwiperOptions
 }

@@ -53,22 +53,23 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
                 class="block-carousel__item"
                 :class="block.two_per_slide ? 'block-carousel__item--two' : 'block-carousel__item--one'"
               >
-                <MediaImage
+                <MediaPicture
                   v-if="media && storyblokAssetType(media.filename) === 'image'"
-                  class="block-carousel__media"
-                  :asset="media"
+                  class="block-card__media"
+                  :src="media.filename"
+                  :alt="media.alt"
                   :ratio="block.ratio"
-                  :sizes="
-                    block.two_per_slide ? `
-                      50vw
-                      md:${(5 / 12 * 100)}vw
-                      3xl:${(5 / 12 * 1800)}px
-                    ` : `
-                      100vw
-                      md:${(10 / 12 * 100)}vw
-                      3xl:${(10 / 12 * 1800)}px
-                    `
-                  "
+                  :sizes="block.two_per_slide ? {
+                    'zero': { columnSpan: 5 },
+                    'md': { columnSpan: 5 },
+                    '2xl': { columnSpan: 5 },
+                    '3xl': { columnSpan: 5 },
+                  } : {
+                    'zero': { columnSpan: 10 },
+                    'md': { columnSpan: 10 },
+                    '2xl': { columnSpan: 10 },
+                    '3xl': { columnSpan: 10 },
+                  }"
                 />
 
                 <MediaVideo

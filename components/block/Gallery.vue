@@ -39,7 +39,19 @@ const swiperOptions: SwiperOptions = {
         <div class="block-gallery__item wrapper">
           <div class="block-gallery__grid">
             <div class="block-gallery__inner">
-              <MediaImage
+              <MediaPicture
+                v-if="slide && storyblokAssetType(slide.filename) === 'image'"
+                class="block-card-ditorial__media"
+                :src="slide.filename"
+                :alt="slide.alt || block.title"
+                :sizes="{
+                  'zero': { columnSpan: 12 },
+                  'md': { columnSpan: 8 },
+                  '2xl': { columnSpan: 8 },
+                  '3xl': { columnSpan: 8 },
+                }"
+              />
+              <!-- <MediaImage
                 v-if="slide && storyblokAssetType(slide.filename) === 'image'"
                 class="block-gallery__media"
                 :asset="slide"
@@ -48,7 +60,7 @@ const swiperOptions: SwiperOptions = {
                   md:${8 / 12 * 100}vw
                   3xl:${8 / 12 * 1800}px
                 `"
-              />
+              /> -->
 
               <MediaVideo
                 v-else-if="slide && storyblokAssetType(slide.filename) === 'video'"
