@@ -71,16 +71,18 @@ const activeIndex = ref(0)
                 :options="swiperOptions"
               >
                 <template #slide="{ slide }">
-                  <MediaImage
-                    class="block-media__media"
-                    :asset="slide"
+                  <MediaPicture
+                    v-if="slide"
+                    class="block-menus__image"
+                    :src="slide.filename"
+                    :alt="slide.alt || menu.title"
                     ratio="1:1.414"
-                    :sizes="`
-                      100vw
-                      md:${6 / 12 * 100}vw
-                      3xl:${6 / 12 * 1800}px
-                    `"
-                    :lazy="false"
+                    :sizes="{
+                      'zero': { columnSpan: 12 },
+                      'md': { columnSpan: 6 },
+                      '2xl': { columnSpan: 6 },
+                      '3xl': { columnSpan: 6 },
+                    }"
                   />
                 </template>
               </UiCarousel>
@@ -268,9 +270,6 @@ const activeIndex = ref(0)
 }
 
 .block-menus__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   border-radius: theme('borderRadius.sm');
 }
 

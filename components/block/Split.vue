@@ -23,17 +23,19 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     }"
   >
     <div class="block-split__picture">
-      <MediaImage
+      <MediaPicture
         v-if="block.media && assetType === 'image'"
         class="block-split__media"
-        :asset="block.media"
+        :src="block.media.filename"
+        :alt="block.media.alt"
         :ratio="block.ratio"
-        :sizes="`
-          100vw
-          sm:100vw
-          md:${(5 / 12 * 100)}vw
-          3xl:${(5 / 12 * 1800)}px
-        `"
+        :sizes="{
+          'zero': { columnSpan: 12 },
+          'md': { columnSpan: 6 },
+          'lg': { columnSpan: 5 },
+          '2xl': { columnSpan: 5 },
+          '3xl': { columnSpan: 5 },
+        }"
       />
 
       <MediaVideo

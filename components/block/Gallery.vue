@@ -51,16 +51,6 @@ const swiperOptions: SwiperOptions = {
                   '3xl': { columnSpan: 8 },
                 }"
               />
-              <!-- <MediaImage
-                v-if="slide && storyblokAssetType(slide.filename) === 'image'"
-                class="block-gallery__media"
-                :asset="slide"
-                :sizes="`
-                  100vw
-                  md:${8 / 12 * 100}vw
-                  3xl:${8 / 12 * 1800}px
-                `"
-              /> -->
 
               <MediaVideo
                 v-else-if="slide && storyblokAssetType(slide.filename) === 'video'"
