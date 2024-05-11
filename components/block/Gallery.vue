@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
 import type { BlockGalleryStoryblok } from '@/types/storyblok'
-import { storyblokAssetType, storyblokImageDimensions } from '@/utilities/storyblok'
+import { storyblokAssetType } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockGalleryStoryblok
@@ -73,7 +73,7 @@ const swiperOptions: SwiperOptions = {
   </div>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .block-gallery {
   position: relative;
   overflow: hidden;
@@ -119,6 +119,7 @@ const swiperOptions: SwiperOptions = {
 
 .block-gallery__inner {
   grid-column: 1 / -1;
+  height: 100%;
   min-height: 100%;
 
   @screen md {
@@ -144,12 +145,9 @@ const swiperOptions: SwiperOptions = {
 }
 
 .block-gallery__media {
-  /* TODO: Remove this once the image is fixed */
-  height: 100% !important;
   object-fit: contain;
 
-  & img {
-    height: 100% !important;
+  & :deep(img) {
     object-fit: contain;
   }
 }
