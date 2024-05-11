@@ -10,7 +10,7 @@ interface Props {
 
 const { block } = defineProps<Props>()
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
-const columnSpan = computed(() => ((Number(block.column_end) - Number(block.column_start)) + 1))
+const columnSpan = computed(() => Number(block.column_end) - Number(block.column_start))
 </script>
 
 <template>
