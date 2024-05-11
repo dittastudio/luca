@@ -32,8 +32,6 @@ const columnSpan = computed(() => ((Number(block.column_end) - Number(block.colu
           :headline="block.headline"
         >
           <template #media>
-            {{ block.column_span }}
-
             <MediaPicture
               v-if="block.media && assetType === 'image'"
               class="block-card__media"
@@ -41,29 +39,12 @@ const columnSpan = computed(() => ((Number(block.column_end) - Number(block.colu
               :alt="block.media.alt || block.title"
               :ratio="block.ratio"
               :sizes="{
-                zero: { columnSpan: 12 },
-              }"
-              media="md"
-              media-ratio="1:1"
-              :media-sizes="{
+                'zero': { columnSpan: 12 },
                 'md': { columnSpan },
                 '2xl': { columnSpan },
                 '3xl': { columnSpan },
               }"
             />
-
-            <!-- <MediaImage
-              v-if="block.media && assetType === 'image'"
-              class="block-card__media"
-              :asset="block.media"
-              :ratio="block.ratio"
-              :sizes="`
-                100vw
-                sm:100vw
-                md:${Number(columnSpan) / 12 * 100}vw
-                3xl:${Number(columnSpan) / 12 * 1800}px
-              `"
-            /> -->
 
             <MediaVideo
               v-else-if="block.media && assetType === 'video'"

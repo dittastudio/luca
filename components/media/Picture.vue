@@ -86,14 +86,18 @@ useIntersectionObserver(
       observerElement.disconnect()
     }
   },
-  { rootMargin: '0px 0px 0px 0px', threshold: 0.5 },
+  { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
 )
 </script>
 
 <template>
   <div ref="container" class="media-picture" :class="className">
-    <picture class="block">
+    <picture
+      class="media-picture__element"
+      :class="{ 'is-loaded': loaded, 'is-lazy': lazy }"
+    >
       <source
+        v-if="media"
         :media="setMedia"
         :width="setMediaWidth"
         :height="setMediaHeight"
@@ -102,8 +106,7 @@ useIntersectionObserver(
       >
 
       <img
-        class="media-picture__asset"
-        :class="{ 'is-loaded': loaded, 'is-lazy': lazy }"
+        class="media-picture__image"
         v-bind="$attrs"
         :width="setWidth"
         :height="setHeight"
@@ -114,20 +117,21 @@ useIntersectionObserver(
       >
     </picture>
 
-    <picture v-if="lazy" class="block">
+    <picture v-if="lazy" class="media-picture__placeholder">
       <source
         :media="setMedia"
         :width="setMediaWidth"
         :height="setMediaHeight"
-        :srcset="setBlurryPlaceholder(src, setMediaWidth, setMediaHeight, 100)"
+        :srcset="setBlurryPlaceholder(src, setMediaWidth, setMediaHeight, 200)"
       >
 
       <img
-        class="media-picture__placeholder"
-        :src="setBlurryPlaceholder(src, setWidth, setHeight, 100)"
+        class="media-picture__image"
+        :src="setBlurryPlaceholder(src, setWidth, setHeight, 200)"
         alt="Placeholder"
         :width="setWidth"
         :height="setHeight"
+        loading="lazy"
       >
     </picture>
   </div>
@@ -141,11 +145,13 @@ useIntersectionObserver(
   height: inherit;
 }
 
-.media-picture__asset {
+.media-picture__element {
   &.is-lazy {
     position: absolute;
     z-index: 1;
     inset: 0;
+
+    height: inherit;
 
     backface-visibility: hidden;
     opacity: 0;
@@ -160,6 +166,11 @@ useIntersectionObserver(
 
 .media-picture__placeholder {
   pointer-events: none;
+  height: inherit;
   backface-visibility: hidden;
+}
+
+.media-picture__image {
+  height: inherit;
 }
 </style>

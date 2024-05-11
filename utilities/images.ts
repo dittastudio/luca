@@ -77,5 +77,5 @@ export const setSizes = (sizes: any) => {
 }
 
 export const setBlurryPlaceholder = (src: string, imageWidth: number, imageHeight: number, chosenWidth: number) => {
-  return storyblokImage(src, { width: chosenWidth, height: calculateHeight(imageWidth, imageHeight, chosenWidth), blur: 3 })
+  return storyblokImage(src, { width: chosenWidth, height: calculateHeight(imageWidth, imageHeight, chosenWidth), blur: 10 })
 }
