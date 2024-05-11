@@ -86,7 +86,7 @@ useIntersectionObserver(
       observerElement.disconnect()
     }
   },
-  { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
+  { rootMargin: '0px 0px 0px 0px', threshold: 0.1 },
 )
 </script>
 
@@ -139,9 +139,12 @@ useIntersectionObserver(
 
 <style lang="postcss">
 .media-picture {
+  isolation: isolate;
   position: relative;
+
   overflow: hidden;
   display: block;
+
   height: inherit;
 }
 
@@ -156,7 +159,7 @@ useIntersectionObserver(
     backface-visibility: hidden;
     opacity: 0;
 
-    transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+    transition: opacity theme('transitionDuration.3000') theme('transitionTimingFunction.outQuart');
   }
 
   &.is-loaded {

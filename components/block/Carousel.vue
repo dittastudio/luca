@@ -55,7 +55,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
               >
                 <MediaPicture
                   v-if="media && storyblokAssetType(media.filename) === 'image'"
-                  class="block-card__media"
+                  class="block-carousel__media"
                   :src="media.filename"
                   :alt="media.alt"
                   :ratio="block.ratio"
@@ -122,8 +122,6 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
 }
 
 .block-carousel__media {
-  height: 100%;
-  object-fit: cover;
   border-radius: theme('borderRadius.sm');
 }
 </style>

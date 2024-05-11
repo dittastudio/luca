@@ -41,7 +41,7 @@ const swiperOptions: SwiperOptions = {
             <div class="block-gallery__inner">
               <MediaPicture
                 v-if="slide && storyblokAssetType(slide.filename) === 'image'"
-                class="block-card-ditorial__media"
+                class="block-gallery__media"
                 :src="slide.filename"
                 :alt="slide.alt || block.title"
                 :sizes="{
