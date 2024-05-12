@@ -149,12 +149,12 @@ useIntersectionObserver(
 }
 
 .media-picture__element {
+  height: inherit;
+
   &.is-lazy {
     position: absolute;
     z-index: 1;
     inset: 0;
-
-    height: inherit;
 
     backface-visibility: hidden;
     opacity: 0;

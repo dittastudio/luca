@@ -2,6 +2,7 @@
 import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 import { Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
+import { wait } from '@/utilities/helpers'
 
 interface Props {
   slides: any
@@ -65,7 +66,11 @@ const initSwiper = () => {
   })
 }
 
-onMounted(() => initSwiper())
+/** TODO: Hack to stop fade not working on story page from home */
+onMounted(async () => {
+  await wait(50)
+  initSwiper()
+})
 
 onUnmounted(() => swiper.value?.destroy())
 

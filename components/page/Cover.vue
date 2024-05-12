@@ -57,10 +57,6 @@ onMounted(async () => {
 
   background-color: var(--app-background-color);
 
-  &.is-active {
-    pointer-events: auto;
-  }
-
   &,
   &__message {
     opacity: 0;
