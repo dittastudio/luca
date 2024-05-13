@@ -83,7 +83,7 @@ watch(() => isOpen, (value) => {
   .app-story--is-open & {
     translate: 0 0 0;
     opacity: 1;
-    transition: translate theme('transitionDuration.700') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.500');
+    transition: translate theme('transitionDuration.1000') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.500');
   }
 
   :deep(.page-cover) {

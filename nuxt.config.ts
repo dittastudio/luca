@@ -29,7 +29,7 @@ export default defineNuxtConfig({
         { rel: 'preload', type: 'font/woff2', href: '/fonts/Sebenta-Medium.woff2', as: 'font', crossorigin: '' },
       ],
     },
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 'fade', mode: 'out-in' },
     layoutTransition: false,
   },
   components: true,

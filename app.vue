@@ -7,7 +7,7 @@ const route = useRoute()
 const story = await useStoryblokStory<SettingsStoryblok>('/settings')
 const isMd = useAtMedia(`(min-width: ${screenSizes.md}px)`)
 const isHome = computed(() => ['/', '/home'].includes(route.path) && isMd.value)
-const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
+const isStory = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
 const isDev = import.meta.dev
 
 const globalClasses = computed(() => ({
@@ -36,8 +36,8 @@ useState('navigationOpen', () => false)
         <AppHeader
           v-if="story"
           :links="story.content.navigation?.[0]"
-          :logo-hidden="isHome || isStoryPage"
-          :reservation-hidden="isStoryPage"
+          :logo-hidden="isHome || isStory"
+          :reservation-hidden="isStory"
         />
       </template>
 

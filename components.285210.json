@@ -46,7 +46,7 @@
       "name": "block_card",
       "display_name": "Card",
       "created_at": "2024-04-23T14:44:41.343Z",
-      "updated_at": "2024-05-07T16:26:19.583Z",
+      "updated_at": "2024-05-10T15:36:03.163Z",
       "id": 5697381,
       "schema": {
         "title": {
@@ -230,7 +230,7 @@
       "name": "block_carousel",
       "display_name": "Carousel",
       "created_at": "2024-04-24T16:17:24.822Z",
-      "updated_at": "2024-05-10T15:21:40.956Z",
+      "updated_at": "2024-05-10T16:41:56.021Z",
       "id": 5704567,
       "schema": {
         "slides": {
@@ -265,7 +265,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{@if(it.slides[0])}}\n<p>\n{{@image(it.slides[0].filename)/}} \n{{@if(it.slides.length &gt; 1)}}\n+ {{it.slides.length - 1}}\n{{/if}}\n</p>\n{{/if}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -282,7 +282,7 @@
       "name": "block_gallery",
       "display_name": "Gallery",
       "created_at": "2024-04-29T19:50:48.270Z",
-      "updated_at": "2024-05-07T16:26:34.024Z",
+      "updated_at": "2024-05-10T16:40:58.362Z",
       "id": 5728317,
       "schema": {
         "title": {
@@ -310,7 +310,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": null,
+      "preview_tmpl": "{{@if(it.title)}}\n<p><strong>{{it.title}}</strong></p>\n{{/if}}\n\n{{@if(it.slides[0])}}\n<p>\n{{@image(it.slides[0].filename)/}} \n{{@if(it.slides.length &gt; 1)}}\n+ {{it.slides.length - 1}}\n{{/if}}\n</p>\n{{/if}}\n\n",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -327,7 +327,7 @@
       "name": "block_media",
       "display_name": "Media",
       "created_at": "2024-04-18T16:33:02.808Z",
-      "updated_at": "2024-05-07T13:03:46.211Z",
+      "updated_at": "2024-05-13T21:45:24.435Z",
       "id": 5676129,
       "schema": {
         "media": {
@@ -360,7 +360,8 @@
           "datasource_slug": "column-start",
           "exclude_empty_option": true,
           "pos": 2,
-          "key": "column_start"
+          "key": "column_start",
+          "default_value": "1"
         },
         "column_end": {
           "type": "option",
@@ -370,7 +371,8 @@
           "datasource_slug": "column-end",
           "exclude_empty_option": true,
           "pos": 3,
-          "key": "column_span"
+          "key": "column_span",
+          "default_value": "13"
         },
         "connecting_line": {
           "type": "boolean",
@@ -469,7 +471,7 @@
       "name": "block_split",
       "display_name": "Split",
       "created_at": "2024-04-23T17:04:16.558Z",
-      "updated_at": "2024-04-26T13:59:05.450Z",
+      "updated_at": "2024-05-10T16:15:03.035Z",
       "id": 5698629,
       "schema": {
         "media": {
@@ -529,7 +531,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "<p>{{it.text.content[0].content[0].text}}</p>",
+      "preview_tmpl": "<p>{{it.text.content[0].content[0].text}}</p>\n{{@if(it.media.filename)}}\n<p>{{@image(it.media.filename)/}}</p>\n{{/if}}\n",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -546,7 +548,7 @@
       "name": "block_text",
       "display_name": "Text",
       "created_at": "2024-04-18T15:49:06.779Z",
-      "updated_at": "2024-05-07T15:54:46.137Z",
+      "updated_at": "2024-05-10T16:22:07.483Z",
       "id": 5675869,
       "schema": {
         "text": {
@@ -577,7 +579,7 @@
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "<p>{{it.text.content[0].content[0].text}}</p>",
+      "preview_tmpl": "{{@if(it.text.content[0].content[0].text)}}\n<p>{{it.text.content[0].content[0].text}}</p>\n{{#else}}\n<p>{{it.text.content[0].content[0].content[0].text}}</p>\n{{/if}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
@@ -864,7 +866,7 @@
       "name": "seo",
       "display_name": null,
       "created_at": "2024-04-17T17:16:49.417Z",
-      "updated_at": "2024-04-22T20:08:32.405Z",
+      "updated_at": "2024-05-13T22:01:37.974Z",
       "id": 5669075,
       "schema": {
         "title": {
@@ -888,7 +890,8 @@
             "images"
           ],
           "pos": 2,
-          "key": "seo_image"
+          "key": "seo_image",
+          "description": "For best results, use an image size of 1200px by 630px."
         }
       },
       "image": null,
