@@ -35,7 +35,7 @@ const storyblokImage = (
     width: 0,
     height: 0,
     smart: false,
-    quality: 90,
+    quality: 80,
     blur: 0,
     ...options,
   }

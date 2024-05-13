@@ -24,11 +24,11 @@ export const useStoryblokSetup = async <T extends Seo>(story: Ref<ISbStoryData<T
     description,
     ogTitle: title ?? story.value.name,
     ogDescription: description,
-    ogImage: storyblokImage(image?.filename, { width: 1230, height: 630 }) || null,
+    ogImage: storyblokImage(image?.filename, { width: 1200, height: 630, smart: true }) || null,
     ogType: 'website',
     twitterTitle: title ?? story.value.name,
     twitterCard: 'summary_large_image',
-    twitterImage: storyblokImage(image?.filename, { width: 1230, height: 630 }) || null,
+    twitterImage: storyblokImage(image?.filename, { width: 1200, height: 630, smart: true }) || null,
   })
 
   onMounted(() => {
