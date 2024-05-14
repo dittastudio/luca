@@ -27,7 +27,7 @@ const current = ref(0)
 // const slidesPerView = 1
 const currentSlidesPerView = 1
 
-const updatePagination = (swiper) => {
+const updatePagination = (swiper: Swiper) => {
   if (swiper.realIndex < (slides.length - (currentSlidesPerView + 1))) {
     const bulletSize = 16
     const position = swiper.realIndex < 3 ? 0 : -Math.abs(bulletSize * (swiper.realIndex - 2))
