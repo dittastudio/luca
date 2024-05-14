@@ -60,6 +60,7 @@ useNavigation(false)
           :social-facebook="story.content.social_facebook"
           :social-tiktok="story.content.social_tiktok"
           :social-instagram="story.content.social_instagram"
+          :social-vimeo="story.content.social_vimeo"
         >
           <template #navigation>
             <AppFooterNavigation :list="story.content.footer?.[0]" />

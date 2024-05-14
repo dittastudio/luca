@@ -24,6 +24,17 @@ const swiper = ref<Swiper>()
 const swiperEl = ref<HTMLDivElement | null>(null)
 const paginationEl = ref<HTMLDivElement | null>(null)
 const current = ref(0)
+// const slidesPerView = 1
+const currentSlidesPerView = 1
+
+const updatePagination = (swiper) => {
+  if (swiper.realIndex < (slides.length - (currentSlidesPerView + 1))) {
+    const bulletSize = 16
+    const position = swiper.realIndex < 3 ? 0 : -Math.abs(bulletSize * (swiper.realIndex - 2))
+
+    paginationEl.value?.style.setProperty('--bullet-movement', `${position}px`)
+  }
+}
 
 const initSwiper = () => {
   if (!swiperEl.value) {
@@ -54,10 +65,12 @@ const initSwiper = () => {
       init: (slider) => {
         current.value = slider.activeIndex + 1
         emit('current-slide', current.value)
+        updatePagination(slider)
       },
       slideChange: (slider) => {
         current.value = slider.activeIndex + 1
         emit('current-slide', current.value)
+        updatePagination(slider)
       },
     },
     ...options,
@@ -110,11 +123,13 @@ watch(() => options, () => {
       </div>
     </div>
 
-    <div
-      v-if="pagination && slides?.length > 1"
-      ref="paginationEl"
-      class="ui-carousel__pagination"
-    />
+    <div class="ui-carousel__pagination-wrapper">
+      <div
+        v-if="pagination && slides?.length > 1"
+        ref="paginationEl"
+        class="ui-carousel__pagination swiper-pagination"
+      />
+    </div>
   </div>
 </template>
 
@@ -146,13 +161,52 @@ watch(() => options, () => {
   transition-property: transform;
 }
 
-.ui-carousel__pagination {
+.ui-carousel__pagination-wrapper {
   --dot-size: 8px;
 
-  display: flex;
-  justify-content: center;
-  min-height: calc(var(--dot-size) * 2);
+  position: relative;
+
+  /* position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0; */
+
+  overflow: hidden;
+
+  width: calc(var(--dot-size) * 11);
   margin-block-start: calc(theme('spacing.30') - var(--dot-size));
+  margin-inline: auto;
+  padding-inline: 4px;
+
+  &::before,
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    z-index: 1;
+    top: 0;
+
+    width: var(--dot-size);
+    height: 100%;
+  }
+
+  &::before {
+    left: 0;
+    background-image: linear-gradient(to left, transparent, var(--app-background-color));
+  }
+
+  &::after {
+    right: 0;
+    background-image: linear-gradient(to right, transparent, var(--app-background-color));
+  }
+}
+
+.ui-carousel__pagination {
+  will-change: transform;
+  transform: translateX(var(--bullet-movement)) translateZ(0);
+  display: flex;
+  transition: transform theme('transitionDuration.500') theme('transitionTimingFunction.out');
 }
 
 .ui-carousel__bullet {

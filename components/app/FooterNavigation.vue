@@ -38,7 +38,6 @@ const items = computed(() => list?.items ?? [])
           class="app-footer-info__link"
           to="https://e-i-b.com"
           target="_blank"
-          rel="noopener noreferrer"
         >
           Design: Everything In Between
         </NuxtLink>
@@ -49,7 +48,6 @@ const items = computed(() => list?.items ?? [])
           class="app-footer-info__link"
           to="https://ditta.studio"
           target="_blank"
-          rel="noopener noreferrer"
         >
           Made by ditta
         </NuxtLink>

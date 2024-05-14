@@ -4,6 +4,7 @@ import { storyblokRichTextContent } from '@/utilities/storyblok'
 import IconFacebook from '@/assets/icons/facebook.svg'
 import IconTikTok from '@/assets/icons/tiktok.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
+import IconVimeo from '@/assets/icons/vimeo.svg'
 
 interface Props {
   openingTimesTitle?: string
@@ -17,6 +18,7 @@ interface Props {
   socialFacebook?: string
   socialTiktok?: string
   socialInstagram?: string
+  socialVimeo?: string
 }
 
 const {
@@ -28,7 +30,34 @@ const {
   reservations,
   newsletterTitle,
   newsletter,
+  socialFacebook,
+  socialTiktok,
+  socialInstagram,
+  socialVimeo,
 } = defineProps<Props>()
+
+const socialList = [
+  {
+    name: 'Facebook',
+    icon: IconFacebook,
+    url: socialFacebook,
+  },
+  {
+    name: 'TikTok',
+    icon: IconTikTok,
+    url: socialTiktok,
+  },
+  {
+    name: 'Instagram',
+    icon: IconInstagram,
+    url: socialInstagram,
+  },
+  {
+    name: 'Vimeo',
+    icon: IconVimeo,
+    url: socialVimeo,
+  },
+]
 </script>
 
 <template>
@@ -118,47 +147,24 @@ const {
       <slot name="navigation" />
 
       <div class="app-footer__social">
-        <NuxtLink
-          v-if="socialFacebook"
-          class="app-footer__social-link"
-          :to="socialFacebook"
-          title="Follow us on Facebook"
-        >
-          <IconFacebook
-            width="16"
-            height="16"
-          />
+        <template v-for="socialItem in socialList">
+          <NuxtLink
+            v-if="socialItem.url"
+            :key="socialItem.name"
+            class="app-footer__social-link"
+            :to="socialItem.url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <component
+              :is="socialItem.icon"
+              width="16"
+              height="16"
+            />
 
-          <span class="sr-only">Follow us on Facebook</span>
-        </NuxtLink>
-
-        <NuxtLink
-          v-if="socialTiktok"
-          class="app-footer__social-link"
-          :to="socialTiktok"
-          title="Follow us on TikTok"
-        >
-          <IconTikTok
-            width="16"
-            height="16"
-          />
-
-          <span class="sr-only">Follow us on TikTok</span>
-        </NuxtLink>
-
-        <NuxtLink
-          v-if="socialInstagram"
-          class="app-footer__social-link"
-          :to="socialInstagram"
-          title="Follow us on Instagram"
-        >
-          <IconInstagram
-            width="16"
-            height="16"
-          />
-
-          <span class="sr-only">Follow us on Instagram</span>
-        </NuxtLink>
+            <span class="sr-only">Follow us on {{ socialItem.name }}</span>
+          </NuxtLink>
+        </template>
       </div>
     </div>
   </div>
