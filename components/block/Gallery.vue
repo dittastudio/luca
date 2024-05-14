@@ -17,7 +17,7 @@ const setCurrentSlide = (slide: number) => {
 
 const swiperOptions: SwiperOptions = {
   effect: 'fade',
-  loop: true,
+  loop: Boolean(block.slides.length > 1),
   keyboard: {
     enabled: true,
   },
