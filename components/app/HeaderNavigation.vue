@@ -130,10 +130,10 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
 }
 
 .app-header-navigation__item {
-  --animation-delay: calc(300ms + (var(--link-index) * 50ms));
+  --animation-delay: calc(500ms + (var(--link-index) * 50ms));
 
   @screen md {
-    --animation-delay: calc(300ms + (var(--link-index) * 60ms));
+    --animation-delay: calc(200ms + (var(--link-index) * 70ms));
   }
 
   translate: calc(-1 * var(--link-nudge)) 0 0;
@@ -145,7 +145,7 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
   }
 
   .app-header-navigation--is-open & {
-    animation: link-show theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
+    animation: link-show theme('transitionDuration.700') theme('transitionTimingFunction.smooth')
       var(--animation-delay) forwards;
   }
 }
