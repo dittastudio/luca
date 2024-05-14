@@ -21,6 +21,7 @@ const emit = defineEmits<Emits>()
 
 const swiper = ref<Swiper>()
 const swiperEl = ref<HTMLDivElement | null>(null)
+const paginationEl = ref<HTMLDivElement | null>(null)
 const current = ref(0)
 
 const initSwiper = () => {
@@ -32,13 +33,9 @@ const initSwiper = () => {
     modules: [Autoplay, EffectFade, Pagination, Keyboard],
     enabled: slides && slides.length > 1,
     speed: 500,
-    navigation: {
-      nextEl: '.ui-carousel__button--next',
-      prevEl: '.ui-carousel__button--prev',
-    },
     pagination: pagination
       ? {
-          el: '.ui-carousel__pagination',
+          el: paginationEl.value,
           clickable: true,
           bulletClass: 'ui-carousel__bullet',
           bulletActiveClass: 'ui-carousel__bullet--is-active',
@@ -52,7 +49,6 @@ const initSwiper = () => {
         }
       : false,
     slideToClickedSlide: true,
-    observeSlideChildren: true,
     on: {
       init: (slider) => {
         current.value = slider.activeIndex + 1
@@ -110,7 +106,8 @@ watch(() => options, () => {
     </div>
 
     <div
-      v-if="slides && slides.length > 1 && pagination"
+      v-if="pagination && slides?.length > 1"
+      ref="paginationEl"
       class="ui-carousel__pagination"
     />
   </div>

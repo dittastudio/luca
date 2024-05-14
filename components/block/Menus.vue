@@ -81,6 +81,7 @@ const activeIndex = ref(0)
                       3xl:${6 / 12 * 1800}px
                     `"
                     :lazy="false"
+                    loading="lazy"
                   />
                 </template>
               </UiCarousel>
