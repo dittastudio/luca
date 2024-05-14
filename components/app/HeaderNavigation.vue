@@ -140,12 +140,12 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
   opacity: 0;
 
   .app-header-navigation--is-closed & {
-    animation: link-hide theme('transitionDuration.500') theme('transitionTimingFunction.smooth')
+    animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
       forwards;
   }
 
   .app-header-navigation--is-open & {
-    animation: link-show theme('transitionDuration.500') theme('transitionTimingFunction.smooth')
+    animation: link-show theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
       var(--animation-delay) forwards;
   }
 }
@@ -202,9 +202,9 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
     translate: 0 0 0;
     opacity: 1;
     transition:
-      opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth')
+      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
         theme('transitionDelay.700'),
-      translate theme('transitionDuration.500') theme('transitionTimingFunction.smooth')
+      translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
         theme('transitionDelay.700');
   }
 
