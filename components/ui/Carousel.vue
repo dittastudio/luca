@@ -23,7 +23,6 @@ const emit = defineEmits<Emits>()
 const swiper = ref<Swiper>()
 const swiperEl = ref<HTMLDivElement | null>(null)
 const paginationEl = ref<HTMLDivElement | null>(null)
-const current = ref(0)
 const currentSlidesPerView = 1
 
 const updatePagination = (swiper: Swiper) => {
@@ -62,13 +61,12 @@ const initSwiper = () => {
     slideToClickedSlide: true,
     on: {
       init: (slider) => {
-        current.value = slider.realIndex + 1
-        emit('current-slide', current.value)
+        emit('current-slide', slider.realIndex + 1)
         updatePagination(slider)
       },
       slideChange: (slider) => {
-        current.value = slider.realIndex + 1
-        emit('current-slide', current.value)
+        console.log('current', slider.realIndex, slider.realIndex + 1)
+        emit('current-slide', slider.realIndex + 1)
         updatePagination(slider)
       },
     },
