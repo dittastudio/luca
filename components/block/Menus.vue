@@ -109,7 +109,10 @@ const activeIndex = ref(0)
 <style lang="postcss" scoped>
 .block-menus {
   position: relative;
-  overflow: hidden;
+
+  @screen mdMax {
+    overflow: hidden;
+  }
 
   @screen md {
     display: flex;
@@ -217,9 +220,6 @@ const activeIndex = ref(0)
 
   @screen md {
     grid-column: 4 / span 6;
-    width: calc(62.5vh - var(--app-header-height));
-    max-width: 480px;
-    margin-inline: auto;
   }
 }
 
@@ -245,13 +245,16 @@ const activeIndex = ref(0)
     opacity: 0;
 
     transition:
-      opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
-      visibility theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+      visibility theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
     &--is-active {
       position: static;
       visibility: visible;
       opacity: 1;
+      transition:
+        opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth') theme('transitionDuration.200'),
+        visibility theme('transitionDuration.500') theme('transitionTimingFunction.smooth') theme('transitionDuration.200');
     }
   }
 }
@@ -265,6 +268,9 @@ const activeIndex = ref(0)
 .block-menus__carousel {
   @screen md {
     overflow: hidden;
+    width: calc(62.5vh - var(--app-header-height));
+    max-width: 480px;
+    margin-inline: auto;
   }
 }
 
