@@ -10,7 +10,7 @@ useStoryblokSetup<PageStoryblok>(story)
 <template>
   <AppTheme v-if="story" :themes="story.content.themes">
     <AppStory :is-open="route.name === 'stories-page'">
-      <transition
+      <Transition
         name="fade"
         mode="out-in"
       >
@@ -18,9 +18,11 @@ useStoryblokSetup<PageStoryblok>(story)
           v-if="route.name === 'stories-page'"
           :key="route.fullPath"
         >
-          <NuxtPage :page-key="route.fullPath" />
+          <Suspense>
+            <NuxtPage :page-key="route.fullPath" />
+          </Suspense>
         </div>
-      </transition>
+      </Transition>
     </AppStory>
 
     <PageCover

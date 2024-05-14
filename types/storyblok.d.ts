@@ -247,6 +247,7 @@ export interface SettingsStoryblok {
   social_facebook?: string;
   social_tiktok?: string;
   social_instagram?: string;
+  social_vimeo?: string;
   _uid: string;
   component: "settings";
   [k: string]: any;
