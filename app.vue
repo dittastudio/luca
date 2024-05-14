@@ -27,6 +27,7 @@ useSeoMeta({
 
 useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
+useNavigation(false)
 </script>
 
 <template>

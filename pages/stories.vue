@@ -5,7 +5,6 @@ const route = useRoute()
 const story = await useStoryblokStory<PageStoryblok>('/stories')
 
 useStoryblokSetup<PageStoryblok>(story)
-useNavigation(false)
 </script>
 
 <template>
