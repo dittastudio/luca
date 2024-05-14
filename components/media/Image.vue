@@ -25,12 +25,13 @@ const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
 const { width, height } = storyblokImageDimensions(asset.filename)
-const ratioFormat = ratio ? String(ratio) : calculateAspectRatio(width, height)
-const ratioValid = validAspectRatio(ratioFormat)
+
+const ratioValid = validAspectRatio(ratio)
+const ratioFormat = ratio && ratioValid ? calculateAspectRatio(ratioDimensions(ratio).width, ratioDimensions(ratio).height) : calculateAspectRatio(width, height)
 
 const size = {
-  width: ratioValid ? ratioDimensions(ratioFormat).width * 100 : width,
-  height: ratioValid ? ratioDimensions(ratioFormat).height * 100 : height,
+  width: ratioDimensions(ratioFormat).width,
+  height: ratioDimensions(ratioFormat).height,
 }
 
 const placeholderImg = useImage()

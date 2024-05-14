@@ -2,6 +2,7 @@
 import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 import { Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
+import { wait } from '@/utilities/helpers'
 
 type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
 
@@ -76,7 +77,11 @@ const initSwiper = () => {
   })
 }
 
-onMounted(() => initSwiper())
+onMounted(async () => {
+  await wait(1000)
+
+  initSwiper()
+})
 
 onUnmounted(() => swiper.value?.destroy())
 

@@ -15,19 +15,9 @@ const arrayToTuples = (items: unknown[]) => {
   return tuples
 }
 
-const calculateAspectRatio = (width: number, height: number): string => {
-  const gcd = (a: number, b: number): number => {
-    if (b === 0) {
-      return a
-    }
-    else {
-      return gcd(b, a % b)
-    }
-  }
-
-  const divisor = gcd(width, height)
-  const aspectRatioWidth = width / divisor
-  const aspectRatioHeight = height / divisor
+const calculateAspectRatio = (width: number, height: number, newWidth: number = 100): string => {
+  const aspectRatioWidth = newWidth
+  const aspectRatioHeight = Math.round((height / width) * aspectRatioWidth)
 
   return `${aspectRatioWidth}:${aspectRatioHeight}`
 }
@@ -58,10 +48,10 @@ const safeKebabCase = (str: string) =>
     .toLowerCase()
     .trim()
 
-const validAspectRatio = (ratio: string) => {
+const validAspectRatio = (ratio: string | number = '') => {
   const pattern = /[0-9.]+:[0-9.]+/gm
 
-  return pattern.test(ratio)
+  return pattern.test(String(ratio))
 }
 
 const objectToUrlParams = (obj: Record<string, unknown>) => {
