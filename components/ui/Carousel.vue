@@ -19,7 +19,6 @@ interface Emits {
 }
 
 const emit = defineEmits<Emits>()
-
 const swiper = ref<Swiper>()
 const swiperEl = ref<HTMLDivElement | null>(null)
 const paginationEl = ref<HTMLDivElement | null>(null)
@@ -65,7 +64,6 @@ const initSwiper = () => {
         updatePagination(slider)
       },
       slideChange: (slider) => {
-        console.log('current', slider.realIndex, slider.realIndex + 1)
         emit('current-slide', slider.realIndex + 1)
         updatePagination(slider)
       },
