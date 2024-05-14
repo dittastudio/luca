@@ -17,6 +17,7 @@ const setCurrentSlide = (slide: number) => {
 
 const swiperOptions: SwiperOptions = {
   effect: 'fade',
+  loop: true,
   keyboard: {
     enabled: true,
   },
@@ -43,11 +44,14 @@ const swiperOptions: SwiperOptions = {
                 v-if="slide && storyblokAssetType(slide.filename) === 'image'"
                 class="block-gallery__media"
                 :asset="slide"
-                :sizes="`
+                sizes="
                   100vw
-                  md:${8 / 12 * 100}vw
-                  3xl:${8 / 12 * 1800}px
-                `"
+                  md:50vw
+                  lg:50vw
+                  xl:50vw
+                  2xl:50vw
+                  3xl:50vw
+                "
               />
 
               <MediaVideo

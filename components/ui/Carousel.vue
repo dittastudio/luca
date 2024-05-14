@@ -24,10 +24,9 @@ const swiper = ref<Swiper>()
 const swiperEl = ref<HTMLDivElement | null>(null)
 const paginationEl = ref<HTMLDivElement | null>(null)
 const current = ref(0)
-// const slidesPerView = 1
 const currentSlidesPerView = 1
 
-const updatePagination = (swiper) => {
+const updatePagination = (swiper: Swiper) => {
   if (swiper.realIndex < (slides.length - (currentSlidesPerView + 1))) {
     const bulletSize = 16
     const position = swiper.realIndex < 3 ? 0 : -Math.abs(bulletSize * (swiper.realIndex - 2))
@@ -63,12 +62,12 @@ const initSwiper = () => {
     slideToClickedSlide: true,
     on: {
       init: (slider) => {
-        current.value = slider.activeIndex + 1
+        current.value = slider.realIndex + 1
         emit('current-slide', current.value)
         updatePagination(slider)
       },
       slideChange: (slider) => {
-        current.value = slider.activeIndex + 1
+        current.value = slider.realIndex + 1
         emit('current-slide', current.value)
         updatePagination(slider)
       },
@@ -165,11 +164,6 @@ watch(() => options, () => {
   --dot-size: 8px;
 
   position: relative;
-
-  /* position: absolute;
-  top: 100%;
-  right: 0;
-  left: 0; */
 
   overflow: hidden;
 
