@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { wait } from '@/utilities/helpers'
-
 interface Props {
   isOpen: boolean
   lazy?: boolean
@@ -19,7 +17,6 @@ const ready = ref(!lazy)
 
 watchEffect(async () => {
   if (isOpen && lazy && !ready.value) {
-    await wait(1000)
     ready.value = true
   }
 })
