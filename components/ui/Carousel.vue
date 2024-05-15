@@ -57,7 +57,6 @@ const initSwiper = () => {
           },
         }
       : false,
-    slideToClickedSlide: true,
     on: {
       init: (slider) => {
         emit('current-slide', slider.realIndex + 1)
