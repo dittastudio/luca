@@ -118,11 +118,14 @@ watch(() => options, () => {
       </div>
     </div>
 
-    <div class="ui-carousel__pagination-wrapper">
+    <div
+      v-if="pagination && slides?.length > 1"
+      class="ui-carousel__pagination-wrapper"
+    >
       <div
-        v-if="pagination && slides?.length > 1"
         ref="paginationEl"
         class="ui-carousel__pagination swiper-pagination"
+        :class="{ 'justify-center': pagination && slides?.length < 5 }"
       />
     </div>
   </div>
