@@ -74,6 +74,8 @@ const closeNavigation = () => {
 const toggleNavigation = () => {
   navigationOpen.value = !navigationOpen.value
 }
+
+const reservationsForce = ref<boolean>(false)
 </script>
 
 <template>
@@ -132,6 +134,7 @@ const toggleNavigation = () => {
         <button
           class="app-header__reservations"
           type="button"
+          @mouseenter="reservationsForce = true"
           @click="reservationsOpen = true"
         >
           <AppearanceButton size="responsive">
@@ -143,6 +146,7 @@ const toggleNavigation = () => {
 
         <AppModal
           :is-open="reservationsOpen"
+          :force="reservationsForce"
           @close="reservationsOpen = false"
         >
           <iframe
