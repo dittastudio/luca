@@ -85,7 +85,7 @@ const onSubmit = async () => {
 
     if (response.error) {
       if (response.response?.title === 'Member Exists') {
-        message.value = `${email.value.trim()} is already subscribed! 🍕 🥳`
+        message.value = `${email.value.trim()} is already subscribed.`
       }
       else if (response.response?.title === 'Invalid Resource') {
         message.value = response.response?.detail || response.message
