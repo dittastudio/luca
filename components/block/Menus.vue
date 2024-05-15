@@ -24,29 +24,31 @@ const activeIndex = ref(0)
   >
     <div class="block-menus__grid">
       <nav class="block-menus__nav">
-        <div
-          v-for="(menu, index) in block.menus"
-          :key="menu._uid"
-          class="block-menus__nav-item"
-        >
-          <input
-            :id="`menus-${menu._uid}`"
-            class="block-menus__radio"
-            name="menus"
-            type="radio"
-            :checked="activeIndex === index"
-            @change="activeIndex = index"
+        <ul class="block-menus__nav-list">
+          <li
+            v-for="(menu, index) in block.menus"
+            :key="menu._uid"
+            class="block-menus__nav-item"
           >
+            <input
+              :id="`menus-${menu._uid}`"
+              class="block-menus__radio"
+              name="menus"
+              type="radio"
+              :checked="activeIndex === index"
+              @change="activeIndex = index"
+            >
 
-          <label
-            :for="`menus-${menu._uid}`"
-            class="block-menus__label type-body-large"
-            :class="{ 'block-menus__label--is-active': activeIndex === index }"
-            :data-title="menu.title"
-          >
-            {{ menu.title }}
-          </label>
-        </div>
+            <label
+              :for="`menus-${menu._uid}`"
+              class="block-menus__label type-body-large"
+              :class="{ 'block-menus__label--is-active': activeIndex === index }"
+              :data-title="menu.title"
+            >
+              {{ menu.title }}
+            </label>
+          </li>
+        </ul>
       </nav>
 
       <div class="block-menus__main">
@@ -122,15 +124,16 @@ const activeIndex = ref(0)
 .block-menus__grid {
   display: grid;
   grid-template-columns: theme('spacing.40') repeat(3, minmax(0, 1fr)) theme('spacing.40');
-  justify-content: center;
+
+  /* justify-content: center; */
 
   width: 100%;
-
   text-align: center;
 
   @screen md {
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
+    align-items: flex-start;
   }
 }
 
@@ -138,17 +141,18 @@ const activeIndex = ref(0)
   position: sticky;
   top: 0;
 
-  display: flex;
   grid-column: 1 / span 3;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
 
-  max-height: 100vh;
+  margin-block-start: calc(-1 * (var(--app-header-height) + theme('spacing.30')));
+  padding-block-start: 50vh;
 
   @screen mdMax {
     display: none;
   }
+}
+
+.block-menus__nav-list {
+  translate: 0 -50% 0;
 }
 
 .block-menus__nav-item {
@@ -268,9 +272,10 @@ const activeIndex = ref(0)
 .block-menus__carousel {
   @screen md {
     overflow: hidden;
-    width: calc(62.5vh - var(--app-header-height));
+
+    /* width: calc(62.5vh - var(--app-header-height));
     max-width: 480px;
-    margin-inline: auto;
+    margin-inline: auto; */
   }
 }
 

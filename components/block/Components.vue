@@ -142,11 +142,7 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
   }
 
   &--block_menus:first-child {
-    padding-block-start: theme('spacing.40');
-
-    @screen md {
-      padding-block-start: theme('spacing.20');
-    }
+    padding-block-start: theme('spacing.30');
   }
 
   /* Bespoke recipes */
