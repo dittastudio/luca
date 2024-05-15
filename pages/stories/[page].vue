@@ -8,7 +8,7 @@ useStoryblokSetup<PageStoryblok>(story)
 </script>
 
 <template>
-  <AppTheme v-if="story" :themes="story.content.themes">
+  <AppTheme :themes="story.content.themes">
     <PageCover
       v-if="story.content.cover_message"
       :message="story.content.cover_message"

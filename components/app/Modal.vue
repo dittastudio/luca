@@ -2,21 +2,21 @@
 interface Props {
   isOpen: boolean
   lazy?: boolean
+  force?: boolean
 }
 
-const { isOpen, lazy = true } = defineProps<Props>()
+const { isOpen, lazy = true, force = false } = defineProps<Props>()
 
 interface Emits {
   (event: 'close'): void
 }
 
 const emit = defineEmits<Emits>()
-
 const dialog = ref<HTMLDialogElement | null>(null)
 const ready = ref(!lazy)
 
 watchEffect(async () => {
-  if (isOpen && lazy && !ready.value) {
+  if (force || (isOpen && lazy && !ready.value)) {
     ready.value = true
   }
 })

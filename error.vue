@@ -33,12 +33,6 @@ useHead({
         </NuxtLink>
       </h1>
 
-      <MediaVideo
-        :asset="{ id: 404, name: '404', filename: '/videos/scusi.mp4' }"
-        ratio="3:2"
-        class="w-full max-w-[300px] h-full object-cover rounded-md"
-      />
-
       <p class="type-body max-w-[45ch] mx-auto">
         Ci scusiamo, the page you were looking for couldn't be found. It may have been moved.
       </p>

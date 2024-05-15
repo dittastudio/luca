@@ -11,7 +11,7 @@ export default function useNavigation(initial: boolean) {
 
   router.afterEach(async (to, from) => {
     if (from.path !== to.path) {
-      await wait(1250)
+      await wait(250)
     }
 
     navigationOpen.value = false
