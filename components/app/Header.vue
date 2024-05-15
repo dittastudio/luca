@@ -150,7 +150,6 @@ const toggleNavigation = () => {
             width="100%"
             height="700"
             frameborder="0"
-            loading="lazy"
           />
         </AppModal>
       </div>
