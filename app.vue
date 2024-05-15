@@ -22,7 +22,7 @@ useHead({
 
 useSeoMeta({
   titleTemplate: title => (title ? `${title} - LUCA` : 'LUCA'),
-  robots: 'noindex, nofollow',
+  robots: 'index, follow',
 })
 
 useState('reservationsOpen', () => false)
