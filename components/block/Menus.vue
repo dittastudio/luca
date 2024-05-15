@@ -74,12 +74,15 @@ const activeIndex = ref(0)
               >
                 <template #slide="{ slide }">
                   <MediaImage
-                    class="block-media__media"
+                    class="block-menus__image"
                     :asset="slide"
                     ratio="1:1.414"
                     :sizes="`
                       100vw
                       md:${6 / 12 * 100}vw
+                      lg:${6 / 12 * 100}vw
+                      xl:${6 / 12 * 100}vw
+                      2xl:${6 / 12 * 100}vw
                       3xl:${6 / 12 * 1800}px
                     `"
                     :lazy="false"
@@ -124,16 +127,15 @@ const activeIndex = ref(0)
 .block-menus__grid {
   display: grid;
   grid-template-columns: theme('spacing.40') repeat(3, minmax(0, 1fr)) theme('spacing.40');
-
-  /* justify-content: center; */
+  align-items: flex-start;
 
   width: 100%;
+
   text-align: center;
 
   @screen md {
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
-    align-items: flex-start;
   }
 }
 
@@ -272,10 +274,6 @@ const activeIndex = ref(0)
 .block-menus__carousel {
   @screen md {
     overflow: hidden;
-
-    /* width: calc(62.5vh - var(--app-header-height));
-    max-width: 480px;
-    margin-inline: auto; */
   }
 }
 
