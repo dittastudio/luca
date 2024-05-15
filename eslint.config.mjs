@@ -12,6 +12,7 @@ export default withNuxt(
   antfu({
     rules: {
       'antfu/top-level-function': 'off',
+      'toml/indent': ['error', 2, { subTables: 1, keyValuePairs: 1 }],
       'curly': 'off',
       'node/prefer-global/process': 'off',
       'vue/define-macros-order': 'off',
