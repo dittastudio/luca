@@ -1,5 +1,6 @@
 @layer base {
   html {
+    scrollbar-gutter: stable;
     color: var(--app-text-color);
     background-color: var(--app-background-color);
     transition:
