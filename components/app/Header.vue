@@ -134,6 +134,7 @@ const reservationsForce = ref<boolean>(false)
         <button
           class="app-header__reservations"
           type="button"
+          @focus="reservationsForce = true"
           @mouseenter="reservationsForce = true"
           @click="reservationsOpen = true"
         >
@@ -147,7 +148,7 @@ const reservationsForce = ref<boolean>(false)
         <AppModal
           :is-open="reservationsOpen"
           :force="reservationsForce"
-          @close="reservationsOpen = false"
+          @close="() => reservationsOpen = false"
         >
           <iframe
             src="https://www.sevenrooms.com/reservations/luca"
