@@ -1,6 +1,6 @@
 @layer components {
   .prose {
-    & :is(* + h1, * + h2, * + h3, * + h4, * + h5, * + h6, * + p, * + ul) {
+    & :is(* + h1, * + h2, * + h3, * + h4, * + h5, * + h6, * + p, * + ul, * + ol) {
       margin-block-start: theme('spacing.20');
     }
 
@@ -13,6 +13,7 @@
       font-size: theme('fontSize.14');
       font-weight: normal;
       text-transform: uppercase;
+      text-wrap: balance;
       letter-spacing: theme('letterSpacing.widest');
     }
 
@@ -64,7 +65,7 @@
       }
     }
 
-    ul {
+    ul, ol {
       display: inline-block;
       padding-block: theme('spacing.20');
       text-align: left;
@@ -72,13 +73,15 @@
 
       & li {
         padding-inline-start: 0.25em;
+        text-wrap: pretty;
       }
 
       & li + li {
         margin-block-start: 0.75em;
       }
 
-      & li > ul {
+      & li > ul,
+      & li > ol {
         margin-block-start: 0;
         margin-inline-start: 1em;
         list-style-type: circle;
