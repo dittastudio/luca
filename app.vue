@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '@/utilities/colophon'
 import { storyblokEditor } from '@/utilities/storyblok'
 import { screenSizes } from '@/tailwind.config'
 import type { SettingsStoryblok } from '@/types/storyblok'
