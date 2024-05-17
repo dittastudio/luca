@@ -126,7 +126,7 @@ const activeIndex = ref(0)
 
 .block-menus__grid {
   display: grid;
-  grid-template-columns: theme('spacing.40') repeat(3, minmax(0, 1fr)) theme('spacing.40');
+  grid-template-columns: var(--app-inner-gutter) repeat(3, minmax(0, 1fr)) var(--app-inner-gutter);
   align-items: flex-start;
 
   width: 100%;
@@ -225,6 +225,14 @@ const activeIndex = ref(0)
   grid-column: 2 / span 3;
 
   @screen md {
+    grid-column: 4 / span 8;
+  }
+
+  @screen lg {
+    grid-column: 4 / span 7;
+  }
+
+  @screen xl {
     grid-column: 4 / span 6;
   }
 }
