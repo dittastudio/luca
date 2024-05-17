@@ -1,3 +1,51 @@
+[[redirects]]
+  from = "/careers/"
+  to = "/people"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-content/uploads/LUCA_PDR_24-1.pdf"
+  to = "/private-dining"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/wp-content/uploads/Events-at-Luca-2023.pdf"
+  to = "/private-dining"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/menus/restaurant/"
+  to = "/menus"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/menus/bar-dining/"
+  to = "/menus"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/menus/desserts/"
+  to = "/menus"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/menus/bar-drinks/"
+  to = "/menus"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/menus/wine/"
+  to = "/menus"
+  status = 301
+  force = false
+
 [dev]
   functions = "functions"
 
