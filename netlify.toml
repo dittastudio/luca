@@ -2,7 +2,7 @@
   from = "/careers/"
   to = "/people"
   status = 301
-  force = false
+  force = true
 
 [[redirects]]
   from = "/wp-content/uploads/LUCA_PDR_24-1.pdf"

@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     layoutTransition: false,
   },
   components: true,
-  css: process.env.LOCAL === 'true' ? ['@michaelpumo/screen/app.css'] : [],
+  css: process.env.NUXT_STORYBLOK_VERSION === 'draft' ? ['@michaelpumo/screen/app.css'] : [],
   eslint: {
     config: {
       standalone: false,
