@@ -1,8 +1,8 @@
-[[redirects]]
-  from = "/careers/"
-  to = "/people"
-  status = 301
-  force = true
+# [[redirects          ]]
+#   from = "/careers          /"
+#   to = "/peopl          e"
+#   status = 3          01
+#   force = tr          ue
 
 [[redirects]]
   from = "/wp-content/uploads/LUCA_PDR_24-1.pdf"
