@@ -29,13 +29,5 @@ export const useStoryblokStory = async <T>(
     async () => await storyblokApi.get(`cdn/stories${storyBlokSlug}`, config),
   )
 
-  if (!data.value?.data?.story) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: `Page not found`,
-      fatal: true,
-    })
-  }
-
   return ref(data.value?.data?.story)
 }
