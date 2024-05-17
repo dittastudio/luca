@@ -202,10 +202,10 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
     translate: 0 0 0;
     opacity: 1;
     transition:
-      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.700'),
-      translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
-        theme('transitionDelay.700');
+      opacity theme('transitionDuration.500') theme('transitionTimingFunction.outExpo')
+        theme('transitionDelay.900'),
+      translate theme('transitionDuration.500') theme('transitionTimingFunction.outExpo')
+        theme('transitionDelay.900');
   }
 
   @screen md {
