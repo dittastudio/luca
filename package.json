@@ -28,7 +28,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.18.0",
+    "@antfu/eslint-config": "^2.18.1",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@michaelpumo/screen": "^0.0.18",
     "@nuxt/eslint": "^0.3.13",
@@ -41,7 +41,7 @@
     "@types/mailchimp__mailchimp_marketing": "^3.0.20",
     "@types/node": "^20.12.12",
     "del-cli": "^5.1.0",
-    "eslint": "^9.2.0",
+    "eslint": "^9.3.0",
     "netlify-cli": "^17.23.5",
     "nuxt": "^3.11.2",
     "nuxt-gtag": "^2.0.6",
