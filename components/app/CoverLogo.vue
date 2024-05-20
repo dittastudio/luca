@@ -33,8 +33,6 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .cover-logo {
-  --logo-container-height: 100vh;
-
   pointer-events: none;
 
   position: sticky;
@@ -45,8 +43,10 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
 
-  height: var(--logo-container-height);
-  margin-block-start: calc(-1 * var(--logo-container-height));
+  height: 100vh;
+  height: 100dvh;
+  margin-block-start: calc(-1 * 100vh);
+  margin-block-start: calc(-1 * 100dvh);
 
   color: theme('colors.white');
 
