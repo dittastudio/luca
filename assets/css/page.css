@@ -1,4 +1,9 @@
 @layer base {
+  *::selection {
+    color: var(--app-background-color);
+    background-color: var(--app-text-color);
+  }
+
   html {
     scrollbar-gutter: stable;
     color: var(--app-text-color);
@@ -14,7 +19,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: theme('lineHeight.normal');
-
     -webkit-tap-highlight-color: transparent;
   }
 
