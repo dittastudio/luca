@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     },
   },
   gtag: {
-    id: '',
+    id: 'G-19JK9R6VDM',
   },
   image: {
     provider: 'storyblok',
