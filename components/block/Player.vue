@@ -5,6 +5,28 @@ interface Props {
   block: BlockPlayerStoryblok
 }
 
+interface OembedResponse {
+  author_name: string
+  author_url: string
+  cache_age: number
+  embed: string
+  height: number
+  html: string
+  image: string
+  provider_name: string
+  provider_url: string
+  title: string
+  type: string
+  url: string
+  version: string
+  width: string
+}
+
+interface OembedResult {
+  data: OembedResponse
+  error: boolean
+}
+
 const { block } = defineProps<Props>()
 
 const options = {
@@ -14,12 +36,17 @@ const options = {
   autopause: 1,
 }
 
-const { data, error } = await $fetch('/api/oembed', {
+const url = useRequestURL()
+
+const { data, error } = await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
   method: 'post',
-  body: {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
     url: block.media_url,
     params: options,
-  },
+  }),
 })
 </script>
 
