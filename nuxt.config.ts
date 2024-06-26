@@ -43,6 +43,13 @@ export default defineNuxtConfig({
   gtag: {
     id: 'G-19JK9R6VDM',
   },
+  hooks: {
+    'vite:extendConfig': (config, { isClient }) => {
+      if (isClient) {
+        config.resolve.alias.vue = 'vue/dist/vue.esm-bundler'
+      }
+    },
+  },
   image: {
     provider: 'storyblok',
     storyblok: {
