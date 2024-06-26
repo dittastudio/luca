@@ -43,33 +43,20 @@ const requestDelay = async <T>(promise: T, ms: number = 1000) => {
 
 const safeKebabCase = (str: string) =>
   deburr(str)
-    .replace(/[^a-zA-Z0-9\s]/g, '')
+    .replace(/[^a-z0-9\s]/gi, '')
     .replace(/\s+/g, '-')
     .toLowerCase()
     .trim()
 
 const validAspectRatio = (ratio: string | number = '') => {
-  const pattern = /[0-9.]+:[0-9.]+/gm
+  const pattern = /[0-9.]+:[0-9.]+/g
 
   return pattern.test(String(ratio))
-}
-
-const objectToUrlParams = (obj: Record<string, unknown>) => {
-  const params = new URLSearchParams()
-
-  for (const key in obj) {
-    if (Object.hasOwn(obj, key) && obj[key]) {
-      params.append(key, String(obj[key]))
-    }
-  }
-
-  return params.toString()
 }
 
 export {
   arrayToTuples,
   calculateAspectRatio,
-  objectToUrlParams,
   ratioDimensions,
   requestDelay,
   safeKebabCase,

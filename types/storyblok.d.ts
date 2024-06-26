@@ -127,6 +127,7 @@ export interface BlockMenusStoryblok {
 
 export interface BlockPlayerStoryblok {
   autoplay?: boolean;
+  media_url: string;
   _uid: string;
   component: "block_player";
   [k: string]: any;
