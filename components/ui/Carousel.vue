@@ -12,9 +12,10 @@ interface Props {
   slides: T[]
   pagination?: boolean
   options?: SwiperOptions
+  nextPrevShadow?: boolean
 }
 
-const { slides, pagination = true, options } = defineProps<Props>()
+const { slides, pagination = true, options, nextPrevShadow = false } = defineProps<Props>()
 
 interface Emits {
   (event: 'current-slide', payload: number): void
@@ -104,6 +105,7 @@ watch(() => options, () => {
   <div
     ref="swiperEl"
     class="ui-carousel swiper"
+    :class="{ 'ui-carousel--next-prev-shadow': nextPrevShadow }"
   >
     <div class="ui-carousel__wrapper swiper-wrapper">
       <div
@@ -117,17 +119,19 @@ watch(() => options, () => {
         />
       </div>
 
-      <button type="button" class="ui-carousel__button ui-carousel__button--previous" @click="swiper?.slidePrev()">
-        <span class="sr-only">Previous</span>
+      <template v-if="slides?.length > 1">
+        <button type="button" class="ui-carousel__button ui-carousel__button--previous" @click="swiper?.slidePrev()">
+          <span class="sr-only">Previous</span>
 
-        <ArrowLeft class="ui-carousel__arrow ui-carousel__arrow--left" />
-      </button>
+          <ArrowLeft class="ui-carousel__arrow ui-carousel__arrow--left" />
+        </button>
 
-      <button type="button" class="ui-carousel__button ui-carousel__button--next" @click="swiper?.slideNext()">
-        <span class="sr-only">Next</span>
+        <button type="button" class="ui-carousel__button ui-carousel__button--next" @click="swiper?.slideNext()">
+          <span class="sr-only">Next</span>
 
-        <ArrowRight class="ui-carousel__arrow ui-carousel__arrow--right" />
-      </button>
+          <ArrowRight class="ui-carousel__arrow ui-carousel__arrow--right" />
+        </button>
+      </template>
     </div>
 
     <div
@@ -199,15 +203,21 @@ watch(() => options, () => {
   &--previous {
     left: 0;
     justify-content: start;
-    background-image: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
-    background-position: -200px 50%;
+
+    .ui-carousel--next-prev-shadow & {
+      background-image: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+      background-position: -200px 50%;
+    }
   }
 
   &--next {
     right: 0;
     justify-content: end;
-    background-image: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
-    background-position: 200px 50%;
+
+    .ui-carousel--next-prev-shadow & {
+      background-image: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+      background-position: 200px 50%;
+    }
   }
 }
 

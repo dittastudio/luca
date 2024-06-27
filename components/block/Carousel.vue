@@ -43,6 +43,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok
         <UiCarousel
           :slides="slides"
           :options="swiperOptions"
+          :next-prev-shadow="true"
         >
           <template #slide="{ slide }">
             <div class="block-carousel__slide">
