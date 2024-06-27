@@ -61,6 +61,9 @@ const { data: oembed } = await useAsyncData(
   // async () => await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
   async () => await $fetch<OembedResult>(`https://develop--luca-restaurant.netlify.app/.netlify/functions/oembed`, {
     method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       url: block.media_url,
       params: options,
@@ -68,6 +71,7 @@ const { data: oembed } = await useAsyncData(
   }),
 )
 
+console.log('oembed', oembed)
 console.log(oembed.value)
 console.log('test', test.value)
 </script>
