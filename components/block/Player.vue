@@ -38,28 +38,9 @@ const options = {
 
 const url = useRequestURL()
 
-// const { data, error } = await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
-//   method: 'post',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     url: block.media_url,
-//     params: options,
-//   }),
-// })
-
-const { data: test } = await useAsyncData(
-  'test',
-  () => $fetch(`https://api.restful-api.dev/objects`, {
-    method: 'get',
-  }),
-)
-
 const { data: oembed } = await useAsyncData(
   'player-oembed',
-  // async () => await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
-  async () => await $fetch<OembedResult>(`https://develop--luca-restaurant.netlify.app/.netlify/functions/oembed`, {
+  async () => await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -70,10 +51,6 @@ const { data: oembed } = await useAsyncData(
     }),
   }),
 )
-
-console.log('oembed', oembed)
-console.log(oembed.value)
-console.log('test', test.value)
 </script>
 
 <template>
@@ -81,9 +58,6 @@ console.log('test', test.value)
     v-editable="block"
     class="block-player wrapper"
   >
-    <!-- <pre>oembed: {{ oembed?.data }}</pre> -->
-    <pre>{{ test }}</pre>
-
     <div
       v-if="oembed?.data && !oembed.error"
       class="block-player__item"
