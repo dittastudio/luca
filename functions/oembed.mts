@@ -84,8 +84,7 @@ export const handler = async (event: HandlerEvent) => {
       statusCode: 200,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Headers': 'Content-Type',
-        // 'Access-Control-Allow-Methods': 'POST',
+        'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
         data: newData,
@@ -98,8 +97,7 @@ export const handler = async (event: HandlerEvent) => {
       statusCode: 500,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Headers': 'Content-Type',
-        // 'Access-Control-Allow-Methods': 'POST',
+        'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
         data: null,
