@@ -93,6 +93,7 @@ export interface BlockCarouselStoryblok {
   two_per_slide?: boolean;
   autoplay?: boolean;
   connecting_line?: boolean;
+  items: SlideStoryblok[];
   _uid: string;
   component: "block_carousel";
   [k: string]: any;
@@ -255,7 +256,8 @@ export interface SettingsStoryblok {
 }
 
 export interface SlideStoryblok {
-  media: ImageVideoStoryblok[];
+  media: AssetStoryblok;
+  caption?: string;
   _uid: string;
   component: "slide";
   [k: string]: any;

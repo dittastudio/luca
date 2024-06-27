@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
 import { useIntersectionObserver } from '@vueuse/core'
-import type { BlockCarouselStoryblok } from '@/types/storyblok'
+import type { BlockCarouselStoryblok, SlideStoryblok } from '@/types/storyblok'
 import { arrayToTuples } from '@/utilities/helpers'
 import { storyblokAssetType } from '@/utilities/storyblok'
 
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
-
 const isVisible = ref(false)
 const container = ref<HTMLDivElement | null>(null)
 
@@ -31,7 +30,7 @@ const swiperOptions = computed<SwiperOptions>(() => ({
   },
 }))
 
-const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides || []) : block.slides?.map(item => [item]))
+const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok>(block.items ?? []) : block.items?.map(item => [item] ?? []))
 </script>
 
 <template>
@@ -48,15 +47,15 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
           <template #slide="{ slide }">
             <div class="block-carousel__slide">
               <div
-                v-for="media in slide"
-                :key="media._uid"
+                v-for="item in slide"
+                :key="item._uid"
                 class="block-carousel__item"
                 :class="block.two_per_slide ? 'block-carousel__item--two' : 'block-carousel__item--one'"
               >
                 <MediaImage
-                  v-if="media && storyblokAssetType(media.filename) === 'image'"
+                  v-if="item.media && storyblokAssetType(item.media.filename) === 'image'"
                   class="block-carousel__media"
-                  :asset="media"
+                  :asset="item.media"
                   :ratio="block.ratio"
                   :sizes="
                     block.two_per_slide ? `
@@ -72,11 +71,15 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
                 />
 
                 <MediaVideo
-                  v-else-if="media.media && storyblokAssetType(media.filename) === 'video'"
+                  v-else-if="item.media && storyblokAssetType(item.media.filename) === 'video'"
                   class="block-carousel__media"
-                  :asset="media.video"
+                  :asset="item.media.video"
                   :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
+
+                <p v-if="item.caption" class="block-carousel__caption">
+                  {{ item.caption }}
+                </p>
               </div>
             </div>
           </template>
@@ -124,5 +127,10 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples(block.slides |
   height: 100%;
   object-fit: cover;
   border-radius: theme('borderRadius.sm');
+}
+
+.block-carousel__caption {
+  margin-block-start: theme('spacing.8');
+  font-style: italic;
 }
 </style>

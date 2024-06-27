@@ -1,6 +1,6 @@
 import { deburr } from 'lodash-es'
 
-const arrayToTuples = (items: unknown[]) => {
+const arrayToTuples = <T>(items: T[]) => {
   const tuples = []
 
   for (let i = 0; i < items.length; i += 2) {

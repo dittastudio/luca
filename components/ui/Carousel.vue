@@ -4,10 +4,10 @@ import type { SwiperOptions } from 'swiper/types'
 import { Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
 import { wait } from '@/utilities/helpers'
 
-type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
+// type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
 
 interface Props {
-  slides: ArrayOrWrappedInArray<T>
+  slides: T[]
   pagination?: boolean
   options?: SwiperOptions
 }
@@ -139,22 +139,17 @@ watch(() => options, () => {
 
 .ui-carousel__wrapper {
   display: flex;
-
   width: 100%;
   height: 100%;
-
   transition-timing-function: theme('transitionTimingFunction.out');
   transition-property: transform;
 }
 
 .ui-carousel__slide {
   touch-action: pan-y pinch-zoom;
-
   flex-shrink: 0;
-
   width: 100%;
   height: 100%;
-
   transition-property: transform;
 }
 
@@ -162,9 +157,7 @@ watch(() => options, () => {
   --dot-size: 8px;
 
   position: relative;
-
   overflow: hidden;
-
   width: calc(var(--dot-size) * 11);
   margin-block-start: calc(theme('spacing.30') - var(--dot-size));
   margin-inline: auto;
@@ -174,11 +167,9 @@ watch(() => options, () => {
   &::after {
     pointer-events: none;
     content: '';
-
     position: absolute;
     z-index: 1;
     top: 0;
-
     width: var(--dot-size);
     height: 100%;
   }
@@ -207,16 +198,12 @@ watch(() => options, () => {
 
 .ui-carousel__dot {
   cursor: pointer;
-
   display: block;
-
   width: var(--dot-size);
   height: var(--dot-size);
-
   opacity: 0.2;
   background-color: currentcolor;
   border-radius: 50%;
-
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   .ui-carousel__bullet--is-active & {

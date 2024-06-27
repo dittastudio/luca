@@ -130,12 +130,10 @@ const swiperOptions: SwiperOptions = {
 
 .block-gallery__caption {
   pointer-events: none;
-
   position: absolute;
   right: 0;
   bottom: theme('spacing.20');
   left: 0;
-
   display: flex;
   gap: theme('spacing.20');
 

@@ -230,7 +230,7 @@
       "name": "block_carousel",
       "display_name": "Carousel",
       "created_at": "2024-04-24T16:17:24.822Z",
-      "updated_at": "2024-05-10T16:41:56.021Z",
+      "updated_at": "2024-06-27T15:32:56.346Z",
       "id": 5704567,
       "schema": {
         "slides": {
@@ -260,6 +260,17 @@
           "inline_label": true,
           "pos": 3,
           "key": "connecting_line"
+        },
+        "items": {
+          "type": "bloks",
+          "pos": 4,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "slide"
+          ],
+          "required": true,
+          "minimum": 1
         }
       },
       "image": null,
@@ -436,7 +447,7 @@
       "name": "block_player",
       "display_name": "Player",
       "created_at": "2024-04-30T11:22:25.489Z",
-      "updated_at": "2024-06-26T19:56:32.338Z",
+      "updated_at": "2024-06-27T13:55:33.015Z",
       "id": 5732472,
       "schema": {
         "vimeo": {
@@ -459,7 +470,7 @@
           "pos": 2,
           "required": true,
           "display_name": "Media URL",
-          "description": "Supports URL's from Vimeo, YouTube, SoundCloud and Mixcloud."
+          "description": "You can embed media from Vimeo, YouTube, SoundCloud and Mixcloud. Simply copy and paste the URL and save."
         }
       },
       "image": null,
@@ -759,7 +770,7 @@
       "name": "menu",
       "display_name": "Menu",
       "created_at": "2024-04-26T15:31:26.858Z",
-      "updated_at": "2024-04-26T15:52:11.253Z",
+      "updated_at": "2024-06-27T14:18:04.341Z",
       "id": 5717545,
       "schema": {
         "title": {
@@ -777,7 +788,8 @@
         "pdf": {
           "type": "asset",
           "required": true,
-          "asset_folder_id": 531546
+          "asset_folder_id": 531546,
+          "display_name": "PDF"
         }
       },
       "image": null,
@@ -1072,11 +1084,11 @@
       "name": "slide",
       "display_name": null,
       "created_at": "2024-04-24T16:18:33.870Z",
-      "updated_at": "2024-04-26T14:00:11.744Z",
+      "updated_at": "2024-06-27T14:43:59.295Z",
       "id": 5704569,
       "schema": {
         "media": {
-          "type": "bloks",
+          "type": "asset",
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -1085,6 +1097,14 @@
           "required": true,
           "minimum": 1,
           "maximum": 2,
+          "pos": 1,
+          "filetypes": [
+            "images",
+            "videos"
+          ]
+        },
+        "caption": {
+          "type": "text",
           "pos": 1
         }
       },
