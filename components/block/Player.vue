@@ -49,9 +49,17 @@ const url = useRequestURL()
 //   }),
 // })
 
+const { data: test } = await useAsyncData(
+  'test',
+  () => $fetch(`https://api.restful-api.dev/objects`, {
+    method: 'get',
+  }),
+)
+
 const { data: oembed } = await useAsyncData(
   'player-oembed',
-  () => $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
+  // async () => await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
+  async () => await $fetch<OembedResult>(`https://develop--luca-restaurant.netlify.app/.netlify/functions/oembed`, {
     method: 'post',
     body: JSON.stringify({
       url: block.media_url,
@@ -61,6 +69,7 @@ const { data: oembed } = await useAsyncData(
 )
 
 console.log(oembed.value)
+console.log('test', test.value)
 </script>
 
 <template>
@@ -69,6 +78,7 @@ console.log(oembed.value)
     class="block-player wrapper"
   >
     <!-- <pre>oembed: {{ oembed?.data }}</pre> -->
+    <pre>{{ test }}</pre>
 
     <div
       v-if="oembed?.data && !oembed.error"

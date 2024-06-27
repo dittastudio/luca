@@ -82,6 +82,11 @@ export const handler = async (event: HandlerEvent) => {
 
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Headers': 'Content-Type',
+        // 'Access-Control-Allow-Methods': 'POST',
+      },
       body: JSON.stringify({
         data: newData,
         error: false,
@@ -91,6 +96,11 @@ export const handler = async (event: HandlerEvent) => {
   catch (error: any) {
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Headers': 'Content-Type',
+        // 'Access-Control-Allow-Methods': 'POST',
+      },
       body: JSON.stringify({
         data: null,
         error: true,
