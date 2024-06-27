@@ -42,6 +42,10 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
         :asset="block.media"
         :ratio="block.ratio"
       />
+
+      <p v-if="block.caption" class="block-media__caption">
+        {{ block.caption }}
+      </p>
     </div>
   </div>
 </template>
@@ -57,5 +61,10 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
 .block-media__media {
   border-radius: theme('borderRadius.sm');
+}
+
+.block-media__caption {
+  margin-block-start: theme('spacing.8');
+  font-style: italic;
 }
 </style>

@@ -110,6 +110,7 @@ export interface BlockGalleryStoryblok {
 
 export interface BlockMediaStoryblok {
   media: AssetStoryblok;
+  caption?: string;
   ratio: number | string;
   column_start: number | string;
   column_end: number | string;
@@ -145,6 +146,7 @@ export interface RichtextStoryblok {
 
 export interface BlockSplitStoryblok {
   media: AssetStoryblok;
+  caption?: string;
   ratio: number | string;
   text: RichtextStoryblok;
   reversed?: boolean;

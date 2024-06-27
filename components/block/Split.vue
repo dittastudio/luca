@@ -8,7 +8,6 @@ interface Props {
 
 const { block } = defineProps<Props>()
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
-
 const route = useRoute()
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9) // Hack!
 </script>
@@ -42,6 +41,10 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
         :asset="block.media"
         :ratio="block.ratio"
       />
+
+      <p v-if="block.caption" class="block-split__caption">
+        {{ block.caption }}
+      </p>
     </div>
 
     <div class="block-split__text">
@@ -105,6 +108,11 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 
 .block-split__media {
   border-radius: theme('borderRadius.sm');
+}
+
+.block-split__caption {
+  margin-block-start: theme('spacing.8');
+  font-style: italic;
 }
 
 .block-split__text {
