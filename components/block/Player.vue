@@ -38,16 +38,29 @@ const options = {
 
 const url = useRequestURL()
 
-const { data, error } = await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
-  method: 'post',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    url: block.media_url,
-    params: options,
+// const { data, error } = await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
+//   method: 'post',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify({
+//     url: block.media_url,
+//     params: options,
+//   }),
+// })
+
+const { data: oembed } = await useAsyncData(
+  'player-oembed',
+  () => $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
+    method: 'post',
+    body: JSON.stringify({
+      url: block.media_url,
+      params: options,
+    }),
   }),
-})
+)
+
+console.log(oembed.value)
 </script>
 
 <template>
@@ -55,15 +68,13 @@ const { data, error } = await $fetch<OembedResult>(`${url.origin}/.netlify/funct
     v-editable="block"
     class="block-player wrapper"
   >
-    <pre>data: {{ data }}</pre>
-
-    <pre>error: {{ error }}</pre>
+    <!-- <pre>oembed: {{ oembed?.data }}</pre> -->
 
     <div
-      v-if="data && !error"
+      v-if="oembed?.data && !oembed.error"
       class="block-player__item"
-      :class="{ 'aspect-16/9': ['Vimeo', 'YouTube'].includes(data.provider_name) }"
-      v-html="data.html"
+      :class="{ 'aspect-16/9': ['Vimeo', 'YouTube'].includes(oembed.data.provider_name) }"
+      v-html="oembed.data.html"
     />
   </div>
 </template>
