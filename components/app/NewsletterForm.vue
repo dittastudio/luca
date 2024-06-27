@@ -53,8 +53,10 @@ const { value: fname } = useField<string>('fname')
 const { value: lname } = useField<string>('lname')
 const { value: email } = useField<string>('email')
 
+const url = useRequestURL()
+
 const send = async () => {
-  const request = await fetch(`${window.location.origin}/.netlify/functions/mailchimp`, {
+  const request = await fetch(`${url.origin}/.netlify/functions/mailchimp`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

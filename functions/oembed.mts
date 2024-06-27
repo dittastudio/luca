@@ -35,9 +35,8 @@ export const handler = async (event: HandlerEvent) => {
     'www.youtube.com': 'https://youtube.com/oembed',
   }
 
-  const { url, params } = JSON.parse(event.body ?? '{}') as Fields
-
   try {
+    const { url, params } = JSON.parse(event.body ?? '{}') as Fields
     const requestUrl = new URL(url)
 
     if (!requestUrl.hostname) {
