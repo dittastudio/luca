@@ -37,10 +37,13 @@ const options = {
 }
 
 const url = useRequestURL()
+// When we build static, we're on the server, so use the live function.
+// This is to avoid CORS issues when fetching the oembed data.
+const origin = import.meta.dev ? url.origin : 'https://luca.restaurant'
 
 const { data: oembed } = await useAsyncData(
   'player-oembed',
-  async () => await $fetch<OembedResult>(`${url.origin}/.netlify/functions/oembed`, {
+  async () => await $fetch<OembedResult>(`${origin}/.netlify/functions/oembed`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
