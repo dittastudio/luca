@@ -3,6 +3,8 @@ import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 import { Autoplay, EffectFade, Keyboard, Pagination } from 'swiper/modules'
 import { wait } from '@/utilities/helpers'
+import ArrowLeft from '@/assets/icons/arrow-left.svg'
+import ArrowRight from '@/assets/icons/arrow-right.svg'
 
 // type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
 
@@ -108,13 +110,24 @@ watch(() => options, () => {
         v-for="(slide, index) in slides"
         :key="index"
         class="ui-carousel__slide swiper-slide"
-        @click="swiper?.slideNext()"
       >
         <slot
           name="slide"
           :slide="slide"
         />
       </div>
+
+      <button type="button" class="ui-carousel__button ui-carousel__button--previous" @click="swiper?.slidePrev()">
+        <span class="sr-only">Previous</span>
+
+        <ArrowLeft class="ui-carousel__arrow ui-carousel__arrow--left" />
+      </button>
+
+      <button type="button" class="ui-carousel__button ui-carousel__button--next" @click="swiper?.slideNext()">
+        <span class="sr-only">Next</span>
+
+        <ArrowRight class="ui-carousel__arrow ui-carousel__arrow--right" />
+      </button>
     </div>
 
     <div
@@ -135,6 +148,12 @@ watch(() => options, () => {
   user-select: none;
   position: relative;
   height: inherit;
+
+  &:hover {
+    .ui-carousel__button {
+      pointer-events: auto;
+    }
+  }
 }
 
 .ui-carousel__wrapper {
@@ -151,6 +170,60 @@ watch(() => options, () => {
   width: 100%;
   height: 100%;
   transition-property: transform;
+}
+
+.ui-carousel__button {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  background-color: transparent;
+  opacity: 0;
+  padding: var(--app-outer-gutter);
+  pointer-events: none;
+  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.out');
+  background-repeat: no-repeat;
+
+  &:hover {
+    opacity: 1;
+
+    .ui-carousel__arrow--left,
+    .ui-carousel__arrow--right {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  &--previous {
+    left: 0;
+    justify-content: start;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+    background-position: -200px 50%;
+  }
+
+  &--next {
+    right: 0;
+    justify-content: end;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+    background-position: 200px 50%;
+  }
+}
+
+.ui-carousel__arrow {
+  width: 22px;
+  height: auto;
+  fill: currentColor;
+  transition: transform theme('transitionDuration.500') theme('transitionTimingFunction.out');
+
+  &--left {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  &--right {
+    transform: translate3d(-100%, 0, 0);
+  }
 }
 
 .ui-carousel__pagination-wrapper {
