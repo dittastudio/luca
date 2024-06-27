@@ -230,40 +230,12 @@
       "name": "block_carousel",
       "display_name": "Carousel",
       "created_at": "2024-04-24T16:17:24.822Z",
-      "updated_at": "2024-06-27T15:32:56.346Z",
+      "updated_at": "2024-06-27T19:49:37.868Z",
       "id": 5704567,
       "schema": {
-        "slides": {
-          "type": "multiasset",
-          "pos": 0,
-          "filetypes": [
-            "images",
-            "videos"
-          ],
-          "key": "slides_new",
-          "required": true
-        },
-        "two_per_slide": {
-          "type": "boolean",
-          "pos": 1,
-          "inline_label": true,
-          "key": "two_per_slide"
-        },
-        "autoplay": {
-          "type": "boolean",
-          "pos": 2,
-          "inline_label": true,
-          "key": "autoplay"
-        },
-        "connecting_line": {
-          "type": "boolean",
-          "inline_label": true,
-          "pos": 3,
-          "key": "connecting_line"
-        },
         "items": {
           "type": "bloks",
-          "pos": 4,
+          "pos": 0,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -271,6 +243,24 @@
           ],
           "required": true,
           "minimum": 1
+        },
+        "two_per_slide": {
+          "type": "boolean",
+          "pos": 2,
+          "inline_label": true,
+          "key": "two_per_slide"
+        },
+        "autoplay": {
+          "type": "boolean",
+          "pos": 3,
+          "inline_label": true,
+          "key": "autoplay"
+        },
+        "connecting_line": {
+          "type": "boolean",
+          "inline_label": true,
+          "pos": 4,
+          "key": "connecting_line"
         }
       },
       "image": null,
@@ -451,30 +441,21 @@
       "name": "block_player",
       "display_name": "Player",
       "created_at": "2024-04-30T11:22:25.489Z",
-      "updated_at": "2024-06-27T13:55:33.015Z",
+      "updated_at": "2024-06-27T20:13:40.193Z",
       "id": 5732472,
       "schema": {
-        "vimeo": {
-          "type": "custom",
-          "field_type": "vimeo",
-          "options": [],
-          "display_name": "Vimeo URL",
+        "media_url": {
+          "type": "text",
+          "pos": 0,
           "required": true,
-          "key": "vimeo",
-          "pos": 0
+          "display_name": "Media URL",
+          "description": "You can embed media from Vimeo, YouTube, SoundCloud and Mixcloud. Simply copy and paste the URL and save."
         },
         "autoplay": {
           "type": "boolean",
           "description": "If autoplay is enabled the video will be muted.",
           "key": "autoplay",
           "pos": 1
-        },
-        "media_url": {
-          "type": "text",
-          "pos": 2,
-          "required": true,
-          "display_name": "Media URL",
-          "description": "You can embed media from Vimeo, YouTube, SoundCloud and Mixcloud. Simply copy and paste the URL and save."
         }
       },
       "image": null,
@@ -1092,7 +1073,7 @@
       "name": "slide",
       "display_name": null,
       "created_at": "2024-04-24T16:18:33.870Z",
-      "updated_at": "2024-06-27T14:43:59.295Z",
+      "updated_at": "2024-06-27T16:55:20.195Z",
       "id": 5704569,
       "schema": {
         "media": {
@@ -1119,7 +1100,7 @@
       "image": null,
       "preview_field": "media",
       "is_root": false,
-      "preview_tmpl": "{{@image(it.media[0].image.filename)/}}",
+      "preview_tmpl": "{{@image(it.media.filename)/}}\n\n{{@if(it.caption)}}\n<p>{{it.caption}}</p>\n{{/if}}",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,

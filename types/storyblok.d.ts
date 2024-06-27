@@ -78,6 +78,16 @@ export interface BlockCardEditorialStoryblok {
   [k: string]: any;
 }
 
+export interface BlockCarouselStoryblok {
+  items: SlideStoryblok[];
+  two_per_slide?: boolean;
+  autoplay?: boolean;
+  connecting_line?: boolean;
+  _uid: string;
+  component: "block_carousel";
+  [k: string]: any;
+}
+
 export type MultiassetStoryblok = {
   alt?: string;
   copyright?: string;
@@ -87,17 +97,6 @@ export type MultiassetStoryblok = {
   title?: string;
   [k: string]: any;
 }[];
-
-export interface BlockCarouselStoryblok {
-  slides: MultiassetStoryblok;
-  two_per_slide?: boolean;
-  autoplay?: boolean;
-  connecting_line?: boolean;
-  items: SlideStoryblok[];
-  _uid: string;
-  component: "block_carousel";
-  [k: string]: any;
-}
 
 export interface BlockGalleryStoryblok {
   title?: string;
@@ -128,8 +127,8 @@ export interface BlockMenusStoryblok {
 }
 
 export interface BlockPlayerStoryblok {
-  autoplay?: boolean;
   media_url: string;
+  autoplay?: boolean;
   _uid: string;
   component: "block_player";
   [k: string]: any;
