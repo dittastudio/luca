@@ -87,10 +87,10 @@ export const handler = async (event: HandlerEvent) => {
         // 'Access-Control-Allow-Headers': 'Content-Type',
         // 'Access-Control-Allow-Methods': 'POST',
       },
-      body: {
+      body: JSON.stringify({
         data: newData,
         error: false,
-      },
+      }),
     }
   }
   catch (error: any) {
@@ -101,10 +101,10 @@ export const handler = async (event: HandlerEvent) => {
         // 'Access-Control-Allow-Headers': 'Content-Type',
         // 'Access-Control-Allow-Methods': 'POST',
       },
-      body: {
+      body: JSON.stringify({
         data: null,
         error: true,
-      },
+      }),
     }
   }
 }
