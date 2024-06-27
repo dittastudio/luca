@@ -55,6 +55,10 @@ const { data, error } = await $fetch<OembedResult>(`${url.origin}/.netlify/funct
     v-editable="block"
     class="block-player wrapper"
   >
+    <pre>data: {{ data }}</pre>
+
+    <pre>error: {{ error }}</pre>
+
     <div
       v-if="data && !error"
       class="block-player__item"
