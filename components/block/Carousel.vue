@@ -30,7 +30,7 @@ const swiperOptions = computed<SwiperOptions>(() => ({
   },
 }))
 
-const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok>(block.items ?? []) : block.items?.map(item => [item] ?? []))
+const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok>(block.items) : block.items?.map(item => [item]))
 </script>
 
 <template>
