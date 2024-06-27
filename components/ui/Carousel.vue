@@ -6,8 +6,6 @@ import { wait } from '@/utilities/helpers'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
 
-// type ArrayOrWrappedInArray<T> = T extends (infer _)[] ? T : T[]
-
 interface Props {
   slides: T[]
   pagination?: boolean
