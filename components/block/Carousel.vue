@@ -78,7 +78,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok
                   :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
 
-                <p v-if="item.caption" class="block-carousel__caption">
+                <p v-if="item.caption" class="block-carousel__caption type-body">
                   {{ item.caption }}
                 </p>
               </div>

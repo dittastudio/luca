@@ -31,7 +31,7 @@ const swiperOptions: SwiperOptions = {
   >
     <UiCarousel
       ratio="auto"
-      :slides="block.slides"
+      :slides="block.items"
       :pagination="false"
       :options="swiperOptions"
       @current-slide="setCurrentSlide"
@@ -41,9 +41,9 @@ const swiperOptions: SwiperOptions = {
           <div class="block-gallery__grid">
             <div class="block-gallery__inner">
               <MediaImage
-                v-if="slide && storyblokAssetType(slide.filename) === 'image'"
+                v-if="slide.media && storyblokAssetType(slide.media.filename) === 'image'"
                 class="block-gallery__media"
-                :asset="slide"
+                :asset="slide.media"
                 sizes="
                   100vw
                   md:50vw
@@ -55,8 +55,8 @@ const swiperOptions: SwiperOptions = {
               />
 
               <MediaVideo
-                v-else-if="slide && storyblokAssetType(slide.filename) === 'video'"
-                :asset="slide"
+                v-else-if="slide.media && storyblokAssetType(slide.media.filename) === 'video'"
+                :asset="slide.media"
                 class="block-gallery__media"
               />
             </div>
@@ -70,7 +70,7 @@ const swiperOptions: SwiperOptions = {
         {{ currentSlide }} / {{ block.slides?.length }}
       </span>
 
-      <span v-if="block.title">{{ block.title }}</span>
+      <span v-if="block.items?.[currentSlide - 1].caption">{{ block.items[currentSlide - 1].caption }}</span>
     </h5>
   </div>
 </template>
@@ -96,12 +96,20 @@ const swiperOptions: SwiperOptions = {
     opacity: 0.2;
     border-block-end: 1px solid currentcolor;
   }
+
+  & .ui-carousel__slide {
+    height: 100%;
+  }
 }
 
 .block-gallery__item {
   height: inherit;
   padding-block: var(--app-header-height);
-  background-color: theme('colors.offwhite');
+  background-color: var(--app-background-color);
+
+  .app-story & {
+    background-color: theme('colors.white');
+  }
 
   @screen md {
     padding-block: calc(var(--app-header-height) / 1.5);
@@ -130,10 +138,12 @@ const swiperOptions: SwiperOptions = {
 
 .block-gallery__caption {
   pointer-events: none;
+
   position: absolute;
   right: 0;
   bottom: theme('spacing.20');
   left: 0;
+
   display: flex;
   gap: theme('spacing.20');
 
