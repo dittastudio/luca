@@ -13,6 +13,7 @@ interface Props {
 }
 
 const { error } = defineProps<Props>()
+console.log(error)
 
 useHead({
   title:
