@@ -1,7 +1,6 @@
 import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
   app: {
     head: {
       htmlAttrs: {
@@ -32,8 +31,10 @@ export default defineNuxtConfig({
     pageTransition: { name: 'fade', mode: 'out-in' },
     layoutTransition: false,
   },
+  compatibilityDate: '2024-07-03',
   components: true,
   css: process.env.NUXT_STORYBLOK_VERSION === 'draft' ? ['@michaelpumo/screen/app.css'] : [],
+  devtools: { enabled: true },
   eslint: {
     config: {
       standalone: false,
@@ -46,7 +47,9 @@ export default defineNuxtConfig({
   hooks: {
     'vite:extendConfig': (config, { isClient }) => {
       if (isClient) {
-        config.resolve.alias.vue = 'vue/dist/vue.esm-bundler'
+        if (config.resolve?.alias) {
+          config.resolve.alias.vue = 'vue/dist/vue.esm-bundler'
+        }
       }
     },
   },
