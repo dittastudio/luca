@@ -283,7 +283,7 @@
       "name": "block_gallery",
       "display_name": "Gallery",
       "created_at": "2024-04-29T19:50:48.270Z",
-      "updated_at": "2024-07-02T20:26:48.874Z",
+      "updated_at": "2024-07-02T21:40:36.385Z",
       "id": 5728317,
       "schema": {
         "title": {
@@ -317,6 +317,15 @@
           "inline_label": true,
           "pos": 3,
           "key": "connecting_line"
+        },
+        "tab-faf9d423-3e24-4ae7-9ebb-11c1ca58d1bb": {
+          "display_name": "Legacy",
+          "keys": [
+            "title",
+            "slides"
+          ],
+          "pos": 4,
+          "type": "tab"
         }
       },
       "image": null,
