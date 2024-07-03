@@ -37,9 +37,11 @@ const options = {
 }
 
 const url = useRequestURL()
+
 // When we build static, we're on the server, so use the live function.
 // This is to avoid CORS issues when fetching the oembed data.
-const origin = import.meta.dev ? url.origin : 'https://luca.restaurant'
+// const origin = import.meta.dev ? url.origin : 'https://luca.restaurant'
+const origin = url.origin
 
 const { data: oembed } = await useAsyncData(
   'player-oembed',
