@@ -283,7 +283,7 @@
       "name": "block_gallery",
       "display_name": "Gallery",
       "created_at": "2024-04-29T19:50:48.270Z",
-      "updated_at": "2024-07-02T21:40:36.385Z",
+      "updated_at": "2024-07-03T21:26:47.100Z",
       "id": 5728317,
       "schema": {
         "title": {
@@ -304,7 +304,7 @@
         "items": {
           "type": "bloks",
           "pos": 2,
-          "required": false,
+          "required": true,
           "minimum": 1,
           "restrict_type": "",
           "restrict_components": true,
