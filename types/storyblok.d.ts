@@ -101,7 +101,7 @@ export type MultiassetStoryblok = {
 export interface BlockGalleryStoryblok {
   title?: string;
   slides: MultiassetStoryblok;
-  items?: SlideStoryblok[];
+  items: SlideStoryblok[];
   connecting_line?: boolean;
   _uid: string;
   component: "block_gallery";

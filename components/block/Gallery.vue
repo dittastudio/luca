@@ -30,6 +30,7 @@ const swiperOptions: SwiperOptions = {
     class="block-gallery"
   >
     <UiCarousel
+      v-if="block.items"
       ratio="auto"
       :slides="block.items"
       :pagination="false"
@@ -65,9 +66,9 @@ const swiperOptions: SwiperOptions = {
       </template>
     </UiCarousel>
 
-    <h5 class="block-gallery__caption type-body-large wrapper">
-      <span v-if="block.slides?.length > 1">
-        {{ currentSlide }} / {{ block.slides?.length }}
+    <h5 v-if="block.items" class="block-gallery__caption type-body-large wrapper">
+      <span v-if="block.items?.length > 1">
+        {{ currentSlide }} / {{ block.items?.length }}
       </span>
 
       <span v-if="block.items?.[currentSlide - 1].caption">{{ block.items[currentSlide - 1].caption }}</span>

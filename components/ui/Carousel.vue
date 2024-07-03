@@ -8,7 +8,7 @@ import ArrowLeft from '@/assets/icons/arrow-left.svg'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
 
 interface Props {
-  slides: SlideStoryblok[] | undefined
+  slides: SlideStoryblok[]
   pagination?: boolean
   options?: SwiperOptions
   nextPrevShadow?: boolean
@@ -172,44 +172,33 @@ watch(() => options, () => {
 
 .ui-carousel__wrapper {
   display: flex;
-
   width: 100%;
   height: 100%;
-
   transition-timing-function: theme('transitionTimingFunction.out');
   transition-property: transform;
 }
 
 .ui-carousel__slide {
   touch-action: pan-y pinch-zoom;
-
   flex-shrink: 0;
-
   width: 100%;
-
   background-color: var(--app-background-color);
-
   transition-property: transform;
 }
 
 .ui-carousel__button {
   pointer-events: none;
-
   position: absolute;
   z-index: 1;
   top: 0;
-
   display: flex;
   align-items: center;
-
   width: 50%;
   height: 100%;
   padding: var(--app-outer-gutter);
-
   opacity: 0;
   background-color: transparent;
   background-repeat: no-repeat;
-
   transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.out');
 
   &:hover {
@@ -261,9 +250,7 @@ watch(() => options, () => {
   --dot-size: 8px;
 
   position: relative;
-
   overflow: hidden;
-
   width: calc(var(--dot-size) * 11);
   margin-block-start: calc(theme('spacing.30') - var(--dot-size));
   margin-inline: auto;
@@ -273,11 +260,9 @@ watch(() => options, () => {
   &::after {
     pointer-events: none;
     content: '';
-
     position: absolute;
     z-index: 1;
     top: 0;
-
     width: var(--dot-size);
     height: 100%;
   }
@@ -306,16 +291,12 @@ watch(() => options, () => {
 
 .ui-carousel__dot {
   cursor: pointer;
-
   display: block;
-
   width: var(--dot-size);
   height: var(--dot-size);
-
   opacity: 0.2;
   background-color: currentcolor;
   border-radius: 50%;
-
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   .ui-carousel__bullet--is-active & {
