@@ -13,7 +13,6 @@ https://luca-restaurant.netlify.app
 ### Required .env
 
 ```env
-NUXT_SSR=true
 NUXT_STORYBLOK_TOKEN=<VALUE>
 NUXT_STORYBLOK_VERSION=<VALUE>
 MAILCHIMP_API_KEY=<VALUE>

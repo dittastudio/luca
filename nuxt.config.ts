@@ -89,7 +89,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     private: {},
     public: {
-      SSR: process.env.NUXT_SSR,
       STORYBLOK_TOKEN: process.env.NUXT_STORYBLOK_TOKEN,
       STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
     },
@@ -97,7 +96,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://luca.restaurant',
   },
-  ssr: process.env.NUXT_SSR === 'true',
+  ssr: true,
   tailwindcss: {
     cssPath: '@/assets/css/app.css',
   },
