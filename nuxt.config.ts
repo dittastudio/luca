@@ -104,6 +104,11 @@ export default defineNuxtConfig({
     strict: true,
   },
   vite: {
+    resolve: {
+      dedupe: [
+        'vue',
+      ],
+    },
     plugins: [
       svgLoader({
         svgo: false,
