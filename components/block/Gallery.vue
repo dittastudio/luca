@@ -109,7 +109,7 @@ const swiperOptions: SwiperOptions = {
   background-color: var(--app-background-color);
 
   .app-story & {
-    background-color: theme('colors.white');
+    background-color: theme('colors.offwhite');
   }
 
   @screen md {
