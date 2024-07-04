@@ -2,13 +2,12 @@
 import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 import { Autoplay, EffectFade, Keyboard, Navigation, Pagination } from 'swiper/modules'
-import type { SlideStoryblok } from '@/types/storyblok'
 import { wait } from '@/utilities/helpers'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
 
 interface Props {
-  slides: SlideStoryblok[]
+  slides: T[]
   pagination?: boolean
   options?: SwiperOptions
   nextPrevShadow?: boolean
