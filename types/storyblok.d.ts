@@ -88,19 +88,7 @@ export interface BlockCarouselStoryblok {
   [k: string]: any;
 }
 
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
-
 export interface BlockGalleryStoryblok {
-  title?: string;
-  slides: MultiassetStoryblok;
   items: SlideStoryblok[];
   connecting_line?: boolean;
   _uid: string;
@@ -194,6 +182,16 @@ export interface LinkListStoryblok {
   component: "link_list";
   [k: string]: any;
 }
+
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
 
 export interface MenuStoryblok {
   title: string;

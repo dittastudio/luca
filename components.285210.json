@@ -283,24 +283,9 @@
       "name": "block_gallery",
       "display_name": "Gallery",
       "created_at": "2024-04-29T19:50:48.270Z",
-      "updated_at": "2024-07-03T21:26:47.100Z",
+      "updated_at": "2024-07-04T11:06:57.831Z",
       "id": 5728317,
       "schema": {
-        "title": {
-          "type": "text",
-          "pos": 0
-        },
-        "slides": {
-          "type": "multiasset",
-          "pos": 1,
-          "filetypes": [
-            "images",
-            "videos"
-          ],
-          "asset_folder_id": null,
-          "key": "Slides",
-          "required": true
-        },
         "items": {
           "type": "bloks",
           "pos": 2,
@@ -317,21 +302,12 @@
           "inline_label": true,
           "pos": 3,
           "key": "connecting_line"
-        },
-        "tab-faf9d423-3e24-4ae7-9ebb-11c1ca58d1bb": {
-          "display_name": "Legacy",
-          "keys": [
-            "title",
-            "slides"
-          ],
-          "pos": 4,
-          "type": "tab"
         }
       },
       "image": null,
       "preview_field": null,
       "is_root": false,
-      "preview_tmpl": "{{@if(it.title)}}\n<p><strong>{{it.title}}</strong></p>\n{{/if}}\n\n{{@if(it.slides[0])}}\n<p>\n{{@image(it.slides[0].filename)/}} \n{{@if(it.slides.length &gt; 1)}}\n+ {{it.slides.length - 1}}\n{{/if}}\n</p>\n{{/if}}\n\n",
+      "preview_tmpl": "{{@if(it.items[0])}}\n{{@if(it.items[0].caption)}}\n<p><strong>{{it.items[0].caption}}</strong></p>\n{{/if}}\n\n{{@if(it.items[0].media.filename)}}\n<p>\n{{@image(it.items[0].media.filename)/}} \n{{@if(it.items.length &gt; 1)}}\n+ {{it.items.length - 1}}\n{{/if}}\n</p>\n{{/if}}\n{{/if}}\n\n",
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
