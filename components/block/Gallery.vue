@@ -66,11 +66,13 @@ const swiperOptions: SwiperOptions = {
     </UiCarousel>
 
     <h5 v-if="block.items" class="block-gallery__caption type-body-large wrapper">
-      <span v-if="block.items?.length > 1">
+      <span v-if="block.items?.length > 1" class="shrink-0">
         {{ currentSlide }} / {{ block.items?.length }}
       </span>
 
-      <span v-if="block.items?.[currentSlide - 1].caption">{{ block.items[currentSlide - 1].caption }}</span>
+      <span v-if="block.items?.[currentSlide - 1].caption">
+        {{ block.items[currentSlide - 1].caption }}
+      </span>
     </h5>
   </div>
 </template>
