@@ -8,7 +8,6 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
-
 const currentSlide = ref(1)
 
 const setCurrentSlide = (slide: number) => {
