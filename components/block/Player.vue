@@ -43,7 +43,7 @@ const url = useRequestURL()
 // const origin = import.meta.dev ? url.origin : 'https://luca.restaurant'
 const origin = url.origin
 
-const { data: oembed } = await useAsyncData(
+const { data: oembed, error } = await useAsyncData(
   'player-oembed',
   async () => await $fetch<OembedResult>(`${origin}/.netlify/functions/oembed`, {
     method: 'post',
@@ -64,7 +64,7 @@ const { data: oembed } = await useAsyncData(
     class="block-player wrapper"
   >
     <div
-      v-if="oembed?.data && !oembed.error"
+      v-if="oembed?.data && !oembed.error && !error"
       class="block-player__item"
       :class="{ 'aspect-16/9': ['Vimeo', 'YouTube'].includes(oembed.data.provider_name) }"
       v-html="oembed.data.html"
