@@ -45,7 +45,7 @@
     "@types/node": "^20.14.10",
     "del-cli": "^5.1.0",
     "eslint": "^9.7.0",
-    "netlify-cli": "^17.33.3",
+    "netlify-cli": "^17.33.4",
     "nuxt": "^3.12.3",
     "nuxt-gtag": "^2.0.7",
     "postcss-import": "^16.1.0",
