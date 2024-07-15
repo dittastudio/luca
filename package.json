@@ -16,9 +16,6 @@
     "nuke": "del-cli '.output' 'dist' '.nuxt' 'node_modules' 'package-lock.json'",
     "postinstall": "nuxt prepare"
   },
-  "overrides": {
-    "@typescript-eslint/eslint-plugin": "rc-v8"
-  },
   "dependencies": {
     "@netlify/functions": "^2.8.1",
     "@storyblok/nuxt": "^6.0.10",
@@ -60,5 +57,8 @@
     "stylelint-config-standard": "^36.0.1",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.4.31"
+  },
+  "overrides": {
+    "@typescript-eslint/eslint-plugin": "rc-v8"
   }
 }
