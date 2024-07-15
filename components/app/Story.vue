@@ -4,11 +4,6 @@ interface Props {
 }
 
 const { isOpen = false } = defineProps<Props>()
-const closeStoryLink = ref('/')
-
-watch(() => isOpen, (value) => {
-  closeStoryLink.value = value ? window.history.state.back : '/'
-})
 </script>
 
 <template>
@@ -16,7 +11,7 @@ watch(() => isOpen, (value) => {
     <div class="app-story__content">
       <div class="app-story__bar wrapper">
         <NuxtLink
-          :to="closeStoryLink"
+          to="/stories"
           class="app-story__link"
         >
           <span class="app-story__close">
