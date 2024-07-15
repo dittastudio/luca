@@ -75,7 +75,8 @@ useNavigation(false)
     </AppLayout>
 
     <AppCover
-      v-if="story && !isDev && !isStory && story.content.cover_message"
+      v-if="story && story.content.cover_message && !isDev "
+      v-show="!isStory"
       :message="story.content.cover_message"
     />
   </div>
