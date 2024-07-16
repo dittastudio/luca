@@ -87,7 +87,9 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    private: {},
+    MAILCHIMP_API_KEY: process.env.NUXT_MAILCHIMP_API_KEY,
+    MAILCHIMP_LIST_ID: process.env.NUXT_MAILCHIMP_LIST_ID,
+    MAILCHIMP_SERVER: process.env.NUXT_MAILCHIMP_SERVER,
     public: {
       STORYBLOK_TOKEN: process.env.NUXT_STORYBLOK_TOKEN,
       STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,

@@ -4,32 +4,21 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
 import { requestDelay } from '@/utilities/helpers'
 
-interface Response {
-  message: string
-  error: boolean
-  errors?: any[]
-  response?: {
-    detail: string
-    instance: string
-    status: number
-    title: string
-  }
-}
-
-interface FieldError {
-  code: string
-  message: string
-  validation?: string
-}
-
-const loading = ref<boolean>(false)
-const message = ref<string>('')
-const errorMessages = ref<FieldError[]>([])
+const loading = ref(false)
+const message = ref('')
 
 const validationSchema = toTypedSchema(
   z.object({
-    fname: z.string().trim().min(1, 'Please provide your first name').default(''),
-    lname: z.string().trim().min(1, 'Please provide your last name').default(''),
+    fname: z
+      .string()
+      .trim()
+      .min(1, 'Please provide your first name')
+      .default(''),
+    lname: z
+      .string()
+      .trim()
+      .min(1, 'Please provide your last name')
+      .default(''),
     email: z
       .string()
       .trim()
@@ -53,24 +42,6 @@ const { value: fname } = useField<string>('fname')
 const { value: lname } = useField<string>('lname')
 const { value: email } = useField<string>('email')
 
-const url = useRequestURL()
-
-const send = async () => {
-  const request = await fetch(`${url.origin}/.netlify/functions/mailchimp`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      fname: fname.value.trim(),
-      lname: lname.value.trim(),
-      email: email.value.trim(),
-    }),
-  })
-
-  return await request.json()
-}
-
 const onSubmit = async () => {
   try {
     message.value = ''
@@ -81,38 +52,27 @@ const onSubmit = async () => {
       return
     }
 
+    const send = async () => await $fetch('/api/mailchimp', {
+      method: 'post',
+      body: {
+        fname: fname.value.trim(),
+        lname: lname.value.trim(),
+        email: email.value.trim(),
+      },
+    })
+
     loading.value = true
 
-    const response = (await requestDelay(send())) as Response
+    const response = (await requestDelay(send()))
 
-    if (response.error) {
-      if (response.response?.title === 'Member Exists') {
-        message.value = `${email.value.trim()} is already subscribed.`
-      }
-      else if (response.response?.title === 'Invalid Resource') {
-        message.value = response.response?.detail || response.message
-      }
-      else {
-        message.value = response.message
-      }
+    message.value = response.statusMessage
 
-      if (response?.errors?.length) {
-        errorMessages.value = response.errors
-      }
-      else {
-        errorMessages.value = []
-      }
-
-      return
+    if (response?.statusCode === 200) {
+      resetForm()
     }
-
-    message.value = response.message
-    errorMessages.value = []
-
-    resetForm()
   }
   catch (error: any) {
-    message.value = error.message || error.error_description
+    message.value = error.statusMessage
   }
   finally {
     loading.value = false
@@ -211,19 +171,6 @@ const onSubmit = async () => {
       >
         {{ message }}
       </p>
-
-      <ul
-        v-if="errorMessages.length"
-        class="app-footer-form__error-list"
-      >
-        <li
-          v-for="(error, index) in errorMessages"
-          :key="`${error.validation || error.code}-${index}`"
-          class="app-footer-form__error"
-        >
-          {{ error.message }}
-        </li>
-      </ul>
     </FormFieldset>
   </FormBase>
 </template>
