@@ -14,6 +14,7 @@ export default withNuxt(
       'antfu/top-level-function': 'off',
       'toml/indent': ['error', 2, { subTables: 1, keyValuePairs: 1 }],
       'curly': 'off',
+      'no-console': 'off',
       'node/prefer-global/process': 'off',
       'vue/define-macros-order': 'off',
       'vue/no-v-html': 'off',
@@ -23,6 +24,14 @@ export default withNuxt(
       ]],
       'vue/custom-event-name-casing': ['error', 'kebab-case', {
         ignores: [],
+      }],
+      'vue/max-attributes-per-line': ['error', {
+        singleline: {
+          max: 1,
+        },
+        multiline: {
+          max: 1,
+        },
       }],
     },
   }),
