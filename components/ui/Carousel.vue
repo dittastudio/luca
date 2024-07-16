@@ -45,6 +45,7 @@ const initSwiper = () => {
     modules: [Autoplay, EffectFade, Keyboard, Navigation, Pagination],
     enabled: slides && slides.length > 1,
     speed: 500,
+    grabCursor: true,
     navigation: {
       nextEl: nextEl.value,
       prevEl: prevEl.value,
@@ -112,7 +113,10 @@ watch(() => options, () => {
   <div
     ref="swiperEl"
     class="ui-carousel swiper"
-    :class="{ 'ui-carousel--next-prev-shadow': nextPrevShadow }"
+    :class="{
+      'ui-carousel--next-prev-shadow': nextPrevShadow,
+      'ui-carousel--has-pagination': pagination && slides?.length > 1,
+    }"
   >
     <div class="ui-carousel__wrapper swiper-wrapper">
       <div
@@ -125,21 +129,21 @@ watch(() => options, () => {
           :slide="slide"
         />
       </div>
-
-      <template v-if="slides?.length > 1">
-        <button ref="prevEl" type="button" class="ui-carousel__button ui-carousel__button--previous">
-          <span class="sr-only">Previous</span>
-
-          <ArrowLeft class="ui-carousel__arrow ui-carousel__arrow--left" />
-        </button>
-
-        <button ref="nextEl" type="button" class="ui-carousel__button ui-carousel__button--next">
-          <span class="sr-only">Next</span>
-
-          <ArrowRight class="ui-carousel__arrow ui-carousel__arrow--right" />
-        </button>
-      </template>
     </div>
+
+    <template v-if="slides?.length > 1">
+      <button ref="prevEl" type="button" class="ui-carousel__button ui-carousel__button--previous">
+        <span class="sr-only">Previous</span>
+
+        <ArrowLeft class="ui-carousel__arrow ui-carousel__arrow--left" />
+      </button>
+
+      <button ref="nextEl" type="button" class="ui-carousel__button ui-carousel__button--next">
+        <span class="sr-only">Next</span>
+
+        <ArrowRight class="ui-carousel__arrow ui-carousel__arrow--right" />
+      </button>
+    </template>
 
     <div
       v-if="pagination && slides?.length > 1"
@@ -156,76 +160,107 @@ watch(() => options, () => {
 
 <style lang="postcss">
 .ui-carousel {
+  --dot-size: 8px;
+  --pagination-height: calc(theme('spacing.30') + var(--dot-size));
+
   user-select: none;
+  isolation: isolate;
   position: relative;
   height: inherit;
-
-  @media (hover: hover) {
-    &:hover {
-      .ui-carousel__button {
-        pointer-events: auto;
-      }
-    }
-  }
 }
 
 .ui-carousel__wrapper {
   display: flex;
+
   width: 100%;
   height: 100%;
+
   transition-timing-function: theme('transitionTimingFunction.out');
   transition-property: transform;
 }
 
 .ui-carousel__slide {
   touch-action: pan-y pinch-zoom;
+
   flex-shrink: 0;
+
   width: 100%;
+
   background-color: var(--app-background-color);
+
   transition-property: transform;
 }
 
 .ui-carousel__button {
   pointer-events: none;
+
   position: absolute;
-  z-index: 1;
   top: 0;
+
   display: flex;
   align-items: center;
-  width: 50%;
+
   height: 100%;
   padding: var(--app-outer-gutter);
+
   opacity: 0;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.out');
 
-  &:hover {
+  transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
+
+  .ui-carousel:hover & {
+    opacity: 0.5;
+  }
+
+  .ui-carousel:hover &:hover {
     opacity: 1;
+  }
 
-    .ui-carousel__arrow--left,
-    .ui-carousel__arrow--right {
-      transform: translate3d(0, 0, 0);
-    }
+  .ui-carousel--next-prev-shadow &::before {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    width: 400px;
+    height: 400px;
+    margin: auto;
+
+    background-image: radial-gradient(circle, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 50%);
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
   &--previous {
+    cursor: w-resize;
     left: 0;
     justify-content: start;
 
-    .ui-carousel--next-prev-shadow & {
-      background-image: radial-gradient(circle, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 50%);
-      background-position: -200px 50%;
+    .ui-carousel--next-prev-shadow &::before {
+      left: 0;
+      background-position: left -225px center;
     }
   }
 
   &--next {
+    cursor: e-resize;
     right: 0;
     justify-content: end;
 
-    .ui-carousel--next-prev-shadow & {
-      background-image: radial-gradient(circle, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 50%);
-      background-position: 200px 50%;
+    .ui-carousel--next-prev-shadow &::before {
+      right: 0;
+      background-position: right -225px center;
+    }
+  }
+
+  .ui-carousel--has-pagination & {
+    height: calc(100% - var(--pagination-height));
+  }
+
+  @media (hover: hover) {
+    .ui-carousel:hover & {
+      pointer-events: auto;
     }
   }
 }
@@ -234,22 +269,27 @@ watch(() => options, () => {
   width: 22px;
   height: auto;
   fill: currentcolor;
-  transition: transform theme('transitionDuration.500') theme('transitionTimingFunction.out');
+  transition: transform theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
 
   &--left {
-    transform: translate3d(100%, 0, 0);
+    transform: translate3d(50%, 0, 0);
   }
 
   &--right {
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .ui-carousel:hover & {
+    transform: translate3d(0, 0, 0);
+    transition: transform theme('transitionDuration.300') theme('transitionTimingFunction.out');
   }
 }
 
 .ui-carousel__pagination-wrapper {
-  --dot-size: 8px;
-
   position: relative;
+
   overflow: hidden;
+
   width: calc(var(--dot-size) * 11);
   margin-block-start: calc(theme('spacing.30') - var(--dot-size));
   margin-inline: auto;
@@ -259,9 +299,11 @@ watch(() => options, () => {
   &::after {
     pointer-events: none;
     content: '';
+
     position: absolute;
     z-index: 1;
     top: 0;
+
     width: var(--dot-size);
     height: 100%;
   }
@@ -290,12 +332,16 @@ watch(() => options, () => {
 
 .ui-carousel__dot {
   cursor: pointer;
+
   display: block;
+
   width: var(--dot-size);
   height: var(--dot-size);
+
   opacity: 0.2;
   background-color: currentcolor;
   border-radius: 50%;
+
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
   .ui-carousel__bullet--is-active & {
