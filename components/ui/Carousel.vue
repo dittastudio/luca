@@ -45,6 +45,7 @@ const initSwiper = () => {
     modules: [Autoplay, EffectFade, Keyboard, Navigation, Pagination],
     enabled: slides && slides.length > 1,
     speed: 500,
+    grabCursor: true,
     navigation: {
       nextEl: nextEl.value,
       prevEl: prevEl.value,
@@ -163,16 +164,9 @@ watch(() => options, () => {
   --pagination-height: calc(theme('spacing.30') + var(--dot-size));
 
   user-select: none;
+  isolation: isolate;
   position: relative;
   height: inherit;
-
-  @media (hover: hover) {
-    &:hover {
-      .ui-carousel__button {
-        pointer-events: auto;
-      }
-    }
-  }
 }
 
 .ui-carousel__wrapper {
@@ -201,13 +195,11 @@ watch(() => options, () => {
   pointer-events: none;
 
   position: absolute;
-  z-index: 1;
   top: 0;
 
   display: flex;
   align-items: center;
 
-  width: 50%;
   height: 100%;
   padding: var(--app-outer-gutter);
 
@@ -215,33 +207,61 @@ watch(() => options, () => {
 
   transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
 
-  &:hover {
+  .ui-carousel:hover & {
+    opacity: 0.5;
+  }
+
+  .ui-carousel:hover &:hover {
     opacity: 1;
-    transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
+  }
+
+  .ui-carousel--next-prev-shadow &::before {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    width: 400px;
+    height: 400px;
+    margin: auto;
+
+    background-image: radial-gradient(circle, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 50%);
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
   &--previous {
+    cursor: w-resize;
     left: 0;
     justify-content: start;
 
-    .ui-carousel--next-prev-shadow & {
-      background-image: radial-gradient(circle, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 50%);
-      background-position: -200px 50%;
+    .ui-carousel--next-prev-shadow &::before {
+      left: 0;
+      background-position: left -225px center;
     }
   }
 
   &--next {
+    cursor: e-resize;
     right: 0;
     justify-content: end;
 
-    .ui-carousel--next-prev-shadow & {
-      background-image: radial-gradient(circle, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 50%);
-      background-position: 200px 50%;
+    .ui-carousel--next-prev-shadow &::before {
+      right: 0;
+      background-position: right -225px center;
     }
   }
 
   .ui-carousel--has-pagination & {
     height: calc(100% - var(--pagination-height));
+  }
+
+  @media (hover: hover) {
+    .ui-carousel:hover & {
+      pointer-events: auto;
+    }
   }
 }
 
@@ -252,14 +272,14 @@ watch(() => options, () => {
   transition: transform theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
 
   &--left {
-    transform: translate3d(100%, 0, 0);
+    transform: translate3d(50%, 0, 0);
   }
 
   &--right {
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 
-  .ui-carousel__button:hover & {
+  .ui-carousel:hover & {
     transform: translate3d(0, 0, 0);
     transition: transform theme('transitionDuration.300') theme('transitionTimingFunction.out');
   }

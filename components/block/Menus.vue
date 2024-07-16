@@ -71,6 +71,7 @@ const activeIndex = ref(0)
                 ratio="1:1.414"
                 :slides="menu.images"
                 :options="swiperOptions"
+                :next-prev-shadow="true"
               >
                 <template #slide="{ slide }">
                   <MediaImage
