@@ -26,9 +26,15 @@ useSeoMeta({
   robots: 'index, follow',
 })
 
+const splashSeen = useState('splashSeen', () => false)
+
 useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
 useNavigation(false)
+
+if (isStory.value) {
+  splashSeen.value = true
+}
 </script>
 
 <template>
@@ -75,8 +81,7 @@ useNavigation(false)
     </AppLayout>
 
     <AppCover
-      v-if="story && story.content.cover_message && !isDev "
-      v-show="!isStory"
+      v-if="story && story.content.cover_message && !splashSeen && !isDev"
       :message="story.content.cover_message"
     />
   </div>
