@@ -70,11 +70,11 @@ export default defineEventHandler(async (event) => {
       style: 'long',
       type: 'disjunction',
     })
-    const message = formatter.format(uniques)
+    const list = formatter.format(uniques)
 
     throw createError({
       statusCode: 400,
-      statusMessage: `Unsupported platform. Should be one of: ${message}`,
+      statusMessage: `Unsupported platform. Should be one of: ${list}`,
     })
   }
 
