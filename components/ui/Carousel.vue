@@ -132,13 +132,21 @@ watch(() => options, () => {
     </div>
 
     <template v-if="slides?.length > 1">
-      <button ref="prevEl" type="button" class="ui-carousel__button ui-carousel__button--previous">
+      <button
+        ref="prevEl"
+        type="button"
+        class="ui-carousel__button ui-carousel__button--previous"
+      >
         <span class="sr-only">Previous</span>
 
         <ArrowLeft class="ui-carousel__arrow ui-carousel__arrow--left" />
       </button>
 
-      <button ref="nextEl" type="button" class="ui-carousel__button ui-carousel__button--next">
+      <button
+        ref="nextEl"
+        type="button"
+        class="ui-carousel__button ui-carousel__button--next"
+      >
         <span class="sr-only">Next</span>
 
         <ArrowRight class="ui-carousel__arrow ui-carousel__arrow--right" />
@@ -208,6 +216,7 @@ watch(() => options, () => {
   transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
 
   .ui-carousel:hover & {
+    pointer-events: auto;
     opacity: 0.5;
   }
 
@@ -258,10 +267,8 @@ watch(() => options, () => {
     height: calc(100% - var(--pagination-height));
   }
 
-  @media (hover: hover) {
-    .ui-carousel:hover & {
-      pointer-events: auto;
-    }
+  @media not (hover: hover) {
+    display: none;
   }
 }
 
