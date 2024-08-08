@@ -10,7 +10,10 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
 </script>
 
 <template>
-  <AppTheme :themes="story.content.themes">
+  <AppTheme
+    v-if="story"
+    :themes="story.content.themes"
+  >
     <AppCoverLogo v-if="isHome" />
 
     <PageCover
