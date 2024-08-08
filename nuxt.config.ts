@@ -71,6 +71,18 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    ['@nuxtjs/apollo', {
+      clients: {
+        default: {
+          httpEndpoint: process.env.NUXT_SHOPIFY_STOREFRONT_HOST,
+          httpLinkOptions: {
+            headers: {
+              'x-shopify-storefront-access-token': process.env.NUXT_SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+            },
+          },
+        },
+      },
+    }],
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxtjs/sitemap',

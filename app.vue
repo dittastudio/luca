@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { getProductsQuery } from '@/graphql/getProductsQuery'
 import '@/utilities/colophon'
 import { storyblokEditor } from '@/utilities/storyblok'
 import { screenSizes } from '@/tailwind.config'
@@ -35,6 +36,9 @@ useNavigation(false)
 if (isStory.value) {
   splashSeen.value = true
 }
+
+const { data: gqlProducts } = useAsyncQuery(getProductsQuery, {})
+console.log(gqlProducts.value)
 </script>
 
 <template>
