@@ -8063,18 +8063,18 @@ export enum WeightUnit {
   Pounds = 'POUNDS'
 }
 
-export type ProductFragment = { __typename?: 'Product', id: string, title: string, handle: string, description: string, descriptionHtml: any, seo: { __typename?: 'SEO', description: string | null, title: string | null }, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', id: string | null, height: number | null, altText: string | null, url: any, width: number | null }> }, featuredImage: { __typename?: 'Image', id: string | null, url: any, width: number | null, altText: string | null, height: number | null } | null, variants: { __typename?: 'ProductVariantConnection', nodes: Array<{ __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }> } };
+export type ProductFragment = { __typename?: 'Product', id: string, handle: string, title: string, description: string, descriptionHtml: any, seo: { __typename?: 'SEO', title: string | null, description: string | null }, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', id: string | null, height: number | null, altText: string | null, url: any, width: number | null }> }, featuredImage: { __typename?: 'Image', id: string | null, url: any, width: number | null, altText: string | null, height: number | null } | null, variants: { __typename?: 'ProductVariantConnection', nodes: Array<{ __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }> } };
 
 export type CollectionQueryVariables = Exact<{
   handle: Scalars['String']['input'];
 }>;
 
 
-export type CollectionQuery = { __typename?: 'QueryRoot', collection: { __typename?: 'Collection', title: string, description: string, descriptionHtml: any, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', title: string, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', id: string | null, height: number | null, altText: string | null, url: any, width: number | null }> } }> } } | null };
+export type CollectionQuery = { __typename?: 'QueryRoot', collection: { __typename?: 'Collection', id: string, handle: string, title: string, description: string, descriptionHtml: any, products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, title: string, handle: string }> } } | null };
 
 export type ProductQueryVariables = Exact<{
   handle: Scalars['String']['input'];
 }>;
 
 
-export type ProductQuery = { __typename?: 'QueryRoot', product: { __typename?: 'Product', id: string, title: string, handle: string, description: string, descriptionHtml: any, seo: { __typename?: 'SEO', description: string | null, title: string | null }, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', id: string | null, height: number | null, altText: string | null, url: any, width: number | null }> }, featuredImage: { __typename?: 'Image', id: string | null, url: any, width: number | null, altText: string | null, height: number | null } | null, variants: { __typename?: 'ProductVariantConnection', nodes: Array<{ __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }> } } | null };
+export type ProductQuery = { __typename?: 'QueryRoot', product: { __typename?: 'Product', id: string, handle: string, title: string, description: string, descriptionHtml: any, seo: { __typename?: 'SEO', title: string | null, description: string | null }, images: { __typename?: 'ImageConnection', nodes: Array<{ __typename?: 'Image', id: string | null, height: number | null, altText: string | null, url: any, width: number | null }> }, featuredImage: { __typename?: 'Image', id: string | null, url: any, width: number | null, altText: string | null, height: number | null } | null, variants: { __typename?: 'ProductVariantConnection', nodes: Array<{ __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }> } } | null };

@@ -62,6 +62,11 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
         :block="block"
       />
 
+      <BlockShopifyCollection
+        v-else-if="block.component === 'block_shopify_collection'"
+        :block="block"
+      />
+
       <BlockSplit
         v-else-if="block.component === 'block_split'"
         :block="block"
