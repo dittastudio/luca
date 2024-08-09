@@ -123,6 +123,13 @@ export interface BlockPlayerStoryblok {
   [k: string]: any;
 }
 
+export interface BlockShopifyCollectionStoryblok {
+  handle: string;
+  _uid: string;
+  component: "block_shopify_collection";
+  [k: string]: any;
+}
+
 export interface RichtextStoryblok {
   type: string;
   content?: RichtextStoryblok[];
@@ -215,6 +222,7 @@ export interface PageStoryblok {
     | BlockMediaStoryblok
     | BlockMenusStoryblok
     | BlockPlayerStoryblok
+    | BlockShopifyCollectionStoryblok
     | BlockSplitStoryblok
     | BlockTextStoryblok
     | BlockTextColumnsStoryblok
