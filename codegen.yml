@@ -1,0 +1,20 @@
+documents: graphql/**/*.gql
+schema:
+  - https://luca-restaurant-shop.myshopify.com/api/2024-07/graphql.json:
+      headers:
+        X-Shopify-Storefront-Access-Token: 43e2727a6604d56de26a112db4f26f29
+generates:
+  ./types/shopify.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - add:
+          content: '/* eslint-disable */'
+      - add:
+          content: '/* THIS IS A GENERATED FILE, DO NOT EDIT */'
+      - add:
+          content: // @ts-ignore
+    config:
+      dedupeFragments: true
+      avoidOptionals: true
+      exposeQueryKeys: true

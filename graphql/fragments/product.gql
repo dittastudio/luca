@@ -1,0 +1,37 @@
+fragment Product on Product {
+  id
+  handle
+  title
+  description
+  descriptionHtml
+  seo {
+    title
+    description
+  }
+  images(first: 10) {
+    nodes {
+      id
+      height
+      altText
+      url
+      width
+    }
+  }
+  featuredImage {
+    id
+    url
+    width
+    altText
+    height
+  }
+  variants(first: 10) {
+    nodes {
+      id
+      title
+      price {
+        amount
+        currencyCode
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+#import '../fragments/product.gql'
+
+query product($handle: String!) {
+  product(handle: $handle) {
+    ...Product
+  }
+}

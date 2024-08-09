@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { getProductQuery } from '@/graphql/getProductQuery'
+import type { ProductQuery } from '@/types/shopify'
+import product from '@/graphql/queries/product.gql'
 
 const route = useRoute()
 
-const { data } = useAsyncQuery(getProductQuery, {
+const { data } = useAsyncQuery<ProductQuery>(product, {
   handle: route.params.handle,
 })
 </script>
@@ -12,8 +13,8 @@ const { data } = useAsyncQuery(getProductQuery, {
   <AppTheme>
     <p>Single product for: {{ route.params.handle }}</p>
 
-    <template v-if="data?.product">
-      <pre>{{ data.product }}</pre>
+    <template v-if="data">
+      <pre>{{ data }}</pre>
     </template>
 
     <template v-else>
