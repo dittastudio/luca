@@ -17,6 +17,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@ditta/colophon": "^0.0.5",
     "@netlify/functions": "^2.8.1",
     "@storyblok/nuxt": "^6.0.12",
     "@vee-validate/zod": "^4.13.2",

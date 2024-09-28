@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import '@/utilities/colophon'
-import { storyblokEditor } from '@/utilities/storyblok'
-import { screenSizes } from '@/tailwind.config'
 import type { SettingsStoryblok } from '@/types/storyblok'
+import { screenSizes } from '@/tailwind.config'
+import { storyblokEditor } from '@/utilities/storyblok'
 
 const route = useRoute()
 const story = await useStoryblokStory<SettingsStoryblok>('/settings')
