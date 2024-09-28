@@ -97,6 +97,10 @@ export default defineNuxtConfig({
   },
   site: {
     url: 'https://luca.restaurant',
+    name: 'Luca',
+  },
+  sitemap: {
+    sources: ['/api/sitemap'],
   },
   ssr: true,
   tailwindcss: {
