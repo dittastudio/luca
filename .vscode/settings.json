@@ -1,5 +1,5 @@
 {
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.suggest.autoImports": false,
   "javascript.suggest.autoImports": false,
