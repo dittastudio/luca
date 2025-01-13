@@ -1,10 +1,10 @@
 <script lang="ts" setup generic="T">
-import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
-import { Autoplay, EffectFade, Keyboard, Navigation, Pagination } from 'swiper/modules'
-import { wait } from '@/utilities/helpers'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
+import { wait } from '@/utilities/helpers'
+import Swiper from 'swiper'
+import { Autoplay, EffectFade, Keyboard, Navigation, Pagination } from 'swiper/modules'
 
 interface Props {
   slides: T[]
@@ -193,8 +193,6 @@ watch(() => options, () => {
   flex-shrink: 0;
 
   width: 100%;
-
-  background-color: var(--app-background-color);
 
   transition-property: transform;
 }
