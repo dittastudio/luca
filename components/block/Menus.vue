@@ -30,9 +30,7 @@ const { block } = defineProps<Props>()
             </AppearanceButton>
           </NuxtLink>
 
-          <!-- test --->
-
-          <UiConnection v-if="index < (block.menus?.length ?? 0) - 1" />
+          <!-- <UiConnection v-if="index < (block.menus?.length ?? 0) - 1" /> -->
         </li>
       </ul>
     </nav>
@@ -41,9 +39,11 @@ const { block } = defineProps<Props>()
 
 <style lang="postcss" scoped>
 .block-menus {
-  margin-top: calc(30vh - var(--app-header-height));
-  text-align: center;
   backface-visibility: hidden;
+
+  @media screen(mdMax) {
+    margin-top: theme('spacing.100');
+  }
 }
 
 .block-menus__list {
@@ -58,6 +58,6 @@ const { block } = defineProps<Props>()
 }
 
 .block-menus__link {
-  padding: theme('spacing.80');
+  padding: theme('spacing.40');
 }
 </style>
