@@ -14,7 +14,7 @@ const { block } = defineProps<Props>()
     class="block-menus wrapper"
   >
     <nav class="block-menus__nav">
-      <ul class="block-menus__list type-body-large">
+      <ul class="block-menus__list">
         <li
           v-for="(menu, index) in block.menus"
           :key="menu._uid"
@@ -39,12 +39,9 @@ const { block } = defineProps<Props>()
 
 <style lang="postcss" scoped>
 .block-menus {
+  margin-top: calc(30vh - var(--app-header-height));
   text-align: center;
   backface-visibility: hidden;
-
-  @media screen(md) {
-    margin-top: calc(40vh - var(--app-header-height));
-  }
 }
 
 .block-menus__list {

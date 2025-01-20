@@ -91,7 +91,7 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
 .block-components__item {
   --line-spacing: theme('spacing.80');
   --spacing-rhythm: theme('spacing.150');
-  --first-spacing-rhythm: 25vh;
+  --first-spacing-rhythm: theme('spacing.30');
 
   @screen md {
   --spacing-rhythm: 15.75vw;
@@ -110,8 +110,14 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
     padding-block-end: theme('spacing.150');
   }
 
-  &:not(&--block_gallery, &--block_menus):first-child {
+  &:first-child {
     padding-block-start: var(--first-spacing-rhythm);
+  }
+
+  &--block_text:first-child {
+    @media screen(mdMax) {
+      padding-block-start: 25vh;
+    }
   }
 
   .block-components--home &:first-child {
@@ -139,10 +145,6 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
 
   & .block-components__line  {
     padding-block-start: var(--line-spacing);
-  }
-
-  &--block_menus:first-child {
-    padding-block-start: theme('spacing.30');
   }
 
   /* Bespoke recipes */
