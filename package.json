@@ -19,7 +19,7 @@
   "dependencies": {
     "@ditta/colophon": "^0.0.5",
     "@netlify/functions": "^2.8.1",
-    "@storyblok/nuxt": "^6.0.12",
+    "@storyblok/nuxt": "^6.2.2",
     "@vee-validate/zod": "^4.13.2",
     "@vueuse/core": "^11.1.0",
     "jsdom": "^25.0.1",
