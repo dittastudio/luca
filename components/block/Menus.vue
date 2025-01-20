@@ -30,6 +30,8 @@ const { block } = defineProps<Props>()
             </AppearanceButton>
           </NuxtLink>
 
+          <!-- test --->
+
           <UiConnection v-if="index < (block.menus?.length ?? 0) - 1" />
         </li>
       </ul>
