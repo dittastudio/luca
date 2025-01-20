@@ -34,7 +34,7 @@
     "@antfu/eslint-config": "3.7.3",
     "@mailchimp/mailchimp_marketing": "3.0.80",
     "@michaelpumo/screen": "0.0.18",
-    "@nuxt/eslint": "0.5.7",
+    "@nuxt/eslint": "0.7.5",
     "@nuxt/image": "1.8.0",
     "@nuxtjs/sitemap": "6.1.1",
     "@nuxtjs/stylelint-module": "5.2.0",
@@ -45,21 +45,21 @@
     "@types/mailchimp__mailchimp_marketing": "3.0.20",
     "@types/node": "22.7.4",
     "del-cli": "5.1.0",
-    "eslint": "9.11.1",
-    "netlify-cli": "17.36.2",
+    "eslint": "9.18.0",
+    "netlify-cli": "^17.38.1",
     "nuxt": "3.13.2",
     "nuxt-gtag": "3.0.1",
     "postcss-import": "16.1.0",
-    "prettier": "3.3.3",
+    "prettier": "3.4.2",
     "storyblok-generate-ts": "2.1.0",
-    "stylelint": "16.9.0",
-    "stylelint-config-clean-order": "6.1.0",
+    "stylelint": "16.13.2",
+    "stylelint-config-clean-order": "7.0.0",
     "stylelint-config-recommended-vue": "1.5.0",
-    "stylelint-config-standard": "36.0.1",
+    "stylelint-config-standard": "37.0.0",
     "vite-svg-loader": "5.1.0",
     "vue": "3.5.10"
   },
   "overrides": {
-    "@typescript-eslint/eslint-plugin": "rc-v8"
+    "@typescript-eslint/eslint-plugin": "8.21.0"
   }
 }
