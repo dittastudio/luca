@@ -29,8 +29,6 @@ const { block } = defineProps<Props>()
               {{ menu.title }}
             </AppearanceButton>
           </NuxtLink>
-
-          <!-- <UiConnection v-if="index < (block.menus?.length ?? 0) - 1" /> -->
         </li>
       </ul>
     </nav>
