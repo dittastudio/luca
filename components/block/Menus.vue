@@ -16,9 +16,11 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     v-editable="block"
     class="block-menus wrapper"
   >
-    <div class="block-menus__banner">
+    <div
+      v-if="block.media && assetType === 'image'"
+      class="block-menus__banner"
+    >
       <MediaImage
-        v-if="block.media && assetType === 'image'"
         class="block-menus__media col-start-2 col-end-12"
         :asset="block.media"
         ratio="5:2"
