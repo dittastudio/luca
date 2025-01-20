@@ -110,7 +110,7 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
     padding-block-end: theme('spacing.150');
   }
 
-  &:first-child {
+  &:not(&--block_gallery):first-child {
     padding-block-start: var(--first-spacing-rhythm);
   }
 
