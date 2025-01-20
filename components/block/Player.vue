@@ -31,7 +31,10 @@ const { data: oembed, error } = await useAsyncData(
     v-editable="block"
     class="block-player wrapper"
   >
-    <div v-if="error" class="block-player__error prose prose--large">
+    <div
+      v-if="error"
+      class="block-player__error prose prose--large"
+    >
       <p>Error ({{ error.statusCode }}) getting player:</p>
 
       <p>{{ error.statusMessage }}</p>
