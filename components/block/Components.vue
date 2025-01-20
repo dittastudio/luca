@@ -90,16 +90,24 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
 <style lang="postcss">
 .block-components__item {
   --line-spacing: theme('spacing.80');
-  --spacing-rhythm: theme('spacing.150');
   --first-spacing-rhythm: theme('spacing.30');
+  --spacing-rhythm: theme('spacing.150');
+
+  padding-block-start: var(--first-spacing-rhythm);
 
   @screen md {
-  --spacing-rhythm: 15.75vw;
-  --first-spacing-rhythm: theme('spacing.100');
+    --first-spacing-rhythm: theme('spacing.100');
+    --spacing-rhythm: 15.75vw;
   }
 
   @screen 3xl {
     --spacing-rhythm: theme('spacing.300');
+  }
+
+  &--block_text:first-child {
+    @media screen(mdMax) {
+      padding-block-start: 25vh;
+    }
   }
 
   & + & {
@@ -108,16 +116,6 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
 
   &:not(&--block_gallery):last-child {
     padding-block-end: theme('spacing.150');
-  }
-
-  &:not(&--block_gallery):first-child {
-    padding-block-start: var(--first-spacing-rhythm);
-  }
-
-  &--block_text:first-child {
-    @media screen(mdMax) {
-      padding-block-start: 25vh;
-    }
   }
 
   .block-components--home &:first-child {
