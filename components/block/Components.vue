@@ -110,6 +110,10 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
     }
   }
 
+  &--block_gallery:first-child {
+    padding-block-start: 0;
+  }
+
   & + & {
     padding-block-start: var(--spacing-rhythm);
   }

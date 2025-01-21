@@ -109,6 +109,7 @@ export interface BlockMediaStoryblok {
 }
 
 export interface BlockMenusStoryblok {
+  media?: AssetStoryblok;
   menus?: MenuStoryblok[];
   _uid: string;
   component: "block_menus";

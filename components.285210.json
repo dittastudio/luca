@@ -409,9 +409,18 @@
       "display_name": "Menus",
       "description": null,
       "created_at": "2024-04-26T15:27:37.492Z",
-      "updated_at": "2024-04-26T15:58:46.567Z",
+      "updated_at": "2025-01-20T19:01:46.220Z",
       "id": 5717541,
       "schema": {
+        "media": {
+          "type": "asset",
+          "pos": 0,
+          "filetypes": [
+            "images"
+          ],
+          "id": "qh_g6rTdTWGo8xrF0EtnAA",
+          "display_name": "Banner"
+        },
         "menus": {
           "type": "bloks",
           "restrict_type": "",
@@ -421,7 +430,8 @@
           ],
           "minimum": 1,
           "key": "Menus",
-          "pos": 0
+          "pos": 1,
+          "id": "kYn4q-T5TIWxSVC8k4UzLQ"
         }
       },
       "image": "//a.storyblok.com/f/285210/x/acad4da6f6/screenshot-2024-04-26-at-16-29-12.png",
