@@ -27,7 +27,7 @@ export type MultilinkStoryblok =
 export interface BlockButtonStoryblok {
   title: string;
   link: Exclude<MultilinkStoryblok, {linktype?: "asset"}>;
-  connecting_line?: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_button";
   [k: string]: any;
@@ -35,14 +35,14 @@ export interface BlockButtonStoryblok {
 
 export interface AssetStoryblok {
   _uid?: string;
-  id: number;
-  alt?: string;
+  id: number | null;
+  alt: string | null;
   name: string;
-  focus?: string;
-  source?: string;
-  title?: string;
+  focus: string | null;
+  source: string | null;
+  title: string | null;
   filename: string;
-  copyright?: string;
+  copyright: string | null;
   fieldtype?: string;
   meta_data?: null | {
     [k: string]: any;
@@ -59,7 +59,7 @@ export interface BlockCardStoryblok {
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
   column_end: number | string;
-  connecting_line?: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_card";
   [k: string]: any;
@@ -72,7 +72,7 @@ export interface BlockCardEditorialStoryblok {
   link: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
   column_end: number | string;
-  connecting_line?: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_card_editorial";
   [k: string]: any;
@@ -80,9 +80,9 @@ export interface BlockCardEditorialStoryblok {
 
 export interface BlockCarouselStoryblok {
   items: SlideStoryblok[];
-  two_per_slide?: boolean;
-  autoplay?: boolean;
-  connecting_line?: boolean;
+  two_per_slide: boolean;
+  autoplay: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_carousel";
   [k: string]: any;
@@ -90,7 +90,7 @@ export interface BlockCarouselStoryblok {
 
 export interface BlockGalleryStoryblok {
   items: SlideStoryblok[];
-  connecting_line?: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_gallery";
   [k: string]: any;
@@ -102,13 +102,14 @@ export interface BlockMediaStoryblok {
   ratio: number | string;
   column_start: number | string;
   column_end: number | string;
-  connecting_line?: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_media";
   [k: string]: any;
 }
 
 export interface BlockMenusStoryblok {
+  media?: AssetStoryblok;
   menus?: MenuStoryblok[];
   _uid: string;
   component: "block_menus";
@@ -117,7 +118,7 @@ export interface BlockMenusStoryblok {
 
 export interface BlockPlayerStoryblok {
   media_url: string;
-  autoplay?: boolean;
+  autoplay: boolean;
   _uid: string;
   component: "block_player";
   [k: string]: any;
@@ -144,8 +145,8 @@ export interface BlockSplitStoryblok {
   caption?: string;
   ratio: number | string;
   text: RichtextStoryblok;
-  reversed?: boolean;
-  connecting_line?: boolean;
+  reversed: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_split";
   [k: string]: any;
@@ -153,7 +154,7 @@ export interface BlockSplitStoryblok {
 
 export interface BlockTextStoryblok {
   text: RichtextStoryblok;
-  connecting_line?: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_text";
   [k: string]: any;
@@ -162,7 +163,7 @@ export interface BlockTextStoryblok {
 export interface BlockTextColumnsStoryblok {
   title?: string;
   text: RichtextStoryblok;
-  connecting_line?: boolean;
+  connecting_line: boolean;
   _uid: string;
   component: "block_text_columns";
   [k: string]: any;

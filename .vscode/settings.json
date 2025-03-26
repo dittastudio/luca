@@ -46,5 +46,8 @@
     "toml",
     "gql",
     "graphql"
-  ]
+  ],
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  }
 }
