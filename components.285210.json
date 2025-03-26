@@ -810,26 +810,20 @@
       "display_name": "Menu",
       "description": null,
       "created_at": "2024-04-26T15:31:26.858Z",
-      "updated_at": "2024-06-27T14:18:04.341Z",
+      "updated_at": "2025-03-26T15:48:07.606Z",
       "id": 5717545,
       "schema": {
         "title": {
           "type": "text",
-          "required": true
-        },
-        "images": {
-          "type": "multiasset",
           "required": true,
-          "filetypes": [
-            "images"
-          ],
-          "asset_folder_id": 531546
+          "id": "ENm2rJ6QRSe6p7x4pjKyGg"
         },
         "pdf": {
           "type": "asset",
           "required": true,
           "asset_folder_id": 531546,
-          "display_name": "PDF"
+          "display_name": "PDF",
+          "id": "nvBcLSbLSeGj8wxYEhZffQ"
         }
       },
       "image": null,

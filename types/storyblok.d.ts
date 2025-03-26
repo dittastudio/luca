@@ -191,19 +191,8 @@ export interface LinkListStoryblok {
   [k: string]: any;
 }
 
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
-
 export interface MenuStoryblok {
   title: string;
-  images: MultiassetStoryblok;
   pdf: AssetStoryblok;
   _uid: string;
   component: "menu";
