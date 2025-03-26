@@ -1,5 +1,5 @@
-import type { LocationQuery } from 'vue-router'
 import type { RichtextStoryblok } from '@/types/storyblok'
+import type { LocationQuery } from 'vue-router'
 
 const storyblokEditor = (search: LocationQuery) => '_storyblok' in search
 
@@ -23,6 +23,8 @@ const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
 
   return 'other'
 }
+
+const storyblokImageUrlUpdate = (url: string) => url.replace('//a.storyblok.com', '//a2.storyblok.com')
 
 const storyblokImage = (
   filename: string | null | undefined,
@@ -53,7 +55,7 @@ const storyblokImage = (
   const transforms = `m/${settings.width}x${settings.height}${
     settings.smart ? '/smart' : ''
   }/filters${filters}`
-  const path = `${filename}/${transforms}`.replace('//a.storyblok.com', '//a2.storyblok.com')
+  const path = storyblokImageUrlUpdate(`${filename}/${transforms}`)
 
   return path
 }
@@ -79,10 +81,11 @@ const storyblokImageDimensions = (
 }
 
 export {
-  storyblokRichTextContent,
-  storyblokEditor,
   storyblokAssetType,
+  storyblokEditor,
   storyblokImage,
   storyblokImageDimensions,
+  storyblokImageUrlUpdate,
+  storyblokRichTextContent,
   storyblokSlug,
 }
