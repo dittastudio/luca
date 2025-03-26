@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useIntersectionObserver } from '@vueuse/core'
-import { calculateAspectRatio, ratioDimensions, validAspectRatio } from '@/utilities/helpers'
-import { storyblokImageDimensions } from '@/utilities/storyblok'
 import type { AssetStoryblok } from '@/types/storyblok'
+import { calculateAspectRatio, ratioDimensions, validAspectRatio } from '@/utilities/helpers'
+import { storyblokImage, storyblokImageDimensions, storyblokImageUrlUpdate } from '@/utilities/storyblok'
+import { useIntersectionObserver } from '@vueuse/core'
 
 defineOptions({
   inheritAttrs: false,
@@ -34,12 +34,14 @@ const size = {
   height: ratioDimensions(ratioFormat).height,
 }
 
-const placeholderImg = useImage()
-const placeholder = placeholderImg(asset.filename, {
-  width: size.width,
-  height: size.height,
-  quality: 10,
-})
+const placeholder = storyblokImage(
+  asset.filename,
+  {
+    width: size.width,
+    height: size.height,
+    quality: 10,
+  },
+)
 
 useIntersectionObserver(
   container,
@@ -57,7 +59,7 @@ useIntersectionObserver(
 
 const imgMain = useImage()
 
-const imgInfo = computed(() => imgMain.getSizes(asset.filename, {
+const imgInfo = computed(() => imgMain.getSizes(storyblokImageUrlUpdate(asset.filename), {
   provider: 'storyblok',
   sizes,
   modifiers: {
@@ -73,7 +75,7 @@ const imgAttrs = computed(() => ({
   ...rest,
   width: size.width,
   height: size.height,
-  src: ready.value ? asset.filename : '',
+  src: ready.value ? storyblokImageUrlUpdate(asset.filename) : '',
   sizes: ready.value ? imgInfo.value.sizes : '',
   srcset: ready.value ? imgInfo.value.srcset : '',
   alt: attrs.value?.alt ?? asset.alt ?? '',

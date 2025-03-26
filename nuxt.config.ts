@@ -1,6 +1,17 @@
 import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/tailwindcss',
+    ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
+    'nuxt-gtag',
+  ],
+  ssr: true,
+  components: true,
+  devtools: { enabled: true },
   app: {
     head: {
       htmlAttrs: {
@@ -31,60 +42,10 @@ export default defineNuxtConfig({
     pageTransition: { name: 'fade', mode: 'out-in' },
     layoutTransition: false,
   },
-  compatibilityDate: '2024-07-03',
-  components: true,
   css: process.env.NUXT_STORYBLOK_VERSION === 'draft' ? ['@michaelpumo/screen/app.css'] : [],
-  devtools: { enabled: true },
-  eslint: {
-    config: {
-      standalone: false,
-      stylistic: true,
-    },
-  },
-  gtag: {
-    id: 'G-19JK9R6VDM',
-  },
-  hooks: {
-    'vite:extendConfig': (config, { isClient }) => {
-      if (isClient) {
-        if (config.resolve?.alias) {
-          config.resolve.alias.vue = 'vue/dist/vue.esm-bundler'
-        }
-      }
-    },
-  },
-  image: {
-    provider: 'storyblok',
-    storyblok: {
-      baseURL: 'https://a.storyblok.com',
-    },
-    domains: ['storyblok.com', 'luca.restaurant'],
-    quality: 80,
-    screens: {
-      'xs': 375,
-      'sm': 640,
-      'md': 768,
-      'lg': 1024,
-      'xl': 1200,
-      '2xl': 1440,
-      '3xl': 1920,
-    },
-  },
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxtjs/sitemap',
-    '@nuxtjs/tailwindcss',
-    ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
-    'nuxt-gtag',
-  ],
-  postcss: {
-    plugins: {
-      'postcss-import': {},
-      'tailwindcss/nesting': {},
-      'tailwindcss': {},
-      'autoprefixer': {},
-    },
+  site: {
+    url: 'https://luca.restaurant',
+    name: 'Luca',
   },
   runtimeConfig: {
     MAILCHIMP_API_KEY: process.env.NUXT_MAILCHIMP_API_KEY,
@@ -95,20 +56,7 @@ export default defineNuxtConfig({
       STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
     },
   },
-  site: {
-    url: 'https://luca.restaurant',
-    name: 'Luca',
-  },
-  sitemap: {
-    sources: ['/api/sitemap'],
-  },
-  ssr: true,
-  tailwindcss: {
-    cssPath: '@/assets/css/app.css',
-  },
-  typescript: {
-    strict: true,
-  },
+  compatibilityDate: '2024-07-03',
   vite: {
     resolve: {
       dedupe: [
@@ -126,5 +74,57 @@ export default defineNuxtConfig({
         propsDestructure: true,
       },
     },
+  },
+  typescript: {
+    strict: true,
+  },
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      'tailwindcss/nesting': {},
+      'tailwindcss': {},
+      'autoprefixer': {},
+    },
+  },
+  hooks: {
+    'vite:extendConfig': (config, { isClient }) => {
+      if (isClient) {
+        if (config.resolve?.alias) {
+          config.resolve.alias.vue = 'vue/dist/vue.esm-bundler'
+        }
+      }
+    },
+  },
+  eslint: {
+    config: {
+      standalone: false,
+      stylistic: true,
+    },
+  },
+  gtag: {
+    id: 'G-19JK9R6VDM',
+  },
+  image: {
+    provider: 'storyblok',
+    storyblok: {
+      baseURL: 'https://a2.storyblok.com',
+    },
+    domains: ['storyblok.com', 'luca.restaurant'],
+    quality: 80,
+    screens: {
+      'xs': 375,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024,
+      'xl': 1200,
+      '2xl': 1440,
+      '3xl': 1920,
+    },
+  },
+  sitemap: {
+    sources: ['/api/sitemap'],
+  },
+  tailwindcss: {
+    cssPath: '@/assets/css/app.css',
   },
 })
