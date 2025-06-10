@@ -1,4 +1,5 @@
 {
+  "workbench.editorAssociations": { "*.svg": "default" },
   "eslint.useFlatConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.suggest.autoImports": false,
@@ -16,20 +17,6 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
-
-  // Silent the stylistic rules in you IDE, but still auto fix them
-  // "eslint.rules.customizations": [
-  //   { "rule": "style/*", "severity": "off" },
-  //   { "rule": "format/*", "severity": "off" },
-  //   { "rule": "*-indent", "severity": "off" },
-  //   { "rule": "*-spacing", "severity": "off" },
-  //   { "rule": "*-spaces", "severity": "off" },
-  //   { "rule": "*-order", "severity": "off" },
-  //   { "rule": "*-dangle", "severity": "off" },
-  //   { "rule": "*-newline", "severity": "off" },
-  //   { "rule": "*quotes", "severity": "off" },
-  //   { "rule": "*semi", "severity": "off" }
-  // ],
 
   // Enable eslint for all supported languages
   "eslint.validate": [
