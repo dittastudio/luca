@@ -43,11 +43,12 @@ const placeholder = storyblokImage(
 
 useIntersectionObserver(
   container,
-  ([{ target, isIntersecting }], observerElement) => {
-    if (!(target instanceof HTMLPictureElement))
+  ([target], observerElement) => {
+    if (!target) {
       return
+    }
 
-    if (isIntersecting && !ready.value) {
+    if (target.isIntersecting && !ready.value) {
       ready.value = true
       observerElement.disconnect()
     }

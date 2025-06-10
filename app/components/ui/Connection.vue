@@ -6,8 +6,8 @@ const seen = ref(false)
 
 useIntersectionObserver(
   line,
-  ([{ target, isIntersecting }]) => {
-    if (target instanceof HTMLDivElement && isIntersecting && !seen.value) {
+  ([target]) => {
+    if (target instanceof HTMLDivElement && target.isIntersecting && !seen.value) {
       seen.value = true
     }
   },

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { SwiperOptions } from 'swiper/types'
 import type { BlockCarouselStoryblok, SlideStoryblok } from '@@/types/storyblok'
+import type { SwiperOptions } from 'swiper/types'
 import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
@@ -13,8 +13,12 @@ const container = ref<HTMLDivElement | null>(null)
 
 useIntersectionObserver(
   container,
-  ([{ isIntersecting }]) => {
-    isVisible.value = isIntersecting
+  ([target]) => {
+    if (!target) {
+      return
+    }
+
+    isVisible.value = target.isIntersecting
   },
   { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
 )
@@ -49,13 +53,13 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok
           <template #slide="{ slide }">
             <div class="block-carousel__slide">
               <div
-                v-for="item in slide"
-                :key="item._uid"
+                v-for="(item, index) in slide"
+                :key="index"
                 class="block-carousel__item"
                 :class="block.two_per_slide ? 'block-carousel__item--two' : 'block-carousel__item--one'"
               >
                 <MediaImage
-                  v-if="item.media && storyblokAssetType(item.media.filename) === 'image'"
+                  v-if="item?.media?.filename && storyblokAssetType(item.media.filename) === 'image'"
                   class="block-carousel__media"
                   :asset="item.media"
                   :ratio="block.ratio"
@@ -73,14 +77,14 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok
                 />
 
                 <MediaVideo
-                  v-else-if="item.media && storyblokAssetType(item.media.filename) === 'video'"
+                  v-else-if="item?.media?.filename && storyblokAssetType(item.media.filename) === 'video'"
                   class="block-carousel__media"
                   :asset="item.media.video"
                   :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
 
                 <p
-                  v-if="item.caption"
+                  v-if="item && item.caption"
                   class="block-carousel__caption type-body"
                 >
                   {{ item.caption }}

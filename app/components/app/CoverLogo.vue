@@ -14,8 +14,12 @@ onMounted(() => {
 
   useIntersectionObserver(
     main,
-    ([{ isIntersecting }]) => {
-      isHidden.value = !isIntersecting
+    ([target]) => {
+      if (!target) {
+        return
+      }
+
+      isHidden.value = !target.isIntersecting
     },
     { rootMargin: '-100% 0px 0px 0px', threshold: 0 },
   )

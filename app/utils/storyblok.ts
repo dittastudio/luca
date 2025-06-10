@@ -24,7 +24,13 @@ const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
   return 'other'
 }
 
-const storyblokImageUrlUpdate = (url: string) => url.replace('//a.storyblok.com', '//a2.storyblok.com')
+const storyblokImageUrlUpdate = (url: string | null) => {
+  if (!url) {
+    return ''
+  }
+
+  return url.replace('//a.storyblok.com', '//a2.storyblok.com')
+}
 
 const storyblokImage = (
   filename: string | null | undefined,
@@ -75,7 +81,16 @@ const storyblokImageDimensions = (
     }
   }
 
-  const [width, height] = filename.split('/')[5].split('x')
+  const parts = filename.split('/')
+
+  if (!parts[5]?.includes('x')) {
+    return {
+      width: 0,
+      height: 0,
+    }
+  }
+
+  const [width, height] = parts[5].split('x')
 
   return { width: Number(width), height: Number(height) }
 }

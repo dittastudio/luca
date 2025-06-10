@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { SwiperOptions } from 'swiper/types'
 import type { BlockGalleryStoryblok } from '@@/types/storyblok'
+import type { SwiperOptions } from 'swiper/types'
 
 interface Props {
   block: BlockGalleryStoryblok
@@ -38,9 +38,12 @@ const swiperOptions: SwiperOptions = {
       <template #slide="{ slide }">
         <div class="block-gallery__item wrapper">
           <div class="block-gallery__grid">
-            <div class="block-gallery__inner">
+            <div
+              v-if="slide?.media?.filename"
+              class="block-gallery__inner"
+            >
               <MediaImage
-                v-if="slide.media && storyblokAssetType(slide.media.filename) === 'image'"
+                v-if="storyblokAssetType(slide.media.filename) === 'image'"
                 class="block-gallery__media"
                 :asset="slide.media"
                 sizes="
@@ -54,7 +57,7 @@ const swiperOptions: SwiperOptions = {
               />
 
               <MediaVideo
-                v-else-if="slide.media && storyblokAssetType(slide.media.filename) === 'video'"
+                v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
                 :asset="slide.media"
                 class="block-gallery__media"
               />

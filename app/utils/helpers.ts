@@ -28,8 +28,8 @@ const ratioDimensions = (
   const parts = ratio.toString().split(':').map((num: string): number => Number(num))
 
   return {
-    width: parts[0],
-    height: parts[1],
+    width: parts[0] || 0,
+    height: parts[1] || 0,
   }
 }
 
@@ -49,7 +49,7 @@ const safeKebabCase = (str: string) =>
     .trim()
 
 const validAspectRatio = (ratio: string | number = '') => {
-  const pattern = /[0-9.]+:[0-9.]+/g
+  const pattern = /[0-9.]+:[0-9.]+/
 
   return pattern.test(String(ratio))
 }
