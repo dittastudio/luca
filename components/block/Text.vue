@@ -13,7 +13,7 @@ const { block } = defineProps<Props>()
     v-editable="block"
     class="block-text prose prose--large wrapper"
   >
-    <StoryblokRichText
+    <StoryblokText
       v-if="storyblokRichTextContent(block.text)"
       :content="block.text"
     />

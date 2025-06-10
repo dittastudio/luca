@@ -21,7 +21,7 @@ const { block } = defineProps<Props>()
         {{ block.title }}
       </h2>
 
-      <StoryblokRichText
+      <StoryblokText
         v-if="storyblokRichTextContent(block.text)"
         :content="block.text"
         class="block-text-columns__columns"

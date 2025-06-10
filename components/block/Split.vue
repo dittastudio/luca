@@ -52,7 +52,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
         class="block-split__copy prose"
         :class="{ 'prose--large': !isStoryPage }"
       >
-        <StoryblokRichText :content="block.text" />
+        <StoryblokText :content="block.text" />
       </div>
     </div>
   </div>
