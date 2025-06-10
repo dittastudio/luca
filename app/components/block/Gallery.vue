@@ -78,8 +78,8 @@ const swiperOptions: SwiperOptions = {
         {{ currentSlide }} / {{ block.items?.length }}
       </span>
 
-      <span v-if="block.items?.[currentSlide - 1].caption">
-        {{ block.items[currentSlide - 1].caption }}
+      <span v-if="block.items?.[currentSlide - 1]?.caption">
+        {{ block.items?.[currentSlide - 1]?.caption }}
       </span>
     </h5>
   </div>
