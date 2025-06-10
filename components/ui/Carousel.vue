@@ -2,7 +2,6 @@
 import type { SwiperOptions } from 'swiper/types'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
-import { wait } from '@/utilities/helpers'
 import Swiper from 'swiper'
 import { Autoplay, EffectFade, Keyboard, Navigation, Pagination } from 'swiper/modules'
 

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { wait } from '@/utilities/helpers'
-
 interface Props {
   message: string
 }

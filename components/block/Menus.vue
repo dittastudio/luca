@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { BlockMenusStoryblok } from '@/types/storyblok'
-import { storyblokAssetType } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockMenusStoryblok

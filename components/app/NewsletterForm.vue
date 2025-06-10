@@ -2,7 +2,6 @@
 import { useField, useForm, useValidateForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
-import { requestDelay } from '@/utilities/helpers'
 
 const loading = ref(false)
 const message = ref('')

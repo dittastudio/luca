@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { wait } from '@/utilities/helpers'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 
 interface Props {

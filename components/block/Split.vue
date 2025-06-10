@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { BlockSplitStoryblok } from '@/types/storyblok'
-import { storyblokAssetType, storyblokRichTextContent } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockSplitStoryblok

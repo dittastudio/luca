@@ -2,8 +2,6 @@
 import type { SwiperOptions } from 'swiper/types'
 import { useIntersectionObserver } from '@vueuse/core'
 import type { BlockCarouselStoryblok, SlideStoryblok } from '@/types/storyblok'
-import { arrayToTuples } from '@/utilities/helpers'
-import { storyblokAssetType } from '@/utilities/storyblok'
 
 interface Props {
   block: BlockCarouselStoryblok

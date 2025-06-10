@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { RichtextStoryblok } from '@/types/storyblok'
-import { storyblokRichTextContent } from '@/utilities/storyblok'
 import IconFacebook from '@/assets/icons/facebook.svg'
 import IconTikTok from '@/assets/icons/tiktok.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'

@@ -2,7 +2,6 @@
 import { useIntersectionObserver } from '@vueuse/core'
 import type { ThemeStoryblok } from '@/types/storyblok'
 import { colours } from '@/tailwind.config'
-import { wait } from '@/utilities/helpers'
 
 interface Props {
   themes?: ThemeStoryblok[]

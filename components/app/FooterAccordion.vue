@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { screenSizes } from '@/tailwind.config'
-import { safeKebabCase } from '@/utilities/helpers'
 
 interface Props {
   id: string

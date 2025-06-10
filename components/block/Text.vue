@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { storyblokRichTextContent } from '@/utilities/storyblok'
 import type { BlockTextStoryblok } from '@/types/storyblok'
 
 interface Props {

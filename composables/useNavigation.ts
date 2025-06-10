@@ -1,5 +1,3 @@
-import { wait } from '@/utilities/helpers'
-
 export default function useNavigation(initial: boolean) {
   const navigationOpen = useState<boolean>('navigationOpen')
 
