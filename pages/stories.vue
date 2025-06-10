@@ -8,7 +8,10 @@ useStoryblokSetup<PageStoryblok>(story)
 </script>
 
 <template>
-  <AppTheme :themes="story.content.themes">
+  <AppTheme
+    v-if="story"
+    :themes="story.content.themes"
+  >
     <AppStory :is-open="route.name === 'stories-page'">
       <Transition
         name="fade"

@@ -7,7 +7,10 @@ const { isOpen = false } = defineProps<Props>()
 </script>
 
 <template>
-  <div class="app-story" :class="[{ 'app-story--is-open': isOpen }]">
+  <div
+    class="app-story"
+    :class="[{ 'app-story--is-open': isOpen }]"
+  >
     <div class="app-story__content">
       <div class="app-story__bar wrapper">
         <NuxtLink

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useIntersectionObserver } from '@vueuse/core'
 import type { ThemeStoryblok } from '@/types/storyblok'
+import { useIntersectionObserver } from '@vueuse/core'
 import { colours } from '@/tailwind.config'
 
 interface Props {

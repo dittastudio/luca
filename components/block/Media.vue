@@ -41,7 +41,10 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
         :ratio="block.ratio"
       />
 
-      <p v-if="block.caption" class="block-media__caption">
+      <p
+        v-if="block.caption"
+        class="block-media__caption"
+      >
         {{ block.caption }}
       </p>
     </div>

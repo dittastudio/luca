@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 interface Props {
-  isOpen: boolean
+  isOpen?: boolean
 }
 
 const { isOpen = false } = defineProps<Props>()

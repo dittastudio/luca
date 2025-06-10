@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import type { ISbStoryData } from 'storyblok-js-client'
+import type { Ref } from 'vue'
 import type { SeoStoryblok } from '@/types/storyblok'
 
 interface Seo {

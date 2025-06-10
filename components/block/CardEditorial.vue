@@ -21,7 +21,10 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
         colEndMap[block.column_end],
       ]"
     >
-      <StoryblokLink class="block-card-editorial__link" :item="block.link">
+      <StoryblokLink
+        class="block-card-editorial__link"
+        :item="block.link"
+      >
         <figure>
           <MediaImage
             v-if="block.media && assetType === 'image'"

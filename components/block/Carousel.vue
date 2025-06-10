@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
-import { useIntersectionObserver } from '@vueuse/core'
 import type { BlockCarouselStoryblok, SlideStoryblok } from '@/types/storyblok'
+import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
   block: BlockCarouselStoryblok
@@ -37,7 +37,10 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok
     class="block-carousel"
   >
     <div class="block-carousel__grid wrapper">
-      <div ref="container" class="block-carousel__container">
+      <div
+        ref="container"
+        class="block-carousel__container"
+      >
         <UiCarousel
           :slides="slides"
           :options="swiperOptions"
@@ -76,7 +79,10 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok
                   :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
 
-                <p v-if="item.caption" class="block-carousel__caption type-body">
+                <p
+                  v-if="item.caption"
+                  class="block-carousel__caption type-body"
+                >
                   {{ item.caption }}
                 </p>
               </div>

@@ -28,16 +28,23 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="app-cover" :class="[{ 'is-active': coverVisible }]">
+  <div
+    class="app-cover"
+    :class="[{ 'is-active': coverVisible }]"
+  >
     <div class="wrapper">
       <h1
         v-if="message"
-        class="app-cover__message type-responsive-app-cover" :class="[{ 'is-active': messageVisible }]"
+        class="app-cover__message type-responsive-app-cover"
+        :class="[{ 'is-active': messageVisible }]"
       >
         {{ message }}
       </h1>
 
-      <IconLucaLogo class="app-cover__logo" :class="[{ 'is-active': logoVisible }]" />
+      <IconLucaLogo
+        class="app-cover__logo"
+        :class="[{ 'is-active': logoVisible }]"
+      />
     </div>
   </div>
 </template>

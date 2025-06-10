@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import type { ISbStoriesParams, ISbStoryData } from 'storyblok-js-client'
+import type { Ref } from 'vue'
 
 export const useStoryblokStory = async <T>(
   slug: string = '',

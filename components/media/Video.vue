@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useIntersectionObserver } from '@vueuse/core'
 import type { AssetStoryblok } from '@/types/storyblok'
+import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
   asset: AssetStoryblok
@@ -17,7 +17,7 @@ const emit = defineEmits<Emits>()
 
 const video = ref<HTMLVideoElement | null>(null)
 const seen = ref(false)
-const src = computed(() => seen.value ? asset?.filename : '')
+const src = computed(() => seen.value ? asset?.filename ?? '' : '')
 
 useIntersectionObserver(
   video,

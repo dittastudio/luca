@@ -41,7 +41,10 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
         :ratio="block.ratio"
       />
 
-      <p v-if="block.caption" class="block-split__caption">
+      <p
+        v-if="block.caption"
+        class="block-split__caption"
+      >
         {{ block.caption }}
       </p>
     </div>

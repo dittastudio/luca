@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useField, useForm, useValidateForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
+import { useField, useForm, useValidateForm } from 'vee-validate'
 import { z } from 'zod'
 
 const loading = ref(false)
@@ -66,6 +66,7 @@ const onSubmit = async () => {
 
     message.value = response.statusMessage
 
+    // @ts-expect-error Because the API is correct. TODO: Get proper fix sorted.
     if (response?.statusCode === 200) {
       resetForm()
     }

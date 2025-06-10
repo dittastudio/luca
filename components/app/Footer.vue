@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { RichtextStoryblok } from '@/types/storyblok'
 import IconFacebook from '@/assets/icons/facebook.svg'
-import IconTikTok from '@/assets/icons/tiktok.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
+import IconTikTok from '@/assets/icons/tiktok.svg'
 import IconVimeo from '@/assets/icons/vimeo.svg'
 
 interface Props {

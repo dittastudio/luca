@@ -79,12 +79,11 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Thank you! Your subscription to our list has been confirmed.',
       }
     }
-    else {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'An unexpected error occurred. Please try again.',
-      })
-    }
+
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'An unexpected error occurred. Please try again.',
+    })
   }
   catch (error: any) {
     interface ErrorInfo {
