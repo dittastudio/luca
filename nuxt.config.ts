@@ -28,7 +28,6 @@ export default defineNuxtConfig({
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
       link: [
-        // https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs#the-ultimate-favicon-setup
         { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
