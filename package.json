@@ -4,17 +4,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "sb:pull-components": "storyblok pull-components --space 285210",
-    "sb:types": "npm run sb:pull-components && storyblok-generate-ts source=./components.285210.json target=./types/storyblok",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "build": "nuxt build",
+    "sb:components": "storyblok pull-components --space 285210",
+    "sb:types": "npm run sb:components && storyblok generate-typescript-typedefs --sourceFilePaths ./components.285210.json --destinationFilePath ./types/storyblok.d.ts",
     "dev": "npm run sb:types && nuxt dev --host",
     "dev:ssl": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
+    "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "nuke": "del-cli '.output' 'dist' '.nuxt' 'node_modules' 'package-lock.json'",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "nuke": "del-cli '.output' 'dist' '.nuxt' 'node_modules' 'package-lock.json'"
   },
   "dependencies": {
     "@ditta/colophon": "^0.0.5",
@@ -50,7 +50,6 @@
     "nuxt-gtag": "^3.0.3",
     "postcss-import": "^16.1.0",
     "prettier": "^3.5.3",
-    "storyblok-generate-ts": "^2.2.0",
     "stylelint": "^16.20.0",
     "stylelint-config-clean-order": "^7.0.0",
     "stylelint-config-recommended-vue": "^1.6.0",
