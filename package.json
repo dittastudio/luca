@@ -27,7 +27,6 @@
     "swiper": "^11.2.8",
     "typescript": "^5.8.3",
     "vee-validate": "^4.15.1",
-    "vue3-runtime-template": "^1.0.2",
     "zod": "^3.25.57"
   },
   "devDependencies": {
