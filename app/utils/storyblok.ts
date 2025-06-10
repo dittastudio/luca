@@ -4,7 +4,7 @@ import type { LocationQuery } from 'vue-router'
 const storyblokEditor = (search: LocationQuery) => '_storyblok' in search
 
 const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp']
-const videoExtensions = ['mp4', 'webm', 'ogg']
+const videoExtensions = ['mp4', 'webm', 'ogg', 'mov']
 
 const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
   if (typeof filename !== 'string' || !filename?.trim().length) {
