@@ -56,7 +56,22 @@ export default defineNuxtConfig({
       STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
     },
   },
-  compatibilityDate: '2024-07-03',
+  future: {
+    compatibilityVersion: 4,
+  },
+  features: {
+    noScripts: false,
+  },
+  compatibilityDate: '2025-04-13',
+  nitro: {
+    experimental: {
+      openAPI: true,
+    },
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+  },
   vite: {
     resolve: {
       dedupe: [
@@ -84,15 +99,6 @@ export default defineNuxtConfig({
       'tailwindcss/nesting': {},
       'tailwindcss': {},
       'autoprefixer': {},
-    },
-  },
-  hooks: {
-    'vite:extendConfig': (config, { isClient }) => {
-      if (isClient) {
-        if (config.resolve?.alias) {
-          config.resolve.alias.vue = 'vue/dist/vue.esm-bundler'
-        }
-      }
     },
   },
   eslint: {
