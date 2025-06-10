@@ -3,7 +3,7 @@ import type { SettingsStoryblok } from '@@/types/storyblok'
 import { screenSizes } from '@@/tailwind.config'
 
 const route = useRoute()
-const story = await useStoryblokStory<SettingsStoryblok>('/settings')
+const story = await useStory<SettingsStoryblok>('/settings')
 const isMd = useAtMedia(`(min-width: ${screenSizes.md}px)`)
 const isHome = computed(() => ['/', '/home'].includes(route.path) && isMd.value)
 const isStory = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
