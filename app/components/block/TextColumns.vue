@@ -21,11 +21,12 @@ const { block } = defineProps<Props>()
         {{ block.title }}
       </h2>
 
-      <StoryblokText
-        v-if="storyblokRichTextContent(block.text)"
-        :content="block.text"
-        class="block-text-columns__columns"
-      />
+      <div class="block-text-columns__columns">
+        <StoryblokText
+          v-if="storyblokRichTextContent(block.text)"
+          :content="block.text"
+        />
+      </div>
     </div>
   </div>
 </template>

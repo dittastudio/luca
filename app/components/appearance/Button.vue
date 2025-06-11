@@ -11,17 +11,15 @@ const { size = 'default' } = defineProps<Props>()
     class="appearance-button"
     :class="{ [`appearance-button--${size}`]: size }"
   >
-    <span class="appearance-button__text">
-      <slot />
-    </span>
+    <slot />
   </span>
 </template>
 
 <style lang="postcss">
 .appearance-button {
-  --button-padding-y: 1.25em;
-  --button-padding-x: 2.2em;
-  --button-font-size: theme('fontSize.12');
+  --button-padding-y: 1em;
+  --button-padding-x: 2em;
+  --button-font-size: theme('fontSize.14');
   --button-color: var(--app-text-color);
   --button-hover-color: var(--app-background-color);
 
@@ -67,7 +65,7 @@ const { size = 'default' } = defineProps<Props>()
     @screen mdMax {
       --button-padding-y: 1em;
       --button-padding-x: 1em;
-      --button-font-size: theme('fontSize.10');
+      --button-font-size: theme('fontSize.12');
     }
   }
 
@@ -84,11 +82,5 @@ const { size = 'default' } = defineProps<Props>()
       border-color: var(--button-color);
     }
   }
-}
-
-.appearance-button__text {
-  position: relative;
-  z-index: 1;
-  top: 0.075em;
 }
 </style>

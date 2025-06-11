@@ -73,10 +73,9 @@ const socialList = [
             {{ newsletterTitle }}
           </h2>
 
-          <StoryblokText
-            class="app-footer__copy"
-            :content="newsletter"
-          />
+          <div class="app-footer__copy">
+            <StoryblokText :content="newsletter" />
+          </div>
 
           <div class="app-footer__form">
             <AppNewsletterForm />
@@ -96,10 +95,9 @@ const socialList = [
         </template>
 
         <template #content>
-          <StoryblokText
-            class="app-footer__copy"
-            :content="openingTimes"
-          />
+          <div class="app-footer__copy">
+            <StoryblokText :content="openingTimes" />
+          </div>
         </template>
       </AppFooterAccordion>
 
@@ -115,10 +113,9 @@ const socialList = [
         </template>
 
         <template #content>
-          <StoryblokText
-            class="app-footer__copy"
-            :content="contact"
-          />
+          <div class="app-footer__copy">
+            <StoryblokText :content="contact" />
+          </div>
         </template>
       </AppFooterAccordion>
 
@@ -134,10 +131,9 @@ const socialList = [
         </template>
 
         <template #content>
-          <StoryblokText
-            class="app-footer__copy"
-            :content="reservations"
-          />
+          <div class="app-footer__copy">
+            <StoryblokText :content="reservations" />
+          </div>
         </template>
       </AppFooterAccordion>
     </div>

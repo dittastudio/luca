@@ -29,23 +29,23 @@
   }
 
   .type-h3 {
-    font-size: theme('fontSize.14');
+    font-size: theme('fontSize.16');
 
     @screen md {
-      font-size: theme('fontSize.16');
+      font-size: theme('fontSize.18');
     }
   }
 
   .type-h4 {
-    font-size: theme('fontSize.14');
+    font-size: theme('fontSize.16');
   }
 
   .type-h5 {
-    font-size: theme('fontSize.12');
+    font-size: theme('fontSize.14');
   }
 
   .type-h6 {
-    font-size: theme('fontSize.10');
+    font-size: theme('fontSize.12');
   }
 
   .type-responsive-app-cover {
@@ -61,7 +61,7 @@
   /* Body */
   .type-body {
     font-size: theme('fontSize.14');
-    letter-spacing: theme('letterSpacing.wider');
+    letter-spacing: theme('letterSpacing.wide');
 
     @screen md {
       font-size: theme('fontSize.16');
@@ -70,7 +70,7 @@
 
   .type-body-large {
     font-size: theme('fontSize.18');
-    letter-spacing: theme('letterSpacing.wider');
+    letter-spacing: theme('letterSpacing.wide');
 
     @screen md {
       font-size: theme('fontSize.20');
