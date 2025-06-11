@@ -16,10 +16,10 @@
   }
 
   @font-face {
-    font-family: Sebenta;
+    font-family: "American Grotesk";
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    src: url('/fonts/Sebenta-Medium.woff2') format('woff2');
+    src: url('/fonts/american-grotesk-condensed-medium.woff2') format('woff2');
   }
 }

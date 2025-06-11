@@ -105,6 +105,7 @@ export default {
       300: '300px',
     },
     fontFamily: {
+      heading: ['American Grotesk', 'sans-serif', 'system-ui'],
       body: [
         'Magister',
         'Iowan Old Style',
@@ -113,7 +114,6 @@ export default {
         'serif',
         'system-ui',
       ],
-      heading: ['Sebenta', 'Rockwell', 'system-ui'],
     },
     fontSize: {
       '10': '0.625rem',
