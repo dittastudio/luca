@@ -169,9 +169,11 @@ watch(
   display: flex;
   width: 100%;
   min-height: 200px;
-  background-color: white;
+  background-color: theme('colors.white/20%');
   color: theme('colors.green');
   border-radius: theme('borderRadius.sm');
+  border: 1px solid theme('colors.white/20%');
+  overflow: hidden;
 }
 
 .app-modal__spinner {
@@ -186,8 +188,8 @@ watch(
 .app-modal__button {
   position: absolute;
   z-index: 1;
-  top: 5px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
 
   margin: calc(-1 * theme('spacing.20'));
   padding: theme('spacing.20');
@@ -214,7 +216,7 @@ watch(
 
   color: theme('colors.white');
 
-  background-color: theme('colors.black/100%');
+  background-color: theme('colors.white/20%');
   border-radius: 50%;
 }
 

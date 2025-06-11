@@ -9,12 +9,13 @@ const { content } = defineProps<Props>()
 
 const route = useRoute()
 const isHome = computed(() => ['/', '/home'].includes(route.path))
+const isStory = computed(() => route.path.startsWith('/stories/'))
 </script>
 
 <template>
   <div
     class="block-components"
-    :class="{ 'block-components--home': isHome }"
+    :class="{ 'block-components--home': isHome, 'block-components--story': isStory }"
   >
     <section
       v-for="block in content.blocks"
@@ -102,6 +103,10 @@ const isHome = computed(() => ['/', '/home'].includes(route.path))
 
   @screen 3xl {
     --spacing-rhythm: theme('spacing.300');
+  }
+
+  .block-components--story & {
+    --first-spacing-rhythm: var(--app-header-height);
   }
 
   &--block_text:first-child {
