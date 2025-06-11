@@ -41,7 +41,6 @@ export default defineNuxtConfig({
     pageTransition: { name: 'fade', mode: 'out-in' },
     layoutTransition: false,
   },
-  css: process.env.NUXT_STORYBLOK_VERSION === 'draft' ? ['@michaelpumo/screen/app.css'] : [],
   site: {
     url: 'https://luca.restaurant',
     name: 'Luca',
