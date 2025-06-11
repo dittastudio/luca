@@ -1,8 +1,15 @@
 import jsdom from 'jsdom'
 
+interface Options {
+  autoplay?: number
+  loop?: number
+  muted?: number
+  autopause?: number
+}
+
 interface Fields {
   url: string
-  params: Record<string, string> | undefined
+  params?: Options
 }
 
 interface OembedResponse {
