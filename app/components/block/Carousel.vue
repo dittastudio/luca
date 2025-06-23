@@ -62,7 +62,6 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
                   v-if="item?.media?.filename && storyblokAssetType(item.media.filename) === 'image'"
                   class="block-carousel__media"
                   :asset="item.media"
-                  :ratio="block.ratio"
                   :sizes="
                     block.two_per_slide ? `
                       50vw
