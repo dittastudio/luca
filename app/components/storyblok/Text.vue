@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import type { RichtextStoryblok } from '@@/types/storyblok'
-import { StoryblokRichText } from '@storyblok/vue'
+import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
 
 interface Props {
-  content?: RichtextStoryblok | undefined
+  content?: StoryblokRichtext | undefined
 }
 
 const { content } = defineProps<Props>()

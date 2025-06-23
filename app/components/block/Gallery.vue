@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { BlockGalleryStoryblok } from '@@/types/storyblok'
+import type { BlockGallery } from '@@/.storyblok/types/285210/storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
 
 interface Props {
-  block: BlockGalleryStoryblok
+  block: BlockGallery
 }
 
 const { block } = defineProps<Props>()

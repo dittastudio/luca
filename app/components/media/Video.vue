@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { AssetStoryblok } from '@@/types/storyblok'
+import type { StoryblokAsset } from '@@/.storyblok/types/storyblok'
 import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
-  asset: AssetStoryblok
+  asset: StoryblokAsset
   ratio?: Luca.TAspectRatios | string | number
 }
 

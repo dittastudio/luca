@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { BlockCarouselStoryblok, SlideStoryblok } from '@@/types/storyblok'
+import type { BlockCarousel, Slide } from '@@/.storyblok/types/285210/storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
 import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
-  block: BlockCarouselStoryblok
+  block: BlockCarousel
 }
 
 const { block } = defineProps<Props>()
@@ -32,7 +32,7 @@ const swiperOptions = computed<SwiperOptions>(() => ({
   },
 }))
 
-const slides = computed(() => block.two_per_slide ? arrayToTuples<SlideStoryblok>(block.items) : block.items?.map(item => [item]))
+const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.items) : block.items?.map(item => [item]))
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { AssetStoryblok } from '@@/types/storyblok'
+import type { StoryblokAsset } from '@@/.storyblok/types/storyblok'
 import { useIntersectionObserver } from '@vueuse/core'
 
 defineOptions({
@@ -9,7 +9,7 @@ defineOptions({
 const attrs = useAttrs() as { [key: string]: any }
 
 interface Props {
-  asset: AssetStoryblok
+  asset: StoryblokAsset
   ratio?: string | number
   sizes: string
   alt?: string

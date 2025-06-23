@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { LinkListStoryblok } from '@@/types/storyblok'
+import type { LinkList } from '@@/.storyblok/types/285210/storyblok-components'
 
 interface Props {
   isOpen: boolean
-  list?: LinkListStoryblok
+  list?: LinkList
 }
 
 const { isOpen, list } = defineProps<Props>()

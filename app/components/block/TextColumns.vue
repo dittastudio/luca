@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { BlockTextColumnsStoryblok } from '@@/types/storyblok'
+import type { BlockTextColumns } from '@@/.storyblok/types/285210/storyblok-components'
 
 interface Props {
-  block: BlockTextColumnsStoryblok
+  block: BlockTextColumns
 }
 
 const { block } = defineProps<Props>()

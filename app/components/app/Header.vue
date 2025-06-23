@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { LinkListStoryblok } from '@@/types/storyblok'
+import type { LinkList } from '@@/.storyblok/types/285210/storyblok-components'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
 interface Props {
-  links?: LinkListStoryblok
+  links?: LinkList
   logoHidden?: boolean
   reservationHidden?: boolean
 }

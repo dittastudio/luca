@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { RichtextStoryblok } from '@@/types/storyblok'
+import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
 import IconFacebook from '@/assets/icons/facebook.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
 import IconTikTok from '@/assets/icons/tiktok.svg'
@@ -7,13 +7,13 @@ import IconVimeo from '@/assets/icons/vimeo.svg'
 
 interface Props {
   openingTimesTitle?: string
-  openingTimes?: RichtextStoryblok
+  openingTimes?: StoryblokRichtext
   contactTitle?: string
-  contact?: RichtextStoryblok
+  contact?: StoryblokRichtext
   reservationsTitle?: string
-  reservations?: RichtextStoryblok
+  reservations?: StoryblokRichtext
   newsletterTitle?: string
-  newsletter?: RichtextStoryblok
+  newsletter?: StoryblokRichtext
   socialFacebook?: string
   socialTiktok?: string
   socialInstagram?: string

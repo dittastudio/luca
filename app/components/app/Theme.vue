@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { ThemeStoryblok } from '@@/types/storyblok'
+import type { Theme } from '@@/.storyblok/types/285210/storyblok-components'
 import { colours } from '@@/tailwind.config'
 import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
-  themes?: ThemeStoryblok[]
+  themes?: Theme[]
 }
 
 const { themes = [] } = defineProps<Props>()

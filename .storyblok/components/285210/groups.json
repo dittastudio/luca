@@ -1,0 +1,23 @@
+[
+  {
+    "name": "block",
+    "id": 322471,
+    "uuid": "2e66d664-ad4d-4639-8ef0-92800fa0db85",
+    "parent_id": null,
+    "parent_uuid": null
+  },
+  {
+    "name": "content",
+    "id": 322597,
+    "uuid": "db6458a8-c553-4027-ab57-8f5ca9b9da37",
+    "parent_id": null,
+    "parent_uuid": null
+  },
+  {
+    "name": "elements",
+    "id": 325034,
+    "uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
+    "parent_id": null,
+    "parent_uuid": null
+  }
+]
