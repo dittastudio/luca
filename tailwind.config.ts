@@ -155,7 +155,7 @@ export default {
       normal: '0',
       plump: '0.02em',
       wide: '0.03em',
-      wider: '0.05em',
+      wider: '0.04em',
       widest: '0.2em',
     },
     screens,
