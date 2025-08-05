@@ -43,7 +43,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
       <p
         v-if="block.caption"
-        class="block-media__caption"
+        class="block-media__caption type-body italic"
       >
         {{ block.caption }}
       </p>
@@ -66,6 +66,5 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
 .block-media__caption {
   margin-block-start: theme('spacing.8');
-  font-style: italic;
 }
 </style>

@@ -63,7 +63,7 @@ const { size = 'default' } = defineProps<Props>()
 
   &--responsive {
     @screen mdMax {
-      --button-padding-y: 1em;
+      --button-padding-y: 0.8em;
       --button-padding-x: 1em;
       --button-font-size: theme('fontSize.12');
     }

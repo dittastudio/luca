@@ -12,7 +12,7 @@
 
   .type-h1 {
     font-size: theme('fontSize.40');
-    letter-spacing: theme('letterSpacing.wide');
+    letter-spacing: theme('letterSpacing.plump');
 
     @screen md {
       font-size: theme('fontSize.90');
@@ -55,16 +55,16 @@
 
   .type-responsive-page-cover {
     font-size: theme('fontSize.responsive-page-cover');
-    letter-spacing: theme('letterSpacing.wide');
+    letter-spacing: theme('letterSpacing.plump');
   }
 
   /* Body */
   .type-body {
-    font-size: theme('fontSize.14');
+    font-size: theme('fontSize.16');
     letter-spacing: theme('letterSpacing.wide');
 
     @screen md {
-      font-size: theme('fontSize.16');
+      font-size: theme('fontSize.18');
     }
   }
 

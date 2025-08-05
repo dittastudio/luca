@@ -522,7 +522,7 @@
     "display_name": "Split",
     "description": null,
     "created_at": "2024-04-23T17:04:16.558Z",
-    "updated_at": "2024-06-27T15:38:08.108Z",
+    "updated_at": "2025-07-23T15:22:51.967Z",
     "id": 5698629,
     "schema": {
       "media": {
@@ -585,7 +585,7 @@
     },
     "image": null,
     "preview_field": null,
-    "is_root": false,
+    "is_root": true,
     "preview_tmpl": "<p>{{it.text.content[0].content[0].text}}</p>\n{{@if(it.media.filename)}}\n<p>{{@image(it.media.filename)/}}</p>\n{{/if}}\n",
     "is_nestable": true,
     "all_presets": [],

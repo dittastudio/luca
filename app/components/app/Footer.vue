@@ -69,7 +69,7 @@ const socialList = [
           v-if="newsletterTitle && storyblokRichTextContent(newsletter)"
           class="prose prose--small"
         >
-          <h2 class="app-footer__title type-h4">
+          <h2 class="app-footer__title">
             {{ newsletterTitle }}
           </h2>
 
@@ -89,7 +89,7 @@ const socialList = [
         class="app-footer__details prose prose--small"
       >
         <template #title>
-          <h2 class="app-footer__title type-h4">
+          <h2 class="app-footer__title">
             {{ openingTimesTitle }}
           </h2>
         </template>
@@ -107,7 +107,7 @@ const socialList = [
         class="app-footer__details prose prose--small"
       >
         <template #title>
-          <h2 class="app-footer__title type-h4">
+          <h2 class="app-footer__title">
             {{ contactTitle }}
           </h2>
         </template>
@@ -125,7 +125,7 @@ const socialList = [
         class="app-footer__details prose prose--small"
       >
         <template #title>
-          <h2 class="app-footer__title type-h4">
+          <h2 class="app-footer__title">
             {{ reservationsTitle }}
           </h2>
         </template>

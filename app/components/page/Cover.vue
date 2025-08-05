@@ -74,6 +74,8 @@ onMounted(async () => {
     top: -0.065em;
     text-align: center;
     text-wrap: balance;
+    margin-inline: auto;
+    max-width: 15em;
   }
 }
 </style>

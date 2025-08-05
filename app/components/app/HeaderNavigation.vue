@@ -27,7 +27,7 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
     }"
   >
     <div class="app-header-navigation__inner">
-      <ul class="app-header-navigation__list type-h2">
+      <ul class="app-header-navigation__list type-body-large">
         <li
           v-for="(item, index) in items"
           :key="item._uid"
