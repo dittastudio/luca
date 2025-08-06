@@ -103,15 +103,20 @@ const reservationsForce = ref<boolean>(false)
           <span class="app-header__burger">
             <AppHeaderBurger :is-open="navigationOpen" />
           </span>
-
-          <span class="app-header__switch-text type-body-large">Menu</span>
         </button>
 
-        <span class="app-header__line" />
-
         <nav class="app-header__navigation">
-          <AppHeaderNavigation
+          <!-- <AppHeaderNavigation
             :is-open="navigationOpen"
+            :list="links"
+          /> -->
+          <AppHeaderDropdown
+            title="Explore"
+            :list="links"
+          />
+
+          <AppHeaderDropdown
+            title="Explore"
             :list="links"
           />
         </nav>
@@ -325,16 +330,8 @@ const reservationsForce = ref<boolean>(false)
       opacity: 0.6;
     }
   }
-}
 
-.app-header__burger {
   @screen md {
-    display: none;
-  }
-}
-
-.app-header__switch-text {
-  @screen mdMax {
     display: none;
   }
 }
@@ -371,13 +368,15 @@ const reservationsForce = ref<boolean>(false)
 }
 
 .app-header__navigation {
+  display: flex;
+  gap: theme('spacing.20');
   pointer-events: none;
 
   .app-header--is-open & {
     pointer-events: auto;
   }
 
-  @screen mdMax {
+  /* @screen mdMax {
     position: absolute;
     z-index: -1;
     inset: 0;
@@ -396,7 +395,7 @@ const reservationsForce = ref<boolean>(false)
     .app-header--is-open & {
       opacity: 1;
     }
-  }
+  } */
 
   @screen md {
     position: relative;

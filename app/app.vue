@@ -39,7 +39,13 @@ if (isStory.value) {
   <div>
     <AppLayout>
       <template #header>
-        <AppHeader
+        <!-- <AppHeader
+          v-if="story"
+          :links="story.content.navigation?.[0]"
+          :logo-hidden="isHome || isStory"
+          :reservation-hidden="isStory"
+        /> -->
+        <AppHeaderPro
           v-if="story"
           :links="story.content.navigation?.[0]"
           :logo-hidden="isHome || isStory"
