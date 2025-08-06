@@ -45,16 +45,6 @@ const rAFHeaderScroll = () => {
   }
 }
 
-onMounted(() => {
-  rAFHeaderScroll()
-  window.addEventListener('scroll', rAFHeaderScroll)
-})
-
-onUnmounted(() => {
-  cancelAnimationFrame(raf.value)
-  window.removeEventListener('scroll', rAFHeaderScroll)
-})
-
 const reservationsOpen = useState<boolean>('reservationsOpen')
 const navigationOpen = useState<boolean>('navigationOpen')
 
@@ -76,6 +66,22 @@ const toggleNavigation = () => {
 }
 
 const reservationsForce = ref<boolean>(false)
+
+const openDropdown = ref<string | null>(null)
+
+const setOpenDropdown = (dropdownId: string | null) => {
+  openDropdown.value = dropdownId
+}
+
+onMounted(() => {
+  rAFHeaderScroll()
+  window.addEventListener('scroll', rAFHeaderScroll)
+})
+
+onUnmounted(() => {
+  cancelAnimationFrame(raf.value)
+  window.removeEventListener('scroll', rAFHeaderScroll)
+})
 </script>
 
 <template>
@@ -94,31 +100,41 @@ const reservationsForce = ref<boolean>(false)
     </button>
 
     <div class="app-header__wrapper wrapper">
-      <div class="app-header__menu">
-        <button
-          class="app-header__switch"
-          type="button"
-          @click="toggleNavigation"
-        >
-          <span class="app-header__burger">
-            <AppHeaderBurger :is-open="navigationOpen" />
-          </span>
-        </button>
+      <button
+        class="app-header__switch"
+        type="button"
+        @click="toggleNavigation"
+      >
+        <span class="app-header__burger">
+          <AppHeaderBurger :is-open="navigationOpen" />
+        </span>
+      </button>
 
-        <nav class="app-header__navigation">
-          <!-- <AppHeaderNavigation
-            :is-open="navigationOpen"
-            :list="links"
-          /> -->
+      <div class="app-header__menu mdMax:absolute mdMax:inset-x-0 mdMax:top-0 mdMax:h-screen mdMax:overflow-y-auto">
+        <nav class="app-header__navigation mdMax:text-center mdMax:pt-[var(--app-header-height)]">
           <AppHeaderDropdown
             title="Explore"
             :list="links"
+            :is-open="openDropdown === 'Explore'"
+            :disable-on-mobile="true"
+            @toggle="setOpenDropdown(openDropdown === 'Explore' ? null : 'Explore')"
           />
 
           <AppHeaderDropdown
-            title="Explore"
+            title="Our Menus"
             :list="links"
+            :is-open="openDropdown === 'Our Menus'"
+            @toggle="setOpenDropdown(openDropdown === 'Our Menus' ? null : 'Our Menus')"
           />
+
+          <StoryblokLink
+            v-if="links?.items?.[1]?.link"
+            class="block type-body-large"
+            :item="links.items[1].link"
+            :title="links.items[1].title ?? ''"
+          >
+            {{ links.items[1].title ?? '' }}
+          </StoryblokLink>
         </nav>
       </div>
 
@@ -283,7 +299,7 @@ const reservationsForce = ref<boolean>(false)
   }
 
   @screen mdMax {
-    display: none;
+    /* display: none; */
   }
 }
 
@@ -368,14 +384,16 @@ const reservationsForce = ref<boolean>(false)
 }
 
 .app-header__navigation {
-  display: flex;
-  gap: theme('spacing.20');
   pointer-events: none;
 
   .app-header--is-open & {
     pointer-events: auto;
   }
 
+  @screen md {
+    display: flex;
+    gap: theme('spacing.20');
+  }
   /* @screen mdMax {
     position: absolute;
     z-index: -1;
@@ -397,10 +415,10 @@ const reservationsForce = ref<boolean>(false)
     }
   } */
 
-  @screen md {
+  /* @screen md {
     position: relative;
     z-index: 2;
-  }
+  } */
 }
 
 .app-header__logo {

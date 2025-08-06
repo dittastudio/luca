@@ -4,19 +4,27 @@ import type { LinkList } from '@@/.storyblok/types/285210/storyblok-components'
 interface Props {
   title: string
   list?: LinkList
+  isOpen?: boolean
+  disableOnMobile?: boolean
 }
 
-const { title, list } = defineProps<Props>()
-const isOpen = ref(false)
+const { title, list, isOpen = false, disableOnMobile = false } = defineProps<Props>()
+
+interface Emits {
+  (event: 'toggle'): void
+}
+
+const emit = defineEmits<Emits>()
+
 const isInteracted = ref(false)
 const items = computed(() => list?.items ?? [])
 
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
+  emit('toggle')
 }
 
 watch(
-  () => isOpen.value,
+  () => isOpen,
   () => (isInteracted.value = true),
 )
 </script>
@@ -25,40 +33,48 @@ watch(
   <div
     class="app-header-dropdown pointer-events-auto"
     :class="{
+      'app-header-dropdown--is-disabled': disableOnMobile,
       'app-header-dropdown--is-open': isOpen && isInteracted,
       'app-header-dropdown--is-closed': !isOpen && isInteracted,
     }"
   >
     <div class="app-header-dropdown__inner">
-      <h2
+      <button
         class="app-header-dropdown__title type-body-large flex items-center gap-8"
+        :class="{
+          'mdMax:hidden': disableOnMobile,
+        }"
+        type="button"
         @click="toggleDropdown"
       >
         {{ title }}
 
-        <span class="app-footer-accordion__icon">
-          <UiChevron :is-open="isOpen" />
-        </span>
-      </h2>
+        <UiChevron :is-open="isOpen" />
+      </button>
 
-      <ul class="app-header-dropdown__list type-body-large pt-20 pl-20">
-        <li
-          v-for="(item, index) in items"
-          :key="item._uid"
-          class="app-header-dropdown__item"
-          :style="`--link-index: ${index}`"
-        >
-          <StoryblokLink
-            class="app-header-dropdown__link"
-            active-class="app-header-dropdown__link--is-active"
-            :item="item.link"
-            :title="item.title"
-            :tabindex="isOpen ? '0' : '-1'"
-          >
-            {{ item.title }}
-          </StoryblokLink>
-        </li>
-      </ul>
+      <div class="app-header-dropdown__content-outer">
+        <div class="app-header-dropdown__content">
+          <div class="app-header-dropdown__content-inner">
+            <ul class="app-header-dropdown__list type-body-large p-20">
+              <li
+                v-for="(item, index) in items"
+                :key="item._uid"
+                class="app-header-dropdown__item"
+                :style="`--link-index: ${index}`"
+              >
+                <StoryblokLink
+                  class="app-header-dropdown__link"
+                  active-class="app-header-dropdown__link--is-active"
+                  :item="item.link"
+                  :title="item.title"
+                >
+                  {{ item.title }}
+                </StoryblokLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -74,7 +90,7 @@ watch(
     align-items: center;
 
     min-height: 100%;
-    padding-block: var(--app-header-height) theme('spacing.40');
+    /* padding-block: var(--app-header-height) theme('spacing.40'); */
 
     text-align: center;
   }
@@ -85,9 +101,35 @@ watch(
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   @screen mdMax {
     width: 100%;
+  }
+}
+
+.app-header-dropdown__content-outer {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  .app-header-dropdown--is-open & {
+    grid-template-rows: 1fr;
+  }
+
+  @screen mdMax {
+    .app-header-dropdown--is-disabled & {
+      grid-template-rows: 1fr;
+    }
+  }
+}
+
+.app-header-dropdown__content {
+  min-height: 0;
+
+  .app-header-dropdown--is-disabled & {
+    min-height: auto;
   }
 }
 
@@ -106,6 +148,7 @@ watch(
   @screen md {
     position: absolute;
     top: 100%;
+    left: 0;
     width: max-content;
 
     margin-block: calc(-1 * var(--link-padding-y));
@@ -156,6 +199,13 @@ watch(
   .app-header-dropdown--is-open & {
     animation: link-show theme('transitionDuration.700') theme('transitionTimingFunction.smooth')
       var(--animation-delay) forwards;
+  }
+
+  @screen mdMax {
+    .app-header-dropdown--is-disabled & {
+      opacity: 1;
+      animation: none;
+    }
   }
 }
 
