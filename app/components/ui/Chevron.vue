@@ -13,14 +13,14 @@ const { isOpen = false, size = '0.4em' } = defineProps<Props>()
     :class="{ 'ui-chevron--is-open': isOpen }"
     :style="`--size: ${size}`"
   >
-
+    <!--
     <span
       class="ui-chevron__item ui-chevron__item--up block border-t border-r size-[var(--size)] -rotate-45 transition-[opacity,transform]"
       :class="{
         'opacity-0 -translate-y-1/4 ease-inQuart duration-150': !isOpen,
         'opacity-100 translate-y-1/4 duration-150 delay-300 ease-outQuart': isOpen,
       }"
-    />
+    /> -->
 
     <span
       class="ui-chevron__item ui-chevron__item--down block border-b border-r size-[var(--size)] rotate-45 transition-[opacity,transform]"

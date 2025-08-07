@@ -127,12 +127,12 @@ onUnmounted(() => {
       <div class="app-header__menu">
         <nav class="app-header__navigation type-body-large">
           <template
-            v-for="item in items"
+            v-for="(item, index) in items"
             :key="item._uid"
           >
             <StoryblokLink
               v-if="isLink(item)"
-              class="app-header__item block pointer-events-auto mdMax:p-10"
+              class="app-header__item block pointer-events-auto p-10 md:p-15 md:-m-15"
               :item="item.link"
               :title="item.title"
             >
@@ -142,39 +142,18 @@ onUnmounted(() => {
             <template v-else-if="isLinkGroup(item)">
               <div
                 class="app-header__item"
-                :class="{ 'app-header__item--is-open': dropdownOpen === 'Explore' }"
+                :class="{ 'app-header__item--is-open': dropdownOpen === item._uid }"
               >
                 <AppHeaderDropdown
                   :title="item.title"
                   :items="item.links"
-                  :is-open="dropdownOpen === item.title"
-                  :disable-on-mobile="false"
-                  @toggle="setDropdownOpen(dropdownOpen === item.title ? null : item.title)"
+                  :is-open="dropdownOpen === item._uid"
+                  :disable-on-mobile="index === 0"
+                  @toggle="setDropdownOpen(dropdownOpen === item._uid ? null : item._uid)"
                 />
               </div>
             </template>
           </template>
-
-          <!-- <div
-            class="app-header__item"
-            :class="{ 'app-header__item--is-open': dropdownOpen === 'Our Menus' }"
-          >
-            <AppHeaderDropdown
-              title="Menus"
-              :list="links"
-              :is-open="dropdownOpen === 'Our Menus'"
-              @toggle="setDropdownOpen(dropdownOpen === 'Our Menus' ? null : 'Our Menus')"
-            />
-          </div> -->
-
-          <!-- <StoryblokLink
-            v-if="links?.items?.[1]?.link"
-            class="app-header__item block pointer-events-auto mdMax:p-10"
-            :item="links.items[1].link"
-            :title="links.items[1].title ?? ''"
-          >
-            {{ links.items[1].title ?? '' }}
-          </StoryblokLink> -->
         </nav>
       </div>
 
@@ -268,8 +247,10 @@ onUnmounted(() => {
   height: var(--app-header-height);
   transition: color var(--app-header-speed) theme('transitionTimingFunction.smooth');
 
-  html:has(&.app-header--is-open) {
-    overflow: hidden;
+  @screen mdMax {
+    html:has(&.app-header--is-open) {
+      overflow: hidden;
+    }
   }
 
   &--is-open {
@@ -392,6 +373,7 @@ onUnmounted(() => {
     overflow-y: auto;
     opacity: 0;
     transition: opacity 0.25s theme('transitionTimingFunction.smooth');
+    pointer-events: auto;
 
     .app-header--is-open & {
       opacity: 1;
@@ -423,54 +405,17 @@ onUnmounted(() => {
   }
 }
 
-.app-header__line {
-  --line-width: 77px;
-  --line-alignment-nudge: 14px;
-
-  transform-origin: left;
-  scale: 0 1 1;
-
-  width: var(--line-width);
-  height: 1px;
-  margin-block: var(--line-alignment-nudge);
-
-  opacity: 0;
-  background-color: currentcolor;
-
-  transition:
-    scale theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-    opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  .app-header--is-open & {
-    scale: 1 1 1;
-    opacity: 1;
-    transition:
-      scale theme('transitionDuration.800') theme('transitionTimingFunction.smooth'),
-      opacity theme('transitionDuration.800') theme('transitionTimingFunction.smooth');
-  }
-
-  @screen mdMax {
-    display: none;
-  }
-}
-
 .app-header__navigation {
-  /* pointer-events: none;
-
-  .app-header--is-open & {
-    pointer-events: auto;
-  } */
-
   font-size: theme('fontSize.24');
 
   @screen md {
     display: flex;
-    gap: 0.75em;
+    gap: theme('spacing.20');
     font-size: theme('fontSize.16');
   }
 
   @screen lg {
-    gap: theme('spacing.20');
+    gap: theme('spacing.30');
     font-size: theme('fontSize.20');
   }
 
@@ -489,9 +434,17 @@ onUnmounted(() => {
 .app-header__item {
   transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-  .app-header__navigation:hover &:not(:hover),
+  .app-header__navigation:hover &:not(:hover) {
+    opacity: 0.5;
+    transition-duration: 0.5s;
+    transition-delay: 0.25s;
+  }
+
+  .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
   .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
-    opacity: 0.3;
+    opacity: 0;
+    transition-duration: 0.2s;
+    transition-delay: 0s;
   }
 }
 
