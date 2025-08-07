@@ -778,7 +778,7 @@
     "display_name": null,
     "description": "Contains a set of links.",
     "created_at": "2025-08-07T12:28:51.173Z",
-    "updated_at": "2025-08-07T12:32:47.515Z",
+    "updated_at": "2025-08-07T15:00:12.564Z",
     "id": 77333017299015,
     "schema": {
       "title": {
@@ -787,9 +787,16 @@
         "required": true,
         "id": "pFYB5JJxSqeQSjFvcM4f3Q"
       },
+      "hidden_on_mobile": {
+        "type": "boolean",
+        "pos": 1,
+        "description": "Should this group's title be hidden on mobile.",
+        "inline_label": true,
+        "id": "pAb0s3xfSpGKStkvcm9VNw"
+      },
       "links": {
         "type": "bloks",
-        "pos": 1,
+        "pos": 2,
         "required": true,
         "restrict_type": "",
         "restrict_components": true,
