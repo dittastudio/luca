@@ -48,8 +48,11 @@ const rAFHeaderScroll = () => {
 const reservationsOpen = useState<boolean>('reservationsOpen')
 const navigationOpen = useState<boolean>('navigationOpen')
 
+const dropdownOpen = ref<string | null>(null)
+
 const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': navigationOpen.value,
+  'app-header--is-dropdown-open': dropdownOpen.value !== null,
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
@@ -67,10 +70,12 @@ const toggleNavigation = () => {
 
 const reservationsForce = ref<boolean>(false)
 
-const openDropdown = ref<string | null>(null)
+const setDropdownOpen = (dropdownId: string | null) => {
+  dropdownOpen.value = dropdownId
+}
 
-const setOpenDropdown = (dropdownId: string | null) => {
-  openDropdown.value = dropdownId
+const closeAllDropdowns = () => {
+  dropdownOpen.value = null
 }
 
 onMounted(() => {
@@ -92,11 +97,20 @@ onUnmounted(() => {
   >
     <button
       tabindex="-1"
-      class="app-header__bg"
+      class="app-header__bg app-header__bg--mobile"
       type="button"
       @click="closeNavigation"
     >
       <span class="sr-only">Close Menu</span>
+    </button>
+
+    <button
+      tabindex="-1"
+      class="app-header__bg app-header__bg--desktop"
+      type="button"
+      @click="closeAllDropdowns"
+    >
+      <span class="sr-only">Close Dropdown</span>
     </button>
 
     <div class="app-header__wrapper wrapper">
@@ -110,26 +124,36 @@ onUnmounted(() => {
         </span>
       </button>
 
-      <div class="app-header__menu mdMax:absolute mdMax:inset-x-0 mdMax:top-0 mdMax:h-screen mdMax:overflow-y-auto">
-        <nav class="app-header__navigation mdMax:text-center mdMax:pt-[var(--app-header-height)]">
-          <AppHeaderDropdown
-            title="Explore"
-            :list="links"
-            :is-open="openDropdown === 'Explore'"
-            :disable-on-mobile="true"
-            @toggle="setOpenDropdown(openDropdown === 'Explore' ? null : 'Explore')"
-          />
+      <div class="app-header__menu">
+        <nav class="app-header__navigation type-body-large">
+          <div
+            class="app-header__item"
+            :class="{ 'app-header__item--is-open': dropdownOpen === 'Explore' }"
+          >
+            <AppHeaderDropdown
+              title="Explore"
+              :list="links"
+              :is-open="dropdownOpen === 'Explore'"
+              :disable-on-mobile="true"
+              @toggle="setDropdownOpen(dropdownOpen === 'Explore' ? null : 'Explore')"
+            />
+          </div>
 
-          <AppHeaderDropdown
-            title="Our Menus"
-            :list="links"
-            :is-open="openDropdown === 'Our Menus'"
-            @toggle="setOpenDropdown(openDropdown === 'Our Menus' ? null : 'Our Menus')"
-          />
+          <div
+            class="app-header__item"
+            :class="{ 'app-header__item--is-open': dropdownOpen === 'Our Menus' }"
+          >
+            <AppHeaderDropdown
+              title="Menus"
+              :list="links"
+              :is-open="dropdownOpen === 'Our Menus'"
+              @toggle="setDropdownOpen(dropdownOpen === 'Our Menus' ? null : 'Our Menus')"
+            />
+          </div>
 
           <StoryblokLink
             v-if="links?.items?.[1]?.link"
-            class="block type-body-large"
+            class="app-header__item block pointer-events-auto mdMax:p-10"
             :item="links.items[1].link"
             :title="links.items[1].title ?? ''"
           >
@@ -288,18 +312,34 @@ onUnmounted(() => {
   cursor: default;
 
   opacity: 0;
-  background-color: var(--app-header-background-tint);
-  backdrop-filter: var(--app-header-blur);
+}
 
-  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+.app-header__bg--mobile {
+  background-color: theme('colors.green');
+  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
 
   .app-header--is-open & {
     pointer-events: auto;
     opacity: 1;
   }
 
+  @screen md {
+    display: none;
+  }
+}
+
+.app-header__bg--desktop {
+  background-color: var(--app-header-background-tint);
+  backdrop-filter: var(--app-header-blur);
+  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+
+  .app-header--is-dropdown-open & {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
   @screen mdMax {
-    /* display: none; */
+    display: none;
   }
 }
 
@@ -326,6 +366,21 @@ onUnmounted(() => {
     display: flex;
     gap: theme('spacing.10');
     align-items: flex-start;
+  }
+
+  @screen mdMax {
+    position: absolute;
+    inset: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.25s theme('transitionTimingFunction.smooth');
+
+    .app-header--is-open & {
+      opacity: 1;
+      transition: opacity 0.5s theme('transitionTimingFunction.smooth') 0.25s;
+    }
   }
 }
 
@@ -384,41 +439,44 @@ onUnmounted(() => {
 }
 
 .app-header__navigation {
-  pointer-events: none;
+  /* pointer-events: none;
 
   .app-header--is-open & {
     pointer-events: auto;
-  }
+  } */
+
+  font-size: theme('fontSize.24');
 
   @screen md {
     display: flex;
-    gap: theme('spacing.20');
+    gap: 0.75em;
+    font-size: theme('fontSize.16');
   }
-  /* @screen mdMax {
-    position: absolute;
-    z-index: -1;
-    inset: 0;
 
-    overflow-y: auto;
+  @screen lg {
+    gap: theme('spacing.20');
+    font-size: theme('fontSize.20');
+  }
 
+  @screen mdMax {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: var(--app-header-height);
+    padding-bottom: theme('spacing.40');
     width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100%;
+  }
+}
 
-    opacity: 0;
-    background-color: theme('colors.green');
+.app-header__item {
+  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-
-    .app-header--is-open & {
-      opacity: 1;
-    }
-  } */
-
-  /* @screen md {
-    position: relative;
-    z-index: 2;
-  } */
+  .app-header__navigation:hover &:not(:hover),
+  .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
+    opacity: 0.3;
+  }
 }
 
 .app-header__logo {

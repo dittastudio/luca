@@ -40,7 +40,7 @@ watch(
   >
     <div class="app-header-dropdown__inner">
       <button
-        class="app-header-dropdown__title type-body-large flex items-center gap-8"
+        class="app-header-dropdown__title flex items-center gap-8 mdMax:p-10"
         :class="{
           'mdMax:hidden': disableOnMobile,
         }"
@@ -55,7 +55,7 @@ watch(
       <div class="app-header-dropdown__content-outer">
         <div class="app-header-dropdown__content">
           <div class="app-header-dropdown__content-inner">
-            <ul class="app-header-dropdown__list type-body-large p-20">
+            <ul class="app-header-dropdown__list">
               <li
                 v-for="(item, index) in items"
                 :key="item._uid"
@@ -88,10 +88,6 @@ watch(
     flex-direction: column;
     gap: theme('spacing.40');
     align-items: center;
-
-    min-height: 100%;
-    /* padding-block: var(--app-header-height) theme('spacing.40'); */
-
     text-align: center;
   }
 }
@@ -109,16 +105,17 @@ watch(
 }
 
 .app-header-dropdown__content-outer {
-  display: grid;
-  grid-template-rows: 0fr;
-  overflow: hidden;
-  transition: grid-template-rows theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  .app-header-dropdown--is-open & {
-    grid-template-rows: 1fr;
-  }
-
   @screen mdMax {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows theme('transitionDuration.250') theme('transitionTimingFunction.smooth');
+
+    .app-header-dropdown--is-open & {
+      grid-template-rows: 1fr;
+      transition: grid-template-rows theme('transitionDuration.700') theme('transitionTimingFunction.inOutExpo');
+    }
+
     .app-header-dropdown--is-disabled & {
       grid-template-rows: 1fr;
     }
@@ -126,10 +123,12 @@ watch(
 }
 
 .app-header-dropdown__content {
-  min-height: 0;
+  @screen mdMax {
+    min-height: 0;
 
-  .app-header-dropdown--is-disabled & {
-    min-height: auto;
+    .app-header-dropdown--is-disabled & {
+      min-height: auto;
+    }
   }
 }
 
@@ -141,19 +140,15 @@ watch(
   @screen md {
     --link-padding-x: theme('spacing.10');
     --link-padding-y: 3px;
-  }
 
-  font-size: theme('fontSize.24');
-
-  @screen md {
     position: absolute;
     top: 100%;
     left: 0;
     width: max-content;
+    padding-block: theme('spacing.20');
 
     margin-block: calc(-1 * var(--link-padding-y));
     margin-inline: calc(-1 * var(--link-padding-x));
-    font-size: theme('fontSize.20');
   }
 }
 

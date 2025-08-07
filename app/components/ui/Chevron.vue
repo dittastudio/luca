@@ -1,87 +1,43 @@
 <script lang="ts" setup>
 interface Props {
-  size?: number
+  size?: string
   isOpen?: boolean
 }
 
-const { isOpen = false, size = 12 } = defineProps<Props>()
+const { isOpen = false, size = '0.4em' } = defineProps<Props>()
 </script>
 
 <template>
   <span
-    class="ui-chevron relative block size-[var(--size)]"
+    class="ui-chevron relative top-[0.05em] grid"
     :class="{ 'ui-chevron--is-open': isOpen }"
-    :style="`--size: ${size}px`"
+    :style="`--size: ${size}`"
   >
-    <span
-      class="absolute top-0 left-0 w-3/5 h-[1px] transition-transform duration-500 ease-inOutQuart"
-      :class="{
-        'rotate-45': !isOpen,
-        '-rotate-45': isOpen,
-      }"
-    >
-      <span
-        class="block size-full bg-[currentColor] origin-left"
-        :class="{
-          'animate-[var(--accordion-wing-leave)]': !isOpen,
-          'animate-[var(--accordion-wing-enter)]': isOpen,
-        }"
-      />
-    </span>
 
     <span
-      class="absolute top-0 right-0 w-3/5 h-[1px] transition-transform duration-500 ease-inOutQuart"
+      class="ui-chevron__item ui-chevron__item--up block border-t border-r size-[var(--size)] -rotate-45 transition-[opacity,transform] duration-250"
       :class="{
-        '-rotate-45': !isOpen,
-        'rotate-45': isOpen,
+        'opacity-0 -translate-y-1/4 ease-inQuart': !isOpen,
+        'opacity-100 translate-y-1/4 delay-250 ease-outQuart': isOpen,
       }"
-    >
-      <span
-        class="block size-full bg-[currentColor] origin-right"
-        :class="{
-          'animate-[var(--accordion-wing-leave)]': !isOpen,
-          'animate-[var(--accordion-wing-enter)]': isOpen,
-        }"
-      />
-    </span>
+    />
+
+    <span
+      class="ui-chevron__item ui-chevron__item--down block border-b border-r size-[var(--size)] rotate-45 transition-[opacity,transform] duration-250"
+      :class="{
+        'opacity-100 -translate-y-1/4 delay-250 ease-outQuart': !isOpen,
+        'opacity-0 translate-y-1/4 ease-inQuart': isOpen,
+      }"
+    />
   </span>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .ui-chevron {
-  --accordion-scale: 0.9 1;
-  --accordion-wing-leave: wing-leave 0.5s theme('transitionTimingFunction.inOutQuart') forwards;
-  --accordion-wing-enter: wing-enter 0.5s theme('transitionTimingFunction.inOutQuart') forwards;
-
-  width: var(--size);
-  height: 100%;
+  grid-template-areas: "stack";
 }
 
-@keyframes wing-leave {
-  0% {
-    scale: 1 1;
-  }
-
-  50% {
-    scale: var(--accordion-scale);
-  }
-
-  100% {
-    scale: 1 1;
-  }
-}
-
-@keyframes wing-enter {
-  0% {
-    scale: 1 1;
-  }
-
-  50% {
-    scale: var(--accordion-scale);
-  }
-
-  100% {
-    scale: 1 1;
-  }
+.ui-chevron__item {
+  grid-area: stack;
 }
 </style>
