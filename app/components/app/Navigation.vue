@@ -22,11 +22,20 @@ const { items = [] } = defineProps<Props>()
       </StoryblokLink>
 
       <template v-else-if="isLinkGroup(item)">
-        <button type="button">
+        <button
+          type="button"
+          :class="{ 'mdMax:sr-only': item.hidden_on_mobile }"
+        >
           {{ item.title }} ⬇️
         </button>
 
-        <ul class="pl-20">
+        <ul
+          v-if="item.links?.length"
+          :class="{
+            'md:pl-20': item.hidden_on_mobile,
+            'pl-20': !item.hidden_on_mobile,
+          }"
+        >
           <li
             v-for="link in item.links"
             :key="link._uid"
