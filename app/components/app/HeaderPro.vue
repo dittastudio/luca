@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import type { LinkList } from '@@/.storyblok/types/285210/storyblok-components'
+import type { Link, LinkGroup } from '@@/.storyblok/types/285210/storyblok-components'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
 interface Props {
-  links?: LinkList
+  items?: (Link | LinkGroup)[]
   logoHidden?: boolean
   reservationHidden?: boolean
 }
 
-const { links, logoHidden, reservationHidden } = defineProps<Props>()
+const { items = [], logoHidden, reservationHidden } = defineProps<Props>()
 
 const prevScrollPos = ref<number>(0)
 const hasScrolled = ref<boolean>(false)
@@ -126,20 +126,36 @@ onUnmounted(() => {
 
       <div class="app-header__menu">
         <nav class="app-header__navigation type-body-large">
-          <div
-            class="app-header__item"
-            :class="{ 'app-header__item--is-open': dropdownOpen === 'Explore' }"
+          <template
+            v-for="item in items"
+            :key="item._uid"
           >
-            <AppHeaderDropdown
-              title="Explore"
-              :list="links"
-              :is-open="dropdownOpen === 'Explore'"
-              :disable-on-mobile="true"
-              @toggle="setDropdownOpen(dropdownOpen === 'Explore' ? null : 'Explore')"
-            />
-          </div>
+            <StoryblokLink
+              v-if="isLink(item)"
+              class="app-header__item block pointer-events-auto mdMax:p-10"
+              :item="item.link"
+              :title="item.title"
+            >
+              {{ item.title }}
+            </StoryblokLink>
 
-          <div
+            <template v-else-if="isLinkGroup(item)">
+              <div
+                class="app-header__item"
+                :class="{ 'app-header__item--is-open': dropdownOpen === 'Explore' }"
+              >
+                <AppHeaderDropdown
+                  :title="item.title"
+                  :items="item.links"
+                  :is-open="dropdownOpen === item.title"
+                  :disable-on-mobile="false"
+                  @toggle="setDropdownOpen(dropdownOpen === item.title ? null : item.title)"
+                />
+              </div>
+            </template>
+          </template>
+
+          <!-- <div
             class="app-header__item"
             :class="{ 'app-header__item--is-open': dropdownOpen === 'Our Menus' }"
           >
@@ -149,16 +165,16 @@ onUnmounted(() => {
               :is-open="dropdownOpen === 'Our Menus'"
               @toggle="setDropdownOpen(dropdownOpen === 'Our Menus' ? null : 'Our Menus')"
             />
-          </div>
+          </div> -->
 
-          <StoryblokLink
+          <!-- <StoryblokLink
             v-if="links?.items?.[1]?.link"
             class="app-header__item block pointer-events-auto mdMax:p-10"
             :item="links.items[1].link"
             :title="links.items[1].title ?? ''"
           >
             {{ links.items[1].title ?? '' }}
-          </StoryblokLink>
+          </StoryblokLink> -->
         </nav>
       </div>
 

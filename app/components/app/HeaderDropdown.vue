@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import type { LinkList } from '@@/.storyblok/types/285210/storyblok-components'
+import type { Link } from '@@/.storyblok/types/285210/storyblok-components'
 
 interface Props {
   title: string
-  list?: LinkList
+  items?: Link[]
   isOpen?: boolean
   disableOnMobile?: boolean
 }
 
-const { title, list, isOpen = false, disableOnMobile = false } = defineProps<Props>()
+const { title, items = [], isOpen = false, disableOnMobile = false } = defineProps<Props>()
 
 interface Emits {
   (event: 'toggle'): void
@@ -17,7 +17,6 @@ interface Emits {
 const emit = defineEmits<Emits>()
 
 const isInteracted = ref(false)
-const items = computed(() => list?.items ?? [])
 
 const toggleDropdown = () => {
   emit('toggle')

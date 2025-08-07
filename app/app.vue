@@ -47,7 +47,7 @@ if (isStory.value) {
         /> -->
         <AppHeaderPro
           v-if="story"
-          :links="story.content.navigation?.[0]"
+          :items="story.content.navigation_new"
           :logo-hidden="isHome || isStory"
           :reservation-hidden="isStory"
         />
