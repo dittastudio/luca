@@ -115,8 +115,15 @@ export interface ImageVideo {
 
 export interface Link {
   title: string;
-  link: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
+  link: Multilink;
   component: "link";
+  _uid: string;
+}
+
+export interface LinkGroup {
+  title: string;
+  links: Link[];
+  component: "link_group";
   _uid: string;
 }
 
@@ -179,6 +186,7 @@ export interface Settings {
   social_tiktok?: string;
   social_instagram?: string;
   social_vimeo?: string;
+  navigation_new?: (Link | LinkGroup)[];
   component: "settings";
   _uid: string;
 }

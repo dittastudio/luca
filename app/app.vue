@@ -58,6 +58,11 @@ if (isStory.value) {
       </template>
 
       <template #footer>
+        <AppNavigation
+          v-if="story"
+          :items="story.content.navigation_new"
+        />
+
         <AppFooter
           v-if="story"
           :opening-times-title="story.content.opening_times_title"

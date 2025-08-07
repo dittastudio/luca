@@ -1,5 +1,9 @@
+import type { Link, LinkGroup } from '@@/.storyblok/types/285210/storyblok-components'
 import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
 import type { LocationQuery } from 'vue-router'
+
+const isLink = (media: Link | LinkGroup): media is Link => media.component === 'link'
+const isLinkGroup = (media: Link | LinkGroup): media is LinkGroup => media.component === 'link_group'
 
 const storyblokEditor = (search: LocationQuery) => '_storyblok' in search
 
@@ -96,6 +100,8 @@ const storyblokImageDimensions = (
 }
 
 export {
+  isLink,
+  isLinkGroup,
   storyblokAssetType,
   storyblokEditor,
   storyblokImage,

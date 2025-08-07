@@ -730,16 +730,17 @@
   },
   {
     "name": "link",
-    "display_name": null,
-    "description": null,
+    "display_name": "",
+    "description": "Creates a link to anything.",
     "created_at": "2024-04-17T19:13:26.463Z",
-    "updated_at": "2024-04-17T19:14:49.486Z",
+    "updated_at": "2025-08-07T12:41:02.412Z",
     "id": 5669666,
     "schema": {
       "title": {
         "type": "text",
         "pos": 0,
-        "required": true
+        "required": true,
+        "id": "D_4atpt1Qi-Ju2Ih_3C9NA"
       },
       "link": {
         "type": "multilink",
@@ -751,7 +752,9 @@
         "restrict_content_types": true,
         "component_whitelist": [
           "page"
-        ]
+        ],
+        "asset_link_type": true,
+        "id": "fUfuOUzxQlSRLOH0whnA0g"
       }
     },
     "image": null,
@@ -762,6 +765,48 @@
     "all_presets": [],
     "preset_id": null,
     "real_name": "link",
+    "component_group_uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
+    "color": null,
+    "icon": null,
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "link_group",
+    "display_name": null,
+    "description": "Contains a set of links.",
+    "created_at": "2025-08-07T12:28:51.173Z",
+    "updated_at": "2025-08-07T12:32:47.515Z",
+    "id": 77333017299015,
+    "schema": {
+      "title": {
+        "type": "text",
+        "pos": 0,
+        "required": true,
+        "id": "pFYB5JJxSqeQSjFvcM4f3Q"
+      },
+      "links": {
+        "type": "bloks",
+        "pos": 1,
+        "required": true,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "link"
+        ],
+        "id": "jxL_1y0aSfqT5juEOGOOKQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "link_group",
     "component_group_uuid": "27e702b5-0e08-4bb8-a3a5-51ca0655f286",
     "color": null,
     "icon": null,
@@ -974,14 +1019,15 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-04-17T19:20:25.049Z",
-    "updated_at": "2024-05-14T16:11:04.941Z",
+    "updated_at": "2025-08-07T12:30:32.511Z",
     "id": 5669700,
     "schema": {
       "cover_message": {
         "type": "text",
         "pos": 0,
         "required": false,
-        "display_name": "Introduction Headline"
+        "display_name": "Introduction Headline",
+        "id": "lnI7pCTMQp2ViecuxAFhwg"
       },
       "navigation": {
         "type": "bloks",
@@ -993,13 +1039,15 @@
         "minimum": 1,
         "maximum": 1,
         "pos": 1,
-        "key": "navigation"
+        "key": "navigation",
+        "id": "qkgNaGO5Qky_3Z2xIzeLxQ"
       },
       "opening_times_title": {
         "type": "text",
         "pos": 2,
         "required": false,
-        "key": "open_times_title"
+        "key": "open_times_title",
+        "id": "hsGP8BMLR0-GPUWDDBuNog"
       },
       "opening_times": {
         "type": "richtext",
@@ -1011,13 +1059,15 @@
         ],
         "allow_target_blank": true,
         "pos": 3,
-        "key": "opening_times"
+        "key": "opening_times",
+        "id": "6JZHe4GfRiyO50Li7EmHiQ"
       },
       "contact_title": {
         "type": "text",
         "pos": 4,
         "required": false,
-        "key": "contact_title"
+        "key": "contact_title",
+        "id": "q4Yv7cHQSW-zbZcGL2vMhA"
       },
       "contact": {
         "type": "richtext",
@@ -1030,13 +1080,15 @@
         ],
         "allow_target_blank": true,
         "pos": 5,
-        "key": "contact"
+        "key": "contact",
+        "id": "66-kdsF5RRekDjfjn4nAbA"
       },
       "reservations_title": {
         "type": "text",
         "pos": 6,
         "required": false,
-        "key": "reservations_title"
+        "key": "reservations_title",
+        "id": "FUk35ZY8TxqlLkp0K0ehMQ"
       },
       "reservations": {
         "type": "richtext",
@@ -1049,13 +1101,15 @@
         ],
         "allow_target_blank": true,
         "pos": 7,
-        "key": "reservations"
+        "key": "reservations",
+        "id": "PLmuRExxQRGTbQ9Yip-VjQ"
       },
       "newsletter_title": {
         "type": "text",
         "pos": 8,
         "required": false,
-        "key": "newsletter_title"
+        "key": "newsletter_title",
+        "id": "inUxqa8NSQSwru0Mte6plA"
       },
       "newsletter": {
         "type": "richtext",
@@ -1068,7 +1122,8 @@
         ],
         "allow_target_blank": true,
         "pos": 9,
-        "key": "newsletter"
+        "key": "newsletter",
+        "id": "yB6omsZRQiCYNEE_5zJFxw"
       },
       "footer": {
         "type": "bloks",
@@ -1078,27 +1133,43 @@
         "component_whitelist": [
           "link_list"
         ],
-        "pos": 10
+        "pos": 10,
+        "id": "zpbZCzZ-RJ-ENFaCSL8FaA"
       },
       "social_facebook": {
         "type": "text",
         "pos": 11,
-        "display_name": "Facebook"
+        "display_name": "Facebook",
+        "id": "O4PunMnuSEiPf_WkTGudGw"
       },
       "social_tiktok": {
         "type": "text",
         "pos": 12,
-        "display_name": "TikTok"
+        "display_name": "TikTok",
+        "id": "UaWyFh3vQye0qpRkDDAwnA"
       },
       "social_instagram": {
         "type": "text",
         "pos": 13,
-        "display_name": "Instagram"
+        "display_name": "Instagram",
+        "id": "ZHZUy1kKRAKsMASycZ3a2g"
       },
       "social_vimeo": {
         "type": "text",
         "pos": 14,
-        "display_name": "Vimeo"
+        "display_name": "Vimeo",
+        "id": "RY1IlkXZRnCA99UFy7awnQ"
+      },
+      "navigation_new": {
+        "type": "bloks",
+        "pos": 15,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "link",
+          "link_group"
+        ],
+        "id": "sLHs1wmmSCCPnxrIrv4Usw"
       }
     },
     "image": null,
