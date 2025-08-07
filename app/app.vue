@@ -28,6 +28,7 @@ const splashSeen = useState('splashSeen', () => false)
 
 useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
+useState<string | null>('dropdownOpen', () => null)
 useNavigation(false)
 
 if (isStory.value) {

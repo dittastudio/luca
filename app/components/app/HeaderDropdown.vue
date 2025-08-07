@@ -37,44 +37,39 @@ watch(
       'app-header-dropdown--is-closed': !isOpen && isInteracted,
     }"
   >
-    <div class="app-header-dropdown__inner">
-      <button
-        class="app-header-dropdown__title relative z-1 flex items-center gap-[0.4em] p-10 md:p-15 md:-m-15 pointer-events-auto"
-        :class="{
-          'mdMax:hidden': disableOnMobile,
-        }"
-        type="button"
-        @click="toggleDropdown"
-      >
-        {{ title }}
+    <button
+      class="app-header-dropdown__button"
+      type="button"
+      @click="toggleDropdown"
+    >
+      {{ title }}
 
-        <UiChevron :is-open="isOpen" />
-      </button>
+      <UiChevron :is-open="isOpen" />
+    </button>
 
-      <div class="app-header-dropdown__duo">
-        <div class="app-header-dropdown__line" />
+    <div class="app-header-dropdown__duo">
+      <div class="app-header-dropdown__line" />
 
-        <div class="app-header-dropdown__content-outer">
-          <div class="app-header-dropdown__content">
-            <div class="app-header-dropdown__content-inner">
-              <ul class="app-header-dropdown__list">
-                <li
-                  v-for="(item, index) in items"
-                  :key="item._uid"
-                  class="app-header-dropdown__item"
-                  :style="`--link-index: ${index}`"
+      <div class="app-header-dropdown__content-outer">
+        <div class="app-header-dropdown__content">
+          <div class="app-header-dropdown__content-inner">
+            <ul class="app-header-dropdown__list">
+              <li
+                v-for="(item, index) in items"
+                :key="item._uid"
+                class="app-header-dropdown__item"
+                :style="`--link-index: ${index}`"
+              >
+                <StoryblokLink
+                  class="app-header-dropdown__link"
+                  active-class="app-header-dropdown__link--is-active"
+                  :item="item.link"
+                  :title="item.title"
                 >
-                  <StoryblokLink
-                    class="app-header-dropdown__link"
-                    active-class="app-header-dropdown__link--is-active"
-                    :item="item.link"
-                    :title="item.title"
-                  >
-                    {{ item.title }}
-                  </StoryblokLink>
-                </li>
-              </ul>
-            </div>
+                  {{ item.title }}
+                </StoryblokLink>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -86,28 +81,32 @@ watch(
 .app-header-dropdown {
   position: relative;
 
-  @screen mdMax {
+  @screen md {
     display: flex;
-    flex-direction: column;
-    gap: theme('spacing.40');
-    align-items: center;
-    text-align: center;
-  }
-
-  &.app-header-dropdown--is-open {
-    z-index: 2;
   }
 }
 
-.app-header-dropdown__inner {
+.app-header-dropdown__button {
+  position: relative;
+  z-index: 1;
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  pointer-events: auto;
 
   @screen mdMax {
+    padding-block: 10px;
     width: 100%;
+
+    .app-header-dropdown--is-disabled & {
+      display: none;
+    }
+  }
+
+  @screen md {
+    padding: 15px;
+    margin: -15px;
   }
 }
 
@@ -119,13 +118,13 @@ watch(
     display: flex;
     gap: theme('spacing.10');
     align-items: flex-start;
-    margin-inline-start: -5px;
+    margin-inline-start: -0.25em;
   }
 }
 
 .app-header-dropdown__line {
   --line-width: 77px;
-  --line-alignment-nudge: 14px;
+  --line-alignment-nudge: 0.75em;
 
   transform-origin: left;
   scale: 0 1 1;

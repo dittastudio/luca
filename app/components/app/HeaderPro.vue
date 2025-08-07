@@ -47,8 +47,7 @@ const rAFHeaderScroll = () => {
 
 const reservationsOpen = useState<boolean>('reservationsOpen')
 const navigationOpen = useState<boolean>('navigationOpen')
-
-const dropdownOpen = ref<string | null>(null)
+const dropdownOpen = useState<string | null>('dropdownOpen')
 
 const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': navigationOpen.value,
@@ -127,7 +126,7 @@ onUnmounted(() => {
       <div class="app-header__menu">
         <nav class="app-header__navigation type-body-large">
           <template
-            v-for="(item, index) in items"
+            v-for="item in items"
             :key="item._uid"
           >
             <StoryblokLink
@@ -148,7 +147,7 @@ onUnmounted(() => {
                   :title="item.title"
                   :items="item.links"
                   :is-open="dropdownOpen === item._uid"
-                  :disable-on-mobile="index === 0"
+                  :disable-on-mobile="item.hidden_on_mobile"
                   @toggle="setDropdownOpen(dropdownOpen === item._uid ? null : item._uid)"
                 />
               </div>
@@ -439,35 +438,45 @@ onUnmounted(() => {
 }
 
 .app-header__item {
-  transition:
-    opacity 0.5s theme('transitionTimingFunction.smooth') 0.1s,
-    visibility 0.5s theme('transitionTimingFunction.smooth') 0.1s;
+  @screen mdMax {
+    width: 100%;
+    text-align: center;
 
-  .app-header__navigation:hover & {
-    transition:
-      opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-      visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
-  }
-
-  .app-header__navigation:hover &:not(:hover) {
-    opacity: 0.5;
-    transition:
-      opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-      visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+    .app-header--is-dropdown-open &:not(.app-header__item--is-open) {
+      /* opacity: 0.2; */
+      transition-duration: 0.2s;
+      transition-delay: 0s;
+    }
   }
 
   @screen md {
+    transition:
+      opacity 0.5s theme('transitionTimingFunction.smooth') 0.1s,
+      visibility 0.5s theme('transitionTimingFunction.smooth') 0.1s;
+
+    .app-header__navigation:hover & {
+      transition:
+        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
+        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+    }
+
+    .app-header__navigation:hover &:not(:hover) {
+      opacity: 0.5;
+      transition:
+        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
+        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+    }
+
     .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
     .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
       opacity: 0;
-      visibility: hidden;
       transition-duration: 0.2s;
       transition-delay: 0s;
       pointer-events: none;
     }
 
     /* TODO: Dirty hack to prevent the dropdown title from being clickable when the dropdown is open */
-    .app-header--is-dropdown-open &:not(.app-header__item--is-open) .app-header-dropdown__title {
+    .app-header--is-dropdown-open &:not(.app-header__item--is-open) .app-header-dropdown__button {
       pointer-events: none;
     }
   }
@@ -508,7 +517,8 @@ onUnmounted(() => {
   }
 
   .app-header--has-scrolled-down &,
-  .app-header--logo-hidden & {
+  .app-header--logo-hidden &,
+  .app-header--is-dropdown-open & {
     pointer-events: none;
     translate: 0 -15% 0;
     opacity: 0;
@@ -517,7 +527,7 @@ onUnmounted(() => {
       translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
-  @screen lgMax {
+  @screen mdMax {
     .app-header--is-open & {
       pointer-events: none;
       opacity: 0;
@@ -528,11 +538,11 @@ onUnmounted(() => {
 
 .app-header__logo-icon {
   width: 113px;
-  height: 47px;
+  height: auto;
+  aspect-ratio: 113 / 47;
 
-  @screen lg {
-    width: 180px;
-    height: 74px;
+  @screen md {
+    width: clamp(90px, -70px + 20.8333vw, 180px);
   }
 }
 
