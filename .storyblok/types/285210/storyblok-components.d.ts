@@ -122,6 +122,7 @@ export interface Link {
 
 export interface LinkGroup {
   title: string;
+  hidden_on_mobile?: boolean;
   links: Link[];
   component: "link_group";
   _uid: string;

@@ -30,7 +30,7 @@ watch(
 
 <template>
   <div
-    class="app-header-dropdown pointer-events-auto"
+    class="app-header-dropdown"
     :class="{
       'app-header-dropdown--is-disabled': disableOnMobile,
       'app-header-dropdown--is-open': isOpen && isInteracted,
@@ -39,7 +39,7 @@ watch(
   >
     <div class="app-header-dropdown__inner">
       <button
-        class="app-header-dropdown__title relative z-1 flex items-center gap-[0.4em] p-10 md:p-15 md:-m-15"
+        class="app-header-dropdown__title relative z-1 flex items-center gap-[0.4em] p-10 md:p-15 md:-m-15 pointer-events-auto"
         :class="{
           'mdMax:hidden': disableOnMobile,
         }"
@@ -82,7 +82,7 @@ watch(
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .app-header-dropdown {
   position: relative;
 
@@ -195,14 +195,6 @@ watch(
     margin-block: calc(-1 * var(--link-padding-y));
     margin-inline: calc(-1 * var(--link-padding-x));
   }
-
-  @screen md {
-    pointer-events: none;
-
-    .app-header-dropdown--is-open & {
-      pointer-events: auto;
-    }
-  }
 }
 
 @keyframes link-show {
@@ -252,6 +244,7 @@ watch(
   @screen mdMax {
     .app-header-dropdown--is-disabled & {
       opacity: 1;
+      translate: 0 0 0;
       animation: none;
     }
   }
@@ -294,6 +287,10 @@ watch(
   .app-header-dropdown__list:focus-within &:not(:hover, :focus, :focus-visible),
   .app-header-dropdown__list:hover &:not(:hover) {
     opacity: 0.5;
+  }
+
+  .app-header-dropdown--is-open & {
+    pointer-events: auto;
   }
 }
 </style>

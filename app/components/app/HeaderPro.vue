@@ -132,7 +132,7 @@ onUnmounted(() => {
           >
             <StoryblokLink
               v-if="isLink(item)"
-              class="app-header__item block pointer-events-auto p-10 md:p-15 md:-m-15"
+              class="app-header__item block p-10 md:p-15 md:-m-15 pointer-events-auto"
               :item="item.link"
               :title="item.title"
             >
@@ -253,7 +253,8 @@ onUnmounted(() => {
     }
   }
 
-  &--is-open {
+  &--is-open,
+  &--is-dropdown-open {
     color: theme('colors.white');
 
     .appearance-button {
@@ -372,12 +373,18 @@ onUnmounted(() => {
     height: 100dvh;
     overflow-y: auto;
     opacity: 0;
-    transition: opacity 0.25s theme('transitionTimingFunction.smooth');
+    visibility: hidden;
+    transition:
+      opacity 0.25s theme('transitionTimingFunction.smooth'),
+      visibility 0.25s theme('transitionTimingFunction.smooth');
     pointer-events: auto;
 
     .app-header--is-open & {
       opacity: 1;
-      transition: opacity 0.5s theme('transitionTimingFunction.smooth') 0.25s;
+      visibility: visible;
+      transition:
+        opacity 0.5s theme('transitionTimingFunction.smooth') 0.25s,
+        visibility 0.5s theme('transitionTimingFunction.smooth') 0.25s;
     }
   }
 }
@@ -432,20 +439,36 @@ onUnmounted(() => {
 }
 
 .app-header__item {
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  transition:
+    opacity 0.5s theme('transitionTimingFunction.smooth') 0.1s,
+    visibility 0.5s theme('transitionTimingFunction.smooth') 0.1s;
+
+  .app-header__navigation:hover & {
+    transition:
+      opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
+      visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+  }
 
   .app-header__navigation:hover &:not(:hover) {
     opacity: 0.5;
-    transition-duration: 0.5s;
-    transition-delay: 0.25s;
+    transition:
+      opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
+      visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
   }
 
   @screen md {
     .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
     .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
       opacity: 0;
+      visibility: hidden;
       transition-duration: 0.2s;
       transition-delay: 0s;
+      pointer-events: none;
+    }
+
+    /* TODO: Dirty hack to prevent the dropdown title from being clickable when the dropdown is open */
+    .app-header--is-dropdown-open &:not(.app-header__item--is-open) .app-header-dropdown__title {
+      pointer-events: none;
     }
   }
 }
