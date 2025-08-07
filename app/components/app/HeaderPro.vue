@@ -440,11 +440,13 @@ onUnmounted(() => {
     transition-delay: 0.25s;
   }
 
-  .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
-  .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
-    opacity: 0;
-    transition-duration: 0.2s;
-    transition-delay: 0s;
+  @screen md {
+    .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
+    .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
+      opacity: 0;
+      transition-duration: 0.2s;
+      transition-delay: 0s;
+    }
   }
 }
 

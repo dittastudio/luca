@@ -51,7 +51,7 @@ watch(
         <UiChevron :is-open="isOpen" />
       </button>
 
-      <div class="absolute top-0 left-full flex items-start">
+      <div class="app-header-dropdown__duo">
         <div class="app-header-dropdown__line" />
 
         <div class="app-header-dropdown__content-outer">
@@ -95,7 +95,7 @@ watch(
   }
 
   &.app-header-dropdown--is-open {
-    z-index: 1000;
+    z-index: 2;
   }
 }
 
@@ -111,16 +111,27 @@ watch(
   }
 }
 
+.app-header-dropdown__duo {
+  @screen md {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: flex;
+    gap: theme('spacing.10');
+    align-items: flex-start;
+    margin-inline-start: -5px;
+  }
+}
+
 .app-header-dropdown__line {
   --line-width: 77px;
   --line-alignment-nudge: 14px;
 
   transform-origin: left;
   scale: 0 1 1;
-  translate: 0 15px 0;
   width: var(--line-width);
   height: 1px;
-  /* margin-block: var(--line-alignment-nudge); */
+  margin-block: var(--line-alignment-nudge);
 
   opacity: 0;
   background-color: currentcolor;
@@ -176,22 +187,21 @@ watch(
   --link-padding-y: theme('spacing.10');
 
   @screen md {
-    --link-padding-x: theme('spacing.20');
+    --link-padding-x: theme('spacing.10');
     --link-padding-y: 3px;
 
-    /* position: absolute; */
-    top: 100%;
-    left: 0;
     width: max-content;
-    padding-block-start: theme('spacing.0');
 
     margin-block: calc(-1 * var(--link-padding-y));
+    margin-inline: calc(-1 * var(--link-padding-x));
   }
 
-  pointer-events: none;
+  @screen md {
+    pointer-events: none;
 
-  .app-header-dropdown--is-open & {
-    pointer-events: auto;
+    .app-header-dropdown--is-open & {
+      pointer-events: auto;
+    }
   }
 }
 
