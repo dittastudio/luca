@@ -38,7 +38,6 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
             class="app-header-navigation__link"
             active-class="app-header-navigation__link--is-active"
             :item="item.link"
-            :title="item.title"
             :tabindex="isOpen ? '0' : '-1'"
           >
             {{ item.title }}

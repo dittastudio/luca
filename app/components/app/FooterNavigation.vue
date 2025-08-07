@@ -27,7 +27,6 @@ const items = computed(() => list?.items ?? [])
           class="app-footer-info__link"
           active-class="app-header-navigation__link--is-active"
           :item="item.link"
-          :title="item.title"
         >
           {{ item.title }}
         </StoryblokLink>
