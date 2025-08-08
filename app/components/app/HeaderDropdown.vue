@@ -65,6 +65,7 @@ watch(
                   active-class="app-header-dropdown__link--is-active"
                   :item="item.link"
                   :title="item.title"
+                  :tabindex="isOpen ? '0' : '-1'"
                 >
                   {{ item.title }}
                 </StoryblokLink>
