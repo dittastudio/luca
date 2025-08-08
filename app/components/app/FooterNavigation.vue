@@ -14,7 +14,7 @@ const items = computed(() => list?.items ?? [])
     <ul class="app-footer-info__list">
       <li class="app-footer-info__item">
         <span class="app-footer-info__text">
-          &copy;2024 All rights reserved
+          &copy;<ClientOnly>{{ new Date().getFullYear() }}</ClientOnly> All rights reserved
         </span>
       </li>
 
