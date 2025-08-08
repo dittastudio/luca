@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import type { Link, LinkGroup } from '@@/.storyblok/types/285210/storyblok-components'
+import type { LinkList } from '@@/.storyblok/types/285210/storyblok-components'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
 interface Props {
-  items?: (Link | LinkGroup)[]
+  links?: LinkList
   logoHidden?: boolean
   reservationHidden?: boolean
 }
 
-const { items = [], logoHidden, reservationHidden } = defineProps<Props>()
+const { links, logoHidden, reservationHidden } = defineProps<Props>()
 
 const prevScrollPos = ref<number>(0)
 const hasScrolled = ref<boolean>(false)
@@ -45,13 +45,21 @@ const rAFHeaderScroll = () => {
   }
 }
 
+onMounted(() => {
+  rAFHeaderScroll()
+  window.addEventListener('scroll', rAFHeaderScroll)
+})
+
+onUnmounted(() => {
+  cancelAnimationFrame(raf.value)
+  window.removeEventListener('scroll', rAFHeaderScroll)
+})
+
 const reservationsOpen = useState<boolean>('reservationsOpen')
 const navigationOpen = useState<boolean>('navigationOpen')
-const dropdownOpen = useState<string | null>('dropdownOpen')
 
 const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': navigationOpen.value,
-  'app-header--is-dropdown-open': dropdownOpen.value !== null,
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
@@ -65,118 +73,47 @@ const closeNavigation = () => {
 
 const toggleNavigation = () => {
   navigationOpen.value = !navigationOpen.value
-
-  if (!navigationOpen.value) {
-    dropdownOpen.value = null
-  }
 }
 
 const reservationsForce = ref<boolean>(false)
-
-const setDropdownOpen = (dropdownId: string | null) => {
-  dropdownOpen.value = dropdownId
-}
-
-const closeAllDropdowns = () => {
-  dropdownOpen.value = null
-}
-
-const closeAllMenus = () => {
-  navigationOpen.value = false
-  dropdownOpen.value = null
-}
-
-onMounted(() => {
-  rAFHeaderScroll()
-  window.addEventListener('scroll', rAFHeaderScroll)
-})
-
-onUnmounted(() => {
-  cancelAnimationFrame(raf.value)
-  window.removeEventListener('scroll', rAFHeaderScroll)
-})
 </script>
 
 <template>
   <div
     class="app-header"
     :class="headerClasses"
-    @keyup.esc="closeAllMenus"
+    @keyup.esc="closeNavigation"
   >
     <button
       tabindex="-1"
-      class="app-header__bg app-header__bg--mobile"
+      class="app-header__bg"
       type="button"
-      @click="closeAllDropdowns"
+      @click="closeNavigation"
     >
       <span class="sr-only">Close Menu</span>
     </button>
 
-    <button
-      tabindex="-1"
-      class="app-header__bg app-header__bg--desktop"
-      type="button"
-      @click="closeAllDropdowns"
-    >
-      <span class="sr-only">Close Dropdown</span>
-    </button>
-
     <div class="app-header__wrapper wrapper">
-      <button
-        class="app-header__switch"
-        type="button"
-        @click="toggleNavigation"
-      >
-        <span class="app-header__burger">
-          <AppHeaderBurger :is-open="navigationOpen" />
-        </span>
-      </button>
-
       <div class="app-header__menu">
-        <nav class="app-header__navigation type-body-large">
-          <div class="app-header__list">
-            <template
-              v-for="item in items"
-              :key="item._uid"
-            >
-              <StoryblokLink
-                v-if="isLink(item)"
-                class="app-header__item app-header__item--link"
-                :item="item.link"
-                :title="item.title"
-              >
-                {{ item.title }}
-              </StoryblokLink>
+        <button
+          class="app-header__switch"
+          type="button"
+          @click="toggleNavigation"
+        >
+          <span class="app-header__burger">
+            <AppHeaderBurger :is-open="navigationOpen" />
+          </span>
 
-              <template v-else-if="isLinkGroup(item)">
-                <div
-                  class="app-header__item"
-                  :class="{ 'app-header__item--is-open': dropdownOpen === item._uid }"
-                >
-                  <AppHeaderDropdown
-                    :title="item.title"
-                    :items="item.links"
-                    :is-open="dropdownOpen === item._uid"
-                    :disable-on-mobile="item.hidden_on_mobile"
-                    @toggle="setDropdownOpen(dropdownOpen === item._uid ? null : item._uid)"
-                  />
-                </div>
-              </template>
-            </template>
-          </div>
+          <span class="app-header__switch-text type-body-large">Menu</span>
+        </button>
 
-          <div class="app-header__buttons">
-            <button
-              class="app-header__cta"
-              type="button"
-              :tabindex="isOpen ? '0' : '-1'"
-              @click="reservationsOpen = true"
-            >
-              <AppearanceButton>
-                Reservations
-              </AppearanceButton>
-            </button>
-          </div>
+        <span class="app-header__line" />
+
+        <nav class="app-header__navigation">
+          <AppHeaderNavigation
+            :is-open="navigationOpen"
+            :list="links"
+          />
         </nav>
       </div>
 
@@ -270,14 +207,11 @@ onUnmounted(() => {
   height: var(--app-header-height);
   transition: color var(--app-header-speed) theme('transitionTimingFunction.smooth');
 
-  @screen mdMax {
-    html:has(&.app-header--is-open) {
-      overflow: hidden;
-    }
+  html:has(&.app-header--is-open) {
+    overflow: hidden;
   }
 
-  &--is-open,
-  &--is-dropdown-open {
+  &--is-open {
     color: theme('colors.white');
 
     .appearance-button {
@@ -333,28 +267,12 @@ onUnmounted(() => {
   cursor: default;
 
   opacity: 0;
-}
-
-.app-header__bg--mobile {
-  background-color: theme('colors.green');
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-
-  .app-header--is-open & {
-    pointer-events: auto;
-    opacity: 1;
-  }
-
-  @screen md {
-    display: none;
-  }
-}
-
-.app-header__bg--desktop {
   background-color: var(--app-header-background-tint);
   backdrop-filter: var(--app-header-blur);
+
   transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
 
-  .app-header--is-dropdown-open & {
+  .app-header--is-open & {
     pointer-events: auto;
     opacity: 1;
   }
@@ -379,6 +297,17 @@ onUnmounted(() => {
   }
 }
 
+.app-header__menu {
+  @screen md {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    gap: theme('spacing.10');
+    align-items: flex-start;
+  }
+}
+
 .app-header__switch {
   pointer-events: auto;
 
@@ -396,176 +325,82 @@ onUnmounted(() => {
       opacity: 0.6;
     }
   }
+}
 
+.app-header__burger {
   @screen md {
     display: none;
   }
 }
 
-.app-header__menu {
-  @screen md {
-    position: relative;
-    z-index: 1;
+.app-header__switch-text {
+  @screen mdMax {
+    display: none;
+  }
+}
 
-    display: flex;
-    gap: theme('spacing.10');
-    align-items: flex-start;
+.app-header__line {
+  --line-width: 77px;
+  --line-alignment-nudge: 14px;
+
+  transform-origin: left;
+  scale: 0 1 1;
+
+  width: var(--line-width);
+  height: 1px;
+  margin-block: var(--line-alignment-nudge);
+
+  opacity: 0;
+  background-color: currentcolor;
+
+  transition:
+    scale theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
+    opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+  .app-header--is-open & {
+    scale: 1 1 1;
+    opacity: 1;
+    transition:
+      scale theme('transitionDuration.800') theme('transitionTimingFunction.smooth'),
+      opacity theme('transitionDuration.800') theme('transitionTimingFunction.smooth');
   }
 
   @screen mdMax {
-    position: absolute;
-    inset: 0;
-    height: 100vh;
-    height: 100dvh;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.25s theme('transitionTimingFunction.smooth'),
-      visibility 0.25s theme('transitionTimingFunction.smooth');
-
-    .app-header--is-open & {
-      opacity: 1;
-      visibility: visible;
-      transition:
-        opacity 1s theme('transitionTimingFunction.smooth') 0.25s,
-        visibility 1s theme('transitionTimingFunction.smooth') 0.25s;
-    }
+    display: none;
   }
 }
 
 .app-header__navigation {
-  font-size: theme('fontSize.24');
-
-  @screen md {
-    font-size: clamp(1rem, 0.5556rem + 0.9259vw, 1.25rem);
-  }
-
-  @screen mdMax {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
-    padding-top: var(--app-header-height);
-    padding-bottom: theme('spacing.40');
-    width: 100%;
-    min-height: 100%;
-  }
-}
-
-.app-header__list {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex-grow: 1;
-
-  @screen md {
-    gap: theme('spacing.20');
-    flex-direction: row;
-    width: auto;
-    flex-grow: 0;
-  }
-
-  @screen lg {
-    gap: theme('spacing.30');
-  }
-}
-
-.app-header__item {
-  &--link {
-    display: block;
-    padding: theme('spacing.10');
-    pointer-events: auto;
-
-    @screen md {
-      padding: theme('spacing.10');
-      margin: calc(-1 * theme('spacing.10'));
-    }
-
-    @screen lg {
-      padding: theme('spacing.15');
-      margin: calc(-1 * theme('spacing.15'));
-    }
-  }
-
-  &--link:hover {
-    font-style: italic;
-  }
-
-  @screen mdMax {
-    width: 100%;
-    text-align: center;
-    transition: opacity 0.2s theme('transitionTimingFunction.smooth');
-
-    .app-header--is-dropdown-open &:not(.app-header__item--is-open) {
-      opacity: 0.3;
-    }
-  }
-
-  @screen md {
-    transition:
-      opacity 0.5s theme('transitionTimingFunction.smooth') 0.1s,
-      visibility 0.5s theme('transitionTimingFunction.smooth') 0.1s;
-
-    .app-header__navigation:hover & {
-      transition:
-        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
-    }
-
-    .app-header__navigation:hover &:not(:hover) {
-      opacity: 0.5;
-      transition:
-        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
-    }
-
-    .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
-    .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
-      opacity: 0;
-      transition-duration: 0.2s;
-      transition-delay: 0s;
-      pointer-events: none;
-    }
-
-    /* TODO: Dirty hack to prevent the dropdown title from being clickable when the dropdown is open */
-    .app-header--is-dropdown-open &:not(.app-header__item--is-open) .app-header-dropdown__button {
-      pointer-events: none;
-    }
-  }
-}
-
-.app-header__buttons {
-  @screen mdMax {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 40px;
-  }
-}
-
-.app-header__cta {
-  translate: 0 50% 0;
-  display: block;
-  pointer-events: auto;
-  opacity: 0;
-  transition:
-    opacity theme('transitionDuration.100') theme('transitionTimingFunction.smooth'),
-    translate 0s theme('transitionDelay.100');
+  pointer-events: none;
 
   .app-header--is-open & {
-    translate: 0 0 0;
-    opacity: 1;
-    transition:
-      opacity theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
-        0.5s,
-      translate theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
-        0.5s;
+    pointer-events: auto;
+  }
+
+  @screen mdMax {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    overflow-y: auto;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    opacity: 0;
+    background-color: theme('colors.green');
+
+    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+
+    .app-header--is-open & {
+      opacity: 1;
+    }
   }
 
   @screen md {
-    display: none;
+    position: relative;
+    z-index: 2;
   }
 }
 
@@ -604,8 +439,7 @@ onUnmounted(() => {
   }
 
   .app-header--has-scrolled-down &,
-  .app-header--logo-hidden &,
-  .app-header--is-dropdown-open & {
+  .app-header--logo-hidden & {
     pointer-events: none;
     translate: 0 -15% 0;
     opacity: 0;
@@ -614,7 +448,7 @@ onUnmounted(() => {
       translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }
 
-  @screen mdMax {
+  @screen lgMax {
     .app-header--is-open & {
       pointer-events: none;
       opacity: 0;
@@ -625,11 +459,11 @@ onUnmounted(() => {
 
 .app-header__logo-icon {
   width: 113px;
-  height: auto;
-  aspect-ratio: 113 / 47;
+  height: 47px;
 
-  @screen md {
-    width: clamp(90px, -70px + 20.8333vw, 180px);
+  @screen lg {
+    width: 180px;
+    height: 74px;
   }
 }
 

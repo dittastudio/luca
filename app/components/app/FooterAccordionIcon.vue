@@ -13,7 +13,7 @@ const { isOpen = false } = defineProps<Props>()
   >
     <span class="app-footer-accordion-icon__inner" />
 
-    <span class="sr-only">Toggle menu</span>
+    <span class="sr-only">Toggle content</span>
   </span>
 </template>
 

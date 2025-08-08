@@ -1,8 +1,10 @@
 export default function useNavigation(initial: boolean) {
   const navigationOpen = useState<boolean>('navigationOpen')
+  const dropdownOpen = useState<string | null>('dropdownOpen')
 
   onMounted(() => {
     navigationOpen.value = initial
+    dropdownOpen.value = null
   })
 
   const router = useRouter()
@@ -13,5 +15,6 @@ export default function useNavigation(initial: boolean) {
     }
 
     navigationOpen.value = false
+    dropdownOpen.value = null
   })
 }

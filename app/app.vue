@@ -28,6 +28,7 @@ const splashSeen = useState('splashSeen', () => false)
 
 useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
+useState<string | null>('dropdownOpen', () => null)
 useNavigation(false)
 
 if (isStory.value) {
@@ -41,7 +42,7 @@ if (isStory.value) {
       <template #header>
         <AppHeader
           v-if="story"
-          :links="story.content.navigation?.[0]"
+          :items="story.content.navigation_new"
           :logo-hidden="isHome || isStory"
           :reservation-hidden="isStory"
         />
@@ -52,11 +53,6 @@ if (isStory.value) {
       </template>
 
       <template #footer>
-        <AppNavigation
-          v-if="story"
-          :items="story.content.navigation_new"
-        />
-
         <AppFooter
           v-if="story"
           :opening-times-title="story.content.opening_times_title"

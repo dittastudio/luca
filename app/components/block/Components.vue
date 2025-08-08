@@ -105,7 +105,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
     --spacing-rhythm: theme('spacing.300');
   }
 
-  .block-components--story & {
+  .app-story .block-components--story & {
     --first-spacing-rhythm: var(--app-header-height);
   }
 
