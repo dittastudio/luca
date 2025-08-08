@@ -129,34 +129,49 @@ onUnmounted(() => {
 
       <div class="app-header__menu">
         <nav class="app-header__navigation type-body-large">
-          <template
-            v-for="item in items"
-            :key="item._uid"
-          >
-            <StoryblokLink
-              v-if="isLink(item)"
-              class="app-header__item app-header__item--link"
-              :item="item.link"
-              :title="item.title"
+          <div class="app-header__list">
+            <template
+              v-for="item in items"
+              :key="item._uid"
             >
-              {{ item.title }}
-            </StoryblokLink>
-
-            <template v-else-if="isLinkGroup(item)">
-              <div
-                class="app-header__item"
-                :class="{ 'app-header__item--is-open': dropdownOpen === item._uid }"
+              <StoryblokLink
+                v-if="isLink(item)"
+                class="app-header__item app-header__item--link"
+                :item="item.link"
+                :title="item.title"
               >
-                <AppHeaderDropdown
-                  :title="item.title"
-                  :items="item.links"
-                  :is-open="dropdownOpen === item._uid"
-                  :disable-on-mobile="item.hidden_on_mobile"
-                  @toggle="setDropdownOpen(dropdownOpen === item._uid ? null : item._uid)"
-                />
-              </div>
+                {{ item.title }}
+              </StoryblokLink>
+
+              <template v-else-if="isLinkGroup(item)">
+                <div
+                  class="app-header__item"
+                  :class="{ 'app-header__item--is-open': dropdownOpen === item._uid }"
+                >
+                  <AppHeaderDropdown
+                    :title="item.title"
+                    :items="item.links"
+                    :is-open="dropdownOpen === item._uid"
+                    :disable-on-mobile="item.hidden_on_mobile"
+                    @toggle="setDropdownOpen(dropdownOpen === item._uid ? null : item._uid)"
+                  />
+                </div>
+              </template>
             </template>
-          </template>
+          </div>
+
+          <div class="app-header__buttons">
+            <button
+              class="app-header__cta"
+              type="button"
+              :tabindex="isOpen ? '0' : '-1'"
+              @click="reservationsOpen = true"
+            >
+              <AppearanceButton>
+                Reservations
+              </AppearanceButton>
+            </button>
+          </div>
         </nav>
       </div>
 
@@ -359,6 +374,29 @@ onUnmounted(() => {
   }
 }
 
+.app-header__switch {
+  pointer-events: auto;
+
+  position: relative;
+  z-index: 1;
+
+  margin: calc(-1 * theme('spacing.20'));
+  padding: theme('spacing.20');
+
+  @media (hover: hover) {
+    opacity: 1;
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+
+    &:not(:active):hover {
+      opacity: 0.6;
+    }
+  }
+
+  @screen md {
+    display: none;
+  }
+}
+
 .app-header__menu {
   @screen md {
     position: relative;
@@ -393,48 +431,18 @@ onUnmounted(() => {
   }
 }
 
-.app-header__switch {
-  pointer-events: auto;
-
-  position: relative;
-  z-index: 1;
-
-  margin: calc(-1 * theme('spacing.20'));
-  padding: theme('spacing.20');
-
-  @media (hover: hover) {
-    opacity: 1;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-    &:not(:active):hover {
-      opacity: 0.6;
-    }
-  }
-
-  @screen md {
-    display: none;
-  }
-}
-
 .app-header__navigation {
   font-size: theme('fontSize.24');
 
   @screen md {
-    display: flex;
-    gap: theme('spacing.20');
-    font-size: theme('fontSize.16');
-  }
-
-  @screen lg {
-    gap: theme('spacing.30');
-    font-size: theme('fontSize.20');
+    font-size: clamp(1rem, 0.5556rem + 0.9259vw, 1.25rem);
   }
 
   @screen mdMax {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
     justify-content: center;
-    align-items: center;
     padding-top: var(--app-header-height);
     padding-bottom: theme('spacing.40');
     width: 100%;
@@ -442,9 +450,26 @@ onUnmounted(() => {
   }
 }
 
+.app-header__list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+
+  @screen md {
+    gap: theme('spacing.20');
+    flex-direction: row;
+    width: auto;
+    flex-grow: 0;
+  }
+
+  @screen lg {
+    gap: theme('spacing.30');
+  }
+}
+
 .app-header__item {
   &--link {
-    /* block p-10 md:p-15 md:-m-15 pointer-events-auto */
     display: block;
     padding: 10px;
     pointer-events: auto;
@@ -462,11 +487,10 @@ onUnmounted(() => {
   @screen mdMax {
     width: 100%;
     text-align: center;
+    transition: opacity 0.2s theme('transitionTimingFunction.smooth');
 
     .app-header--is-dropdown-open &:not(.app-header__item--is-open) {
-      opacity: 0.2;
-      transition-duration: 0.2s;
-      transition-delay: 0s;
+      opacity: 0.3;
     }
   }
 
@@ -500,6 +524,38 @@ onUnmounted(() => {
     .app-header--is-dropdown-open &:not(.app-header__item--is-open) .app-header-dropdown__button {
       pointer-events: none;
     }
+  }
+}
+
+.app-header__buttons {
+  @screen mdMax {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+  }
+}
+
+.app-header__cta {
+  translate: 0 50% 0;
+  display: block;
+  opacity: 0;
+  transition:
+    opacity theme('transitionDuration.100') theme('transitionTimingFunction.smooth'),
+    translate 0s theme('transitionDelay.100');
+
+  .app-header--is-open & {
+    translate: 0 0 0;
+    opacity: 1;
+    transition:
+      opacity theme('transitionDuration.500') theme('transitionTimingFunction.outExpo')
+        0.5s,
+      translate theme('transitionDuration.500') theme('transitionTimingFunction.outExpo')
+        0.5s;
+  }
+
+  @screen md {
+    display: none;
   }
 }
 
