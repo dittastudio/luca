@@ -107,7 +107,7 @@ onUnmounted(() => {
       tabindex="-1"
       class="app-header__bg app-header__bg--mobile"
       type="button"
-      @click="closeNavigation"
+      @click="closeAllDropdowns"
     >
       <span class="sr-only">Close Menu</span>
     </button>
@@ -424,7 +424,6 @@ onUnmounted(() => {
     transition:
       opacity 0.25s theme('transitionTimingFunction.smooth'),
       visibility 0.25s theme('transitionTimingFunction.smooth');
-    pointer-events: auto;
 
     .app-header--is-open & {
       opacity: 1;
@@ -549,6 +548,7 @@ onUnmounted(() => {
 .app-header__cta {
   translate: 0 50% 0;
   display: block;
+  pointer-events: auto;
   opacity: 0;
   transition:
     opacity theme('transitionDuration.100') theme('transitionTimingFunction.smooth'),

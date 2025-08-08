@@ -296,5 +296,11 @@ watch(
   .app-header-dropdown--is-open & {
     pointer-events: auto;
   }
+
+  @screen mdMax {
+    .app-header-dropdown--is-disabled & {
+      pointer-events: auto;
+    }
+  }
 }
 </style>
