@@ -81,6 +81,11 @@ const closeAllDropdowns = () => {
   dropdownOpen.value = null
 }
 
+const closeAllMenus = () => {
+  navigationOpen.value = false
+  dropdownOpen.value = null
+}
+
 onMounted(() => {
   rAFHeaderScroll()
   window.addEventListener('scroll', rAFHeaderScroll)
@@ -96,7 +101,7 @@ onUnmounted(() => {
   <div
     class="app-header"
     :class="headerClasses"
-    @keyup.esc="closeNavigation"
+    @keyup.esc="closeAllMenus"
   >
     <button
       tabindex="-1"
@@ -425,8 +430,8 @@ onUnmounted(() => {
       opacity: 1;
       visibility: visible;
       transition:
-        opacity 0.5s theme('transitionTimingFunction.smooth') 0.25s,
-        visibility 0.5s theme('transitionTimingFunction.smooth') 0.25s;
+        opacity 1s theme('transitionTimingFunction.smooth') 0.25s,
+        visibility 1s theme('transitionTimingFunction.smooth') 0.25s;
     }
   }
 }
@@ -471,12 +476,17 @@ onUnmounted(() => {
 .app-header__item {
   &--link {
     display: block;
-    padding: 10px;
+    padding: theme('spacing.10');
     pointer-events: auto;
 
     @screen md {
-      padding: 15px;
-      margin: -15px;
+      padding: theme('spacing.10');
+      margin: calc(-1 * theme('spacing.10'));
+    }
+
+    @screen lg {
+      padding: theme('spacing.15');
+      margin: calc(-1 * theme('spacing.15'));
     }
   }
 
@@ -548,9 +558,9 @@ onUnmounted(() => {
     translate: 0 0 0;
     opacity: 1;
     transition:
-      opacity theme('transitionDuration.500') theme('transitionTimingFunction.outExpo')
+      opacity theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
         0.5s,
-      translate theme('transitionDuration.500') theme('transitionTimingFunction.outExpo')
+      translate theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
         0.5s;
   }
 

@@ -96,7 +96,7 @@ watch(
   pointer-events: auto;
 
   @screen mdMax {
-    padding-block: 10px;
+    padding-block: theme('spacing.10');
     width: 100%;
 
     .app-header-dropdown--is-disabled & {
@@ -105,8 +105,13 @@ watch(
   }
 
   @screen md {
-    padding: 15px;
-    margin: -15px;
+    padding: theme('spacing.10');
+    margin: calc(-1 * theme('spacing.10'));
+  }
+
+  @screen lg {
+    padding: theme('spacing.15');
+    margin: calc(-1 * theme('spacing.15'));
   }
 }
 
