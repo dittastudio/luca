@@ -59,10 +59,6 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--reservation-hidden': reservationHidden,
 }))
 
-const closeNavigation = () => {
-  navigationOpen.value = false
-}
-
 const toggleNavigation = () => {
   navigationOpen.value = !navigationOpen.value
 
@@ -169,7 +165,7 @@ onUnmounted(() => {
             <button
               class="app-header__cta"
               type="button"
-              :tabindex="isOpen ? '0' : '-1'"
+              :tabindex="reservationsOpen ? '0' : '-1'"
               @click="reservationsOpen = true"
             >
               <AppearanceButton>
