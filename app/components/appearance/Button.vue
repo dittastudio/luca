@@ -39,8 +39,7 @@ const { size = 'default' } = defineProps<Props>()
   letter-spacing: theme('letterSpacing.widest');
 
   background-color: transparent;
-  border: 1px solid var(--button-color);
-  border-radius: theme('borderRadius.sm');
+  border: calc(2 / 14 * 1em) solid var(--button-color);
 
   transition:
     background-color var(--app-element-speed) theme('transitionTimingFunction.smooth'),
@@ -56,7 +55,6 @@ const { size = 'default' } = defineProps<Props>()
 
     opacity: 0;
     background-color: theme('colors.black/10%');
-    border-radius: inherit;
 
     transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
   }

@@ -435,7 +435,7 @@ onUnmounted(() => {
   font-size: theme('fontSize.24');
 
   @screen md {
-    font-size: clamp(1rem, 0.5556rem + 0.9259vw, 1.25rem);
+    font-size: clamp(1rem, 0.7778rem + 0.463vw, 1.125rem); /* 16px - 18px */
   }
 
   @screen mdMax {
