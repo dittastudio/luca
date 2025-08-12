@@ -15,16 +15,16 @@ const prevScrollPos = ref<number>(0)
 const hasScrolled = ref<boolean>(false)
 const hasScrolledUp = ref<boolean>(false)
 const hasScrolledDown = ref<boolean>(false)
-const hasScrolledPastViewport = ref<boolean>(false)
+const hasScrolledPastLogo = ref<boolean>(false)
 const raf = ref<any>(null)
 
 const handleScroll = () => {
   const triggerPoint = 50
   const scrollPos = window.scrollY
-  const viewportHeight = window.innerHeight
+  const halfViewportHeight = window.innerHeight / 2
 
   hasScrolled.value = scrollPos > triggerPoint
-  hasScrolledPastViewport.value = scrollPos > viewportHeight
+  hasScrolledPastLogo.value = scrollPos > halfViewportHeight
 
   // Scrolling up
   if (prevScrollPos.value > scrollPos) {
@@ -61,7 +61,7 @@ const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
-  'app-header--has-scrolled-past-viewport': isHome.value && !hasScrolledPastViewport.value,
+  'app-header--has-scrolled-past-viewport': isHome.value && !hasScrolledPastLogo.value,
   'app-header--logo-hidden': logoHidden,
   'app-header--reservation-hidden': reservationHidden,
 }))

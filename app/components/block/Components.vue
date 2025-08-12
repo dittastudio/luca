@@ -184,6 +184,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: radial-gradient(circle, theme('colors.black/30%') 0%, theme('colors.black/0%') 50%);
 
   @screen md {
     display: none;
