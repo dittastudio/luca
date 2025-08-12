@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Page } from '@@/.storyblok/types/285210/storyblok-components'
+import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 
 interface Props {
   content: Page
@@ -18,7 +19,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
     :class="{ 'block-components--home': isHome, 'block-components--story': isStory }"
   >
     <section
-      v-for="block in content.blocks"
+      v-for="(block, index) in content.blocks"
       :key="block._uid"
       class="block-components__item"
       :class="`block-components__item--${block.component}`"
@@ -53,7 +54,15 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
         :block="block"
       />
 
+      <div
+        v-if="block.component === 'block_media' && isHome && index === 0"
+        class="block-components__logo"
+      >
+        <IconLucaLogo class="block-components__logo-svg" />
+      </div>
+
       <BlockMenus
+
         v-else-if="block.component === 'block_menus'"
         :block="block"
       />
@@ -128,7 +137,9 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   }
 
   .block-components--home &:first-child {
-    padding-block-start: theme('spacing.30');
+    position: relative;
+    margin-block-start: theme('spacing.30');
+    padding-block-start: 0;
 
     @screen md {
       display: flex;
@@ -162,5 +173,25 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   &--block_gallery + &--block_text_columns {
     padding-block-start: var(--line-spacing);
   }
+}
+
+.block-components__logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @screen md {
+    display: none;
+  }
+}
+
+.block-components__logo-svg {
+  display: block;
+  width: 50vw;
 }
 </style>

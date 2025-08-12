@@ -15,13 +15,16 @@ const prevScrollPos = ref<number>(0)
 const hasScrolled = ref<boolean>(false)
 const hasScrolledUp = ref<boolean>(false)
 const hasScrolledDown = ref<boolean>(false)
+const hasScrolledPastViewport = ref<boolean>(false)
 const raf = ref<any>(null)
 
 const handleScroll = () => {
   const triggerPoint = 50
   const scrollPos = window.scrollY
+  const viewportHeight = window.innerHeight
 
   hasScrolled.value = scrollPos > triggerPoint
+  hasScrolledPastViewport.value = scrollPos > viewportHeight
 
   // Scrolling up
   if (prevScrollPos.value > scrollPos) {
@@ -49,12 +52,16 @@ const reservationsOpen = useState<boolean>('reservationsOpen')
 const navigationOpen = useState<boolean>('navigationOpen')
 const dropdownOpen = useState<string | null>('dropdownOpen')
 
+const route = useRoute()
+const isHome = computed(() => ['/', '/home'].includes(route.path))
+
 const headerClasses = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': navigationOpen.value,
   'app-header--is-dropdown-open': dropdownOpen.value !== null,
   'app-header--has-scrolled': hasScrolled.value,
   'app-header--has-scrolled-up': hasScrolledUp.value,
   'app-header--has-scrolled-down': hasScrolledDown.value,
+  'app-header--has-scrolled-past-viewport': isHome.value && !hasScrolledPastViewport.value,
   'app-header--logo-hidden': logoHidden,
   'app-header--reservation-hidden': reservationHidden,
 }))
@@ -601,7 +608,8 @@ onUnmounted(() => {
 
   .app-header--has-scrolled-down &,
   .app-header--logo-hidden &,
-  .app-header--is-dropdown-open & {
+  .app-header--is-dropdown-open &,
+  .app-header--has-scrolled-past-viewport & {
     pointer-events: none;
     translate: 0 -15% 0;
     opacity: 0;
