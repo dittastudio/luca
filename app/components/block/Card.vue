@@ -1,13 +1,25 @@
 <script lang="ts" setup>
 import type { BlockCard } from '@@/.storyblok/types/285210/storyblok-components'
+import type { SwiperOptions } from 'swiper/types'
 
 interface Props {
   block: BlockCard
 }
 
 const { block } = defineProps<Props>()
-const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
+
+const getAssetType = (filename?: string | null) => storyblokAssetType(filename || '')
 const columnSpan = computed(() => Number(block.column_end) - Number(block.column_start))
+
+const swiperOptions: SwiperOptions = {
+  effect: 'fade',
+  loop: Boolean(block.media_new?.length),
+  speed: 1000,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+}
 </script>
 
 <template>
@@ -27,25 +39,43 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
           :headline="block.headline"
         >
           <template #media>
-            <MediaImage
-              v-if="block.media && assetType === 'image'"
-              class="block-card__media"
-              :asset="block.media"
-              :ratio="block.ratio"
-              :sizes="`
-                100vw
-                sm:100vw
-                md:${Number(columnSpan) / 12 * 100}vw
-                3xl:${Number(columnSpan) / 12 * 1800}px
-              `"
-            />
+            <div class="overflow-hidden">
+              <UiCarousel
+                v-if="block.media_new"
+                :ratio="block.ratio"
+                :slides="block.media_new"
+                :navigation="false"
+                :pagination="false"
+                :options="swiperOptions"
+              >
+                <template #slide="{ slide }">
+                  <div
+                    v-if="slide?.filename"
+                    class="block-card__inner"
+                  >
+                    <MediaImage
+                      v-if="getAssetType(slide.filename) === 'image'"
+                      class="block-card__media"
+                      :asset="slide"
+                      :ratio="block.ratio"
+                      :sizes="`
+                        100vw
+                        sm:100vw
+                        md:${Number(columnSpan) / 12 * 100}vw
+                        3xl:${Number(columnSpan) / 12 * 1800}px
+                      `"
+                    />
 
-            <MediaVideo
-              v-else-if="block.media && assetType === 'video'"
-              class="block-card__media"
-              :asset="block.media"
-              :ratio="block.ratio"
-            />
+                    <MediaVideo
+                      v-else-if="getAssetType(slide.filename) === 'video'"
+                      class="block-card__media"
+                      :asset="slide"
+                      :ratio="block.ratio"
+                    />
+                  </div>
+                </template>
+              </UiCarousel>
+            </div>
           </template>
         </CardMedia>
       </StoryblokLink>

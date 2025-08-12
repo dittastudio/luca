@@ -7,12 +7,13 @@ import ArrowRight from '@/assets/icons/arrow-right.svg'
 
 interface Props {
   slides: T[]
+  navigation?: boolean
   pagination?: boolean
   options?: SwiperOptions
   nextPrevShadow?: boolean
 }
 
-const { slides, pagination = true, options, nextPrevShadow = false } = defineProps<Props>()
+const { slides, navigation = true, pagination = true, options, nextPrevShadow = false } = defineProps<Props>()
 
 interface Emits {
   (event: 'current-slide', payload: number): void
@@ -110,11 +111,12 @@ watch(() => options, () => {
 
 <template>
   <div
+    v-if="slides?.length > 1"
     ref="swiperEl"
     class="ui-carousel swiper"
     :class="{
       'ui-carousel--next-prev-shadow': nextPrevShadow,
-      'ui-carousel--has-pagination': pagination && slides?.length > 1,
+      'ui-carousel--has-pagination': pagination,
     }"
   >
     <div class="ui-carousel__wrapper swiper-wrapper">
@@ -130,7 +132,7 @@ watch(() => options, () => {
       </div>
     </div>
 
-    <template v-if="slides?.length > 1">
+    <template v-if="navigation">
       <button
         ref="prevEl"
         type="button"
@@ -153,7 +155,7 @@ watch(() => options, () => {
     </template>
 
     <div
-      v-if="pagination && slides?.length > 1"
+      v-if="pagination"
       class="ui-carousel__pagination-wrapper"
     >
       <div
@@ -163,6 +165,18 @@ watch(() => options, () => {
       />
     </div>
   </div>
+
+  <template v-else>
+    <template
+      v-for="slide in slides"
+      :key="slide"
+    >
+      <slot
+        name="slide"
+        :slide="slide"
+      />
+    </template>
+  </template>
 </template>
 
 <style lang="postcss">
