@@ -382,6 +382,7 @@ watch(() => options, () => {
 .swiper-fade .swiper-slide {
   pointer-events: none;
   transition-property: opacity;
+  transition-timing-function: theme('transitionTimingFunction.smooth');
 }
 
 .swiper-fade .swiper-slide-active {
