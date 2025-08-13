@@ -29,6 +29,7 @@ const splashSeen = useState('splashSeen', () => false)
 useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
 useState<string | null>('dropdownOpen', () => null)
+useState<boolean>('isLogoPassed', () => false)
 useNavigation(false)
 
 if (isStory.value) {

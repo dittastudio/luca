@@ -29,7 +29,6 @@ const swiperOptions: SwiperOptions = {
   >
     <UiCarousel
       v-if="block.items"
-      ratio="auto"
       :slides="block.items"
       :pagination="false"
       :options="swiperOptions"

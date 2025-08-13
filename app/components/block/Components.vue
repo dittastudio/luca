@@ -18,7 +18,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
     :class="{ 'block-components--home': isHome, 'block-components--story': isStory }"
   >
     <section
-      v-for="block in content.blocks"
+      v-for="(block, index) in content.blocks"
       :key="block._uid"
       class="block-components__item"
       :class="`block-components__item--${block.component}`"
@@ -51,6 +51,10 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
       <BlockMedia
         v-else-if="block.component === 'block_media'"
         :block="block"
+      />
+
+      <UiLogo
+        v-if="block.component === 'block_media' && isHome && index === 0"
       />
 
       <BlockMenus
@@ -128,7 +132,9 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   }
 
   .block-components--home &:first-child {
-    padding-block-start: theme('spacing.30');
+    position: relative;
+    margin-block-start: theme('spacing.30');
+    padding-block-start: 0;
 
     @screen md {
       display: flex;
@@ -137,7 +143,6 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 
       height: 100vh;
       margin-block-start: calc(-1 * var(--app-header-height));
-      padding-block-start: 0;
     }
   }
 

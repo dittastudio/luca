@@ -42,7 +42,6 @@ const swiperOptions: SwiperOptions = {
             <div class="overflow-hidden">
               <UiCarousel
                 v-if="block.media_new"
-                :ratio="block.ratio"
                 :slides="block.media_new"
                 :navigation="false"
                 :pagination="false"
