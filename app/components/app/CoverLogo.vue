@@ -5,6 +5,9 @@ import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 const isHidden = ref(false)
 const main = ref<HTMLElement | null>(null)
 
+const isLogoPassed = useState('isLogoPassed', () => false)
+const logoRef = ref<HTMLElement>()
+
 onMounted(() => {
   main.value = document.querySelector('main')
 
@@ -24,6 +27,21 @@ onMounted(() => {
     { rootMargin: '-100% 0px 0px 0px', threshold: 0 },
   )
 })
+
+useIntersectionObserver(
+  logoRef,
+  ([target]) => {
+    if (!target) {
+      return
+    }
+
+    isLogoPassed.value = target.isIntersecting
+  },
+  {
+    threshold: 0,
+    rootMargin: '0px',
+  },
+)
 </script>
 
 <template>
@@ -31,7 +49,9 @@ onMounted(() => {
     class="cover-logo"
     :class="{ 'cover-logo--is-hidden': isHidden }"
   >
-    <IconLucaLogo class="cover-logo__icon" />
+    <div ref="logoRef">
+      <IconLucaLogo class="cover-logo__icon" />
+    </div>
   </div>
 </template>
 
@@ -39,22 +59,23 @@ onMounted(() => {
 .cover-logo {
   pointer-events: none;
 
-  position: sticky;
+  position: absolute;
   z-index: var(--app-layer-one);
   top: 0;
+  left: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 100%;
   height: 100vh;
   height: 100dvh;
-  margin-block-start: calc(-1 * 100vh);
-  margin-block-start: calc(-1 * 100dvh);
 
   color: theme('colors.white');
 
   opacity: 1;
+  filter: drop-shadow(0 0 15px rgb(0 0 0 / 50%));
 
   transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
 
@@ -62,8 +83,10 @@ onMounted(() => {
     opacity: 0;
   }
 
-  @screen mdMax {
-    display: none;
+  @screen md {
+    position: sticky;
+    margin-block-start: calc(-1 * 100vh);
+    margin-block-start: calc(-1 * 100dvh);
   }
 }
 

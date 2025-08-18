@@ -327,11 +327,12 @@ onUnmounted(() => {
 }
 
 .app-header__bg {
+  cursor: default;
+
   position: absolute;
 
   width: 100%;
   height: 100vh;
-  cursor: default;
 
   opacity: 0;
 }
@@ -416,19 +417,23 @@ onUnmounted(() => {
   @screen mdMax {
     position: absolute;
     inset: 0;
-    height: 100vh;
-    height: 100dvh;
+
     overflow-y: auto;
     overscroll-behavior: contain;
-    opacity: 0;
+
+    height: 100vh;
+    height: 100dvh;
+
     visibility: hidden;
+    opacity: 0;
+
     transition:
       opacity 0.25s theme('transitionTimingFunction.smooth'),
       visibility 0.25s theme('transitionTimingFunction.smooth');
 
     .app-header--is-open & {
-      opacity: 1;
       visibility: visible;
+      opacity: 1;
       transition:
         opacity 1s theme('transitionTimingFunction.smooth') 0.25s,
         visibility 1s theme('transitionTimingFunction.smooth') 0.25s;
@@ -440,7 +445,11 @@ onUnmounted(() => {
   font-size: theme('fontSize.24');
 
   @screen md {
-    font-size: clamp(1rem, 0.7778rem + 0.463vw, 1.125rem); /* 16px - 18px */
+    font-size: theme('fontSize.16');
+  }
+
+  @screen lg {
+    font-size: theme('fontSize.18');
   }
 
   @screen mdMax {
@@ -448,24 +457,25 @@ onUnmounted(() => {
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: center;
-    padding-top: var(--app-header-height);
-    padding-bottom: theme('spacing.40');
+
     width: 100%;
     min-height: 100%;
+    padding-top: var(--app-header-height);
+    padding-bottom: theme('spacing.40');
   }
 }
 
 .app-header__list {
   display: flex;
   flex-direction: column;
-  width: 100%;
   flex-grow: 1;
+  width: 100%;
 
   @screen md {
-    gap: theme('spacing.20');
     flex-direction: row;
-    width: auto;
     flex-grow: 0;
+    gap: theme('spacing.20');
+    width: auto;
   }
 
   @screen lg {
@@ -475,18 +485,18 @@ onUnmounted(() => {
 
 .app-header__item {
   &--link {
+    pointer-events: auto;
     display: block;
     padding: theme('spacing.10');
-    pointer-events: auto;
 
     @screen md {
-      padding: theme('spacing.10');
       margin: calc(-1 * theme('spacing.10'));
+      padding: theme('spacing.10');
     }
 
     @screen lg {
-      padding: theme('spacing.15');
       margin: calc(-1 * theme('spacing.15'));
+      padding: theme('spacing.15');
     }
   }
 
@@ -524,10 +534,10 @@ onUnmounted(() => {
 
     .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
     .app-header--is-dropdown-open &:not(:hover, .app-header__item--is-open) {
-      opacity: 0;
-      transition-duration: 0.2s;
-      transition-delay: 0s;
       pointer-events: none;
+      opacity: 0;
+      transition-delay: 0s;
+      transition-duration: 0.2s;
     }
 
     /* TODO: Dirty hack to prevent the dropdown title from being clickable when the dropdown is open */
@@ -539,18 +549,22 @@ onUnmounted(() => {
 
 .app-header__buttons {
   @screen mdMax {
-    width: 100%;
     display: flex;
     justify-content: center;
+    width: 100%;
     padding-top: 40px;
   }
 }
 
 .app-header__cta {
-  translate: 0 50% 0;
-  display: block;
   pointer-events: auto;
+
+  translate: 0 50% 0;
+
+  display: block;
+
   opacity: 0;
+
   transition:
     opacity theme('transitionDuration.100') theme('transitionTimingFunction.smooth'),
     translate 0s theme('transitionDelay.100');
@@ -626,9 +640,9 @@ onUnmounted(() => {
 }
 
 .app-header__logo-icon {
+  aspect-ratio: 113 / 47;
   width: 113px;
   height: auto;
-  aspect-ratio: 113 / 47;
 
   @screen md {
     width: clamp(90px, -70px + 20.8333vw, 180px);

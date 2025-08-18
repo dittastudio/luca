@@ -29,6 +29,7 @@ const { size = 'default' } = defineProps<Props>()
   display: block;
 
   padding: var(--button-padding-y) var(--button-padding-x);
+  border: calc(2 / 14 * 1em) solid var(--button-color);
 
   font-family: theme('fontFamily.heading');
   font-size: var(--button-font-size);
@@ -39,7 +40,6 @@ const { size = 'default' } = defineProps<Props>()
   letter-spacing: theme('letterSpacing.widest');
 
   background-color: transparent;
-  border: calc(2 / 14 * 1em) solid var(--button-color);
 
   transition:
     background-color var(--app-element-speed) theme('transitionTimingFunction.smooth'),
@@ -75,9 +75,9 @@ const { size = 'default' } = defineProps<Props>()
   @media (hover: hover) {
     a:hover &,
     button:not(:disabled):hover & {
+      border-color: var(--button-color);
       color: var(--button-hover-color);
       background-color: var(--button-color);
-      border-color: var(--button-color);
     }
   }
 }
