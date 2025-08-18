@@ -88,17 +88,19 @@ watch(
 }
 
 .app-header-dropdown__button {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4em;
   pointer-events: auto;
 
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+  justify-content: center;
+
   @screen mdMax {
-    padding-block: theme('spacing.10');
     width: 100%;
+    padding-block: theme('spacing.10');
 
     .app-header-dropdown--is-disabled & {
       display: none;
@@ -106,13 +108,13 @@ watch(
   }
 
   @screen md {
-    padding: theme('spacing.10');
     margin: calc(-1 * theme('spacing.10'));
+    padding: theme('spacing.10');
   }
 
   @screen lg {
-    padding: theme('spacing.15');
     margin: calc(-1 * theme('spacing.15'));
+    padding: theme('spacing.15');
   }
 }
 
@@ -121,9 +123,11 @@ watch(
     position: absolute;
     top: 0;
     left: 100%;
+
     display: flex;
     gap: theme('spacing.10');
     align-items: flex-start;
+
     margin-inline-start: -0.25em;
   }
 }
@@ -134,6 +138,7 @@ watch(
 
   transform-origin: left;
   scale: 0 1 1;
+
   width: var(--line-width);
   height: 1px;
   margin-block: var(--line-alignment-nudge);
@@ -160,9 +165,9 @@ watch(
 
 .app-header-dropdown__content-outer {
   @screen mdMax {
+    overflow: hidden;
     display: grid;
     grid-template-rows: 0fr;
-    overflow: hidden;
     transition: grid-template-rows theme('transitionDuration.250') theme('transitionTimingFunction.smooth');
 
     .app-header-dropdown--is-open & {
@@ -196,7 +201,6 @@ watch(
     --link-padding-y: 3px;
 
     width: max-content;
-
     margin-block: calc(-1 * var(--link-padding-y));
     margin-inline: calc(-1 * var(--link-padding-x));
   }
@@ -248,8 +252,8 @@ watch(
 
   @screen mdMax {
     .app-header-dropdown--is-disabled & {
-      opacity: 1;
       translate: 0 0 0;
+      opacity: 1;
       animation: none;
     }
   }
