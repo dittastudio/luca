@@ -29,21 +29,42 @@ onMounted(async () => {
 
 <template>
   <div
-    class="app-cover"
-    :class="[{ 'is-active': coverVisible }]"
+    :class="[
+      'fixed inset-0 z-(--app-layer-three) flex items-center justify-center h-dvh text-white bg-green',
+      'transition-opacity duration-500 ease-smooth',
+      {
+        'opacity-0 pointer-events-none': !coverVisible,
+        'opacity-100 pointer-events-auto': coverVisible,
+      },
+    ]"
   >
     <div class="wrapper">
       <h1
         v-if="message"
-        class="app-cover__message type-responsive-app-cover"
-        :class="[{ 'is-active': messageVisible }]"
+        :class="[
+          'type-responsive-app-cover',
+          'text-center text-wrap-balance',
+          'transition-opacity duration-500 ease-smooth',
+          {
+            'opacity-0': !messageVisible,
+            'opacity-100': messageVisible,
+          },
+        ]"
       >
         {{ message }}
       </h1>
 
       <IconLucaLogo
         class="app-cover__logo"
-        :class="[{ 'is-active': logoVisible }]"
+        :class="[
+          'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+          'w-[60vw] md:w-[31.55vw] 2xl:w-[454px]',
+          'transition-opacity duration-500 ease-smooth',
+          {
+            'opacity-0': !logoVisible,
+            'opacity-100': logoVisible,
+          },
+        ]"
       />
     </div>
   </div>
@@ -54,67 +75,6 @@ html {
   &.is-storyblok-editor {
     .app-cover {
       display: none;
-    }
-  }
-}
-</style>
-
-<style lang="postcss" scoped>
-.app-cover {
-  pointer-events: none;
-
-  position: fixed;
-  z-index: var(--app-layer-three);
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100vh;
-  height: 100dvh;
-
-  color: theme('colors.white');
-
-  background-color: theme('colors.green');
-
-  &.is-active {
-    pointer-events: auto;
-  }
-
-  &,
-  &__message,
-  &__logo {
-    opacity: 0;
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-
-    &.is-active {
-      opacity: 1;
-    }
-  }
-
-  &__message {
-    text-align: center;
-    text-wrap: balance;
-  }
-
-  &__logo {
-    --logo-responsive-width: 60vw;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-
-    width: var(--logo-responsive-width);
-    height: auto;
-
-    @screen md {
-      --logo-responsive-width: 31.55vw;
-    }
-
-    @screen 2xl {
-      --logo-responsive-width: 454px;
     }
   }
 }
