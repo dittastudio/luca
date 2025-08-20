@@ -14,26 +14,26 @@
   }
 
   body {
-    font-family: theme('fontFamily.body');
-    font-size: theme('fontSize.16');
+    font-family: var(--font-body);
+    font-size: var(--text-16);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    line-height: theme('lineHeight.normal');
+    line-height: var(--leading-normal);
     -webkit-tap-highlight-color: transparent;
   }
 
   .wrapper {
     width: 100%;
-    max-width: theme('screens.3xl');
+    max-width: var(--breakpoint-3xl);
     margin-inline: auto;
     padding-inline: var(--app-outer-gutter);
   }
 
   .section {
-    padding-block: theme('spacing.40');
+    padding-block: --spacing(8);
 
-    @screen md {
-      padding-block: theme('spacing.60');
+    @variant md {
+      padding-block: --spacing(12);
     }
   }
 }

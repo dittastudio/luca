@@ -1,6 +1,6 @@
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.5s var(--ease-smooth);
 }
 .fade-enter-from,
 .fade-leave-to {

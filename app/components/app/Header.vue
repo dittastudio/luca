@@ -100,13 +100,17 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="app-header"
+    class="app-header relative isolate h-(--app-header-height) transition-color duration-(--app-header-speed) ease-smooth"
     :class="headerClasses"
     @keyup.esc="closeAllMenus"
   >
     <button
       tabindex="-1"
-      class="app-header__bg app-header__bg--mobile"
+      class="absolute inset-0 h-screen cursor-default bg-green transition-opacity duration-500 ease-smooth md:hidden"
+      :class="{
+        'opacity-0': !navigationOpen,
+        'opacity-100 pointer-events-auto': navigationOpen,
+      }"
       type="button"
       @click="closeAllDropdowns"
     >
@@ -115,22 +119,24 @@ onUnmounted(() => {
 
     <button
       tabindex="-1"
-      class="app-header__bg app-header__bg--desktop"
+      class="absolute inset-0 h-screen opacity-0 cursor-default bg-(--app-header-background-tint) backdrop-blur-(--app-header-blur) transition-opacity duration-1000 ease-smooth max-md:hidden"
+      :class="{
+        'opacity-0': !dropdownOpen !== null,
+        'opacity-100 pointer-events-auto': dropdownOpen !== null,
+      }"
       type="button"
       @click="closeAllDropdowns"
     >
       <span class="sr-only">Close Dropdown</span>
     </button>
 
-    <div class="app-header__wrapper wrapper">
+    <div class="relative flex items-center justify-between h-full py-(--app-header-padding-y) md:items-start wrapper">
       <button
-        class="app-header__switch"
+        class="relative z-1 -m-4 p-4 hover-only:opacity-6 hover-only:transition-opacity hover-only:duration-200 hover-only:ease-smooth hover:not-active:opacity-60 md:hidden"
         type="button"
         @click="toggleNavigation"
       >
-        <span class="app-header__burger">
-          <AppHeaderBurger :is-open="navigationOpen" />
-        </span>
+        <AppHeaderBurger :is-open="navigationOpen" />
       </button>
 
       <div class="app-header__menu">
@@ -225,7 +231,7 @@ onUnmounted(() => {
     </div>
 
     <svg
-      class="app-header__background"
+      class="absolute inset-0 -z-1 pointer-events-none"
       width="100%"
       height="100%"
       version="1.1"
@@ -264,14 +270,13 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style lang="postcss">
-.app-header {
-  isolation: isolate;
-  position: relative;
-  height: var(--app-header-height);
-  transition: color var(--app-header-speed) theme('transitionTimingFunction.smooth');
+<style>
+@reference "@/assets/css/main.css";
 
-  @screen mdMax {
+.app-header {
+  @variant max-md {
+    display: none;
+
     html:has(&.app-header--is-open) {
       overflow: hidden;
     }
@@ -279,20 +284,13 @@ onUnmounted(() => {
 
   &--is-open,
   &--is-dropdown-open {
-    color: theme('colors.white');
+    color: var(--color-white);
 
     .appearance-button {
-      --button-color: theme('colors.white');
-      --button-hover-color: theme('colors.green');
+      --button-color: var(--color-white);
+      --button-hover-color: var(--color-green);
     }
   }
-}
-
-.app-header__background {
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-  inset: 0;
 }
 
 .app-header__gradient {
@@ -300,15 +298,15 @@ onUnmounted(() => {
   opacity: 0;
   fill: url("#app-header__gradient");
   transition:
-    opacity theme('transitionDuration.400') theme('transitionTimingFunction.in'),
-    translate theme('transitionDuration.400') theme('transitionTimingFunction.in');
+    opacity 0.4s var(--ease-in),
+    translate 0.4s var(--ease-in);
 
   .app-header--has-scrolled:not(.app-header--is-open, .app-header--reservation-hidden) & {
     translate: 0 0 0;
     opacity: 1;
     transition:
-      opacity theme('transitionDuration.400') theme('transitionTimingFunction.out'),
-      translate theme('transitionDuration.400') theme('transitionTimingFunction.out');
+      opacity 0.4s var(--ease-out),
+      translate 0.4s var(--ease-out);
   }
 }
 
@@ -325,85 +323,9 @@ onUnmounted(() => {
   stop-color: var(--app-background-color);
   stop-opacity: 0;
 }
+</style>
 
-.app-header__bg {
-  cursor: default;
-
-  position: absolute;
-
-  width: 100%;
-  height: 100vh;
-
-  opacity: 0;
-}
-
-.app-header__bg--mobile {
-  background-color: theme('colors.green');
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-
-  .app-header--is-open & {
-    pointer-events: auto;
-    opacity: 1;
-  }
-
-  @screen md {
-    display: none;
-  }
-}
-
-.app-header__bg--desktop {
-  background-color: var(--app-header-background-tint);
-  backdrop-filter: var(--app-header-blur);
-  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
-
-  .app-header--is-dropdown-open & {
-    pointer-events: auto;
-    opacity: 1;
-  }
-
-  @screen mdMax {
-    display: none;
-  }
-}
-
-.app-header__wrapper {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  height: 100%;
-  padding-block: var(--app-header-padding-y);
-
-  @screen md {
-    align-items: flex-start;
-  }
-}
-
-.app-header__switch {
-  pointer-events: auto;
-
-  position: relative;
-  z-index: 1;
-
-  margin: calc(-1 * theme('spacing.20'));
-  padding: theme('spacing.20');
-
-  @media (hover: hover) {
-    opacity: 1;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-    &:not(:active):hover {
-      opacity: 0.6;
-    }
-  }
-
-  @screen md {
-    display: none;
-  }
-}
-
+<style lang="postcss">
 .app-header__menu {
   @screen md {
     position: relative;

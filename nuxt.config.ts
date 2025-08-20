@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
@@ -5,7 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxtjs/sitemap',
-    '@nuxtjs/tailwindcss',
+    // '@nuxtjs/tailwindcss',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
     'nuxt-gtag',
   ],
@@ -41,6 +42,7 @@ export default defineNuxtConfig({
     pageTransition: { name: 'fade', mode: 'out-in' },
     layoutTransition: false,
   },
+  css: ['@/assets/css/main.css'],
   site: {
     url: 'https://luca.restaurant',
     name: 'Luca',
@@ -80,6 +82,7 @@ export default defineNuxtConfig({
       ],
     },
     plugins: [
+      tailwindcss(),
       svgLoader({
         svgo: false,
       }),
@@ -96,10 +99,7 @@ export default defineNuxtConfig({
   },
   postcss: {
     plugins: {
-      'postcss-import': {},
-      'tailwindcss/nesting': {},
-      'tailwindcss': {},
-      'autoprefixer': {},
+      'postcss-nested': {},
     },
   },
   eslint: {
@@ -131,7 +131,7 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ['/api/sitemap'],
   },
-  tailwindcss: {
-    cssPath: '@/assets/css/app.css',
-  },
+  // tailwindcss: {
+  //   cssPath: '@/assets/css/app.css',
+  // },
 })
