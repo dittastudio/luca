@@ -100,7 +100,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="app-header relative isolate h-(--app-header-height) transition-color duration-(--app-header-speed) ease-smooth"
+    class="app-header relative isolate h-(--app-header-height) transition-colors duration-(--app-header-speed) ease-smooth"
     :class="headerClasses"
     @keyup.esc="closeAllMenus"
   >

@@ -33,7 +33,9 @@ const { title, headline } = defineProps<Props>()
   </div>
 </template>
 
-<style lang="postcss">
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .card-media {
   isolation: isolate;
   position: relative;
@@ -41,26 +43,26 @@ const { title, headline } = defineProps<Props>()
 
 .card-media__media {
   @media (hover: hover) {
-    @screen md {
+    @variant md {
       will-change: filter;
       opacity: 1;
       filter: blur(0);
-      transition: filter theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
+      transition: filter 0.7s var(--ease-smooth);
 
       a:is(:hover, :focus) & {
         filter: blur(20px);
-        transition: filter theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+        transition: filter 0.5s var(--ease-smooth);
       }
     }
   }
 }
 
 .card-media__content {
-  padding: theme('spacing.20');
+  padding: --spacing(4);
   text-align: center;
 
   @media (hover: hover) {
-    @screen md {
+    @variant md {
       position: absolute;
       inset: 0;
 
@@ -71,18 +73,18 @@ const { title, headline } = defineProps<Props>()
 
       opacity: 0;
 
-      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+      transition: opacity 0.2s var(--ease-smooth);
 
       a:is(:hover, :focus) & {
         opacity: 1;
-        transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth') theme('transitionDelay.150');
+        transition: opacity 0.2s var(--ease-smooth) 0.15s;
       }
     }
   }
 
-  @screen mdMax {
+  @variant max-md {
     .card-media__media + & {
-      margin-block-start: theme('spacing.40');
+      margin-block-start: --spacing(8);
     }
   }
 }
@@ -95,7 +97,7 @@ const { title, headline } = defineProps<Props>()
 
     width: 70px;
     height: 1px;
-    margin-block: theme('spacing.20');
+    margin-block: --spacing(4);
     margin-inline: auto;
 
     opacity: 1;

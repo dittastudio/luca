@@ -56,37 +56,35 @@ watch(
 
       <div class="app-header-dropdown__content-outer max-md:overflow-hidden">
         <div :class="disableOnMobile ? 'max-md:min-h-auto' : 'max-md:min-h-0'">
-          <div class="app-header-dropdown__content-inner">
-            <ul class="app-header-dropdown__list md:w-max">
-              <li
-                v-for="(item, index) in items"
-                :key="item._uid"
-                class="app-header-dropdown__item"
-                :style="`--link-index: ${index}`"
+          <ul class="app-header-dropdown__list md:w-max">
+            <li
+              v-for="(item, index) in items"
+              :key="item._uid"
+              class="app-header-dropdown__item"
+              :style="`--link-index: ${index}`"
+            >
+              <StoryblokLink
+                :class="[
+                  'app-header-dropdown__link',
+                  'type-italic-mask',
+                  'block w-full user-select-none',
+                ]"
+                active-class="app-header-dropdown__link--is-active"
+                :item="item.link"
+                :title="item.title"
+                :tabindex="isOpen ? '0' : '-1'"
               >
-                <StoryblokLink
-                  :class="[
-                    'app-header-dropdown__link',
-                    'type-italic-mask',
-                    'block w-full user-select-none',
-                  ]"
-                  active-class="app-header-dropdown__link--is-active"
-                  :item="item.link"
-                  :title="item.title"
-                  :tabindex="isOpen ? '0' : '-1'"
-                >
-                  {{ item.title }}
-                </StoryblokLink>
-              </li>
-            </ul>
-          </div>
+                {{ item.title }}
+              </StoryblokLink>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "@/assets/css/main.css";
 
 .app-header-dropdown__line {

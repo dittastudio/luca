@@ -88,21 +88,23 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   </div>
 </template>
 
-<style lang="postcss">
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .block-components__item {
-  --line-spacing: theme('spacing.80');
-  --first-spacing-rhythm: theme('spacing.30');
-  --spacing-rhythm: theme('spacing.150');
+  --line-spacing: --spacing(16);
+  --first-spacing-rhythm: --spacing(6);
+  --spacing-rhythm: --spacing(30);
 
   padding-block-start: var(--first-spacing-rhythm);
 
-  @screen md {
-    --first-spacing-rhythm: theme('spacing.100');
+  @variant md {
+    --first-spacing-rhythm: --spacing(20);
     --spacing-rhythm: 15.75vw;
   }
 
-  @screen 3xl {
-    --spacing-rhythm: theme('spacing.300');
+  @variant 3xl {
+    --spacing-rhythm: --spacing(60);
   }
 
   .app-story .block-components--story & {
@@ -110,7 +112,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   }
 
   &--block_text:first-child {
-    @media screen(mdMax) {
+    @variant max-md {
       padding-block-start: 25vh;
     }
   }
@@ -124,7 +126,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   }
 
   &:not(&--block_gallery):last-child {
-    padding-block-end: theme('spacing.150');
+    padding-block-end: --spacing(30);
   }
 
   .block-components--home &:first-child {
@@ -134,9 +136,9 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 
     min-height: 100vh;
     margin-block-start: calc(-1 * var(--app-header-height));
-    padding-block: calc(var(--app-header-height) + theme('spacing.30'));
+    padding-block: calc(var(--app-header-height) + --spacing(6));
 
-    @screen md {
+    @variant md {
       height: 100vh;
       padding-block: 0;
     }

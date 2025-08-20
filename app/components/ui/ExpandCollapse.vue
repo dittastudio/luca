@@ -46,19 +46,21 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .ui-expand-collapse {
   overflow: hidden;
-  transition: height theme('transitionDuration.350') theme('transitionTimingFunction.inOutExpo');
+  transition: height 0.35s var(--ease-inOutExpo);
 }
 
 .ui-expand-collapse__inner {
   opacity: 0;
-  transition: opacity theme('transitionDuration.150') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.15s var(--ease-smooth);
 
   .ui-expand-collapse--is-open & {
     opacity: 1;
-    transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.out') theme('transitionDelay.250');
+    transition: opacity 0.3s var(--ease-out) 0.25s;
   }
 }
 </style>

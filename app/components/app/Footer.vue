@@ -177,7 +177,7 @@ const socialList = [
     >
       <slot name="navigation" />
 
-      <div class="flex -mx-3">
+      <div class="flex -m-3">
         <template v-for="socialItem in socialList">
           <NuxtLink
             v-if="socialItem.url"

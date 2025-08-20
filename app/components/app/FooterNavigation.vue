@@ -10,102 +10,44 @@ const items = computed(() => list?.items ?? [])
 </script>
 
 <template>
-  <div class="app-footer-info">
-    <ul class="app-footer-info__list">
-      <li class="app-footer-info__item">
-        <span class="app-footer-info__text">
-          &copy;<ClientOnly>{{ new Date().getFullYear() }}</ClientOnly> All rights reserved
-        </span>
-      </li>
+  <ul class="text-12 tracking-wide flex flex-col items-center sm:flex-row sm:flex-wrap sm:items-start sm:mb-[-0.3em]">
+    <li>
+      <span class="inline-block px-1 py-2 sm:py-4 sm:-my-4 opacity-50">
+        &copy;<ClientOnly>{{ new Date().getFullYear() }}</ClientOnly> All rights reserved
+      </span>
+    </li>
 
-      <li
-        v-for="item in items"
-        :key="item._uid"
-        class="app-footer-info__item"
+    <li
+      v-for="item in items"
+      :key="item._uid"
+      class="sm:before:content-['/'] sm:before:opacity-50"
+    >
+      <StoryblokLink
+        class="inline-block px-1 py-2 sm:py-4 sm:-my-4 opacity-50 transition-opacity duration-200 ease-smooth hover:opacity-100"
+        :item="item.link"
       >
-        <StoryblokLink
-          class="app-footer-info__link"
-          :item="item.link"
-        >
-          {{ item.title }}
-        </StoryblokLink>
-      </li>
+        {{ item.title }}
+      </StoryblokLink>
+    </li>
 
-      <li class="app-footer-info__item">
-        <NuxtLink
-          class="app-footer-info__link"
-          to="https://e-i-b.com"
-          target="_blank"
-        >
-          Design: Everything In Between
-        </NuxtLink>
-      </li>
+    <li class="sm:before:content-['/'] sm:before:opacity-50">
+      <NuxtLink
+        class="inline-block px-1 py-2 sm:py-4 sm:-my-4 opacity-50 transition-opacity duration-200 ease-smooth hover:opacity-100"
+        to="https://e-i-b.com"
+        target="_blank"
+      >
+        Design: Everything In Between
+      </NuxtLink>
+    </li>
 
-      <li class="app-footer-info__item">
-        <NuxtLink
-          class="app-footer-info__link"
-          to="https://ditta.studio"
-          target="_blank"
-        >
-          Made by ditta
-        </NuxtLink>
-      </li>
-    </ul>
-  </div>
+    <li class="sm:before:content-['/'] sm:before:opacity-50">
+      <NuxtLink
+        class="inline-block px-1 py-2 sm:py-4 sm:-my-4 opacity-50 transition-opacity duration-200 ease-smooth hover:opacity-100"
+        to="https://ditta.studio"
+        target="_blank"
+      >
+        Made by ditta
+      </NuxtLink>
+    </li>
+  </ul>
 </template>
-
-<style lang="postcss" scoped>
-.app-footer-info {
-  font-size: theme('fontSize.12');
-  letter-spacing: theme('letterSpacing.wide');
-}
-
-.app-footer-info__list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @screen sm {
-    flex-flow: row wrap;
-    align-items: flex-start;
-    margin-block-end: -0.3em;
-  }
-}
-
-.app-footer-info__item {
-  @screen sm {
-    &:not(:first-child)::before {
-      content: '/';
-      opacity: 0.5;
-    }
-  }
-}
-
-.app-footer-info__text,
-.app-footer-info__link {
-  --link-padding-x: theme('spacing.5');
-  --link-padding-y: theme('spacing.10');
-
-  @screen sm {
-    --link-padding-y: theme('spacing.20');
-  }
-
-  display: inline-block;
-  padding: var(--link-padding-y) var(--link-padding-x);
-  opacity: 0.5;
-
-  @screen sm {
-    margin-block: calc(-1 * var(--link-padding-y));
-  }
-}
-
-.app-footer-info__link {
-  @media (hover: hover) {
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-</style>

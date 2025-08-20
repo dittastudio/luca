@@ -25,7 +25,8 @@ const swiperOptions: SwiperOptions = {
 <template>
   <div
     v-editable="block"
-    class="block-card wrapper"
+    data-component="block-card"
+    class="wrapper md:grid md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter)"
   >
     <div
       :class="[
@@ -48,13 +49,10 @@ const swiperOptions: SwiperOptions = {
                 :options="swiperOptions"
               >
                 <template #slide="{ slide }">
-                  <div
-                    v-if="slide?.filename"
-                    class="block-card__inner"
-                  >
+                  <template v-if="slide?.filename">
                     <MediaImage
                       v-if="getAssetType(slide.filename) === 'image'"
-                      class="block-card__media"
+                      class="rounded-sm"
                       :asset="slide"
                       :ratio="block.ratio"
                       :sizes="`
@@ -71,7 +69,7 @@ const swiperOptions: SwiperOptions = {
                       :asset="slide"
                       :ratio="block.ratio"
                     />
-                  </div>
+                  </template>
                 </template>
               </UiCarousel>
             </div>
@@ -81,17 +79,3 @@ const swiperOptions: SwiperOptions = {
     </div>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.block-card {
-  @screen md {
-    display: grid;
-    grid-template-columns: var(--app-grid);
-    gap: var(--app-inner-gutter);
-  }
-}
-
-.block-card__media {
-  border-radius: theme('borderRadius.sm');
-}
-</style>

@@ -11,7 +11,8 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-button wrapper"
+    data-component="block-button"
+    class="wrapper flex items-center justify-center"
   >
     <StoryblokLink :item="block.link">
       <AppearanceButton>
@@ -20,11 +21,3 @@ const { block } = defineProps<Props>()
     </StoryblokLink>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.block-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>

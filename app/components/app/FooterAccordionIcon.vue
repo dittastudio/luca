@@ -17,9 +17,11 @@ const { isOpen = false } = defineProps<Props>()
   </span>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .app-footer-accordion-icon {
-  --size: theme('spacing.20');
+  --size: --spacing(4);
 
   display: flex;
   align-items: center;
@@ -52,13 +54,13 @@ const { isOpen = false } = defineProps<Props>()
 
   &::after {
     rotate: 0.25turn;
-    animation: rotate-close theme('transitionDuration.400') theme('transitionTimingFunction.smooth') forwards;
+    animation: rotate-close 0.4s var(--ease-smooth) forwards;
   }
 
   .app-footer-accordion-icon--is-open & {
     &::after {
       rotate: 0.5turn;
-      animation: rotate-open theme('transitionDuration.300') theme('transitionTimingFunction.smooth') forwards;
+      animation: rotate-open 0.3s var(--ease-smooth) forwards;
     }
   }
 }
