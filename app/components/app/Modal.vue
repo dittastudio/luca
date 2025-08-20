@@ -69,17 +69,64 @@ watch(
 <template>
   <dialog
     ref="dialog"
-    class="app-modal"
+    :class="[
+      'app-modal',
+      'block',
+      'overflow-x-hidden',
+      'w-full',
+      'max-w-full',
+      'max-h-full',
+      'm-auto',
+      'bg-transparent',
+    ]"
     @click.self="setClose"
   >
-    <div class="app-modal__container">
-      <div class="app-modal__wrapper">
+    <div
+      :class="[
+        'app-modal__container',
+        'w-full',
+        'max-w-[696px]',
+        'm-auto',
+      ]"
+    >
+      <div class="relative">
         <button
-          class="app-modal__button"
+          :class="[
+            'absolute',
+            'z-1',
+            'top-3',
+            'right-3',
+            '-m-4',
+            'p-4',
+            'text-white',
+            'transition-opacity',
+            'duration-200',
+            'ease-smooth',
+            'hover:opacity-60',
+          ]"
           @click="setClose"
         >
-          <span class="app-modal__close">
-            <span class="app-modal__cross" />
+          <span
+            :class="[
+              'flex',
+              'items-center',
+              'size-6',
+              'p-[8px]',
+              'text-white',
+              'bg-white/20',
+              'rounded-full',
+            ]"
+          >
+            <span
+              :class="[
+                'relative',
+                'block',
+                'w-full',
+                'h-[1.5px]',
+                'before:absolute before:inset-0 before:bg-current before:rotate-45',
+                'after:absolute after:inset-0 after:bg-current after:-rotate-45',
+              ]"
+            />
           </span>
 
           <span class="sr-only">
@@ -87,13 +134,13 @@ watch(
           </span>
         </button>
 
-        <div class="app-modal__content">
+        <div class="flex w-full min-h-[200px] bg-white/20 text-green rounded-sm border border-white/20 overflow-hidden">
           <template v-if="ready">
             <slot />
           </template>
 
           <template v-else>
-            <AppSpinner class="app-modal__spinner" />
+            <AppSpinner class="size-6 self-center mx-auto" />
           </template>
         </div>
       </div>
@@ -101,18 +148,10 @@ watch(
   </dialog>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .app-modal {
-  overflow-x: hidden;
-  display: block;
-
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-
-  background-color: transparent;
-
   &::backdrop {
     background-color: var(--app-header-background-tint);
     backdrop-filter: var(--app-header-blur);
@@ -128,126 +167,29 @@ watch(
   }
 
   &[open]::backdrop {
-    animation: show-backdrop theme('transitionDuration.500')
-      theme('transitionTimingFunction.smooth') forwards;
+    animation: show-backdrop 0.5s var(--ease-smooth) forwards;
   }
 
   &[open].app-modal--close::backdrop {
-    animation: hide-backdrop theme('transitionDuration.500')
-      theme('transitionTimingFunction.smooth') theme('transitionDelay.200') forwards;
+    animation: hide-backdrop 0.5s var(--ease-smooth) 0.2s forwards;
   }
 
   &.app-modal--close {
-    animation: dialog-close theme('transitionDuration.700') forwards;
+    animation: dialog-close 0.7s var(--ease-smooth) forwards;
   }
 }
 
 .app-modal__container {
-  --max-width: 696px;
-
-  width: 100%;
-  max-width: var(--max-width);
-  margin: auto;
   opacity: 0;
 
   .app-modal[open].app-modal--close & {
     opacity: 0;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity 0.2s var(--ease-smooth);
   }
 
   .app-modal[open] & {
     opacity: 1;
-    transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth') theme('transitionDelay.200');
-  }
-}
-
-.app-modal__wrapper {
-  position: relative;
-}
-
-.app-modal__content {
-  display: flex;
-  width: 100%;
-  min-height: 200px;
-  background-color: theme('colors.white/20%');
-  color: theme('colors.green');
-  border-radius: theme('borderRadius.sm');
-  border: 1px solid theme('colors.white/20%');
-  overflow: hidden;
-}
-
-.app-modal__spinner {
-  --spinner-size: theme('spacing.30');
-
-  width: var(--spinner-size);
-  height: var(--spinner-size);
-  align-self: center;
-  margin: 0 auto;
-}
-
-.app-modal__button {
-  position: absolute;
-  z-index: 1;
-  top: 15px;
-  right: 15px;
-
-  margin: calc(-1 * theme('spacing.20'));
-  padding: theme('spacing.20');
-
-  color: theme('colors.white');
-
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  &:hover {
-    opacity: 0.6;
-  }
-}
-
-.app-modal__close {
-  --close-padding: 8px;
-  --close-size: theme('spacing.30');
-
-  display: flex;
-  align-items: center;
-
-  width: var(--close-size);
-  height: var(--close-size);
-  padding: var(--close-padding);
-
-  color: theme('colors.white');
-
-  background-color: theme('colors.white/20%');
-  border-radius: 50%;
-}
-
-.app-modal__cross {
-  --cross-height: 1.5px;
-
-  position: relative;
-  display: block;
-  width: 100%;
-  height: var(--cross-height);
-
-  &::before,
-  &::after {
-    content: '';
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: currentcolor;
-  }
-
-  &::before {
-    rotate: 45deg;
-  }
-
-  &::after {
-    rotate: -45deg;
+    transition: opacity 0.3s var(--ease-smooth) 0.2s;
   }
 }
 
