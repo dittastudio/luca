@@ -13,6 +13,7 @@
     user-select: none;
     text-transform: inherit;
     letter-spacing: inherit;
+    cursor: pointer;
 
     &:disabled {
       cursor: not-allowed;

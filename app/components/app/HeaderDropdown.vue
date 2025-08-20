@@ -30,7 +30,7 @@ watch(
 
 <template>
   <div
-    class="app-header-dropdown"
+    class="app-header-dropdown relative md:flex"
     :class="{
       'app-header-dropdown--is-disabled': disableOnMobile,
       'app-header-dropdown--is-open': isOpen && isInteracted,
@@ -38,7 +38,11 @@ watch(
     }"
   >
     <button
-      class="app-header-dropdown__button"
+      :class="[
+        'relative z-1 flex gap-[0.4em] items-center justify-center pointer-events-auto',
+        'max-md:w-full max-md:py-2 max-md:px-4 md:-m-2 md:p-2 lg:-m-3 lg:p-3',
+        { 'max-md:hidden': disableOnMobile },
+      ]"
       type="button"
       @click="toggleDropdown"
     >
@@ -47,13 +51,13 @@ watch(
       <UiChevron :is-open="isOpen" />
     </button>
 
-    <div class="app-header-dropdown__duo">
-      <div class="app-header-dropdown__line" />
+    <div class="md:absolute md:top-0 md:left-full md:gap-2 md:items-start md:ms-[-0.25em]">
+      <div class="app-header-dropdown__line w-[77px] h-px bg-current my-[0.75em] max-md:hidden" />
 
-      <div class="app-header-dropdown__content-outer">
-        <div class="app-header-dropdown__content">
+      <div class="app-header-dropdown__content-outer max-md:overflow-hidden">
+        <div :class="disableOnMobile ? 'max-md:min-h-auto' : 'max-md:min-h-0'">
           <div class="app-header-dropdown__content-inner">
-            <ul class="app-header-dropdown__list">
+            <ul class="app-header-dropdown__list md:w-max">
               <li
                 v-for="(item, index) in items"
                 :key="item._uid"
@@ -61,7 +65,11 @@ watch(
                 :style="`--link-index: ${index}`"
               >
                 <StoryblokLink
-                  class="app-header-dropdown__link"
+                  :class="[
+                    'app-header-dropdown__link',
+                    'type-italic-mask',
+                    'block w-full user-select-none',
+                  ]"
                   active-class="app-header-dropdown__link--is-active"
                   :item="item.link"
                   :title="item.title"
@@ -78,129 +86,54 @@ watch(
   </div>
 </template>
 
-<style lang="postcss">
-.app-header-dropdown {
-  position: relative;
-
-  @screen md {
-    display: flex;
-  }
-}
-
-.app-header-dropdown__button {
-  pointer-events: auto;
-
-  position: relative;
-  z-index: 1;
-
-  display: flex;
-  gap: 0.4em;
-  align-items: center;
-  justify-content: center;
-
-  @screen mdMax {
-    width: 100%;
-    padding-block: theme('spacing.10');
-
-    .app-header-dropdown--is-disabled & {
-      display: none;
-    }
-  }
-
-  @screen md {
-    margin: calc(-1 * theme('spacing.10'));
-    padding: theme('spacing.10');
-  }
-
-  @screen lg {
-    margin: calc(-1 * theme('spacing.15'));
-    padding: theme('spacing.15');
-  }
-}
-
-.app-header-dropdown__duo {
-  @screen md {
-    position: absolute;
-    top: 0;
-    left: 100%;
-
-    display: flex;
-    gap: theme('spacing.10');
-    align-items: flex-start;
-
-    margin-inline-start: -0.25em;
-  }
-}
+<style>
+@reference "@/assets/css/main.css";
 
 .app-header-dropdown__line {
-  --line-width: 77px;
-  --line-alignment-nudge: 0.75em;
-
-  transform-origin: left;
-  scale: 0 1 1;
-
-  width: var(--line-width);
-  height: 1px;
-  margin-block: var(--line-alignment-nudge);
-
   opacity: 0;
-  background-color: currentcolor;
+  scale: 0 1 1;
+  transform-origin: left;
 
   transition:
-    scale theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-    opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    scale 0.2s var(--ease-smooth),
+    opacity 0.2s var(--ease-smooth);
 
   .app-header-dropdown--is-open & {
-    scale: 1 1 1;
     opacity: 1;
-    transition:
-      scale theme('transitionDuration.800') theme('transitionTimingFunction.smooth'),
-      opacity theme('transitionDuration.800') theme('transitionTimingFunction.smooth');
-  }
+    scale: 1 1 1;
 
-  @screen mdMax {
-    display: none;
+    transition:
+      scale 0.8s var(--ease-smooth),
+      opacity 0.8s var(--ease-smooth);
   }
 }
 
 .app-header-dropdown__content-outer {
-  @screen mdMax {
-    overflow: hidden;
+  @variant max-md {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows theme('transitionDuration.250') theme('transitionTimingFunction.smooth');
+    transition: grid-template-rows 0.25s var(--ease-smooth);
 
     .app-header-dropdown--is-open & {
       grid-template-rows: 1fr;
-      transition: grid-template-rows theme('transitionDuration.700') theme('transitionTimingFunction.inOutExpo');
+      transition: grid-template-rows 0.7s var(--ease-inOutExpo);
     }
 
     .app-header-dropdown--is-disabled & {
       grid-template-rows: 1fr;
-    }
-  }
-}
-
-.app-header-dropdown__content {
-  @screen mdMax {
-    min-height: 0;
-
-    .app-header-dropdown--is-disabled & {
-      min-height: auto;
     }
   }
 }
 
 .app-header-dropdown__list {
   --link-nudge: 8px;
-  --link-padding-x: theme('spacing.10');
-  --link-padding-y: theme('spacing.10');
+  --link-padding-x: --spacing(2);
+  --link-padding-y: --spacing(2);
 
-  @screen md {
-    --link-padding-x: theme('spacing.10');
+  @variant md {
+    --link-padding-x: --spacing(2);
     --link-padding-y: 3px;
 
-    width: max-content;
     margin-block: calc(-1 * var(--link-padding-y));
     margin-inline: calc(-1 * var(--link-padding-x));
   }
@@ -233,63 +166,38 @@ watch(
 .app-header-dropdown__item {
   --animation-delay: calc(500ms + (var(--link-index) * 50ms));
 
-  @screen md {
+  @variant md {
     --animation-delay: calc(200ms + (var(--link-index) * 70ms));
   }
 
-  translate: calc(-1 * var(--link-nudge)) 0 0;
   opacity: 0;
+  translate: calc(-1 * var(--link-nudge)) 0 0;
 
   .app-header-dropdown--is-closed & {
-    animation: link-hide theme('transitionDuration.200') theme('transitionTimingFunction.smooth')
-      forwards;
+    animation: link-hide 0.2s var(--ease-smooth) forwards;
   }
 
   .app-header-dropdown--is-open & {
-    animation: link-show theme('transitionDuration.700') theme('transitionTimingFunction.smooth')
-      var(--animation-delay) forwards;
+    animation: link-show 0.7s var(--ease-smooth) var(--animation-delay) forwards;
   }
 
-  @screen mdMax {
+  @variant max-md {
     .app-header-dropdown--is-disabled & {
-      translate: 0 0 0;
       opacity: 1;
+      translate: 0 0 0;
       animation: none;
     }
   }
 }
 
 .app-header-dropdown__link {
-  user-select: none;
-
-  position: relative;
-
-  display: block;
-
-  width: 100%;
   padding-block: var(--link-padding-y);
   padding-inline: var(--link-padding-x);
 
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  /* HACK: Added to stop hover stutter with italics 🤪 */
-  &::after {
-    pointer-events: none;
-    content: attr(title);
-
-    overflow: hidden;
-    display: block;
-
-    height: 0;
-
-    font-style: normal;
-
-    visibility: hidden;
-    opacity: 0;
-  }
+  transition: opacity 0.2s var(--ease-smooth);
 
   &:is(:hover, :focus-visible),
-  .app-header-dropdown__list &.app-header-dropdown__link--is-active {
+  .app-header-dropdown__list &--is-active {
     font-style: italic;
   }
 
@@ -302,7 +210,7 @@ watch(
     pointer-events: auto;
   }
 
-  @screen mdMax {
+  @variant max-md {
     .app-header-dropdown--is-disabled & {
       pointer-events: auto;
     }

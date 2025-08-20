@@ -8,55 +8,41 @@ const { isOpen = false } = defineProps<Props>()
 
 <template>
   <span
-    class="app-header-burger"
+    class="app-header-burger flex items-center justify-center size-[32px]"
     :class="{ 'app-header-burger--is-open': isOpen }"
   >
-    <span class="app-header-burger__inner" />
+    <span
+      :class="[
+        'app-header-burger__inner',
+        'relative w-full',
+        'before:absolute before:inset-0 before:bg-current',
+        'after:absolute after:inset-0 after:bg-current',
+      ]"
+    />
 
     <span class="sr-only">Toggle menu</span>
   </span>
 </template>
 
-<style lang="postcss" scoped>
-.app-header-burger {
-  --size: theme('spacing.32');
-
-  display: flex;
-  align-items: center;
-  width: var(--size);
-  height: var(--size);
-}
+<style scoped>
+@reference "@/assets/css/main.css";
 
 .app-header-burger__inner {
   --burger-height: 1px;
   --burger-offset: 5px;
 
-  position: relative;
-  display: block;
-  width: 100%;
   height: var(--burger-height);
 
   &::before,
   &::after {
-    --trans-out-open: theme('transitionDuration.350') theme('transitionTimingFunction.outExpo') theme('transitionDelay.350');
-    --trans-in-open: theme('transitionDuration.350') theme('transitionTimingFunction.inExpo');
-    --trans-out-close: theme('transitionDuration.250') theme('transitionTimingFunction.outExpo') theme('transitionDelay.250');
-    --trans-in-close: theme('transitionDuration.250') theme('transitionTimingFunction.inExpo');
-
-    content: '';
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: currentcolor;
+    --burger-out-open: 0.35s var(--ease-outExpo) 0.35s;
+    --burger-in-open: 0.35s var(--ease-inExpo);
+    --burger-out-close: 0.25s var(--ease-outExpo) 0.25s;
+    --burger-in-close: 0.25s var(--ease-inExpo);
 
     transition:
-      translate var(--trans-out-close),
-      rotate var(--trans-in-close);
+      translate var(--burger-out-close),
+      rotate var(--burger-in-close);
   }
 
   &::before {
@@ -70,7 +56,7 @@ const { isOpen = false } = defineProps<Props>()
   .app-header-burger--is-open & {
     &::before,
     &::after {
-      transition: translate var(--trans-in-open), rotate var(--trans-out-open);
+      transition: translate var(--burger-in-open), rotate var(--burger-out-open);
     }
 
     &::before {

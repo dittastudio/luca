@@ -139,7 +139,7 @@ onUnmounted(() => {
       <button
         :class="[
           'app-header__switch',
-          'relative z-1 -m-4 p-4',
+          'relative z-1 -m-4 p-4 pointer-events-auto',
           'md:hidden',
         ]"
         type="button"
@@ -195,7 +195,7 @@ onUnmounted(() => {
                 <div
                   :class="[
                     'app-header__item',
-                    'block p-2 pointer-events-auto',
+                    'block pointer-events-auto',
                     'md:-m-2 md:p-2',
                     'lg:-m-3 lg:p-3',
                     'max-md:w-full max-md:text-center',
@@ -235,11 +235,7 @@ onUnmounted(() => {
       <div class="absolute inset-0 flex items-center justify-center p-(--app-header-padding-y) md:items-start">
         <NuxtLink
           to="/"
-          class="app-header__logo-link"
-          :class="[
-            'app-header__logo-link',
-            'block',
-          ]"
+          class="app-header__logo-link block"
         >
           <IconLucaLogo class="w-[113px] h-auto aspect-[113/47] md:w-[clamp(90px,_-70px_+_20.8333vw,_180px)]" />
 
@@ -247,8 +243,8 @@ onUnmounted(() => {
         </NuxtLink>
       </div>
 
-      <div class="app-header__details">
-        <IconMichelin class="app-header__michelin-icon" />
+      <div class="app-header__details flex gap-6 items-center">
+        <IconMichelin class="w-[20px] h-[23px] max-md:hidden" />
 
         <button
           class="app-header__reservations"
@@ -324,8 +320,6 @@ onUnmounted(() => {
 
 .app-header {
   @variant max-md {
-    display: none;
-
     html:has(&.app-header--is-open) {
       overflow: hidden;
     }
@@ -517,43 +511,27 @@ onUnmounted(() => {
     }
   }
 }
-</style>
-
-<style lang="postcss">
-@reference "@/assets/css/main.css";
 
 .app-header__details {
+  opacity: 1;
   pointer-events: auto;
 
-  display: flex;
-  gap: theme('spacing.30');
-  align-items: center;
-
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.5s var(--ease-smooth);
 
   .app-header--reservation-hidden & {
-    pointer-events: none;
     opacity: 0;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-  }
-}
+    pointer-events: none;
 
-.app-header__michelin-icon {
-  width: 20px;
-  height: 23px;
-
-  @screen mdMax {
-    display: none;
+    transition: opacity 0.2s var(--ease-smooth);
   }
 }
 
 .app-header__reservations {
-  @screen mdMax {
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-  }
+  @variant max-md {
+    opacity: 1;
+    transition: opacity 0.2s var(--ease-smooth);
 
-  .app-header--is-open & {
-    @screen mdMax {
+    .app-header--is-open & {
       opacity: 0;
     }
   }

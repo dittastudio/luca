@@ -77,3 +77,23 @@
     }
   }
 }
+
+.type-italic-mask {
+  position: relative;
+
+  /* HACK: Added to stop hover stutter with italics 🤪 */
+  &::after {
+    pointer-events: none;
+    content: attr(title);
+
+    overflow: hidden;
+    display: block;
+
+    height: 0;
+
+    font-style: normal;
+
+    visibility: hidden;
+    opacity: 0;
+  }
+}
