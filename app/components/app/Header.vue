@@ -104,51 +104,87 @@ onUnmounted(() => {
     :class="headerClasses"
     @keyup.esc="closeAllMenus"
   >
+    <!-- START: Mobile only background overlay -->
     <button
       tabindex="-1"
-      class="absolute inset-0 h-screen cursor-default bg-green transition-opacity duration-500 ease-smooth md:hidden"
-      :class="{
-        'opacity-0': !navigationOpen,
-        'opacity-100 pointer-events-auto': navigationOpen,
-      }"
+      :class="[
+        'app-header__bg--mobile',
+        'absolute inset-0 h-screen cursor-default bg-green',
+        'md:hidden',
+      ]"
       type="button"
       @click="closeAllDropdowns"
     >
       <span class="sr-only">Close Menu</span>
     </button>
+    <!-- END: Mobile only background overlay -->
 
+    <!-- START: Desktop only background overlay -->
     <button
       tabindex="-1"
-      class="absolute inset-0 h-screen opacity-0 cursor-default bg-(--app-header-background-tint) backdrop-blur-(--app-header-blur) transition-opacity duration-1000 ease-smooth max-md:hidden"
-      :class="{
-        'opacity-0': !dropdownOpen !== null,
-        'opacity-100 pointer-events-auto': dropdownOpen !== null,
-      }"
+      :class="[
+        'app-header__bg--desktop',
+        'absolute inset-0 h-screen cursor-default bg-(--app-header-background-tint) backdrop-blur-(--app-header-blur)',
+        'max-md:hidden',
+      ]"
       type="button"
       @click="closeAllDropdowns"
     >
       <span class="sr-only">Close Dropdown</span>
     </button>
+    <!-- END: Desktop only background overlay -->
 
+    <!-- START: Mobile only hamburger -->
     <div class="relative flex items-center justify-between h-full py-(--app-header-padding-y) md:items-start wrapper">
       <button
-        class="relative z-1 -m-4 p-4 hover-only:opacity-6 hover-only:transition-opacity hover-only:duration-200 hover-only:ease-smooth hover:not-active:opacity-60 md:hidden"
+        :class="[
+          'app-header__switch',
+          'relative z-1 -m-4 p-4',
+          'md:hidden',
+        ]"
         type="button"
         @click="toggleNavigation"
       >
         <AppHeaderBurger :is-open="navigationOpen" />
       </button>
+      <!-- END: Mobile only hamburger -->
 
-      <div class="app-header__menu">
-        <nav class="app-header__navigation type-body-large">
-          <div class="app-header__list">
+      <div
+        :class="[
+          'app-header__menu',
+          'md:relative md:z-1 md:flex md:gap-2 md:items-start',
+          'max-md:absolute max-md:inset-0 max-md:overflow-y-auto max-md:overscroll-contain max-md:h-dvh',
+        ]"
+      >
+        <nav
+          :class="[
+            'type-body-large',
+            'text-24 md:text-16 lg:text-18',
+            'max-md:flex max-md:flex-wrap max-md:items-end max-md:justify-center',
+            'max-md:w-full max-md:min-h-full max-md:pt-(--app-header-height) max-md:pb-8',
+          ]"
+        >
+          <div
+            :class="[
+              'flex flex-col flex-grow w-full',
+              'md:flex-row md:flex-grow-0 md:gap-4 md:w-auto',
+              'lg:gap-6',
+            ]"
+          >
             <template
               v-for="item in items"
               :key="item._uid"
             >
               <StoryblokLink
                 v-if="isLink(item)"
-                class="app-header__item app-header__item--link"
+                :class="[
+                  'app-header__item',
+                  'block p-2 pointer-events-auto',
+                  'md:-m-2 md:p-2',
+                  'lg:-m-3 lg:p-3',
+                  'max-md:w-full max-md:text-center',
+                  'hover:italic',
+                ]"
                 :item="item.link"
                 :title="item.title"
               >
@@ -157,8 +193,14 @@ onUnmounted(() => {
 
               <template v-else-if="isLinkGroup(item)">
                 <div
-                  class="app-header__item"
-                  :class="{ 'app-header__item--is-open': dropdownOpen === item._uid }"
+                  :class="[
+                    'app-header__item',
+                    'block p-2 pointer-events-auto',
+                    'md:-m-2 md:p-2',
+                    'lg:-m-3 lg:p-3',
+                    'max-md:w-full max-md:text-center',
+                    { 'app-header__item--is-open': dropdownOpen === item._uid },
+                  ]"
                 >
                   <AppHeaderDropdown
                     :title="item.title"
@@ -172,9 +214,12 @@ onUnmounted(() => {
             </template>
           </div>
 
-          <div class="app-header__buttons">
+          <div class="max-md:flex max-md:justify-center max-md:w-full max-md:pt-8">
             <button
-              class="app-header__cta"
+              :class="[
+                'app-header__cta',
+                'block pointer-events-auto md:hidden',
+              ]"
               type="button"
               :tabindex="reservationsOpen ? '0' : '-1'"
               @click="reservationsOpen = true"
@@ -187,12 +232,16 @@ onUnmounted(() => {
         </nav>
       </div>
 
-      <div class="app-header__logo">
+      <div class="absolute inset-0 flex items-center justify-center p-(--app-header-padding-y) md:items-start">
         <NuxtLink
           to="/"
           class="app-header__logo-link"
+          :class="[
+            'app-header__logo-link',
+            'block',
+          ]"
         >
-          <IconLucaLogo class="app-header__logo-icon" />
+          <IconLucaLogo class="w-[113px] h-auto aspect-[113/47] md:w-[clamp(90px,_-70px_+_20.8333vw,_180px)]" />
 
           <span class="sr-only">Luca</span>
         </NuxtLink>
@@ -323,39 +372,50 @@ onUnmounted(() => {
   stop-color: var(--app-background-color);
   stop-opacity: 0;
 }
-</style>
 
-<style lang="postcss">
-.app-header__menu {
-  @screen md {
-    position: relative;
-    z-index: 1;
+.app-header__bg--mobile {
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-smooth);
 
-    display: flex;
-    gap: theme('spacing.10');
-    align-items: flex-start;
+  .app-header--is-open & {
+    pointer-events: auto;
+    opacity: 1;
   }
+}
 
-  @screen mdMax {
-    position: absolute;
-    inset: 0;
+.app-header__bg--desktop {
+  opacity: 0;
+  transition: opacity 1s var(--ease-smooth);
 
-    overflow-y: auto;
-    overscroll-behavior: contain;
+  .app-header--is-dropdown-open & {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
 
-    height: 100vh;
-    height: 100dvh;
+.app-header__switch {
+  @media (hover: hover) {
+    opacity: 1;
+    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
 
-    visibility: hidden;
+    &:not(:active):hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.app-header__menu {
+  @variant max-md {
     opacity: 0;
+    visibility: hidden;
 
     transition:
       opacity 0.25s theme('transitionTimingFunction.smooth'),
       visibility 0.25s theme('transitionTimingFunction.smooth');
 
     .app-header--is-open & {
-      visibility: visible;
       opacity: 1;
+      visibility: visible;
       transition:
         opacity 1s theme('transitionTimingFunction.smooth') 0.25s,
         visibility 1s theme('transitionTimingFunction.smooth') 0.25s;
@@ -363,95 +423,31 @@ onUnmounted(() => {
   }
 }
 
-.app-header__navigation {
-  font-size: theme('fontSize.24');
-
-  @screen md {
-    font-size: theme('fontSize.16');
-  }
-
-  @screen lg {
-    font-size: theme('fontSize.18');
-  }
-
-  @screen mdMax {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
-
-    width: 100%;
-    min-height: 100%;
-    padding-top: var(--app-header-height);
-    padding-bottom: theme('spacing.40');
-  }
-}
-
-.app-header__list {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  width: 100%;
-
-  @screen md {
-    flex-direction: row;
-    flex-grow: 0;
-    gap: theme('spacing.20');
-    width: auto;
-  }
-
-  @screen lg {
-    gap: theme('spacing.30');
-  }
-}
-
 .app-header__item {
-  &--link {
-    pointer-events: auto;
-    display: block;
-    padding: theme('spacing.10');
-
-    @screen md {
-      margin: calc(-1 * theme('spacing.10'));
-      padding: theme('spacing.10');
-    }
-
-    @screen lg {
-      margin: calc(-1 * theme('spacing.15'));
-      padding: theme('spacing.15');
-    }
-  }
-
-  &--link:hover {
-    font-style: italic;
-  }
-
-  @screen mdMax {
-    width: 100%;
-    text-align: center;
-    transition: opacity 0.2s theme('transitionTimingFunction.smooth');
+  @variant max-md {
+    transition: opacity 0.2s var(--ease-smooth);
 
     .app-header--is-dropdown-open &:not(.app-header__item--is-open) {
       opacity: 0.3;
     }
   }
 
-  @screen md {
+  @variant md {
     transition:
-      opacity 0.5s theme('transitionTimingFunction.smooth') 0.1s,
-      visibility 0.5s theme('transitionTimingFunction.smooth') 0.1s;
+      opacity 0.5s var(--ease-smooth) 0.1s,
+      visibility 0.5s var(--ease-smooth) 0.1s;
 
     .app-header__navigation:hover & {
       transition:
-        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+        opacity 0.2s var(--ease-smooth) 0s,
+        visibility 0.2s var(--ease-smooth) 0s;
     }
 
     .app-header__navigation:hover &:not(:hover) {
       opacity: 0.5;
       transition:
-        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+        opacity 0.2s var(--ease-smooth) 0s,
+        visibility 0.2s var(--ease-smooth) 0s;
     }
 
     .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
@@ -469,75 +465,36 @@ onUnmounted(() => {
   }
 }
 
-.app-header__buttons {
-  @screen mdMax {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding-top: 40px;
-  }
-}
-
 .app-header__cta {
-  pointer-events: auto;
-
+  opacity: 0;
   translate: 0 50% 0;
 
-  display: block;
-
-  opacity: 0;
-
   transition:
-    opacity theme('transitionDuration.100') theme('transitionTimingFunction.smooth'),
-    translate 0s theme('transitionDelay.100');
+    opacity 0.1s var(--ease-smooth),
+    translate 0s 0.1s;
 
   .app-header--is-open & {
-    translate: 0 0 0;
     opacity: 1;
+    translate: 0 0 0;
+
     transition:
-      opacity theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
-        0.5s,
-      translate theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
-        0.5s;
-  }
-
-  @screen md {
-    display: none;
-  }
-}
-
-.app-header__logo {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding-block: var(--app-header-padding-y);
-
-  @screen md {
-    align-items: flex-start;
+      opacity 0.5s var(--ease-outQuart) 0.5s,
+      translate 0.5s var(--ease-outQuart) 0.5s;
   }
 }
 
 .app-header__logo-link {
+  opacity: 1;
+  translate: 0 0 0;
   pointer-events: auto;
 
-  translate: 0 0 0;
-
-  display: block;
-
-  opacity: 1;
-
   transition:
-    opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
+    opacity 0.5s var(--ease-smooth),
     translate 0s 0s;
 
   .app-header--has-scrolled-up & {
-    pointer-events: auto;
-    translate: 0 0 0;
     opacity: 1;
+    translate: 0 0 0;
   }
 
   .app-header--has-scrolled-down &,
@@ -548,28 +505,22 @@ onUnmounted(() => {
     translate: 0 -15% 0;
     opacity: 0;
     transition:
-      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-      translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+      opacity 0.2s var(--ease-smooth),
+      translate 0.2s var(--ease-smooth);
   }
 
-  @screen mdMax {
+  @variant max-md {
     .app-header--is-open & {
       pointer-events: none;
       opacity: 0;
-      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+      transition: opacity 0.2s var(--ease-smooth);
     }
   }
 }
+</style>
 
-.app-header__logo-icon {
-  aspect-ratio: 113 / 47;
-  width: 113px;
-  height: auto;
-
-  @screen md {
-    width: clamp(90px, -70px + 20.8333vw, 180px);
-  }
-}
+<style lang="postcss">
+@reference "@/assets/css/main.css";
 
 .app-header__details {
   pointer-events: auto;
