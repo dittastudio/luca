@@ -51,7 +51,7 @@ watch(
       <UiChevron :is-open="isOpen" />
     </button>
 
-    <div class="md:absolute md:top-0 md:left-full md:gap-2 md:items-start md:ms-[-0.25em]">
+    <div class="md:absolute md:top-0 md:left-full md:flex md:gap-2 md:items-start md:ms-[-0.25em]">
       <div class="app-header-dropdown__line w-[77px] h-px bg-current my-[0.75em] max-md:hidden" />
 
       <div class="app-header-dropdown__content-outer max-md:overflow-hidden">

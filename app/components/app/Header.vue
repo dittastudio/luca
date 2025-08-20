@@ -256,7 +256,7 @@ onUnmounted(() => {
           <AppearanceButton size="responsive">
             <span class="md:hidden">Book</span>
 
-            <span class="mdMax:hidden">Reservations</span>
+            <span class="max-md:hidden">Reservations</span>
           </AppearanceButton>
         </button>
 

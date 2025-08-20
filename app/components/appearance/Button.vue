@@ -8,76 +8,70 @@ const { size = 'default' } = defineProps<Props>()
 
 <template>
   <span
-    class="appearance-button"
-    :class="{ [`appearance-button--${size}`]: size }"
+    :class="[
+      'appearance-button',
+      'relative block isolate',
+      'font-heading font-normal uppercase',
+      'after:absolute after:-inset-(--button-border-width) after:z-0 after:bg-black/10',
+
+      { [`appearance-button--${size}`]: size },
+    ]"
   >
     <slot />
   </span>
 </template>
 
-<style lang="postcss">
+<style>
+@reference "@/assets/css/main.css";
+
 .appearance-button {
   --button-padding-y: 1em;
   --button-padding-x: 2em;
-  --button-font-size: theme('fontSize.14');
-  --button-color: var(--app-text-color);
-  --button-hover-color: var(--app-background-color);
-
-  isolation: isolate;
-  position: relative;
-
-  display: block;
+  --button-font-size: var(--text-14);
+  --button-text-color: var(--app-text-color);
+  --button-background-color: transparent;
+  --button-border-color: var(--app-text-color);
+  --button-border-width: calc(2 / 14 * 1em);
 
   padding: var(--button-padding-y) var(--button-padding-x);
-  border: calc(2 / 14 * 1em) solid var(--button-color);
+  border: var(--button-border-width) solid var(--button-border-color);
 
   font-family: theme('fontFamily.heading');
   font-size: var(--button-font-size);
-  font-weight: normal;
-  color: var(--button-color);
+  color: var(--button-text-color);
   text-indent: theme('letterSpacing.widest');
-  text-transform: uppercase;
   letter-spacing: theme('letterSpacing.widest');
-
-  background-color: transparent;
+  background-color: var(--button-background-color);
 
   transition:
-    background-color var(--app-element-speed) theme('transitionTimingFunction.smooth'),
-    border-color var(--app-element-speed) theme('transitionTimingFunction.smooth'),
-    color var(--app-element-speed) theme('transitionTimingFunction.smooth');
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    z-index: 0;
-    inset: 0;
-
-    opacity: 0;
-    background-color: theme('colors.black/10%');
-
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-  }
+    background-color var(--app-element-speed) var(--ease-smooth),
+    border-color var(--app-element-speed) var(--ease-smooth),
+    color var(--app-element-speed) var(--ease-smooth);
 
   &--responsive {
-    @screen mdMax {
+    @variant max-md {
       --button-padding-y: 0.8em;
       --button-padding-x: 1em;
-      --button-font-size: theme('fontSize.12');
+      --button-font-size: var(--text-12);
     }
-  }
-
-  a:active &::after,
-  button:not(:disabled):active &::after {
-    opacity: 1;
   }
 
   @media (hover: hover) {
     a:hover &,
     button:not(:disabled):hover & {
-      border-color: var(--button-color);
-      color: var(--button-hover-color);
-      background-color: var(--button-color);
+      --button-text-color: var(--app-background-color);
+      --button-background-color: var(--app-text-color);
+      --button-border-color: var(--app-text-color);
+    }
+  }
+
+  &::after {
+    opacity: 0;
+    transition: opacity 0.2s var(--ease-smooth);
+
+    a:active &,
+    button:not(:disabled):active & {
+      opacity: 1;
     }
   }
 }
