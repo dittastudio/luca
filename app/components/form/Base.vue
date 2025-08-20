@@ -9,7 +9,7 @@ const { loading = false } = defineProps<Props>()
 <template>
   <form
     novalidate
-    :class="[{ 'opacity-50 pointer-events-none transition-opacity duration-300': loading }]"
+    :class="[{ 'opacity-50 pointer-events-none transition-opacity duration-300 ease-smooth': loading }]"
   >
     <slot />
   </form>

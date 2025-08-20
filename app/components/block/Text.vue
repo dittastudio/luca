@@ -11,7 +11,7 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-text prose prose--large wrapper"
+    class="block-text prose prose--large wrapper text-center"
   >
     <StoryblokText
       v-if="storyblokRichTextContent(block.text)"
@@ -20,10 +20,10 @@ const { block } = defineProps<Props>()
   </div>
 </template>
 
-<style lang="postcss">
-.block-text {
-  text-align: center;
+<style>
+@reference "@/assets/css/main.css";
 
+.block-text {
   & :is(h1, h2, h3, h4, h5, h6) {
     max-width: 36em;
     margin-inline: auto;

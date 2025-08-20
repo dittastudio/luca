@@ -126,7 +126,9 @@
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .grid-box {
   --grid-columns: 12;
   --grid-max-width: 100vw;
@@ -139,8 +141,8 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--app-inner-gutter);
 
-  @screen 3xl {
-    --grid-max-width: theme('screens.3xl');
+  @variant 3xl {
+    --grid-max-width: 1920px;
   }
 }
 

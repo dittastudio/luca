@@ -39,6 +39,7 @@ watch(
   >
     <button
       :class="[
+        'app-header-dropdown__button',
         'relative z-1 flex gap-[0.4em] items-center justify-center pointer-events-auto',
         'max-md:w-full max-md:py-2 max-md:px-4 md:-m-2 md:p-2 lg:-m-3 lg:p-3',
         { 'max-md:hidden': disableOnMobile },

@@ -20,62 +20,31 @@ onMounted(async () => {
 
 <template>
   <div
-    class="page-cover"
-    :class="[{ 'is-active': coverVisible }]"
+    :class="[
+      'sticky top-0 z-(--app-layer-three)',
+      'flex items-center justify-center h-dvh mb-[-100dvh]',
+      'color-(--app-text-color) bg-(--app-background-color)',
+      'transition-opacity duration-500 ease-smooth',
+      {
+        'opacity-0 pointer-events-none': !coverVisible,
+        'opacity-100 pointer-events-auto': coverVisible,
+      },
+    ]"
   >
     <div class="wrapper">
       <h1
-        class="page-cover__message type-responsive-page-cover"
-        :class="[{ 'is-active': messageVisible }]"
+        :class="[
+          'type-responsive-page-cover',
+          'relative top-[-0.065em] text-center text-balance mx-auto max-w-[15em]',
+          'transition-opacity duration-500 ease-smooth',
+          {
+            'opacity-0': !messageVisible,
+            'opacity-100': messageVisible,
+          },
+        ]"
       >
         {{ message }}
       </h1>
     </div>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.page-cover {
-  pointer-events: none;
-
-  position: sticky;
-  z-index: var(--app-layer-three);
-  top: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100vh;
-  height: 100dvh;
-  margin-block-end: calc(-1 * 100vh);
-  margin-block-end: calc(-1 * 100dvh);
-
-  color: var(--app-text-color);
-
-  background-color: var(--app-background-color);
-
-  &.is-active {
-    pointer-events: auto;
-  }
-
-  &,
-  &__message {
-    opacity: 0;
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
-
-    &.is-active {
-      opacity: 1;
-    }
-  }
-
-  &__message {
-    position: relative;
-    top: -0.065em;
-    text-align: center;
-    text-wrap: balance;
-    margin-inline: auto;
-    max-width: 15em;
-  }
-}
-</style>

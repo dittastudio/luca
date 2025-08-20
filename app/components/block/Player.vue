@@ -49,9 +49,11 @@ const { data: oembed, error } = await useAsyncData(
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .block-player {
-  @screen md {
+  @variant md {
     display: grid;
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
@@ -68,10 +70,10 @@ const { data: oembed, error } = await useAsyncData(
     overflow: hidden;
     width: 100%;
     height: 100%;
-    background-color: theme('colors.black/5%');
-    border-radius: theme('borderRadius.sm');
+    background-color: --alpha(var(--color-black) / 5%);
+    border-radius: var(--radius-sm);
 
-    @screen md {
+    @variant md {
       grid-column: 3 / span 8;
     }
 

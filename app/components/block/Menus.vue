@@ -52,24 +52,26 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .block-menus {
   display: flex;
   flex-direction: column;
-  gap: theme('spacing.60');
+  gap: --spacing(12);
 
-  margin-block-start: theme('spacing.30');
+  margin-block-start: --spacing(6);
 
   backface-visibility: hidden;
 
-  @media screen(md) {
-    gap: theme('spacing.80');
-    margin-block-start: calc(theme('spacing.50') * -1);
+  @variant md {
+    gap: --spacing(16);
+    margin-block-start: calc(--spacing(10) * -1);
   }
 }
 
 .block-menus__banner {
-  @screen md {
+  @variant md {
     display: grid;
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
@@ -77,7 +79,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-menus__media {
-  border-radius: theme('borderRadius.sm');
+  border-radius: var(--radius-sm);
 }
 
 .block-menus__list {
@@ -93,12 +95,12 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-menus__link {
-  --link-padding-x: theme('spacing.10');
-  --link-padding-y: theme('spacing.10');
+  --link-padding-x: --spacing(2);
+  --link-padding-y: --spacing(2);
 
   width: 100%;
   padding: var(--link-padding-y) var(--link-padding-x);
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.2s var(--ease-smooth);
 
   &:hover {
     font-style: italic;
@@ -108,7 +110,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     opacity: 0.5;
   }
 
-  @media screen(md) {
+  @variant md {
     --link-padding-y: 3px;
   }
 }

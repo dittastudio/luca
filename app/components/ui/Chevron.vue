@@ -32,7 +32,7 @@ const { isOpen = false, size = '0.4em' } = defineProps<Props>()
   </span>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
 .ui-chevron {
   grid-template-areas: "stack";
 }
