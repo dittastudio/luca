@@ -95,6 +95,7 @@
     --app-background-ease: var(--ease-smooth);
     --app-element-speed: 200ms;
     --app-header-speed: 200ms;
+    --app-logo-responsive-width: 60vw;
 
     /* Spacing */
     --app-inner-gutter: --spacing(4);
@@ -121,10 +122,12 @@
       --app-header-height: 174px;
       --app-grid: repeat(12, minmax(0, 1fr));
       --app-header-padding-y: --spacing(10);
+      --app-logo-responsive-width: 31.55vw;
     }
 
     @variant 2xl {
       --app-outer-gutter: --spacing(12);
+      --app-logo-responsive-width: 454px;
     }
   }
 }

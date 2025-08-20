@@ -58,7 +58,7 @@ onMounted(async () => {
         class="app-cover__logo"
         :class="[
           'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-          'w-[60vw] md:w-[31.55vw] 2xl:w-[454px]',
+          'w-(--app-logo-responsive-width) h-auto',
           'transition-opacity duration-500 ease-smooth',
           {
             'opacity-0': !logoVisible,
@@ -71,11 +71,9 @@ onMounted(async () => {
 </template>
 
 <style lang="postcss">
-html {
-  &.is-storyblok-editor {
-    .app-cover {
-      display: none;
-    }
+html.is-storyblok-editor {
+  .app-cover {
+    display: none;
   }
 }
 </style>
