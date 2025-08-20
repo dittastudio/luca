@@ -70,7 +70,7 @@ onMounted(async () => {
   </div>
 </template>
 
-<style lang="postcss">
+<style>
 html.is-storyblok-editor {
   .app-cover {
     display: none;

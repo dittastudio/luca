@@ -97,9 +97,11 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
   </div>
 </template>
 
-<style lang="postcss">
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .block-carousel__grid {
-  @screen md {
+  @variant md {
     display: grid;
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
@@ -109,7 +111,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
 .block-carousel__container {
   overflow: hidden;
 
-  @screen md {
+  @variant md {
     grid-column: 2 / span 10;
   }
 }
@@ -134,11 +136,11 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
 .block-carousel__media {
   height: 100%;
   object-fit: cover;
-  border-radius: theme('borderRadius.sm');
+  border-radius: var(--radius-sm);
 }
 
 .block-carousel__caption {
-  margin-block-start: theme('spacing.8');
+  margin-block-start: 8px;
   font-style: italic;
 }
 </style>

@@ -58,9 +58,11 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .block-card-editorial {
-  @screen md {
+  @variant md {
     display: grid;
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
@@ -72,11 +74,11 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 }
 
 .block-card-editorial__media {
-  border-radius: theme('borderRadius.sm');
+  border-radius: var(--radius-sm);
 
   @media (hover: hover) {
     opacity: 1;
-    transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.outQuart');
+    transition: opacity 0.5s var(--ease-outQuart);
 
     .block-card-editorial__link:hover & {
       opacity: 0.8;
@@ -85,7 +87,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 }
 
 .block-card-editorial__caption {
-  margin-block-start: theme('spacing.8');
+  margin-block-start: 8px;
   font-style: italic;
 }
 </style>
