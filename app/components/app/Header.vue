@@ -158,6 +158,7 @@ onUnmounted(() => {
       >
         <nav
           :class="[
+            'app-header__navigation',
             'type-body-large',
             'text-24 md:text-16 lg:text-18',
             'max-md:flex max-md:flex-wrap max-md:items-end max-md:justify-center',
@@ -195,7 +196,7 @@ onUnmounted(() => {
                 <div
                   :class="[
                     'app-header__item',
-                    'block pointer-events-auto',
+                    'block',
                     'md:-m-2 md:p-2',
                     'lg:-m-3 lg:p-3',
                     'max-md:w-full max-md:text-center',

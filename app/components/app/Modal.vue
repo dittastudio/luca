@@ -69,60 +69,26 @@ watch(
 <template>
   <dialog
     ref="dialog"
-    :class="[
-      'app-modal',
-      'block',
-      'overflow-x-hidden',
-      'w-full',
-      'max-w-full',
-      'max-h-full',
-      'm-auto',
-      'bg-transparent',
-    ]"
+    class="app-modal block overflow-x-hidden w-full max-w-full max-h-full m-auto bg-transparent"
     @click.self="setClose"
   >
-    <div
-      :class="[
-        'app-modal__container',
-        'w-full',
-        'max-w-[696px]',
-        'm-auto',
-      ]"
-    >
+    <div class="app-modal__container w-full max-w-[696px] m-auto">
       <div class="relative">
         <button
           :class="[
-            'absolute',
-            'z-1',
-            'top-3',
-            'right-3',
-            '-m-4',
-            'p-4',
+            'absolute z-1 top-3 right-3 -m-4 p-4',
             'text-white',
-            'transition-opacity',
-            'duration-200',
-            'ease-smooth',
+            'transition-opacity duration-200 ease-smooth',
             'hover:opacity-60',
           ]"
           @click="setClose"
         >
           <span
-            :class="[
-              'flex',
-              'items-center',
-              'size-6',
-              'p-[8px]',
-              'text-white',
-              'bg-white/20',
-              'rounded-full',
-            ]"
+            class="flex items-center size-6 p-[8px] text-white bg-white/20 rounded-full"
           >
             <span
               :class="[
-                'relative',
-                'block',
-                'w-full',
-                'h-[1.5px]',
+                'relative block w-full h-[1.5px]',
                 'before:absolute before:inset-0 before:bg-current before:rotate-45',
                 'after:absolute after:inset-0 after:bg-current after:-rotate-45',
               ]"
