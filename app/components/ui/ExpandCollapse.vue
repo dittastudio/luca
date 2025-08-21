@@ -33,34 +33,18 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="ui-expand-collapse"
-    :class="{ 'ui-expand-collapse--is-open': isOpen }"
+    data-component="ui-expand-collapse"
+    class="overflow-hidden transition-[height] duration-350 ease-inOutExpo"
     :style="setHeightStyles"
   >
     <div
       ref="inner"
-      class="ui-expand-collapse__inner"
+      :class="{
+        'opacity-0 transition-opacity duration-150 ease-smooth': !isOpen,
+        'opacity-100 transition-opacity duration-300 ease-smooth delay-250': isOpen,
+      }"
     >
       <slot />
     </div>
   </div>
 </template>
-
-<style scoped>
-@reference "@/assets/css/main.css";
-
-.ui-expand-collapse {
-  overflow: hidden;
-  transition: height 0.35s var(--ease-inOutExpo);
-}
-
-.ui-expand-collapse__inner {
-  opacity: 0;
-  transition: opacity 0.15s var(--ease-smooth);
-
-  .ui-expand-collapse--is-open & {
-    opacity: 1;
-    transition: opacity 0.3s var(--ease-out) 0.25s;
-  }
-}
-</style>

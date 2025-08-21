@@ -8,14 +8,14 @@ const { title, headline } = defineProps<Props>()
 </script>
 
 <template>
-  <div class="card-media">
+  <div class="relative isolate">
     <div
       class="card-media__media"
     >
       <slot name="media" />
     </div>
 
-    <div class="card-media__content">
+    <div class="card-media__content p-4 text-center md:absolute md:inset-0 md:flex md:flex-col md:items-center md:justify-center">
       <h2
         v-if="title"
         class="card-media__title type-h3"
@@ -36,11 +36,6 @@ const { title, headline } = defineProps<Props>()
 <style scoped>
 @reference "@/assets/css/main.css";
 
-.card-media {
-  isolation: isolate;
-  position: relative;
-}
-
 .card-media__media {
   @media (hover: hover) {
     @variant md {
@@ -58,25 +53,15 @@ const { title, headline } = defineProps<Props>()
 }
 
 .card-media__content {
-  padding: --spacing(4);
-  text-align: center;
-
   @media (hover: hover) {
     @variant md {
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
       opacity: 0;
 
       transition: opacity 0.2s var(--ease-smooth);
 
       a:is(:hover, :focus) & {
         opacity: 1;
+
         transition: opacity 0.2s var(--ease-smooth) 0.15s;
       }
     }
