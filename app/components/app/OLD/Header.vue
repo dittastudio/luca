@@ -211,7 +211,7 @@ const reservationsForce = ref<boolean>(false)
     overflow: hidden;
   }
 
-  &--is-open {
+  &.app-header--is-open {
     color: theme('colors.white');
 
     .appearance-button {

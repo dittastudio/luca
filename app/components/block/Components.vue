@@ -111,21 +111,11 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
     --first-spacing-rhythm: var(--app-header-height);
   }
 
-  &--block_text:first-child {
-    @variant max-md {
-      padding-block-start: 25vh;
-    }
-  }
-
-  &--block_gallery:first-child {
-    padding-block-start: 0;
-  }
-
   & + & {
     padding-block-start: var(--spacing-rhythm);
   }
 
-  &:not(&--block_gallery):last-child {
+  &:not(.block-components__item--block_gallery):last-child {
     padding-block-end: --spacing(30);
   }
 
@@ -149,21 +139,27 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
     z-index: var(--app-layer-two);
   }
 
+  & .block-components__line,
   &:has(.block-components__line) + & {
     padding-block-start: var(--line-spacing);
   }
+}
 
-  & .block-components__line  {
-    padding-block-start: var(--line-spacing);
+.block-components__item--block_text:first-child {
+  @variant max-md {
+    padding-block-start: 25vh;
   }
+}
 
-  /* Bespoke recipes */
-  &--block_text + &--block_button {
-    padding-block-start: var(--line-spacing);
-  }
+.block-components__item--block_gallery:first-child {
+  padding-block-start: 0;
+}
 
-  &--block_gallery + &--block_text_columns {
-    padding-block-start: var(--line-spacing);
-  }
+.block-components__item--block_text + .block-components__item--block_button {
+  padding-block-start: var(--line-spacing);
+}
+
+.block-components__item--block_gallery + .block-components__item--block_text_columns {
+  padding-block-start: var(--line-spacing);
 }
 </style>

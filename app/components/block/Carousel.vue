@@ -124,11 +124,11 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
 }
 
 .block-carousel__item {
-  &--one {
+  &.block-carousel__item--one {
     width: 100%;
   }
 
-  &--two {
+  &.block-carousel__item--two {
     width: calc(50% - (var(--app-inner-gutter) / 2));
   }
 }

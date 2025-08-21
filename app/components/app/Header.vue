@@ -225,7 +225,7 @@ onUnmounted(() => {
               :tabindex="reservationsOpen ? '0' : '-1'"
               @click="reservationsOpen = true"
             >
-              <AppearanceButton>
+              <AppearanceButton type="white-bordered">
                 Reservations
               </AppearanceButton>
             </button>
@@ -316,7 +316,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "@/assets/css/main.css";
 
 .app-header {
@@ -326,14 +326,14 @@ onUnmounted(() => {
     }
   }
 
-  &--is-open,
-  &--is-dropdown-open {
-    color: var(--color-white);
-
-    .appearance-button {
-      --button-color: var(--color-white);
-      --button-hover-color: var(--color-green);
+  &.app-header--is-open {
+    @variant max-md {
+      color: var(--color-white);
     }
+  }
+
+  &.app-header--is-dropdown-open {
+    color: var(--color-white);
   }
 }
 

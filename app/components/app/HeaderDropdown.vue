@@ -196,7 +196,7 @@ watch(
   transition: opacity 0.2s var(--ease-smooth);
 
   &:is(:hover, :focus-visible),
-  .app-header-dropdown__list &--is-active {
+  .app-header-dropdown__list &.app-header-dropdown__link--is-active {
     font-style: italic;
   }
 

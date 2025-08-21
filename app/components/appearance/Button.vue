@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 interface Props {
+  type?: 'default' | 'white-bordered'
   size?: 'default' | 'responsive'
 }
 
-const { size = 'default' } = defineProps<Props>()
+const { size = 'default', type = 'default' } = defineProps<Props>()
 </script>
 
 <template>
@@ -15,13 +16,14 @@ const { size = 'default' } = defineProps<Props>()
       'after:absolute after:-inset-(--button-border-width) after:z-0 after:bg-black/10',
 
       { [`appearance-button--${size}`]: size },
+      { [`appearance-button--${type}`]: type },
     ]"
   >
     <slot />
   </span>
 </template>
 
-<style>
+<style scoped>
 @reference "@/assets/css/main.css";
 
 .appearance-button {
@@ -48,7 +50,16 @@ const { size = 'default' } = defineProps<Props>()
     border-color var(--app-element-speed) var(--ease-smooth),
     color var(--app-element-speed) var(--ease-smooth);
 
-  &--responsive {
+  @media (hover: hover) {
+    a:hover &,
+    button:not(:disabled):hover & {
+      --button-text-color: var(--app-background-color);
+      --button-background-color: var(--app-text-color);
+      --button-border-color: var(--app-text-color);
+    }
+  }
+
+  &.appearance-button--responsive {
     @variant max-md {
       --button-padding-y: 0.8em;
       --button-padding-x: 1em;
@@ -56,12 +67,17 @@ const { size = 'default' } = defineProps<Props>()
     }
   }
 
-  @media (hover: hover) {
-    a:hover &,
-    button:not(:disabled):hover & {
-      --button-text-color: var(--app-background-color);
-      --button-background-color: var(--app-text-color);
-      --button-border-color: var(--app-text-color);
+  &.appearance-button--white-bordered {
+    --button-text-color: var(--color-white);
+    --button-border-color: var(--color-white);
+
+    @media (hover: hover) {
+      a:hover &,
+      button:not(:disabled):hover & {
+        --button-text-color: var(--color-green);
+        --button-background-color: var(--color-white);
+        --button-border-color: var(--color-white);
+      }
     }
   }
 

@@ -260,7 +260,7 @@ watch(() => options, () => {
     background-size: contain;
   }
 
-  &--previous {
+  &.ui-carousel__button--previous {
     cursor: w-resize;
     left: 0;
     justify-content: start;
@@ -271,7 +271,7 @@ watch(() => options, () => {
     }
   }
 
-  &--next {
+  &.ui-carousel__button--next {
     cursor: e-resize;
     right: 0;
     justify-content: end;
@@ -297,11 +297,11 @@ watch(() => options, () => {
   fill: currentcolor;
   transition: transform 0.3s var(--ease-smooth);
 
-  &--left {
+  &.ui-carousel__arrow--left {
     transform: translate3d(50%, 0, 0);
   }
 
-  &--right {
+  &.ui-carousel__arrow--right {
     transform: translate3d(-50%, 0, 0);
   }
 
