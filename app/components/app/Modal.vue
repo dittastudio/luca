@@ -77,7 +77,7 @@ watch(
         <button
           :class="[
             'absolute z-1 top-3 right-3 -m-4 p-4',
-            'text-white',
+            'text-white outline-none',
             'transition-opacity duration-200 ease-smooth',
             'hover:opacity-60',
           ]"
