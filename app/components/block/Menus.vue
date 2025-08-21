@@ -13,14 +13,14 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 <template>
   <div
     v-editable="block"
-    class="block-menus wrapper"
+    class="wrapper flex flex-col gap-12 -mt-6 backface-hidden md:gap-16 md:-mt-10"
   >
     <div
       v-if="block.media && assetType === 'image'"
-      class="block-menus__banner"
+      class="block-menus__banner md:grid md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter)"
     >
       <MediaImage
-        class="block-menus__media col-start-2 col-end-12"
+        class="col-start-2 col-end-12 rounded-xs"
         :asset="block.media"
         ratio="5:2"
         :sizes="`
@@ -32,16 +32,16 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
       />
     </div>
 
-    <nav class="block-menus__nav">
-      <ul class="block-menus__list type-body-large">
+    <nav>
+      <ul class="group type-body-large flex flex-col">
         <li
           v-for="menu in block.menus"
           :key="menu._uid"
-          class="block-menus__item"
+          class="flex flex-col items-center text-center"
         >
           <NuxtLink
-            class="block-menus__link"
-            :to="menu.pdf.filename"
+            class="block-menus__link w-full p-2 md:py-[3px] transition-opacity duration-200 ease-smooth hover:font-italic group-hover:not-hover:opacity-60"
+            :to="menu.pdf?.filename || ''"
             target="_blank"
           >
             {{ menu.title }}
@@ -51,67 +51,3 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     </nav>
   </div>
 </template>
-
-<style scoped>
-@reference "@/assets/css/main.css";
-
-.block-menus {
-  display: flex;
-  flex-direction: column;
-  gap: --spacing(12);
-
-  margin-block-start: --spacing(6);
-
-  backface-visibility: hidden;
-
-  @variant md {
-    gap: --spacing(16);
-    margin-block-start: calc(--spacing(10) * -1);
-  }
-}
-
-.block-menus__banner {
-  @variant md {
-    display: grid;
-    grid-template-columns: var(--app-grid);
-    gap: var(--app-inner-gutter);
-  }
-}
-
-.block-menus__media {
-  border-radius: var(--radius-xs);
-}
-
-.block-menus__list {
-  display: flex;
-  flex-direction: column;
-}
-
-.block-menus__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.block-menus__link {
-  --link-padding-x: --spacing(2);
-  --link-padding-y: --spacing(2);
-
-  width: 100%;
-  padding: var(--link-padding-y) var(--link-padding-x);
-  transition: opacity 0.2s var(--ease-smooth);
-
-  &:hover {
-    font-style: italic;
-  }
-
-  .block-menus__list:hover &:not(:hover) {
-    opacity: 0.5;
-  }
-
-  @variant md {
-    --link-padding-y: 3px;
-  }
-}
-</style>

@@ -17,9 +17,6 @@ watchEffect(() => {
     return
   }
 
-  console.log('isScreenSm.value', isScreenSm.value)
-  console.log('getMediaQuery()', getMediaQuery('sm'))
-
   isOpen.value = isScreenSm.value
 })
 

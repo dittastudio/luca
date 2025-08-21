@@ -13,7 +13,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 <template>
   <div
     v-editable="block"
-    class="block-card-editorial wrapper"
+    class="wrapper md:grid md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter)"
   >
     <div
       :class="[
@@ -22,13 +22,13 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
       ]"
     >
       <StoryblokLink
-        class="block-card-editorial__link"
+        class="group block"
         :item="block.link"
       >
         <figure>
           <MediaImage
             v-if="block.media && assetType === 'image'"
-            class="block-card-editorial__media"
+            class="rounded-xs opacity-100 transition-opacity duration-500 ease-outQuart group-hover:opacity-80"
             :asset="block.media"
             :ratio="block.ratio"
             :sizes="`
@@ -41,14 +41,14 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
           <MediaVideo
             v-else-if="block.media && assetType === 'video'"
-            class="block-card-editorial__media"
+            class="rounded-xs opacity-100 transition-opacity duration-500 ease-outQuart group-hover:opacity-80"
             :asset="block.media"
             :ratio="block.ratio"
           />
 
           <figcaption
             v-if="block.title"
-            class="block-card-editorial__caption type-body-large"
+            class="type-body-large italic mt-[8px]"
           >
             {{ block.title }}
           </figcaption>
@@ -57,37 +57,3 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
     </div>
   </div>
 </template>
-
-<style scoped>
-@reference "@/assets/css/main.css";
-
-.block-card-editorial {
-  @variant md {
-    display: grid;
-    grid-template-columns: var(--app-grid);
-    gap: var(--app-inner-gutter);
-  }
-}
-
-.block-card-editorial__link {
-  display: block;
-}
-
-.block-card-editorial__media {
-  border-radius: var(--radius-xs);
-
-  @media (hover: hover) {
-    opacity: 1;
-    transition: opacity 0.5s var(--ease-outQuart);
-
-    .block-card-editorial__link:hover & {
-      opacity: 0.8;
-    }
-  }
-}
-
-.block-card-editorial__caption {
-  margin-block-start: 8px;
-  font-style: italic;
-}
-</style>

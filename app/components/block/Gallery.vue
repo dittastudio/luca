@@ -114,7 +114,7 @@ const swiperOptions: SwiperOptions = {
 }
 
 .block-gallery__item {
-  height: inherit;
+  height: 100%;
   padding-block: var(--app-header-height);
   background-color: var(--app-background-color);
 

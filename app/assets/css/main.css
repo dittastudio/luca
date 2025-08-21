@@ -8,9 +8,6 @@
 
 @import "tailwindcss";
 
-@custom-variant touch (@media not (hover: hover));
-@custom-variant hover-only (@media (hover: hover));
-
 @theme {
   --color-white: #fff;
   --color-black: #000;

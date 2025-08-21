@@ -40,10 +40,10 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
     v-editable="block"
     class="block-carousel"
   >
-    <div class="block-carousel__grid wrapper">
+    <div class="wrapper md:grid md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter)">
       <div
         ref="container"
-        class="block-carousel__container"
+        class="md:col-start-2 md:col-span-10 overflow-hidden"
       >
         <UiCarousel
           :slides="slides"
@@ -51,16 +51,16 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
           :next-prev-shadow="true"
         >
           <template #slide="{ slide }">
-            <div class="block-carousel__slide">
+            <div class="flex justify-between h-full bg-(--app-background-color)">
               <div
                 v-for="(item, index) in slide"
                 :key="index"
                 class="block-carousel__item"
-                :class="block.two_per_slide ? 'block-carousel__item--two' : 'block-carousel__item--one'"
+                :class="block.two_per_slide ? 'w-[calc(50%-var(--app-inner-gutter)/2)]' : 'w-full'"
               >
                 <MediaImage
                   v-if="item?.media?.filename && storyblokAssetType(item.media.filename) === 'image'"
-                  class="block-carousel__media"
+                  class="h-full object-cover rounded-xs"
                   :asset="item.media"
                   :sizes="
                     block.two_per_slide ? `
@@ -77,14 +77,14 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
 
                 <MediaVideo
                   v-else-if="item?.media?.filename && storyblokAssetType(item.media.filename) === 'video'"
-                  class="block-carousel__media"
+                  class="h-full object-cover rounded-xs"
                   :asset="item.media.video"
                   :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
 
                 <p
                   v-if="item && item.caption"
-                  class="block-carousel__caption type-body"
+                  class="type-body italic mt-[8px]"
                 >
                   {{ item.caption }}
                 </p>
@@ -96,51 +96,3 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
     </div>
   </div>
 </template>
-
-<style scoped>
-@reference "@/assets/css/main.css";
-
-.block-carousel__grid {
-  @variant md {
-    display: grid;
-    grid-template-columns: var(--app-grid);
-    gap: var(--app-inner-gutter);
-  }
-}
-
-.block-carousel__container {
-  overflow: hidden;
-
-  @variant md {
-    grid-column: 2 / span 10;
-  }
-}
-
-.block-carousel__slide {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
-  background-color: var(--app-background-color);
-}
-
-.block-carousel__item {
-  &.block-carousel__item--one {
-    width: 100%;
-  }
-
-  &.block-carousel__item--two {
-    width: calc(50% - (var(--app-inner-gutter) / 2));
-  }
-}
-
-.block-carousel__media {
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-xs);
-}
-
-.block-carousel__caption {
-  margin-block-start: 8px;
-  font-style: italic;
-}
-</style>

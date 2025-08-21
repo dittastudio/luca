@@ -259,14 +259,14 @@ const onSubmit = async () => {
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-      font: inherit;
+    font: inherit;
 
-      box-shadow: none;
-      caret-color: var(--color-white);
+    box-shadow: none;
+    caret-color: var(--color-white);
 
-      transition: background-color 5000s linear 0s;
+    transition: background-color 5000s linear 0s;
 
-      -webkit-text-fill-color: var(--color-white);
+    -webkit-text-fill-color: var(--color-white);
   }
 }
 
