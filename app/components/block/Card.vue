@@ -52,7 +52,7 @@ const swiperOptions: SwiperOptions = {
                   <template v-if="slide?.filename">
                     <MediaImage
                       v-if="getAssetType(slide.filename) === 'image'"
-                      class="rounded-sm"
+                      class="rounded-xs"
                       :asset="slide"
                       :ratio="block.ratio"
                       :sizes="`
@@ -65,7 +65,7 @@ const swiperOptions: SwiperOptions = {
 
                     <MediaVideo
                       v-else-if="getAssetType(slide.filename) === 'video'"
-                      class="block-card__media"
+                      class="rounded-xs"
                       :asset="slide"
                       :ratio="block.ratio"
                     />

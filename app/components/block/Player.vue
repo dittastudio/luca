@@ -58,30 +58,30 @@ const { data: oembed, error } = await useAsyncData(
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
   }
+}
 
-  &__error {
-    max-width: 25em;
-    text-align: center;
-    margin-inline: auto;
-    grid-column: 1 / -1;
+.block-player__error {
+  max-width: 25em;
+  text-align: center;
+  margin-inline: auto;
+  grid-column: 1 / -1;
+}
+
+.block-player__media {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: --alpha(var(--color-black) / 5%);
+  border-radius: var(--radius-xs);
+
+  @variant md {
+    grid-column: 3 / span 8;
   }
 
-  &__media {
-    overflow: hidden;
+  :deep(iframe) {
     width: 100%;
     height: 100%;
-    background-color: --alpha(var(--color-black) / 5%);
-    border-radius: var(--radius-sm);
-
-    @variant md {
-      grid-column: 3 / span 8;
-    }
-
-    :deep(iframe) {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    border: none;
   }
 }
 </style>

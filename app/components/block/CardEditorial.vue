@@ -74,7 +74,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 }
 
 .block-card-editorial__media {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 
   @media (hover: hover) {
     opacity: 1;

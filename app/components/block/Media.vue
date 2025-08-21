@@ -23,7 +23,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
     >
       <MediaImage
         v-if="block.media && assetType === 'image'"
-        class="rounded-sm"
+        class="rounded-xs"
         :asset="block.media"
         :ratio="block.ratio"
         :sizes="`
@@ -36,7 +36,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
       <MediaVideo
         v-else-if="block.media && assetType === 'video'"
-        class="rounded-sm"
+        class="rounded-xs"
         :asset="block.media"
         :ratio="block.ratio"
       />

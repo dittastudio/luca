@@ -111,7 +111,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 }
 
 .block-split__media {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 }
 
 .block-split__caption {

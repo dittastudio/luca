@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { screenSizes } from '@@/tailwind.config'
-
 interface Props {
   id: string
 }
@@ -12,12 +10,15 @@ const toggleAccordion = () => {
   isOpen.value = !isOpen.value
 }
 
-const isScreenSm = useAtMedia(`(min-width: ${screenSizes.sm}px)`)
+const isScreenSm = useAtMedia(getMediaQuery('sm'))
 
 watchEffect(() => {
   if (!import.meta.client) {
     return
   }
+
+  console.log('isScreenSm.value', isScreenSm.value)
+  console.log('getMediaQuery()', getMediaQuery('sm'))
 
   isOpen.value = isScreenSm.value
 })

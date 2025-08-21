@@ -100,7 +100,7 @@ watch(
           </span>
         </button>
 
-        <div class="flex w-full min-h-[200px] bg-white/20 text-green rounded-sm border border-white/20 overflow-hidden">
+        <div class="flex w-full min-h-[200px] bg-white/20 text-green rounded-xs border border-white/20 overflow-hidden">
           <template v-if="ready">
             <slot />
           </template>

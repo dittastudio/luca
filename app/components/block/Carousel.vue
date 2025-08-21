@@ -136,7 +136,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
 .block-carousel__media {
   height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 }
 
 .block-carousel__caption {

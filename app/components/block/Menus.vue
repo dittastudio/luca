@@ -79,7 +79,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 }
 
 .block-menus__media {
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 }
 
 .block-menus__list {

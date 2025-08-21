@@ -129,5 +129,9 @@
       --app-outer-gutter: --spacing(12);
       --app-logo-responsive-width: 454px;
     }
+
+    /* Force CSS variables for breakpoints and colors */
+    --force-colors: var(--color-white) var(--color-black) var(--color-offwhite) var(--color-mint) var(--color-green) var(--color-olive) var(--color-brown);
+    --force-breakpoints: var(--breakpoint-xs) var(--breakpoint-sm) var(--breakpoint-md) var(--breakpoint-lg) var(--breakpoint-xl) var(--breakpoint-2xl) var(--breakpoint-3xl);
   }
 }

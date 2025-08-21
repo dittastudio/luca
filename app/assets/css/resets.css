@@ -2,7 +2,7 @@
   a,
   button {
     &:focus-visible {
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
       outline: 1px solid --alpha(var(--color-white) / 20%);
       outline-offset: 3px;
     }
