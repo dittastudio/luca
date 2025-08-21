@@ -454,7 +454,7 @@ onUnmounted(() => {
     }
 
     /* TODO: Dirty hack to prevent the dropdown title from being clickable when the dropdown is open */
-    .app-header--is-dropdown-open &:not(.app-header__item--is-open) .app-header-dropdown__button {
+    .app-header--is-dropdown-open &:not(.app-header__item--is-open) :deep(.app-header-dropdown__button) {
       pointer-events: none;
     }
   }
