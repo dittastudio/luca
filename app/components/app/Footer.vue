@@ -177,12 +177,12 @@ const socialList = [
     >
       <slot name="navigation" />
 
-      <div class="flex -m-3">
+      <div class="group flex -m-3">
         <template v-for="socialItem in socialList">
           <NuxtLink
             v-if="socialItem.url"
             :key="socialItem.name"
-            class="p-3 transition-opacity duration-200 ease-smooth hover:opacity-50 [a:hover_&:not(:hover)]:opacity-60"
+            class="p-3 transition-opacity duration-200 ease-smooth group-hover:not-hover:opacity-60"
             :to="socialItem.url"
             target="_blank"
             rel="noopener noreferrer"
