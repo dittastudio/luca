@@ -402,7 +402,7 @@ onUnmounted(() => {
 .app-header__switch {
   @media (hover: hover) {
     opacity: 1;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity 0.2s var(--ease-smooth);
 
     &:not(:active):hover {
       opacity: 0.6;
@@ -416,15 +416,15 @@ onUnmounted(() => {
     visibility: hidden;
 
     transition:
-      opacity 0.25s theme('transitionTimingFunction.smooth'),
-      visibility 0.25s theme('transitionTimingFunction.smooth');
+      opacity 0.2s var(--ease-smooth),
+      visibility 0.2s var(--ease-smooth);
 
     .app-header--is-open & {
       opacity: 1;
       visibility: visible;
       transition:
-        opacity 1s theme('transitionTimingFunction.smooth') 0.25s,
-        visibility 1s theme('transitionTimingFunction.smooth') 0.25s;
+        opacity 1s var(--ease-out) 0.3s,
+        visibility 1s var(--ease-out) 0.3s;
     }
   }
 }

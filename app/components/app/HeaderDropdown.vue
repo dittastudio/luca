@@ -111,11 +111,11 @@ watch(
   @variant max-md {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.25s var(--ease-smooth);
+    transition: grid-template-rows 0.35s var(--ease-smooth);
 
     .app-header-dropdown--is-open & {
       grid-template-rows: 1fr;
-      transition: grid-template-rows 0.7s var(--ease-inOutExpo);
+      transition: grid-template-rows 0.5s var(--ease-inOutQuart);
     }
 
     .app-header-dropdown--is-disabled & {
@@ -163,7 +163,7 @@ watch(
 }
 
 .app-header-dropdown__item {
-  --animation-delay: calc(500ms + (var(--link-index) * 50ms));
+  --animation-delay: calc(300ms + (var(--link-index) * 50ms));
 
   @variant md {
     --animation-delay: calc(200ms + (var(--link-index) * 70ms));

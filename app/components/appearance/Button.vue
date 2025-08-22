@@ -36,11 +36,11 @@ const { size = 'default' } = defineProps<Props>()
   padding: var(--button-padding-y) var(--button-padding-x);
   border: var(--button-border-width) solid var(--button-color);
 
-  font-family: theme('fontFamily.heading');
+  font-family: var(--font-heading);
   font-size: var(--button-font-size);
   color: var(--button-color);
-  text-indent: theme('letterSpacing.widest');
-  letter-spacing: theme('letterSpacing.widest');
+  text-indent: var(--tracking-widest);
+  letter-spacing: var(--tracking-widest);
   background-color: transparent;
 
   transition:
