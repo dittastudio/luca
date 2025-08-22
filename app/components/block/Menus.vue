@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockMenus } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockMenus, LinkGroup, Settings } from '@@/.storyblok/types/285210/storyblok-components'
 
 interface Props {
   block: BlockMenus
@@ -8,6 +8,34 @@ interface Props {
 const { block } = defineProps<Props>()
 
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
+
+const settings = await useStory<Settings>('/settings')
+
+// Hacky as FOOK: Get the menus from the navigation_new field
+const targetMenuNavigation = settings.value?.content?.navigation_new?.find(
+  (item): item is LinkGroup =>
+    item._uid === 'fe37b5ba-350c-46ae-8f1f-cde1956b0268' && 'links' in item,
+)
+
+const getMenus = computed(() => {
+  if (targetMenuNavigation?.links) {
+    return targetMenuNavigation.links.map(({ _uid, title, link }) => ({
+      type: 'link',
+      _uid,
+      title,
+      url: link?.url || '',
+    }))
+  }
+  if (block.menus) {
+    return block.menus.map(({ _uid, title, pdf }) => ({
+      type: 'menu',
+      _uid,
+      title,
+      url: pdf?.filename || '',
+    }))
+  }
+  return []
+})
 </script>
 
 <template>
@@ -35,13 +63,13 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     <nav>
       <ul class="group type-body-large flex flex-col">
         <li
-          v-for="menu in block.menus"
+          v-for="menu in getMenus"
           :key="menu._uid"
           class="flex flex-col items-center text-center"
         >
           <NuxtLink
             class="block-menus__link w-full p-2 md:py-[3px] transition-opacity duration-200 ease-smooth hover:font-italic group-hover:not-hover:opacity-60"
-            :to="menu.pdf?.filename || ''"
+            :to="menu.url"
             target="_blank"
           >
             {{ menu.title }}
