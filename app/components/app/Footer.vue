@@ -60,24 +60,38 @@ const socialList = [
 </script>
 
 <template>
-  <div class="app-footer wrapper">
-    <hr class="app-footer__break">
+  <div class="wrapper pb-8">
+    <hr class="opacity-20">
 
-    <div class="app-footer__inner">
-      <div class="app-footer__newsletter">
+    <div
+      :class="[
+        'grid grid-cols-1 pt-8',
+        'sm:grid-cols-2 sm:gap-(--app-inner-gutter)',
+        'xl:grid-cols-(--app-grid)',
+      ]"
+    >
+      <div
+        :class="[
+          'flex flex-col gap-8 justify-between',
+          'max-sm:pb-24 max-sm:text-center',
+          'sm:order-1',
+          'xl:col-start-10 xl:col-end-13',
+          '2xl:col-start-9 2xl:col-end-13',
+        ]"
+      >
         <div
           v-if="newsletterTitle && storyblokRichTextContent(newsletter)"
           class="prose prose--small"
         >
-          <h2 class="app-footer__title">
+          <h2>
             {{ newsletterTitle }}
           </h2>
 
-          <div class="app-footer__copy">
+          <div class="text-balance [*+&]:mt-4">
             <StoryblokText :content="newsletter" />
           </div>
 
-          <div class="app-footer__form">
+          <div class="[*+&]:mt-2">
             <AppNewsletterForm />
           </div>
         </div>
@@ -86,16 +100,21 @@ const socialList = [
       <AppFooterAccordion
         v-if="openingTimesTitle && storyblokRichTextContent(openingTimes)"
         :id="openingTimesTitle"
-        class="app-footer__details prose prose--small"
+        :class="[
+          'prose prose--small',
+          'max-sm:text-center',
+          'xl:col-span-3',
+          '2xl:col-span-2',
+        ]"
       >
         <template #title>
-          <h2 class="app-footer__title">
+          <h2>
             {{ openingTimesTitle }}
           </h2>
         </template>
 
         <template #content>
-          <div class="app-footer__copy">
+          <div class="text-pretty">
             <StoryblokText :content="openingTimes" />
           </div>
         </template>
@@ -104,16 +123,21 @@ const socialList = [
       <AppFooterAccordion
         v-if="contactTitle && storyblokRichTextContent(contact)"
         :id="contactTitle"
-        class="app-footer__details prose prose--small"
+        :class="[
+          'prose prose--small',
+          'max-sm:text-center',
+          'xl:col-span-3',
+          '2xl:col-span-2',
+        ]"
       >
         <template #title>
-          <h2 class="app-footer__title">
+          <h2>
             {{ contactTitle }}
           </h2>
         </template>
 
         <template #content>
-          <div class="app-footer__copy">
+          <div class="text-pretty">
             <StoryblokText :content="contact" />
           </div>
         </template>
@@ -122,31 +146,43 @@ const socialList = [
       <AppFooterAccordion
         v-if="reservationsTitle && storyblokRichTextContent(reservations)"
         :id="reservationsTitle"
-        class="app-footer__details prose prose--small"
+        :class="[
+          'prose prose--small',
+          'max-sm:text-center',
+          'xl:col-span-3',
+          '2xl:col-span-2',
+        ]"
       >
         <template #title>
-          <h2 class="app-footer__title">
+          <h2>
             {{ reservationsTitle }}
           </h2>
         </template>
 
         <template #content>
-          <div class="app-footer__copy">
+          <div class="text-pretty">
             <StoryblokText :content="reservations" />
           </div>
         </template>
       </AppFooterAccordion>
     </div>
 
-    <div class="app-footer__bottom">
+    <div
+      :class="[
+        'col-span-full',
+        'flex flex-col-reverse gap-8 items-center justify-between',
+        'mt-12',
+        'sm:flex-row sm:items-end sm:mt-24',
+      ]"
+    >
       <slot name="navigation" />
 
-      <div class="app-footer__social">
+      <div class="flex -m-3">
         <template v-for="socialItem in socialList">
           <NuxtLink
             v-if="socialItem.url"
             :key="socialItem.name"
-            class="app-footer__social-link"
+            class="p-3 transition-opacity duration-200 ease-smooth hover:opacity-50 [a:hover_&:not(:hover)]:opacity-60"
             :to="socialItem.url"
             target="_blank"
             rel="noopener noreferrer"
@@ -164,113 +200,3 @@ const socialList = [
     </div>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.app-footer {
-  padding-block-end: theme('spacing.40');
-}
-
-.app-footer__break {
-  opacity: 0.2;
-}
-
-.app-footer__inner {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  padding-block-start: theme('spacing.40');
-
-  @screen sm {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--app-inner-gutter);
-  }
-
-  @screen xl {
-    grid-template-columns: var(--app-grid);
-  }
-}
-
-.app-footer__details {
-  @screen xl {
-    grid-column: span 3;
-  }
-
-  @screen 2xl {
-    grid-column: span 2;
-  }
-
-  @screen smMax {
-    text-align: center;
-  }
-}
-
-.app-footer__newsletter {
-  display: flex;
-  flex-direction: column;
-  gap: theme('spacing.40');
-  justify-content: space-between;
-
-  @screen smMax {
-    padding-block-end: theme('spacing.120');
-    text-align: center;
-  }
-
-  @screen sm {
-    order: 1;
-  }
-
-  @screen xl {
-    grid-column: 10 / 13;
-  }
-
-  @screen 2xl {
-    grid-column: 9 / 13;
-  }
-}
-
-.app-footer__copy {
-  text-wrap: balance;
-
-  .app-footer__title + & {
-    margin-block-start: theme('spacing.20');
-  }
-}
-
-.app-footer__form {
-  .app-footer__copy + & {
-    margin-block-start: theme('spacing.10');
-  }
-}
-
-.app-footer__bottom {
-  display: flex;
-  grid-column: 1 / -1;
-  flex-direction: column-reverse;
-  gap: theme('spacing.40');
-  align-items: center;
-  justify-content: space-between;
-
-  margin-block-start: theme('spacing.60');
-
-  @screen sm {
-    flex-direction: row;
-    align-items: flex-end;
-    margin-block-start: theme('spacing.120');
-  }
-}
-
-.app-footer__social {
-  --social-padding: theme('spacing.15');
-
-  display: flex;
-  margin: calc(-1 * var(--social-padding));
-}
-
-.app-footer__social-link {
-  padding: var(--social-padding);
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-
-  .app-footer__social:hover &:not(:hover) {
-    opacity: 0.5;
-  }
-}
-</style>

@@ -61,9 +61,11 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .block-split {
-  @screen md {
+  @variant md {
     display: grid;
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
@@ -72,7 +74,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 }
 
 .block-split__picture {
-  @screen md {
+  @variant md {
     grid-column: 1 / span 6;
 
     .block-split--reverse & {
@@ -89,7 +91,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     }
   }
 
-  @screen lg {
+  @variant lg {
     grid-column: 2 / span 5;
 
     .block-split--reverse & {
@@ -97,7 +99,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     }
   }
 
-  @screen 3xl {
+  @variant 3xl {
     .block-split--story & {
       grid-column: 3 / span 4;
     }
@@ -109,24 +111,24 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 }
 
 .block-split__media {
-  border-radius: theme('borderRadius.sm');
+  border-radius: var(--radius-xs);
 }
 
 .block-split__caption {
-  margin-block-start: theme('spacing.8');
+  margin-block-start: 8px;
   font-style: italic;
 }
 
 .block-split__text {
-  @screen md {
-    --text-nudge: theme('spacing.20');
+  @variant md {
+    --text-nudge: --spacing(4);
   }
 
-  @screen lg {
-    --text-nudge: theme('spacing.40');
+  @variant lg {
+    --text-nudge: --spacing(8);
   }
 
-  @screen md {
+  @variant md {
     grid-column: 7 / span 6;
     padding-inline-start: var(--text-nudge);
 
@@ -144,7 +146,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     }
   }
 
-  @screen lg {
+  @variant lg {
     grid-column: 8 / span 5;
     padding-inline: 0;
 
@@ -161,7 +163,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     }
   }
 
-  @screen 3xl {
+  @variant 3xl {
     .block-split--reverse & {
       grid-column: 3 / span 4;
     }
@@ -175,9 +177,9 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     }
   }
 
-  @screen mdMax {
+  @variant max-md {
     .block-split__picture + & {
-      margin-block-start: theme('spacing.60');
+      margin-block-start: --spacing(12);
     }
   }
 }
@@ -185,7 +187,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
 .block-split__copy {
   text-align: center;
 
-  @screen md {
+  @variant md {
     text-align: left;
   }
 
@@ -197,7 +199,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     max-width: 27.5em;
     margin-inline: auto;
 
-    @screen md {
+    @variant md {
       margin-inline: 0;
 
       .block-split--reverse & {
@@ -210,7 +212,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
     max-width: 100%;
     margin-inline: 0;
 
-    @screen md {
+    @variant md {
       max-width: 36em;
     }
   }

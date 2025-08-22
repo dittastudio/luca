@@ -8,14 +8,14 @@ const { title, headline } = defineProps<Props>()
 </script>
 
 <template>
-  <div class="card-media">
+  <div class="relative isolate">
     <div
       class="card-media__media"
     >
       <slot name="media" />
     </div>
 
-    <div class="card-media__content">
+    <div class="card-media__content p-4 text-center md:absolute md:inset-0 md:flex md:flex-col md:items-center md:justify-center">
       <h2
         v-if="title"
         class="card-media__title type-h3"
@@ -33,56 +33,43 @@ const { title, headline } = defineProps<Props>()
   </div>
 </template>
 
-<style lang="postcss">
-.card-media {
-  isolation: isolate;
-  position: relative;
-}
+<style scoped>
+@reference "@/assets/css/main.css";
 
 .card-media__media {
   @media (hover: hover) {
-    @screen md {
+    @variant md {
       will-change: filter;
       opacity: 1;
       filter: blur(0);
-      transition: filter theme('transitionDuration.700') theme('transitionTimingFunction.smooth');
+      transition: filter 0.7s var(--ease-smooth);
 
       a:is(:hover, :focus) & {
         filter: blur(20px);
-        transition: filter theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+        transition: filter 0.5s var(--ease-smooth);
       }
     }
   }
 }
 
 .card-media__content {
-  padding: theme('spacing.20');
-  text-align: center;
-
   @media (hover: hover) {
-    @screen md {
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
+    @variant md {
       opacity: 0;
 
-      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+      transition: opacity 0.2s var(--ease-smooth);
 
       a:is(:hover, :focus) & {
         opacity: 1;
-        transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth') theme('transitionDelay.150');
+
+        transition: opacity 0.2s var(--ease-smooth) 0.15s;
       }
     }
   }
 
-  @screen mdMax {
+  @variant max-md {
     .card-media__media + & {
-      margin-block-start: theme('spacing.40');
+      margin-block-start: --spacing(8);
     }
   }
 }
@@ -95,7 +82,7 @@ const { title, headline } = defineProps<Props>()
 
     width: 70px;
     height: 1px;
-    margin-block: theme('spacing.20');
+    margin-block: --spacing(4);
     margin-inline: auto;
 
     opacity: 1;

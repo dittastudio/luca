@@ -179,10 +179,12 @@ watch(() => options, () => {
   </template>
 </template>
 
-<style lang="postcss">
+<style>
+@reference "@/assets/css/main.css";
+
 .ui-carousel {
   --dot-size: 8px;
-  --pagination-height: calc(theme('spacing.30') + var(--dot-size));
+  --pagination-height: calc(--spacing(6) + var(--dot-size));
 
   user-select: none;
   isolation: isolate;
@@ -196,7 +198,7 @@ watch(() => options, () => {
   width: 100%;
   height: 100%;
 
-  transition-timing-function: theme('transitionTimingFunction.out');
+  transition-timing-function: var(--ease-out);
   transition-property: transform;
 }
 
@@ -212,7 +214,7 @@ watch(() => options, () => {
   transition-property: transform;
 
   .app-story & {
-    background-color: theme('colors.offwhite');
+    background-color: var(--color-offwhite);
   }
 }
 
@@ -230,7 +232,7 @@ watch(() => options, () => {
 
   opacity: 0;
 
-  transition: opacity theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.3s var(--ease-smooth);
 
   .ui-carousel:hover & {
     pointer-events: auto;
@@ -253,12 +255,12 @@ watch(() => options, () => {
     height: 400px;
     margin: auto;
 
-    background-image: radial-gradient(circle, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 50%);
+    background-image: radial-gradient(circle, --alpha(var(--color-black) / 50%) 0%, --alpha(var(--color-black) / 0%) 50%);
     background-repeat: no-repeat;
     background-size: contain;
   }
 
-  &--previous {
+  &.ui-carousel__button--previous {
     cursor: w-resize;
     left: 0;
     justify-content: start;
@@ -269,7 +271,7 @@ watch(() => options, () => {
     }
   }
 
-  &--next {
+  &.ui-carousel__button--next {
     cursor: e-resize;
     right: 0;
     justify-content: end;
@@ -293,19 +295,19 @@ watch(() => options, () => {
   width: 22px;
   height: auto;
   fill: currentcolor;
-  transition: transform theme('transitionDuration.300') theme('transitionTimingFunction.smooth');
+  transition: transform 0.3s var(--ease-smooth);
 
-  &--left {
+  &.ui-carousel__arrow--left {
     transform: translate3d(50%, 0, 0);
   }
 
-  &--right {
+  &.ui-carousel__arrow--right {
     transform: translate3d(-50%, 0, 0);
   }
 
   .ui-carousel:hover & {
     transform: translate3d(0, 0, 0);
-    transition: transform theme('transitionDuration.300') theme('transitionTimingFunction.out');
+    transition: transform 0.3s var(--ease-out);
   }
 }
 
@@ -315,7 +317,7 @@ watch(() => options, () => {
   overflow: hidden;
 
   width: calc(var(--dot-size) * 11);
-  margin-block-start: calc(theme('spacing.30') - var(--dot-size));
+  margin-block-start: calc(--spacing(6) - var(--dot-size));
   margin-inline: auto;
   padding-inline: 4px;
 
@@ -347,7 +349,7 @@ watch(() => options, () => {
   will-change: transform;
   transform: translateX(var(--bullet-movement)) translateZ(0);
   display: flex;
-  transition: transform theme('transitionDuration.500') theme('transitionTimingFunction.out');
+  transition: transform 0.5s var(--ease-out);
 }
 
 .ui-carousel__bullet {
@@ -366,7 +368,7 @@ watch(() => options, () => {
   background-color: currentcolor;
   border-radius: 50%;
 
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.2s var(--ease-smooth);
 
   .ui-carousel__bullet--is-active & {
     opacity: 1;
@@ -382,7 +384,7 @@ watch(() => options, () => {
 .swiper-fade .swiper-slide {
   pointer-events: none;
   transition-property: opacity;
-  transition-timing-function: theme('transitionTimingFunction.smooth');
+  transition-timing-function: var(--ease-smooth);
 }
 
 .swiper-fade .swiper-slide-active {

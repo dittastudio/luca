@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { screenSizes } from '@@/tailwind.config'
-
 interface Props {
   id: string
 }
@@ -12,7 +10,7 @@ const toggleAccordion = () => {
   isOpen.value = !isOpen.value
 }
 
-const isScreenSm = useAtMedia(`(min-width: ${screenSizes.sm}px)`)
+const isScreenSm = useAtMedia(getMediaQuery('sm'))
 
 watchEffect(() => {
   if (!import.meta.client) {
@@ -63,11 +61,13 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .app-footer-accordion {
   width: 100%;
 
-  @screen smMax {
+  @variant max-sm {
     position: relative;
 
     &::before {
@@ -101,7 +101,7 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
 }
 
 .app-footer-accordion__switch {
-  @screen smMax {
+  @variant max-sm {
     --button-padding-start: 16px;
     --button-padding-end: 14px;
 
@@ -110,7 +110,7 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
     padding-block: var(--button-padding-start) var(--button-padding-end);
   }
 
-  @screen sm {
+  @variant sm {
     pointer-events: none;
   }
 }
@@ -124,16 +124,16 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
   display: flex;
   align-items: center;
 
-  @screen sm {
+  @variant sm {
     display: none;
   }
 }
 
 .app-footer-accordion__content {
-  padding-block: theme('spacing.10') theme('spacing.30');
+  padding-block: --spacing(2) --spacing(6);
 
-  @screen sm {
-    padding-block: theme('spacing.20');
+  @variant sm {
+    padding-block: --spacing(4);
   }
 }
 </style>

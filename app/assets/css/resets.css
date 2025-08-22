@@ -1,19 +1,9 @@
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    hyphens: auto;
-    overflow-wrap: break-word;
-  }
-
   a,
   button {
     &:focus-visible {
-      border-radius: theme('borderRadius.sm');
-      outline: 1px solid theme('colors.white/20%');
+      border-radius: var(--radius-md);
+      outline: 1px solid --alpha(var(--color-white) / 20%);
       outline-offset: 3px;
     }
   }
@@ -23,6 +13,7 @@
     user-select: none;
     text-transform: inherit;
     letter-spacing: inherit;
+    cursor: pointer;
 
     &:disabled {
       cursor: not-allowed;
@@ -32,14 +23,6 @@
   svg {
     display: block;
     fill: currentcolor;
-  }
-
-  img {
-    width: 100%;
-  }
-
-  input {
-    background-color: transparent;
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -169,12 +169,14 @@ const onSubmit = async () => {
   </FormBase>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .app-footer-form {
   position: relative;
 
   display: flex;
-  gap: theme('spacing.10');
+  gap: --spacing(2);
   align-items: baseline;
   justify-content: space-between;
 }
@@ -186,7 +188,7 @@ const onSubmit = async () => {
 .app-footer-form__field {
   position: relative;
   width: 100%;
-  margin: 0 0 theme('spacing.5');
+  margin: 0 0 --spacing(1);
 
   &::after {
     content: '';
@@ -201,7 +203,7 @@ const onSubmit = async () => {
     opacity: 0.2;
     background-color: currentcolor;
 
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity 0.2s var(--ease-smooth);
   }
 
   &:has(input:focus-within) {
@@ -212,13 +214,13 @@ const onSubmit = async () => {
 }
 
 .app-footer-form__error-list {
-  margin: theme('spacing.10') 0 0;
+  margin: --spacing(2) 0 0;
   text-align: left;
 }
 
 .app-footer-form__error {
-  margin: 0 0 theme('spacing.10');
-  font-size: theme('fontSize.12');
+  margin: 0 0 --spacing(2);
+  font-size: var(--text-12);
   font-style: italic;
   text-align: left;
 }
@@ -231,18 +233,18 @@ const onSubmit = async () => {
   width: 100%;
   padding: var(--input-padding) 0;
 
-  font-size: theme('fontSize.16');
+  font-size: var(--text-16);
 
   outline: none;
 
-  @screen md {
-    font-size: theme('fontSize.14');
+  @variant md {
+    font-size: var(--text-14);
   }
 
   &::placeholder {
     color: currentcolor;
     opacity: 0.5;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity 0.2s var(--ease-smooth);
   }
 
   &:hover::placeholder {
@@ -257,22 +259,22 @@ const onSubmit = async () => {
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-      font: inherit;
+    font: inherit;
 
-      box-shadow: none;
-      caret-color: theme('colors.white');
+    box-shadow: none;
+    caret-color: var(--color-white);
 
-      transition: background-color 5000s ease-in-out 0s;
+    transition: background-color 5000s linear 0s;
 
-      -webkit-text-fill-color: theme('colors.white');
+    -webkit-text-fill-color: var(--color-white);
   }
 }
 
 .app-footer-form__submit {
-  margin: 0 calc(-1 * theme('spacing.20')) calc(-1 * theme('spacing.20'));
-  padding: theme('spacing.20');
+  margin: 0 --spacing(-4) --spacing(-4);
+  padding: --spacing(4);
   opacity: 1;
-  transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.2s var(--ease-smooth);
 
   &:hover {
     opacity: 0.5;

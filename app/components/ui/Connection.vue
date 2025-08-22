@@ -18,51 +18,18 @@ useIntersectionObserver(
 <template>
   <div
     ref="line"
-    class="ui-connection"
+    class="flex flex-col items-center justify-start w-full h-[135px] md:h-[200px]"
   >
     <div
-      class="ui-connection__line"
-      :class="[{
-        'ui-connection__line--seen': seen,
-      }]"
+      class="ui-connection__line "
+      :class="[
+        'w-px h-full bg-current origin-top',
+        'transition-[opacity,scale] duration-1500 ease-outExpo',
+        {
+          'opacity-0 scale-y-0': !seen,
+          'opacity-100 scale-y-100': seen,
+        },
+      ]"
     />
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.ui-connection {
-  --line-height: 135px;
-
-  @screen md {
-    --line-height: 200px;
-  }
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-
-  width: 100%;
-  height: var(--line-height);
-
-  &__line {
-    transform-origin: 0 0;
-    scale: 1 0 1;
-
-    width: 1px;
-    height: 100%;
-
-    opacity: 0;
-    background-color: currentcolor;
-
-    transition:
-      opacity theme('transitionDuration.1500') theme('transitionTimingFunction.outExpo'),
-      scale theme('transitionDuration.1500') theme('transitionTimingFunction.outExpo');
-
-    &--seen {
-      scale: 1 1 1;
-      opacity: 1;
-    }
-  }
-}
-</style>

@@ -84,7 +84,9 @@ const swiperOptions: SwiperOptions = {
   </div>
 </template>
 
-<style lang="postcss">
+<style>
+@reference "@/assets/css/main.css";
+
 .block-gallery {
   position: relative;
   overflow: hidden;
@@ -112,15 +114,15 @@ const swiperOptions: SwiperOptions = {
 }
 
 .block-gallery__item {
-  height: inherit;
+  height: 100%;
   padding-block: var(--app-header-height);
   background-color: var(--app-background-color);
 
   .app-story & {
-    background-color: theme('colors.offwhite');
+    background-color: var(--color-offwhite);
   }
 
-  @screen md {
+  @variant md {
     padding-block: calc(var(--app-header-height) / 1.5);
   }
 }
@@ -129,7 +131,7 @@ const swiperOptions: SwiperOptions = {
   display: grid;
   height: inherit;
 
-  @screen md {
+  @variant md {
     grid-template-columns: var(--app-grid);
     gap: var(--app-inner-gutter);
     justify-content: center;
@@ -139,8 +141,9 @@ const swiperOptions: SwiperOptions = {
 .block-gallery__inner {
   grid-column: 1 / -1;
   min-height: 100%;
+  height: 100%;
 
-  @screen md {
+  @variant md {
     grid-column: 3 / span 8;
   }
 }
@@ -150,25 +153,20 @@ const swiperOptions: SwiperOptions = {
 
   position: absolute;
   right: 0;
-  bottom: theme('spacing.20');
+  bottom: --spacing(4);
   left: 0;
 
   display: flex;
-  gap: theme('spacing.20');
+  gap: --spacing(4);
 
-  @screen md {
-    bottom: theme('spacing.50');
-    gap: theme('spacing.40');
+  @variant md {
+    bottom: --spacing(10);
+    gap: --spacing(8);
   }
 }
 
 .block-gallery__media {
-  /* TODO: Remove this once the image is fixed */
-  height: 100% !important;
-  object-fit: contain;
-
   & img {
-    height: 100% !important;
     object-fit: contain;
   }
 }

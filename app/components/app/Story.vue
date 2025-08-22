@@ -30,13 +30,15 @@ const { isOpen = false } = defineProps<Props>()
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .app-story {
   pointer-events: none;
 
   isolation: isolate;
   position: fixed;
-  z-index: theme('zIndex.20');
+  z-index: 20;
   top: 0;
   left: 0;
 
@@ -44,14 +46,14 @@ const { isOpen = false } = defineProps<Props>()
   height: 100vh;
   height: 100dvh;
 
-  background-color: rgb(0 0 0 / 0%);
+  background-color: --alpha(var(--color-black) / 0%);
 
-  transition: background-color theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  transition: background-color 0.5s var(--ease-smooth);
 
   &.app-story--is-open {
     pointer-events: auto;
-    background-color: rgb(0 0 0 / 50%);
-    transition: background-color theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+    background-color: --alpha(var(--color-black) / 50%);
+    transition: background-color 1s var(--ease-smooth);
   }
 
   :global(html:has(&.app-story--is-open)) {
@@ -69,24 +71,24 @@ const { isOpen = false } = defineProps<Props>()
   width: 100%;
   height: inherit;
 
-  color: theme('colors.green');
+  color: var(--color-green);
 
   opacity: 0;
-  background-color: theme('colors.offwhite');
+  background-color: var(--color-offwhite);
 
   transition:
-    translate theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
-    opacity 0s theme('transitionDelay.500');
+    translate 0.5s var(--ease-smooth),
+    opacity 0s 0.5s;
 
   .app-story--is-open & {
     translate: 0 0 0;
     opacity: 1;
-    transition: translate theme('transitionDuration.1000') theme('transitionTimingFunction.inOutExpo') theme('transitionDelay.500');
+    transition: translate 1s var(--ease-inOutExpo) 0.5s;
   }
 
   :deep(.page-cover) {
-    color: theme('colors.green');
-    background-color: theme('colors.offwhite');
+    color: var(--color-green);
+    background-color: var(--color-offwhite);
   }
 }
 
@@ -106,7 +108,7 @@ const { isOpen = false } = defineProps<Props>()
   margin-top: calc(-1 * var(--app-header-height));
   padding-block:var(--app-header-padding-y);
 
-  @screen md {
+  @variant md {
     align-items: flex-start;
     padding-block: calc(var(--app-header-padding-y) - 4px);
   }
@@ -115,12 +117,12 @@ const { isOpen = false } = defineProps<Props>()
 .app-story__link {
   pointer-events: auto;
   display: block;
-  margin: calc(-1 * theme('spacing.20'));
-  padding: theme('spacing.20');
+  margin: --spacing(-4);
+  padding: --spacing(4);
 
   @media (hover: hover) {
     opacity: 1;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity 0.2s var(--ease-smooth);
 
     &:not(:active):hover {
       opacity: 0.6;
@@ -129,10 +131,10 @@ const { isOpen = false } = defineProps<Props>()
 }
 
 .app-story__close {
-  --close-size: theme('spacing.32');
+  --close-size: 32px;
 
-  @screen md {
-    --close-size: theme('spacing.40');
+  @variant md {
+    --close-size: --spacing(8);
   }
 
   display: flex;

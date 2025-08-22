@@ -13,7 +13,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 <template>
   <div
     v-editable="block"
-    class="block-media wrapper"
+    class="wrapper md:grid md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter)"
   >
     <div
       :class="[
@@ -23,7 +23,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
     >
       <MediaImage
         v-if="block.media && assetType === 'image'"
-        class="block-media__media"
+        class="rounded-xs"
         :asset="block.media"
         :ratio="block.ratio"
         :sizes="`
@@ -36,35 +36,17 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
       <MediaVideo
         v-else-if="block.media && assetType === 'video'"
-        class="block-media__media"
+        class="rounded-xs"
         :asset="block.media"
         :ratio="block.ratio"
       />
 
       <p
         v-if="block.caption"
-        class="block-media__caption type-body italic"
+        class="mt-[8px] type-body italic"
       >
         {{ block.caption }}
       </p>
     </div>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.block-media {
-  @screen md {
-    display: grid;
-    grid-template-columns: var(--app-grid);
-    gap: var(--app-inner-gutter);
-  }
-}
-
-.block-media__media {
-  border-radius: theme('borderRadius.sm');
-}
-
-.block-media__caption {
-  margin-block-start: theme('spacing.8');
-}
-</style>

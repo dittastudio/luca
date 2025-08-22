@@ -1,10 +1,10 @@
 <template>
-  <div class="app-layout">
-    <header class="app-layout__header">
+  <div class="isolate flex flex-col">
+    <header class="sticky top-0 z-10 pointer-events-none">
       <slot name="header" />
     </header>
 
-    <main class="app-layout__main">
+    <main class="z-1 flex-grow">
       <slot name="main" />
     </main>
 
@@ -15,23 +15,3 @@
     <slot name="dev" />
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.app-layout {
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-layout__header {
-  pointer-events: none;
-  position: sticky;
-  z-index: theme('zIndex.10');
-  top: 0;
-}
-
-.app-layout__main {
-  z-index: 1;
-  flex-grow: 1;
-}
-</style>

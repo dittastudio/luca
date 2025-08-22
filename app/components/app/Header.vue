@@ -100,49 +100,93 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="app-header"
+    class="app-header relative isolate h-(--app-header-height) transition-colors duration-(--app-header-speed) ease-smooth"
     :class="headerClasses"
     @keyup.esc="closeAllMenus"
   >
+    <!-- START: Mobile only background overlay -->
     <button
       tabindex="-1"
-      class="app-header__bg app-header__bg--mobile"
+      :class="[
+        'app-header__bg--mobile',
+        'absolute inset-0 h-screen cursor-default bg-green',
+        'md:hidden',
+      ]"
       type="button"
       @click="closeAllDropdowns"
     >
       <span class="sr-only">Close Menu</span>
     </button>
+    <!-- END: Mobile only background overlay -->
 
+    <!-- START: Desktop only background overlay -->
     <button
       tabindex="-1"
-      class="app-header__bg app-header__bg--desktop"
+      :class="[
+        'app-header__bg--desktop',
+        'absolute inset-0 h-screen cursor-default bg-(--app-header-background-tint) backdrop-blur-(--app-header-blur)',
+        'max-md:hidden',
+      ]"
       type="button"
       @click="closeAllDropdowns"
     >
       <span class="sr-only">Close Dropdown</span>
     </button>
+    <!-- END: Desktop only background overlay -->
 
-    <div class="app-header__wrapper wrapper">
+    <!-- START: Mobile only hamburger -->
+    <div class="relative flex items-center justify-between h-full py-(--app-header-padding-y) md:items-start wrapper">
       <button
-        class="app-header__switch"
+        :class="[
+          'app-header__switch',
+          'relative z-1 -m-4 p-4 pointer-events-auto',
+          'md:hidden',
+        ]"
         type="button"
         @click="toggleNavigation"
       >
-        <span class="app-header__burger">
-          <AppHeaderBurger :is-open="navigationOpen" />
-        </span>
+        <AppHeaderBurger :is-open="navigationOpen" />
       </button>
+      <!-- END: Mobile only hamburger -->
 
-      <div class="app-header__menu">
-        <nav class="app-header__navigation type-body-large">
-          <div class="app-header__list">
+      <div
+        :class="[
+          'app-header__menu',
+          'md:relative md:z-1 md:flex md:gap-2 md:items-start',
+          'max-md:absolute max-md:inset-0 max-md:overflow-y-auto max-md:overscroll-contain max-md:h-dvh',
+          { 'pointer-events-auto': navigationOpen },
+        ]"
+      >
+        <nav
+          :class="[
+            'app-header__navigation',
+            'type-body-large',
+            'text-24 md:text-16 lg:text-18',
+            'max-md:flex max-md:flex-wrap max-md:items-end max-md:justify-center',
+            'max-md:w-full max-md:min-h-full max-md:pt-(--app-header-height) max-md:pb-8',
+          ]"
+        >
+          <div
+            :class="[
+              'flex flex-col flex-grow w-full',
+              'md:flex-row md:flex-grow-0 md:gap-4 md:w-auto',
+              'lg:gap-6',
+            ]"
+          >
             <template
               v-for="item in items"
               :key="item._uid"
             >
               <StoryblokLink
                 v-if="isLink(item)"
-                class="app-header__item app-header__item--link"
+                :class="[
+                  'app-header__item',
+                  'block p-2 pointer-events-auto',
+                  'md:-m-2 md:p-2',
+                  'lg:-m-3 lg:p-3',
+                  'max-md:w-full max-md:text-center',
+                  'hover:italic',
+                ]"
                 :item="item.link"
                 :title="item.title"
               >
@@ -151,8 +195,14 @@ onUnmounted(() => {
 
               <template v-else-if="isLinkGroup(item)">
                 <div
-                  class="app-header__item"
-                  :class="{ 'app-header__item--is-open': dropdownOpen === item._uid }"
+                  :class="[
+                    'app-header__item',
+                    'block',
+                    'md:-m-2 md:p-2',
+                    'lg:-m-3 lg:p-3',
+                    'max-md:w-full max-md:text-center',
+                    { 'app-header__item--is-open': dropdownOpen === item._uid },
+                  ]"
                 >
                   <AppHeaderDropdown
                     :title="item.title"
@@ -166,9 +216,12 @@ onUnmounted(() => {
             </template>
           </div>
 
-          <div class="app-header__buttons">
+          <div class="max-md:flex max-md:justify-center max-md:w-full max-md:pt-8">
             <button
-              class="app-header__cta"
+              :class="[
+                'app-header__cta',
+                'block pointer-events-auto md:hidden',
+              ]"
               type="button"
               :tabindex="reservationsOpen ? '0' : '-1'"
               @click="reservationsOpen = true"
@@ -181,19 +234,19 @@ onUnmounted(() => {
         </nav>
       </div>
 
-      <div class="app-header__logo">
+      <div class="absolute inset-0 flex items-center justify-center p-(--app-header-padding-y) md:items-start">
         <NuxtLink
           to="/"
-          class="app-header__logo-link"
+          class="app-header__logo-link block"
         >
-          <IconLucaLogo class="app-header__logo-icon" />
+          <IconLucaLogo class="w-[113px] h-auto aspect-[113/47] md:w-[clamp(90px,_-70px_+_20.8333vw,_180px)]" />
 
           <span class="sr-only">Luca</span>
         </NuxtLink>
       </div>
 
-      <div class="app-header__details">
-        <IconMichelin class="app-header__michelin-icon" />
+      <div class="app-header__details flex gap-6 items-center">
+        <IconMichelin class="w-[20px] h-[23px] max-md:hidden" />
 
         <button
           class="app-header__reservations"
@@ -205,7 +258,7 @@ onUnmounted(() => {
           <AppearanceButton size="responsive">
             <span class="md:hidden">Book</span>
 
-            <span class="mdMax:hidden">Reservations</span>
+            <span class="max-md:hidden">Reservations</span>
           </AppearanceButton>
         </button>
 
@@ -225,7 +278,7 @@ onUnmounted(() => {
     </div>
 
     <svg
-      class="app-header__background"
+      class="absolute inset-0 -z-1 pointer-events-none"
       width="100%"
       height="100%"
       version="1.1"
@@ -264,35 +317,35 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style lang="postcss">
-.app-header {
-  isolation: isolate;
-  position: relative;
-  height: var(--app-header-height);
-  transition: color var(--app-header-speed) theme('transitionTimingFunction.smooth');
+<style scoped>
+@reference "@/assets/css/main.css";
 
-  @screen mdMax {
-    html:has(&.app-header--is-open) {
+.app-header {
+  @variant max-md {
+    :global(html:has(&.app-header--is-open)) {
       overflow: hidden;
     }
   }
 
-  &--is-open,
-  &--is-dropdown-open {
-    color: theme('colors.white');
+  &.app-header--is-open {
+    @variant max-md {
+      color: var(--color-white);
 
-    .appearance-button {
-      --button-color: theme('colors.white');
-      --button-hover-color: theme('colors.green');
+      :deep(.appearance-button) {
+        --button-color: var(--color-white);
+        --button-hover-color: var(--color-green);
+      }
     }
   }
-}
 
-.app-header__background {
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-  inset: 0;
+  &.app-header--is-dropdown-open {
+    color: var(--color-white);
+
+    :deep(.appearance-button) {
+      --button-color: var(--color-white);
+      --button-hover-color: var(--color-green);
+    }
+  }
 }
 
 .app-header__gradient {
@@ -300,15 +353,15 @@ onUnmounted(() => {
   opacity: 0;
   fill: url("#app-header__gradient");
   transition:
-    opacity theme('transitionDuration.400') theme('transitionTimingFunction.in'),
-    translate theme('transitionDuration.400') theme('transitionTimingFunction.in');
+    opacity 0.4s var(--ease-in),
+    translate 0.4s var(--ease-in);
 
   .app-header--has-scrolled:not(.app-header--is-open, .app-header--reservation-hidden) & {
     translate: 0 0 0;
     opacity: 1;
     transition:
-      opacity theme('transitionDuration.400') theme('transitionTimingFunction.out'),
-      translate theme('transitionDuration.400') theme('transitionTimingFunction.out');
+      opacity 0.4s var(--ease-out),
+      translate 0.4s var(--ease-out);
   }
 }
 
@@ -326,210 +379,81 @@ onUnmounted(() => {
   stop-opacity: 0;
 }
 
-.app-header__bg {
-  cursor: default;
-
-  position: absolute;
-
-  width: 100%;
-  height: 100vh;
-
-  opacity: 0;
-}
-
 .app-header__bg--mobile {
-  background-color: theme('colors.green');
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-smooth);
 
   .app-header--is-open & {
     pointer-events: auto;
     opacity: 1;
   }
-
-  @screen md {
-    display: none;
-  }
 }
 
 .app-header__bg--desktop {
-  background-color: var(--app-header-background-tint);
-  backdrop-filter: var(--app-header-blur);
-  transition: opacity theme('transitionDuration.1000') theme('transitionTimingFunction.smooth');
+  opacity: 0;
+  transition: opacity 1s var(--ease-smooth);
 
   .app-header--is-dropdown-open & {
     pointer-events: auto;
     opacity: 1;
   }
-
-  @screen mdMax {
-    display: none;
-  }
-}
-
-.app-header__wrapper {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  height: 100%;
-  padding-block: var(--app-header-padding-y);
-
-  @screen md {
-    align-items: flex-start;
-  }
 }
 
 .app-header__switch {
-  pointer-events: auto;
-
-  position: relative;
-  z-index: 1;
-
-  margin: calc(-1 * theme('spacing.20'));
-  padding: theme('spacing.20');
-
   @media (hover: hover) {
     opacity: 1;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+    transition: opacity 0.2s var(--ease-smooth);
 
     &:not(:active):hover {
       opacity: 0.6;
     }
   }
-
-  @screen md {
-    display: none;
-  }
 }
 
 .app-header__menu {
-  @screen md {
-    position: relative;
-    z-index: 1;
-
-    display: flex;
-    gap: theme('spacing.10');
-    align-items: flex-start;
-  }
-
-  @screen mdMax {
-    position: absolute;
-    inset: 0;
-
-    overflow-y: auto;
-    overscroll-behavior: contain;
-
-    height: 100vh;
-    height: 100dvh;
-
-    visibility: hidden;
+  @variant max-md {
     opacity: 0;
+    visibility: hidden;
 
     transition:
-      opacity 0.25s theme('transitionTimingFunction.smooth'),
-      visibility 0.25s theme('transitionTimingFunction.smooth');
+      opacity 0.2s var(--ease-smooth),
+      visibility 0.2s var(--ease-smooth);
 
     .app-header--is-open & {
-      visibility: visible;
       opacity: 1;
+      visibility: visible;
       transition:
-        opacity 1s theme('transitionTimingFunction.smooth') 0.25s,
-        visibility 1s theme('transitionTimingFunction.smooth') 0.25s;
+        opacity 1s var(--ease-out) 0.3s,
+        visibility 1s var(--ease-out) 0.3s;
     }
-  }
-}
-
-.app-header__navigation {
-  font-size: theme('fontSize.24');
-
-  @screen md {
-    font-size: theme('fontSize.16');
-  }
-
-  @screen lg {
-    font-size: theme('fontSize.18');
-  }
-
-  @screen mdMax {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
-
-    width: 100%;
-    min-height: 100%;
-    padding-top: var(--app-header-height);
-    padding-bottom: theme('spacing.40');
-  }
-}
-
-.app-header__list {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  width: 100%;
-
-  @screen md {
-    flex-direction: row;
-    flex-grow: 0;
-    gap: theme('spacing.20');
-    width: auto;
-  }
-
-  @screen lg {
-    gap: theme('spacing.30');
   }
 }
 
 .app-header__item {
-  &--link {
-    pointer-events: auto;
-    display: block;
-    padding: theme('spacing.10');
-
-    @screen md {
-      margin: calc(-1 * theme('spacing.10'));
-      padding: theme('spacing.10');
-    }
-
-    @screen lg {
-      margin: calc(-1 * theme('spacing.15'));
-      padding: theme('spacing.15');
-    }
-  }
-
-  &--link:hover {
-    font-style: italic;
-  }
-
-  @screen mdMax {
-    width: 100%;
-    text-align: center;
-    transition: opacity 0.2s theme('transitionTimingFunction.smooth');
+  @variant max-md {
+    transition: opacity 0.2s var(--ease-smooth);
 
     .app-header--is-dropdown-open &:not(.app-header__item--is-open) {
       opacity: 0.3;
     }
   }
 
-  @screen md {
+  @variant md {
     transition:
-      opacity 0.5s theme('transitionTimingFunction.smooth') 0.1s,
-      visibility 0.5s theme('transitionTimingFunction.smooth') 0.1s;
+      opacity 0.5s var(--ease-smooth) 0.1s,
+      visibility 0.5s var(--ease-smooth) 0.1s;
 
     .app-header__navigation:hover & {
       transition:
-        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+        opacity 0.2s var(--ease-smooth) 0s,
+        visibility 0.2s var(--ease-smooth) 0s;
     }
 
     .app-header__navigation:hover &:not(:hover) {
       opacity: 0.5;
       transition:
-        opacity 0.2s theme('transitionTimingFunction.smooth') 0s,
-        visibility 0.2s theme('transitionTimingFunction.smooth') 0s;
+        opacity 0.2s var(--ease-smooth) 0s,
+        visibility 0.2s var(--ease-smooth) 0s;
     }
 
     .app-header--is-dropdown-open .app-header__navigation:hover &:not(:hover),
@@ -541,81 +465,42 @@ onUnmounted(() => {
     }
 
     /* TODO: Dirty hack to prevent the dropdown title from being clickable when the dropdown is open */
-    .app-header--is-dropdown-open &:not(.app-header__item--is-open) .app-header-dropdown__button {
+    .app-header--is-dropdown-open &:not(.app-header__item--is-open) :deep(.app-header-dropdown__button) {
       pointer-events: none;
     }
   }
 }
 
-.app-header__buttons {
-  @screen mdMax {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding-top: 40px;
-  }
-}
-
 .app-header__cta {
-  pointer-events: auto;
-
+  opacity: 0;
   translate: 0 50% 0;
 
-  display: block;
-
-  opacity: 0;
-
   transition:
-    opacity theme('transitionDuration.100') theme('transitionTimingFunction.smooth'),
-    translate 0s theme('transitionDelay.100');
+    opacity 0.1s var(--ease-smooth),
+    translate 0s 0.1s;
 
   .app-header--is-open & {
-    translate: 0 0 0;
     opacity: 1;
+    translate: 0 0 0;
+
     transition:
-      opacity theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
-        0.5s,
-      translate theme('transitionDuration.500') theme('transitionTimingFunction.outQuart')
-        0.5s;
-  }
-
-  @screen md {
-    display: none;
-  }
-}
-
-.app-header__logo {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding-block: var(--app-header-padding-y);
-
-  @screen md {
-    align-items: flex-start;
+      opacity 0.5s var(--ease-outQuart) 0.5s,
+      translate 0.5s var(--ease-outQuart) 0.5s;
   }
 }
 
 .app-header__logo-link {
+  opacity: 1;
+  translate: 0 0 0;
   pointer-events: auto;
 
-  translate: 0 0 0;
-
-  display: block;
-
-  opacity: 1;
-
   transition:
-    opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth'),
+    opacity 0.5s var(--ease-smooth),
     translate 0s 0s;
 
   .app-header--has-scrolled-up & {
-    pointer-events: auto;
-    translate: 0 0 0;
     opacity: 1;
+    translate: 0 0 0;
   }
 
   .app-header--has-scrolled-down &,
@@ -626,61 +511,39 @@ onUnmounted(() => {
     translate: 0 -15% 0;
     opacity: 0;
     transition:
-      opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth'),
-      translate theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+      opacity 0.2s var(--ease-smooth),
+      translate 0.2s var(--ease-smooth);
   }
 
-  @screen mdMax {
+  @variant max-md {
     .app-header--is-open & {
       pointer-events: none;
       opacity: 0;
-      transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
+      transition: opacity 0.2s var(--ease-smooth);
     }
   }
 }
 
-.app-header__logo-icon {
-  aspect-ratio: 113 / 47;
-  width: 113px;
-  height: auto;
-
-  @screen md {
-    width: clamp(90px, -70px + 20.8333vw, 180px);
-  }
-}
-
 .app-header__details {
+  opacity: 1;
   pointer-events: auto;
 
-  display: flex;
-  gap: theme('spacing.30');
-  align-items: center;
-
-  transition: opacity theme('transitionDuration.500') theme('transitionTimingFunction.smooth');
+  transition: opacity 0.5s var(--ease-smooth);
 
   .app-header--reservation-hidden & {
-    pointer-events: none;
     opacity: 0;
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-  }
-}
+    pointer-events: none;
 
-.app-header__michelin-icon {
-  width: 20px;
-  height: 23px;
-
-  @screen mdMax {
-    display: none;
+    transition: opacity 0.2s var(--ease-smooth);
   }
 }
 
 .app-header__reservations {
-  @screen mdMax {
-    transition: opacity theme('transitionDuration.200') theme('transitionTimingFunction.smooth');
-  }
+  @variant max-md {
+    opacity: 1;
+    transition: opacity 0.2s var(--ease-smooth);
 
-  .app-header--is-open & {
-    @screen mdMax {
+    .app-header--is-open & {
       opacity: 0;
     }
   }

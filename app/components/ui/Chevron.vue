@@ -15,7 +15,7 @@ const { isOpen = false, size = '0.4em' } = defineProps<Props>()
   >
 
     <span
-      class="ui-chevron__item ui-chevron__item--up block border-t border-r size-[var(--size)] -rotate-45 transition-[opacity,transform] md:hidden"
+      class="ui-chevron__item ui-chevron__item--up block border-t border-r size-[var(--size)] -rotate-45 transition-[opacity,translate] md:hidden"
       :class="{
         'opacity-0 -translate-y-1/4 ease-inQuart duration-150': !isOpen,
         'opacity-100 translate-y-1/4 duration-150 delay-300 ease-outQuart': isOpen,
@@ -23,7 +23,7 @@ const { isOpen = false, size = '0.4em' } = defineProps<Props>()
     />
 
     <span
-      class="ui-chevron__item ui-chevron__item--down block border-b border-r size-[var(--size)] rotate-45 transition-[opacity,transform]"
+      class="ui-chevron__item ui-chevron__item--down block border-b border-r size-[var(--size)] rotate-45 transition-[opacity,translate]"
       :class="{
         'opacity-100 -translate-y-1/4 duration-150 delay-150 ease-outQuart': !isOpen,
         'opacity-0 translate-y-1/4 duration-150 ease-inQuart': isOpen,
@@ -32,7 +32,7 @@ const { isOpen = false, size = '0.4em' } = defineProps<Props>()
   </span>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
 .ui-chevron {
   grid-template-areas: "stack";
 }

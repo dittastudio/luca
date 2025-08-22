@@ -29,11 +29,11 @@ const { data: oembed, error } = await useAsyncData(
 <template>
   <div
     v-editable="block"
-    class="block-player wrapper"
+    class="wrapper md:grid md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter)"
   >
     <div
       v-if="error"
-      class="block-player__error prose prose--large"
+      class="prose prose--large max-w-[25em] mx-auto text-center col-span-full"
     >
       <p>Error ({{ error.statusCode }}) getting player:</p>
 
@@ -42,44 +42,21 @@ const { data: oembed, error } = await useAsyncData(
 
     <div
       v-if="oembed && !error"
-      class="block-player__media"
+      class="block-player__media overflow-hidden size-full rounded-xs bg-black/5 md:col-start-3 md:col-end-8"
       :class="{ 'aspect-16/9': ['Vimeo', 'YouTube'].includes(oembed.provider_name) }"
       v-html="oembed.html"
     />
   </div>
 </template>
 
-<style lang="postcss" scoped>
-.block-player {
-  @screen md {
-    display: grid;
-    grid-template-columns: var(--app-grid);
-    gap: var(--app-inner-gutter);
-  }
+<style scoped>
+@reference "@/assets/css/main.css";
 
-  &__error {
-    max-width: 25em;
-    text-align: center;
-    margin-inline: auto;
-    grid-column: 1 / -1;
-  }
-
-  &__media {
-    overflow: hidden;
+.block-player__media {
+  :deep(iframe) {
     width: 100%;
     height: 100%;
-    background-color: theme('colors.black/5%');
-    border-radius: theme('borderRadius.sm');
-
-    @screen md {
-      grid-column: 3 / span 8;
-    }
-
-    :deep(iframe) {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    border: none;
   }
 }
 </style>

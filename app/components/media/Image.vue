@@ -107,7 +107,9 @@ const imgAttrs = computed(() => ({
   </picture>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .media-image {
   --transition-duration: 1s;
 
@@ -119,42 +121,42 @@ const imgAttrs = computed(() => ({
 
   width: 100%;
   height: inherit;
+}
 
-  &__asset {
-    width: 100%;
-    height: auto;
+.media-image__asset {
+  width: 100%;
+  height: inherit;
 
-    &.is-lazy {
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-
-      backface-visibility: hidden;
-      opacity: 0;
-
-      transition: opacity var(--transition-duration) theme('transitionTimingFunction.out');
-    }
-
-    &.is-loaded {
-      opacity: 1;
-    }
-  }
-
-  &__placeholder {
-    pointer-events: none;
-
-    width: 100%;
-    height: auto;
+  &.is-lazy {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
 
     backface-visibility: hidden;
+    opacity: 0;
+
+    transition: opacity var(--transition-duration) var(--ease-out);
+  }
+
+  &.is-loaded {
     opacity: 1;
-    filter: blur(8px);
+  }
+}
 
-    transition: opacity calc(var(--transition-duration) * 2) theme('transitionTimingFunction.out') calc(var(--transition-duration) / 2);
+.media-image__placeholder {
+  pointer-events: none;
 
-    .media-image__asset.is-loaded + & {
-      opacity: 0;
-    }
+  width: 100%;
+  height: inherit;
+
+  backface-visibility: hidden;
+  opacity: 1;
+  filter: blur(8px);
+
+  transition: opacity calc(var(--transition-duration) * 2) var(--ease-out) calc(var(--transition-duration) / 2);
+
+  .media-image__asset.is-loaded + & {
+    opacity: 0;
   }
 }
 </style>

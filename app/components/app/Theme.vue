@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { Theme } from '@@/.storyblok/types/285210/storyblok-components'
-import { colours } from '@@/tailwind.config'
 import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
@@ -15,8 +14,8 @@ const itemRefs = ref<HTMLDivElement[]>([])
 const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.path.length > 9) // Hack!
 
 const setAppTheme = (theme: Luca.Theme) => {
-  document.documentElement.style.setProperty('--app-background-color', theme.background)
-  document.documentElement.style.setProperty('--app-text-color', theme.text)
+  document.documentElement.style.setProperty('--app-background-color', `var(--color-${theme.background})`)
+  document.documentElement.style.setProperty('--app-text-color', `var(--color-${theme.text})`)
 }
 
 const setSpeeds = (background: string, element: string, header: string) => {
@@ -28,8 +27,8 @@ const setSpeeds = (background: string, element: string, header: string) => {
 onMounted(() => {
   if (!isStoryPage.value && !themes.length) {
     setAppTheme({
-      background: colours.greenHex,
-      text: colours.whiteHex,
+      background: 'green',
+      text: 'white',
     })
   }
 })
@@ -52,10 +51,7 @@ useIntersectionObserver(
         && entry.target?.dataset?.theme
       ) {
         const theme = JSON.parse(entry.target.dataset.theme) as Luca.Theme
-        const background = colours[`${theme.background}Hex` as keyof typeof colours] || colours.greenHex
-        const text = colours[`${theme.text}Hex` as keyof typeof colours] || colours.whiteHex
-
-        setAppTheme({ background, text })
+        setAppTheme(theme)
       }
     })
   },
@@ -64,10 +60,10 @@ useIntersectionObserver(
 </script>
 
 <template>
-  <div class="app-theme">
+  <div class="relative">
     <slot />
 
-    <div class="app-theme__segment">
+    <div class="absolute inset-0 flex flex-col items-start justify-start pointer-events-none">
       <div
         v-for="theme in themes"
         ref="itemRefs"
@@ -79,21 +75,3 @@ useIntersectionObserver(
     </div>
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.app-theme {
-  position: relative;
-}
-
-.app-theme__segment {
-  pointer-events: none;
-
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-</style>
