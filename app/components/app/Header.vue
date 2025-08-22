@@ -154,7 +154,6 @@ onUnmounted(() => {
           'app-header__menu',
           'md:relative md:z-1 md:flex md:gap-2 md:items-start',
           'max-md:absolute max-md:inset-0 max-md:overflow-y-auto max-md:overscroll-contain max-md:h-dvh',
-          { 'pointer-events-auto': navigationOpen },
         ]"
       >
         <nav
