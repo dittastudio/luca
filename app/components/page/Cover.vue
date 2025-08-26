@@ -22,7 +22,7 @@ onMounted(async () => {
   <div
     :class="[
       'sticky top-0 z-(--app-layer-three)',
-      'flex items-center justify-center h-dvh mb-[-100dvh]',
+      'flex items-center justify-center h-dvh -mb-[100dvh]',
       'color-(--app-text-color) bg-offwhite',
       'transition-opacity duration-500 ease-smooth',
       {
