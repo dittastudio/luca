@@ -25,10 +25,10 @@ useHead({
 
 <template>
   <div class="w-full min-h-screen flex items-center justify-center section wrapper">
-    <div class="flex flex-col items-center justify-center gap-40 text-center">
+    <div class="flex flex-col items-center justify-center gap-8 text-center">
       <h1>
         <NuxtLink to="/">
-          <IconLucaLogo class="w-150 h-auto" />
+          <IconLucaLogo class="w-full max-w-30 h-auto" />
 
           <span class="sr-only">Luca</span>
         </NuxtLink>
