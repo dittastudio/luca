@@ -134,8 +134,8 @@ onUnmounted(() => {
     </button>
     <!-- END: Desktop only background overlay -->
 
-    <!-- START: Mobile only hamburger -->
     <div class="relative flex items-center justify-between h-full py-(--app-header-padding-y) md:items-start wrapper">
+      <!-- START: Mobile only hamburger -->
       <button
         :class="[
           'app-header__switch',

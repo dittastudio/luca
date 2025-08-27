@@ -122,7 +122,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 .block-components__item--block_card,
 .block-components__item--block_card_editorial {
   & + & {
-    --_spacing: --spacing(20);
+    --_spacing: --spacing(30);
 
     @variant md {
       --_spacing: 15.75vw;

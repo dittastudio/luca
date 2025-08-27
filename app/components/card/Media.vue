@@ -15,7 +15,7 @@ const { title, headline } = defineProps<Props>()
       <slot name="media" />
     </div>
 
-    <div class="card-media__content px-4 md:py-4 text-center md:absolute md:inset-0 md:flex md:flex-col md:items-center md:justify-center">
+    <div class="card-media__content p-4 text-center md:absolute md:inset-0 md:flex md:flex-col md:items-center md:justify-center">
       <h2
         v-if="title"
         class="card-media__title type-h3"
