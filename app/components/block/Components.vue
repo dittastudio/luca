@@ -136,16 +136,14 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 .block-components__item--block_media + .block-components__item--block_card,
 .block-components__item--block_media + .block-components__item--block_card_editorial,
 .block-components__item--block_media + .block-components__item--block_media {
-  & + & {
-    --_spacing: --spacing(30);
+  --_spacing: --spacing(30);
 
-    @variant md {
-      --_spacing: 15.75vw;
-    }
+  @variant md {
+    --_spacing: 15.75vw;
+  }
 
-    @variant 3xl {
-      --_spacing: --spacing(60);
-    }
+  @variant 3xl {
+    --_spacing: --spacing(60);
   }
 }
 
@@ -173,9 +171,13 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   }
 }
 
-.block-components--story {
+.app-story .block-components--story {
   & .block-components__item:first-child {
-    --_spacing: var(--app-header-height);
+    --_spacing: calc(var(--app-header-height) + --spacing(6));
+
+    @variant md {
+      --_spacing: var(--app-header-height);
+    }
   }
 
   & .block-components__item--block_gallery:first-child {
