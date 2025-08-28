@@ -6,6 +6,7 @@ const { y } = useScroll(window)
 
 const coverVisible = useState('coverVisible', () => true)
 const isLogoPassed = useState('isLogoPassed', () => false)
+const splashSeen = useState('splashSeen', () => false)
 const isDev = import.meta.dev
 
 const logoRef = ref<HTMLElement>()
@@ -35,8 +36,8 @@ useIntersectionObserver(logoRef, ([target]) => {
       :class="[
         'transition-all duration-2000 ease-outQuart delay-1000',
         {
-          'opacity-0': coverVisible && !isDev,
-          'opacity-100': !coverVisible && !isDev,
+          'opacity-0': coverVisible && !isDev && !splashSeen,
+          'opacity-100': !coverVisible && !isDev && !splashSeen,
         },
       ]"
       class="absolute md:hidden inset-0 flex items-center justify-center pointer-events-none"
