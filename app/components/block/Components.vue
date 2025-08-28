@@ -18,7 +18,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
     :class="{ 'block-components--home': isHome, 'block-components--story': isStory }"
   >
     <section
-      v-for="block in content.blocks"
+      v-for="(block, index) in content.blocks"
       :key="block._uid"
       class="block-components__item"
       :class="`block-components__item--${block.component}`"
@@ -48,10 +48,18 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
         :block="block"
       />
 
-      <BlockMedia
-        v-else-if="block.component === 'block_media'"
-        :block="block"
-      />
+      <template v-else-if="block.component === 'block_media'">
+        <AppCoverLogoMobile
+          v-if="isHome && index === 0"
+        >
+          <BlockMedia :block="block" />
+        </AppCoverLogoMobile>
+
+        <BlockMedia
+          v-else
+          :block="block"
+        />
+      </template>
 
       <BlockMenus
         v-else-if="block.component === 'block_menus'"
@@ -119,8 +127,15 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   --_spacing: --spacing(16);
 }
 
-.block-components__item--block_card,
-.block-components__item--block_card_editorial {
+.block-components__item--block_card + .block-components__item--block_card,
+.block-components__item--block_card + .block-components__item--block_card_editorial,
+.block-components__item--block_card + .block-components__item--block_media,
+.block-components__item--block_card_editorial + .block-components__item--block_card_editorial,
+.block-components__item--block_card_editorial + .block-components__item--block_card,
+.block-components__item--block_card_editorial + .block-components__item--block_media,
+.block-components__item--block_media + .block-components__item--block_card,
+.block-components__item--block_media + .block-components__item--block_card_editorial,
+.block-components__item--block_media + .block-components__item--block_media {
   & + & {
     --_spacing: --spacing(30);
 
@@ -135,20 +150,13 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 }
 
 .block-components--home .block-components__item:first-child {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-block-start: calc(-1 * var(--app-header-height));
-  padding-block-start: calc(var(--app-header-height) + --spacing(6));
-
   @variant md {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     margin-block-start: calc(-1 * var(--app-header-height));
-    padding-block: 0;
+    padding-block-start: 0;
   }
 }
 

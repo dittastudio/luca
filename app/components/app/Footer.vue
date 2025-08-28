@@ -60,7 +60,18 @@ const socialList = [
 </script>
 
 <template>
-  <div class="wrapper pb-8">
+  <div
+    class="
+      wrapper
+      relative
+      z-1
+      pb-8
+      bg-(--app-background-color)
+      transition-[background-color]
+      duration-(--app-background-speed)
+      ease-(--app-background-ease)
+    "
+  >
     <hr class="opacity-20">
 
     <div

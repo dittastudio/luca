@@ -7,7 +7,7 @@ interface Props {
 
 const { message } = defineProps<Props>()
 
-const coverVisible = ref(true)
+const coverVisible = useState('coverVisible', () => true)
 const messageVisible = ref(false)
 const logoVisible = ref(false)
 

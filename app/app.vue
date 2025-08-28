@@ -29,6 +29,7 @@ useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
 useState<string | null>('dropdownOpen', () => null)
 useState<boolean>('isLogoPassed', () => false)
+useState<boolean>('coverVisible', () => true)
 useNavigation(false)
 
 if (isStory.value) {

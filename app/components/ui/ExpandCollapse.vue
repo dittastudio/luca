@@ -34,7 +34,7 @@ onUnmounted(() => {
 <template>
   <div
     data-component="ui-expand-collapse"
-    class="overflow-hidden transition-[height] duration-350 ease-inOutExpo"
+    class="overflow-hidden transition-[height] duration-350 ease-inOutExpo md:!h-auto"
     :style="setHeightStyles"
   >
     <div
