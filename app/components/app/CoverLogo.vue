@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-import { useIntersectionObserver } from '@vueuse/core'
+import { useIntersectionObserver, useScroll } from '@vueuse/core'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 
+const isMd = useAtMedia(getMediaQuery('md'))
+
 const isHidden = ref(false)
+const isLogoPassed = useState('isLogoPassed', () => false)
 const main = ref<HTMLElement | null>(null)
 
 onMounted(() => {
@@ -25,6 +28,27 @@ onMounted(() => {
     },
   )
 })
+
+const { y } = useScroll(window)
+
+const stylesOut = computed(() => {
+  if (import.meta.server || isMd.value) {
+    return { opacity: 1 }
+  }
+
+  const scrollThreshold = window.innerHeight / 3
+  const opacityValue = Math.max(0, Math.min(1, 1 - (y.value / scrollThreshold)))
+
+  return { opacity: opacityValue }
+})
+
+watch(() => stylesOut.value.opacity, (opacity) => {
+  isLogoPassed.value = opacity > 0
+})
+
+onMounted(() => {
+  isLogoPassed.value = stylesOut.value.opacity > 0
+})
 </script>
 
 <template>
@@ -44,13 +68,15 @@ onMounted(() => {
       transition-opacity
       duration-300
       ease-smooth
-      max-md:hidden
     "
     :class="{
       'opacity-100': !isHidden,
       'opacity-0': isHidden,
     }"
   >
-    <IconLucaLogo class="w-(--app-logo-responsive-width) h-auto" />
+    <IconLucaLogo
+      class="w-(--app-logo-responsive-width) h-auto"
+      :style="stylesOut"
+    />
   </div>
 </template>

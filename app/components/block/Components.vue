@@ -18,7 +18,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
     :class="{ 'block-components--home': isHome, 'block-components--story': isStory }"
   >
     <section
-      v-for="(block, index) in content.blocks"
+      v-for="block in content.blocks"
       :key="block._uid"
       class="block-components__item"
       :class="`block-components__item--${block.component}`"
@@ -48,18 +48,10 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
         :block="block"
       />
 
-      <template v-else-if="block.component === 'block_media'">
-        <AppCoverLogoMobile
-          v-if="isHome && index === 0"
-        >
-          <BlockMedia :block="block" />
-        </AppCoverLogoMobile>
-
-        <BlockMedia
-          v-else
-          :block="block"
-        />
-      </template>
+      <BlockMedia
+        v-else-if="block.component === 'block_media'"
+        :block="block"
+      />
 
       <BlockMenus
         v-else-if="block.component === 'block_menus'"
@@ -148,14 +140,17 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 }
 
 .block-components--home .block-components__item:first-child {
-  @variant md {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100dvh;
     margin-block-start: calc(-1 * var(--app-header-height));
-    padding-block-start: 0;
-  }
+    padding-block: calc(var(--app-header-height) + --spacing(6));
+
+    @variant md {
+      height: 100dvh;
+      padding-block: 0;
+    }
 }
 
 .block-components--home .block-components__item:not(:first-child) {
