@@ -5,7 +5,7 @@ import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 const isMd = useAtMedia(getMediaQuery('md'))
 
 const isHidden = ref(false)
-const isLogoPassed = useState('isLogoPassed', () => false)
+const isCoverLogoShown = useState('isCoverLogoShown', () => false)
 const main = ref<HTMLElement | null>(null)
 
 onMounted(() => {
@@ -43,11 +43,11 @@ const stylesOut = computed(() => {
 })
 
 watch(() => stylesOut.value.opacity, (opacity) => {
-  isLogoPassed.value = opacity > 0
+  isCoverLogoShown.value = opacity > 0
 })
 
 onMounted(() => {
-  isLogoPassed.value = stylesOut.value.opacity > 0
+  isCoverLogoShown.value = stylesOut.value.opacity > 0
 })
 </script>
 

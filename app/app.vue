@@ -28,7 +28,7 @@ const splashSeen = useState('splashSeen', () => false)
 useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
 useState<string | null>('dropdownOpen', () => null)
-useState<boolean>('isLogoPassed', () => false)
+useState<boolean>('isCoverLogoShown', () => false)
 useState<boolean>('coverVisible', () => true)
 useNavigation(false)
 
