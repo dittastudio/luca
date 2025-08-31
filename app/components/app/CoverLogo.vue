@@ -6,24 +6,26 @@ const isMd = useAtMedia(getMediaQuery('md'))
 
 const isHidden = ref(false)
 const isCoverLogoShown = useState('isCoverLogoShown', () => false)
-const main = ref<HTMLElement | null>(null)
+const footer = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  main.value = document.querySelector('main')
+  footer.value = document.querySelector('footer')
 
-  if (!main.value)
+  if (!footer.value || !isMd.value)
     return
 
   useIntersectionObserver(
-    main,
+    footer.value,
     ([target]) => {
       if (!target)
         return
 
-      isHidden.value = !target.isIntersecting
+      isHidden.value = target.isIntersecting
+
+      console.log('target.isIntersecting', target.isIntersecting)
     },
     {
-      rootMargin: '-110% 0px 0px 0px',
+      rootMargin: '0px 0px 25% 0px',
       threshold: 0,
     },
   )
