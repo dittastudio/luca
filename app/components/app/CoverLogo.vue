@@ -58,13 +58,13 @@ onMounted(() => {
     class="
       sticky
       top-0
-      -mt-(--app-cover-height)
+      -mt-(--app-cover-logo-height)
       z-(--app-layer-one)
       flex
       items-center
       justify-center
       w-full
-      h-(--app-cover-height)
+      h-(--app-cover-logo-height)
       text-white
       pointer-events-none
       transition-opacity
