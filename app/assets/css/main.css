@@ -93,6 +93,7 @@
     --app-element-speed: 200ms;
     --app-header-speed: 200ms;
     --app-logo-responsive-width: 60vw;
+    --app-cover-height: 100svh;
 
     /* Spacing */
     --app-inner-gutter: --spacing(4);

@@ -148,7 +148,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   margin-block-start: calc(-1 * var(--app-header-height));
 
   @variant max-md {
-    min-height: 100dvh;
+    min-height: var(--app-cover-height);
 
     margin-block-end: --spacing(-6);
     padding-block: var(--app-header-height);
@@ -159,7 +159,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
   }
 
   @variant md {
-    padding-block-start: max(calc(50dvh - (2.55/12 * (var(--_max-width) - (var(--app-outer-gutter) * 2)))), --spacing(12));
+    padding-block-start: max(calc((var(--app-cover-height) / 2) - (0.212 * (var(--_max-width) - (var(--app-outer-gutter) * 2)))), --spacing(12));
   }
 
   @variant 3xl {

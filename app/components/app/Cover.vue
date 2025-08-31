@@ -30,7 +30,7 @@ onMounted(async () => {
 <template>
   <div
     :class="[
-      'fixed inset-0 z-(--app-layer-three) flex items-center justify-center h-dvh text-white bg-green',
+      'fixed inset-0 z-(--app-layer-three) flex items-center justify-center h-(--app-cover-height) text-white bg-green',
       'transition-opacity duration-500 ease-smooth',
       {
         'opacity-0 pointer-events-none': !coverVisible,
