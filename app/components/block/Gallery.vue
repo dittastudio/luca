@@ -25,7 +25,21 @@ const swiperOptions: SwiperOptions = {
 <template>
   <div
     v-editable="block"
-    class="block-gallery"
+    class="
+      block-gallery
+      relative
+      overflow-hidden
+      h-dvh
+      after:absolute
+      after:right-0
+      after:bottom-0
+      after:left-0
+      after:w-[calc(100%-var(--app-outer-gutter)*2)]
+      after:mx-auto
+      after:opacity-20
+      after:border-b
+      after:border-current
+    "
   >
     <UiCarousel
       v-if="block.items"
@@ -35,15 +49,23 @@ const swiperOptions: SwiperOptions = {
       @current-slide="setCurrentSlide"
     >
       <template #slide="{ slide }">
-        <div class="block-gallery__item wrapper">
-          <div class="block-gallery__grid">
+        <div
+          class="
+            wrapper
+            h-full
+            py-(--app-header-height)
+            bg-(--app-background-color)
+            md:py-[calc(var(--app-header-height)/1.5)]
+          "
+        >
+          <div class="block-gallery__grid h-[inherit] md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter) md:justify-center">
             <div
               v-if="slide?.media?.filename"
-              class="block-gallery__inner"
+              class="block-gallery__inner col-span-full min-h-full h-full md:col-start-3 md:col-span-8"
             >
               <MediaImage
                 v-if="storyblokAssetType(slide.media.filename) === 'image'"
-                class="block-gallery__media"
+                class="block-gallery__media rounded-xs"
                 :asset="slide.media"
                 sizes="
                   100vw
@@ -58,7 +80,7 @@ const swiperOptions: SwiperOptions = {
               <MediaVideo
                 v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
                 :asset="slide.media"
-                class="block-gallery__media"
+                class="block-gallery__media rounded-xs"
               />
             </div>
           </div>
@@ -68,7 +90,19 @@ const swiperOptions: SwiperOptions = {
 
     <h5
       v-if="block.items"
-      class="block-gallery__caption type-body-large wrapper"
+      class="
+        type-body-large
+        wrapper
+        py-(--app-outer-gutter)
+        absolute
+        right-0
+        bottom-0
+        left-0
+        flex
+        gap-4
+        bg-(--app-background-color)
+        md:gap-8
+      "
     >
       <span
         v-if="block.items?.length > 1"
@@ -88,84 +122,10 @@ const swiperOptions: SwiperOptions = {
 @reference "@/assets/css/main.css";
 
 .block-gallery {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-  height: 100dvh;
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
-    width: calc(100% - (var(--app-outer-gutter) * 2));
-    margin-inline: auto;
-
-    opacity: 0.2;
-    border-block-end: 1px solid currentcolor;
-  }
-
-  & .ui-carousel__slide {
-    height: 100%;
-  }
-}
-
-.block-gallery__item {
-  height: 100%;
-  padding-block: var(--app-header-height);
-  background-color: var(--app-background-color);
-
   .app-story & {
-    background-color: var(--color-offwhite);
+    --app-background-color: var(--color-offwhite);
   }
 
-  @variant md {
-    padding-block: calc(var(--app-header-height) / 1.5);
-  }
-}
-
-.block-gallery__grid {
-  display: grid;
-  height: inherit;
-
-  @variant md {
-    grid-template-columns: var(--app-grid);
-    gap: var(--app-inner-gutter);
-    justify-content: center;
-  }
-}
-
-.block-gallery__inner {
-  grid-column: 1 / -1;
-  min-height: 100%;
-  height: 100%;
-
-  @variant md {
-    grid-column: 3 / span 8;
-  }
-}
-
-.block-gallery__caption {
-  pointer-events: none;
-
-  position: absolute;
-  right: 0;
-  bottom: --spacing(4);
-  left: 0;
-
-  display: flex;
-  gap: --spacing(4);
-
-  @variant md {
-    bottom: --spacing(10);
-    gap: --spacing(8);
-  }
-}
-
-.block-gallery__media {
   & img {
     object-fit: contain;
   }
