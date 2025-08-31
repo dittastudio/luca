@@ -40,8 +40,8 @@ onUnmounted(() => {
     <div
       ref="inner"
       :class="{
-        'opacity-0 transition-opacity duration-150 ease-smooth': !isOpen,
-        'opacity-100 transition-opacity duration-300 ease-smooth delay-250': isOpen,
+        'opacity-0 transition-opacity duration-200 ease-out': !isOpen,
+        'opacity-100 transition-opacity duration-400 ease-out delay-300': isOpen,
       }"
     >
       <slot />

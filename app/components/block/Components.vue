@@ -140,17 +140,31 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 }
 
 .block-components--home .block-components__item:first-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100dvh;
-    margin-block-start: calc(-1 * var(--app-header-height));
-    padding-block: calc(var(--app-header-height) + --spacing(6));
+  --_max-width: 100vw;
 
-    @variant md {
-      height: 100dvh;
-      padding-block: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-block-start: calc(-1 * var(--app-header-height));
+
+  @variant max-md {
+    min-height: 100dvh;
+
+    margin-block-end: --spacing(-6);
+    padding-block: var(--app-header-height);
+
+    & + .block-components__item {
+      padding-block-start: 0;
     }
+  }
+
+  @variant md {
+    padding-block-start: max(calc(50dvh - (2.55/12 * (var(--_max-width) - (var(--app-outer-gutter) * 2)))), --spacing(12));
+  }
+
+  @variant 3xl {
+    --_max-width: var(--breakpoint-3xl);
+  }
 }
 
 .block-components--home .block-components__item:not(:first-child) {

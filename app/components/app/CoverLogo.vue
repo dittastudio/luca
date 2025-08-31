@@ -68,6 +68,7 @@ onMounted(() => {
       transition-opacity
       duration-300
       ease-smooth
+      max-md:drop-shadow-lg
     "
     :class="{
       'opacity-100': !isHidden,
