@@ -92,13 +92,9 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 @reference "@/assets/css/main.css";
 
 .block-components__item {
-  --_spacing: --spacing(15);
+  --_spacing: --spacing(30);
 
   padding-block-start: var(--_spacing);
-
-  @variant md {
-    --_spacing: --spacing(30);
-  }
 }
 
 .block-components__item:not(.block-components__item--block_text):first-child {
@@ -111,7 +107,8 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 }
 
 .block-components__item--block_text + .block-components__item--block_button,
-.block-components__item--block_gallery + .block-components__item--block_text_columns {
+.block-components__item--block_gallery + .block-components__item--block_text_columns,
+.block-components__item--block_carousel + .block-components__item--block_carousel {
   --_spacing: --spacing(16);
 }
 
@@ -132,6 +129,14 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 
   @variant 3xl {
     --_spacing: --spacing(60);
+  }
+}
+
+.block-components__item:last-child {
+  padding-block-end: --spacing(24);
+
+  @variant md {
+    padding-block-end: --spacing(30);
   }
 }
 
@@ -166,14 +171,6 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 .block-components--home .block-components__item:not(:first-child) {
   position: relative;
   z-index: var(--app-layer-two);
-}
-
-.block-components__item:last-child {
-  padding-block-end: --spacing(24);
-
-  @variant md {
-    padding-block-end: --spacing(30);
-  }
 }
 
 .app-story .block-components--story {
