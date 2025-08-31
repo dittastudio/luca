@@ -38,7 +38,7 @@ const stylesOut = computed(() => {
     return { opacity: 1 }
   }
 
-  const scrollThreshold = window.innerHeight / 3
+  const scrollThreshold = window.innerHeight / 2
   const opacityValue = Math.max(0, Math.min(1, 1 - (y.value / scrollThreshold)))
 
   return { opacity: opacityValue }
