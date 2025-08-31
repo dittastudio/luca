@@ -92,21 +92,17 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 @reference "@/assets/css/main.css";
 
 .block-components__item {
-  --_spacing: --spacing(30);
+  --_spacing: --spacing(15);
 
   padding-block-start: var(--_spacing);
+
+  @variant md {
+    --_spacing: --spacing(30);
+  }
 }
 
-.block-components__item:first-child {
+.block-components__item:not(.block-components__item--block_text):first-child {
   --_spacing: --spacing(6);
-
-  &.block-components__item--block_text {
-    --_spacing: --spacing(15);
-
-    @variant md {
-      --_spacing: --spacing(30);
-    }
-  }
 }
 
 .block-components__item .block-components__line,

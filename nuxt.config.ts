@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxtjs/sitemap',
-    // '@nuxtjs/tailwindcss',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
     'nuxt-gtag',
   ],
@@ -131,7 +130,4 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ['/api/sitemap'],
   },
-  // tailwindcss: {
-  //   cssPath: '@/assets/css/app.css',
-  // },
 })
