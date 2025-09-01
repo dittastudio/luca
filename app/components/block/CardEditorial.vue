@@ -48,7 +48,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
           <figcaption
             v-if="block.title"
-            class="type-body-large italic mt-[8px]"
+            class="type-body-large italic mt-1"
           >
             {{ block.title }}
           </figcaption>

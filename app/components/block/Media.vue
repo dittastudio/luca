@@ -43,7 +43,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
 
       <p
         v-if="block.caption"
-        class="mt-[8px] type-body italic"
+        class="type-body italic mt-1"
       >
         {{ block.caption }}
       </p>

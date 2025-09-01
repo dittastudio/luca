@@ -84,7 +84,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
 
                 <p
                   v-if="item && item.caption"
-                  class="type-body italic mt-[8px]"
+                  class="type-body italic mt-1"
                 >
                   {{ item.caption }}
                 </p>

@@ -107,9 +107,13 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 }
 
 .block-components__item--block_text + .block-components__item--block_button,
-.block-components__item--block_gallery + .block-components__item--block_text_columns,
-.block-components__item--block_carousel + .block-components__item--block_carousel {
+.block-components__item--block_gallery + .block-components__item--block_text_columns {
   --_spacing: --spacing(16);
+}
+
+.block-components__item--block_carousel + .block-components__item--block_carousel {
+  --_spacing: clamp(80px, 65.9155px + 3.7559vw, 120px);
+
 }
 
 .block-components__item--block_card + .block-components__item--block_card,
