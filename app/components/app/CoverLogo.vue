@@ -21,8 +21,6 @@ onMounted(() => {
         return
 
       isHidden.value = target.isIntersecting
-
-      console.log('target.isIntersecting', target.isIntersecting)
     },
     {
       rootMargin: '0px 0px 25% 0px',
