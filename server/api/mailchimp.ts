@@ -39,10 +39,9 @@ export default defineEventHandler(async (event) => {
       .min(1, 'Please provide your last name')
       .default(''),
     email: z
-      .string()
-      .trim()
-      .min(1, 'Please provide your email')
       .email({ message: 'Email address must be valid' })
+      .trim()
+      .min(6, 'Please provide your email')
       .default(''),
   })
 
@@ -79,12 +78,11 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Thank you! Your subscription to our list has been confirmed.',
       }
     }
-    else {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'An unexpected error occurred. Please try again.',
-      })
-    }
+
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'An unexpected error occurred. Please try again.',
+    })
   }
   catch (error: any) {
     interface ErrorInfo {

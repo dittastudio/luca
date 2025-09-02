@@ -1,0 +1,99 @@
+@layer components {
+  /* Headings */
+  .type-h3,
+  .type-h4,
+  .type-h5,
+  .type-h6 {
+    font-family: var(--font-heading);
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+  }
+
+  .type-h1 {
+    font-size: var(--text-40);
+    letter-spacing: var(--tracking-plump);
+
+    @variant md {
+      font-size: var(--text-90);
+    }
+  }
+
+  .type-h2 {
+    font-size: var(--text-24);
+    letter-spacing: var(--tracking-plump);
+
+    @variant md {
+      font-size: var(--text-40);
+    }
+  }
+
+  .type-h3 {
+    font-size: var(--text-16);
+
+    @variant md {
+      font-size: var(--text-18);
+    }
+  }
+
+  .type-h4 {
+    font-size: var(--text-16);
+  }
+
+  .type-h5 {
+    font-size: var(--text-14);
+  }
+
+  .type-h6 {
+    font-size: var(--text-12);
+  }
+
+  .type-responsive-app-cover {
+    font-size: var(--text-responsive-app-cover);
+    letter-spacing: var(--tracking-plump);
+  }
+
+  .type-responsive-page-cover {
+    font-size: var(--text-responsive-page-cover);
+    letter-spacing: var(--tracking-plump);
+  }
+
+  /* Body */
+  .type-body {
+    font-size: var(--text-16);
+    letter-spacing: var(--tracking-wide);
+
+    @variant md {
+      font-size: var(--text-18);
+    }
+  }
+
+  .type-body-large {
+    font-size: var(--text-18);
+    letter-spacing: var(--tracking-wide);
+
+    @variant md {
+      font-size: var(--text-20);
+    }
+  }
+}
+
+.type-italic-mask {
+  position: relative;
+
+  /* HACK: Added to stop hover stutter with italics 🤪 */
+  &::after {
+    pointer-events: none;
+    content: attr(title);
+
+    overflow: hidden;
+    display: block;
+
+    height: 0;
+
+    font-style: normal;
+
+    visibility: hidden;
+    opacity: 0;
+  }
+}

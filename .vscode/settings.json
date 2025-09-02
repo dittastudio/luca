@@ -36,5 +36,8 @@
   ],
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
+  },
+  "[tailwindcss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   }
 }

@@ -1,0 +1,39 @@
+@layer base {
+  *::selection {
+    color: var(--app-background-color);
+    background-color: var(--app-text-color);
+  }
+
+  html {
+    scrollbar-gutter: stable;
+    color: var(--app-text-color);
+    background-color: var(--app-background-color);
+    transition:
+      color var(--app-background-speed) var(--app-background-ease),
+      background-color var(--app-background-speed) var(--app-background-ease);
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-16);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: var(--leading-normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: var(--breakpoint-3xl);
+    margin-inline: auto;
+    padding-inline: var(--app-outer-gutter);
+  }
+
+  .section {
+    padding-block: --spacing(8);
+
+    @variant md {
+      padding-block: --spacing(12);
+    }
+  }
+}

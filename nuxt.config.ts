@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
@@ -5,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxtjs/sitemap',
-    '@nuxtjs/tailwindcss',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_STORYBLOK_TOKEN }],
     'nuxt-gtag',
   ],
@@ -28,7 +28,6 @@ export default defineNuxtConfig({
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
       link: [
-        // https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs#the-ultimate-favicon-setup
         { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
@@ -36,13 +35,13 @@ export default defineNuxtConfig({
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/Magister-Regular.woff2', as: 'font', crossorigin: '' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/Magister-Italic.woff2', as: 'font', crossorigin: '' },
-        { rel: 'preload', type: 'font/woff2', href: '/fonts/Sebenta-Medium.woff2', as: 'font', crossorigin: '' },
+        { rel: 'preload', type: 'font/woff2', href: '/fonts/american-grotesk-condensed-medium.woff2', as: 'font', crossorigin: '' },
       ],
     },
     pageTransition: { name: 'fade', mode: 'out-in' },
     layoutTransition: false,
   },
-  css: process.env.NUXT_STORYBLOK_VERSION === 'draft' ? ['@michaelpumo/screen/app.css'] : [],
+  css: ['@/assets/css/main.css'],
   site: {
     url: 'https://luca.restaurant',
     name: 'Luca',
@@ -56,7 +55,25 @@ export default defineNuxtConfig({
       STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
     },
   },
-  compatibilityDate: '2024-07-03',
+  routeRules: {
+    '/**': { prerender: process.env.PRERENDER === 'true' },
+  },
+  future: {
+    compatibilityVersion: 4,
+  },
+  features: {
+    noScripts: false,
+  },
+  compatibilityDate: '2025-04-13',
+  nitro: {
+    experimental: {
+      openAPI: true,
+    },
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+  },
   vite: {
     resolve: {
       dedupe: [
@@ -64,6 +81,7 @@ export default defineNuxtConfig({
       ],
     },
     plugins: [
+      tailwindcss(),
       svgLoader({
         svgo: false,
       }),
@@ -80,19 +98,7 @@ export default defineNuxtConfig({
   },
   postcss: {
     plugins: {
-      'postcss-import': {},
-      'tailwindcss/nesting': {},
-      'tailwindcss': {},
-      'autoprefixer': {},
-    },
-  },
-  hooks: {
-    'vite:extendConfig': (config, { isClient }) => {
-      if (isClient) {
-        if (config.resolve?.alias) {
-          config.resolve.alias.vue = 'vue/dist/vue.esm-bundler'
-        }
-      }
+      'postcss-nested': {},
     },
   },
   eslint: {
@@ -123,8 +129,5 @@ export default defineNuxtConfig({
   },
   sitemap: {
     sources: ['/api/sitemap'],
-  },
-  tailwindcss: {
-    cssPath: '@/assets/css/app.css',
   },
 })
