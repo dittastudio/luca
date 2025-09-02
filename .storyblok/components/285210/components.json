@@ -1046,11 +1046,11 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-04-17T19:20:25.049Z",
-    "updated_at": "2025-08-07T12:30:32.511Z",
+    "updated_at": "2025-09-02T17:31:01.955Z",
     "id": 5669700,
     "schema": {
       "cover_message": {
-        "type": "text",
+        "type": "textarea",
         "pos": 0,
         "required": false,
         "display_name": "Introduction Headline",
@@ -1065,13 +1065,13 @@
         ],
         "minimum": 1,
         "maximum": 1,
-        "pos": 1,
+        "pos": 2,
         "key": "navigation",
         "id": "qkgNaGO5Qky_3Z2xIzeLxQ"
       },
       "opening_times_title": {
         "type": "text",
-        "pos": 2,
+        "pos": 3,
         "required": false,
         "key": "open_times_title",
         "id": "hsGP8BMLR0-GPUWDDBuNog"
@@ -1085,13 +1085,13 @@
           "link"
         ],
         "allow_target_blank": true,
-        "pos": 3,
+        "pos": 4,
         "key": "opening_times",
         "id": "6JZHe4GfRiyO50Li7EmHiQ"
       },
       "contact_title": {
         "type": "text",
-        "pos": 4,
+        "pos": 5,
         "required": false,
         "key": "contact_title",
         "id": "q4Yv7cHQSW-zbZcGL2vMhA"
@@ -1106,13 +1106,13 @@
           "link"
         ],
         "allow_target_blank": true,
-        "pos": 5,
+        "pos": 6,
         "key": "contact",
         "id": "66-kdsF5RRekDjfjn4nAbA"
       },
       "reservations_title": {
         "type": "text",
-        "pos": 6,
+        "pos": 7,
         "required": false,
         "key": "reservations_title",
         "id": "FUk35ZY8TxqlLkp0K0ehMQ"
@@ -1127,13 +1127,13 @@
           "link"
         ],
         "allow_target_blank": true,
-        "pos": 7,
+        "pos": 8,
         "key": "reservations",
         "id": "PLmuRExxQRGTbQ9Yip-VjQ"
       },
       "newsletter_title": {
         "type": "text",
-        "pos": 8,
+        "pos": 9,
         "required": false,
         "key": "newsletter_title",
         "id": "inUxqa8NSQSwru0Mte6plA"
@@ -1148,7 +1148,7 @@
           "link"
         ],
         "allow_target_blank": true,
-        "pos": 9,
+        "pos": 10,
         "key": "newsletter",
         "id": "yB6omsZRQiCYNEE_5zJFxw"
       },
@@ -1160,36 +1160,36 @@
         "component_whitelist": [
           "link_list"
         ],
-        "pos": 10,
+        "pos": 11,
         "id": "zpbZCzZ-RJ-ENFaCSL8FaA"
       },
       "social_facebook": {
         "type": "text",
-        "pos": 11,
+        "pos": 12,
         "display_name": "Facebook",
         "id": "O4PunMnuSEiPf_WkTGudGw"
       },
       "social_tiktok": {
         "type": "text",
-        "pos": 12,
+        "pos": 13,
         "display_name": "TikTok",
         "id": "UaWyFh3vQye0qpRkDDAwnA"
       },
       "social_instagram": {
         "type": "text",
-        "pos": 13,
+        "pos": 14,
         "display_name": "Instagram",
         "id": "ZHZUy1kKRAKsMASycZ3a2g"
       },
       "social_vimeo": {
         "type": "text",
-        "pos": 14,
+        "pos": 15,
         "display_name": "Vimeo",
         "id": "RY1IlkXZRnCA99UFy7awnQ"
       },
       "navigation_new": {
         "type": "bloks",
-        "pos": 15,
+        "pos": 16,
         "restrict_type": "",
         "restrict_components": true,
         "component_whitelist": [

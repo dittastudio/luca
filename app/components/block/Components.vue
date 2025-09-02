@@ -154,12 +154,10 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 
   @variant max-md {
     min-height: var(--app-cover-logo-height);
-
-    margin-block-end: --spacing(-6);
     padding-block: var(--app-header-height);
 
     & + .block-components__item {
-      padding-block-start: 0;
+      padding-block-start: --spacing(16);
     }
   }
 

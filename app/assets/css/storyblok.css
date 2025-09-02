@@ -1,7 +1,8 @@
 @layer base {
   .is-storyblok-editor {
     a,
-    button[type="submit"] {
+    button[type="submit"],
+    button.app-header__reservations {
       pointer-events: none !important;
     }
   }

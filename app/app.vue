@@ -3,8 +3,7 @@ import type { Settings } from '@@/.storyblok/types/285210/storyblok-components'
 
 const route = useRoute()
 const story = await useStory<Settings>('/settings')
-const isMd = useAtMedia(getMediaQuery('md'))
-const isHome = computed(() => ['/', '/home'].includes(route.path) && isMd.value)
+const isHome = computed(() => ['/', '/home'].includes(route.path))
 const isStory = computed(() => route.path.startsWith('/stories/') && route.path.length > 9)
 const isDev = import.meta.dev
 
@@ -28,7 +27,6 @@ const splashSeen = useState('splashSeen', () => false)
 useState('reservationsOpen', () => false)
 useState('navigationOpen', () => false)
 useState<string | null>('dropdownOpen', () => null)
-useState<boolean>('isCoverLogoShown', () => false)
 useState<boolean>('coverVisible', () => true)
 useNavigation(false)
 

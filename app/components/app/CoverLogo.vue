@@ -5,7 +5,7 @@ import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 const isMd = useAtMedia(getMediaQuery('md'))
 
 const isHidden = ref(false)
-const isCoverLogoShown = useState('isCoverLogoShown', () => false)
+
 const footer = ref<HTMLElement | null>(null)
 
 onMounted(() => {
@@ -36,18 +36,10 @@ const stylesOut = computed(() => {
     return { opacity: 1 }
   }
 
-  const scrollThreshold = window.innerHeight / 2
+  const scrollThreshold = window.innerHeight / 1.5
   const opacityValue = Math.max(0, Math.min(1, 1 - (y.value / scrollThreshold)))
 
   return { opacity: opacityValue }
-})
-
-watch(() => stylesOut.value.opacity, (opacity) => {
-  isCoverLogoShown.value = opacity > 0
-})
-
-onMounted(() => {
-  isCoverLogoShown.value = stylesOut.value.opacity > 0
 })
 </script>
 

@@ -52,15 +52,19 @@ onMounted(async () => {
     <div class="wrapper">
       <h1
         v-if="message"
-        :class="[
-          'type-responsive-app-cover',
-          'text-center text-wrap-balance',
-          'transition-opacity duration-500 ease-smooth',
-          {
-            'opacity-0': !messageVisible,
-            'opacity-100': messageVisible,
-          },
-        ]"
+        class="
+          type-responsive-app-cover
+          text-center
+          text-wrap-balance
+          transition-opacity
+          duration-500
+          ease-smooth
+          max-sm:whitespace-pre-line
+        "
+        :class="{
+          'opacity-0': !messageVisible,
+          'opacity-100': messageVisible,
+        }"
       >
         {{ message }}
       </h1>
