@@ -120,7 +120,7 @@ watch(
 .app-modal {
   &::backdrop {
     background-color: var(--app-header-background-tint);
-    backdrop-filter: var(--app-header-blur);
+    backdrop-filter: blur(var(--app-header-blur));
   }
 
   &:not([open]) {

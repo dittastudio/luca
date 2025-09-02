@@ -103,7 +103,7 @@
 
     /* Header */
     --app-header-background-tint: --alpha(var(--color-green) / 80%);
-    --app-header-blur: blur(8px);
+    --app-header-blur: 8px;
     --app-header-height: 87px;
     --app-header-padding-y: --spacing(4);
 
