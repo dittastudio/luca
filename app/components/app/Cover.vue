@@ -29,14 +29,25 @@ onMounted(async () => {
 
 <template>
   <div
-    :class="[
-      'fixed inset-0 z-(--app-layer-three) flex items-center justify-center h-(--app-cover-height) text-white bg-green',
-      'transition-opacity duration-500 ease-smooth',
-      {
-        'opacity-0 pointer-events-none': !coverVisible,
-        'opacity-100 pointer-events-auto': coverVisible,
-      },
-    ]"
+    class="
+      app-cover
+      fixed
+      inset-0
+      z-(--app-layer-three)
+      flex
+      items-center
+      justify-center
+      h-(--app-cover-height)
+      text-white
+      bg-green
+      transition-opacity
+      duration-500
+      ease-smooth
+    "
+    :class="{
+      'opacity-0 pointer-events-none': !coverVisible,
+      'opacity-100 pointer-events-auto': coverVisible,
+    }"
   >
     <div class="wrapper">
       <h1
