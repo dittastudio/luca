@@ -1,47 +1,26 @@
 <script lang="ts" setup>
 interface Props {
   isOpen?: boolean
+  isDisabled?: boolean
 }
 
-const { isOpen = false } = defineProps<Props>()
-
-const inner = ref<HTMLDivElement | null>(null)
-const height = ref<number>(0)
-const resizeObserver = ref<ResizeObserver | undefined>(undefined)
-
-const setHeightStyles = computed<{ height: string }>(() => ({
-  height: isOpen && inner.value ? `${height.value}px` : '0px',
-}))
-
-onMounted(() => {
-  resizeObserver.value = new window.ResizeObserver((entries) => {
-    entries.forEach((entry) => {
-      height.value = entry.contentRect.height
-    })
-  })
-
-  if (inner.value) {
-    height.value = inner.value.clientHeight
-    resizeObserver.value.observe(inner.value)
-  }
-})
-
-onUnmounted(() => {
-  resizeObserver.value?.disconnect()
-})
+const { isOpen = false, isDisabled = false } = defineProps<Props>()
 </script>
 
 <template>
   <div
     data-component="ui-expand-collapse"
-    class="overflow-hidden transition-[height] duration-350 ease-inOutExpo md:!h-auto"
-    :style="setHeightStyles"
+    :class="{
+      'grid overflow-hidden transition-[grid-template-rows] duration-350 ease-inOutExpo': !isDisabled,
+      'grid-rows-[0fr]': !isOpen && !isDisabled,
+      'grid-rows-[1fr]': isOpen && !isDisabled,
+    }"
   >
     <div
-      ref="inner"
       :class="{
-        'opacity-0 transition-opacity duration-200 ease-out': !isOpen,
-        'opacity-100 transition-opacity duration-400 ease-out delay-300': isOpen,
+        'min-h-0': !isDisabled,
+        'opacity-0 transition-opacity duration-200 ease-out': !isOpen && !isDisabled,
+        'opacity-100 transition-opacity duration-400 ease-out delay-300': isOpen && !isDisabled,
       }"
     >
       <slot />

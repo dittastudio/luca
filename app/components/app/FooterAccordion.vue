@@ -12,14 +12,6 @@ const toggleAccordion = () => {
 
 const isScreenSm = useAtMedia(getMediaQuery('sm'))
 
-watchEffect(() => {
-  if (!import.meta.client) {
-    return
-  }
-
-  isOpen.value = isScreenSm.value
-})
-
 const headerId = `accordion-header-${safeKebabCase(id)}`
 const bodyId = `accordion-body-${safeKebabCase(id)}`
 </script>
@@ -48,7 +40,10 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
       </span>
     </button>
 
-    <UiExpandCollapse :is-open="isOpen">
+    <UiExpandCollapse
+      :is-open="isOpen"
+      :is-disabled="isScreenSm"
+    >
       <div
         :id="bodyId"
         role="region"
