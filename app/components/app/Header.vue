@@ -159,7 +159,7 @@ onUnmounted(() => {
             'type-body-large',
             'text-24 md:text-16 lg:text-18',
             'max-md:flex max-md:flex-wrap max-md:items-end max-md:justify-center',
-            'max-md:w-full max-md:min-h-full max-md:pt-(--app-header-height) max-md:pb-8',
+            'max-md:w-full max-md:min-h-full max-md:pt-12 max-md:pb-8',
           ]"
         >
           <div
@@ -167,6 +167,7 @@ onUnmounted(() => {
               'flex flex-col flex-grow w-full',
               'md:flex-row md:flex-grow-0 md:gap-4 md:w-auto',
               'lg:gap-6',
+              'max-md:pt-8',
             ]"
           >
             <template
@@ -212,11 +213,13 @@ onUnmounted(() => {
             </template>
           </div>
 
-          <div class="max-md:flex max-md:justify-center max-md:w-full max-md:pt-8">
+          <div class="max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:gap-6 max-md:w-full max-md:pt-8 md:hidden">
+            <IconMichelin class="app-header__michelin w-4 h-auto aspect-[20/23] md:hidden" />
+
             <button
               :class="[
                 'app-header__cta',
-                'block pointer-events-auto md:hidden',
+                'block pointer-events-auto',
               ]"
               type="button"
               :tabindex="reservationsOpen ? '0' : '-1'"
@@ -467,6 +470,16 @@ onUnmounted(() => {
   }
 }
 
+.app-header__michelin {
+  opacity: 0;
+  transition: opacity 0.1s var(--ease-smooth);
+
+  .app-header--is-open & {
+    opacity: 1;
+    transition: opacity 0.5s var(--ease-outQuart) 0.5s;
+  }
+}
+
 .app-header__cta {
   opacity: 0;
   translate: 0 50% 0;
@@ -528,18 +541,18 @@ onUnmounted(() => {
   .app-header--reservation-hidden & {
     opacity: 0;
     pointer-events: none;
-
-    transition: opacity 0.2s var(--ease-smooth);
+    transition-duration: 0.2s;
   }
 }
 
 .app-header__reservations {
   @variant max-md {
     opacity: 1;
-    transition: opacity 0.2s var(--ease-smooth);
+    transition: opacity 0.5s var(--ease-smooth);
 
     .app-header--is-open & {
       opacity: 0;
+      transition-duration: 0.2s;
     }
   }
 }
