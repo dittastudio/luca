@@ -3,7 +3,7 @@
 import type { StoryblokAsset, StoryblokRichtext, StoryblokMultilink, StoryblokMultiasset } from '../storyblok.d.ts';
 export interface BlockButton {
   title: string;
-  link: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
+  link: Multilink;
   connecting_line?: boolean;
   component: "block_button";
   _uid: string;

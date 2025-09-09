@@ -4,12 +4,13 @@
     "display_name": "Button",
     "description": null,
     "created_at": "2024-04-23T18:03:59.135Z",
-    "updated_at": "2024-04-25T13:56:47.896Z",
+    "updated_at": "2025-09-03T15:53:40.497Z",
     "id": 5698808,
     "schema": {
       "title": {
         "type": "text",
-        "required": true
+        "required": true,
+        "id": "6r8m5VyGSYeEzuq-XU4g1g"
       },
       "link": {
         "type": "multilink",
@@ -19,11 +20,14 @@
         "restrict_content_types": true,
         "component_whitelist": [
           "page"
-        ]
+        ],
+        "asset_link_type": true,
+        "id": "WKQLN03CSouj4yRDYmVyJw"
       },
       "connecting_line": {
         "type": "boolean",
-        "inline_label": true
+        "inline_label": true,
+        "id": "p1TtNxiVQpyGvNgYcpRe8w"
       }
     },
     "image": null,
