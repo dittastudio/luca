@@ -4,6 +4,28 @@ interface Props {
 }
 
 const { isOpen = false } = defineProps<Props>()
+
+const onEsc = () => {
+  if (isOpen)
+    navigateTo('/stories')
+}
+
+let handleKeydown: ((e: KeyboardEvent) => void) | null = null
+
+onMounted(() => {
+  handleKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      onEsc()
+    }
+  }
+  window.addEventListener('keydown', handleKeydown)
+})
+
+onBeforeUnmount(() => {
+  if (handleKeydown) {
+    window.removeEventListener('keydown', handleKeydown)
+  }
+})
 </script>
 
 <template>

@@ -50,7 +50,9 @@ const { size = 'default' } = defineProps<Props>()
 
   @media (hover: hover) {
     a:hover &,
-    button:not(:disabled):hover & {
+    button:not(:disabled):hover &,
+    a:focus-visible &,
+    button:not(:disabled):focus-visible & {
       color: var(--button-hover-color);
       background-color: var(--button-color);
       border-color: var(--button-color);

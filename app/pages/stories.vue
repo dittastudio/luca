@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { Page } from '@@/.storyblok/types/285210/storyblok-components'
 
+definePageMeta({ scrollToTop: false })
+
 const route = useRoute()
 const story = await useStory<Page>('/stories')
 const { title, description, image } = story.value.content.seo?.[0] ?? {}
