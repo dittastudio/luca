@@ -1,9 +1,14 @@
 <script lang="ts" setup>
 import type { Page } from '@@/.storyblok/types/285210/storyblok-components'
 
-definePageMeta({ scrollToTop: false })
-
 const route = useRoute()
+
+definePageMeta({
+  scrollToTop: (to, from) => {
+    return !(to.path === '/stories' && from.path.startsWith('/stories/') && from.path.length > 9)
+  },
+})
+
 const story = await useStory<Page>('/stories')
 const { title, description, image } = story.value.content.seo?.[0] ?? {}
 const imageOptions = { width: 1200, height: 630, format: 'jpg', smart: true, quality: 90 }
@@ -19,6 +24,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   twitterImage: storyblokImage(image?.filename, imageOptions) || null,
 })
+console.log('[stories] route', route)
 </script>
 
 <template>
