@@ -24,7 +24,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   twitterImage: storyblokImage(image?.filename, imageOptions) || null,
 })
-console.log('[stories] route', route)
 </script>
 
 <template>
@@ -32,7 +31,9 @@ console.log('[stories] route', route)
     v-if="story"
     :themes="story.content.themes"
   >
-    <AppStory :is-open="route.name === 'stories-page'">
+    <AppStory
+      :is-open="route.name === 'stories-page'"
+    >
       <Transition
         name="fade"
         mode="out-in"
@@ -42,7 +43,7 @@ console.log('[stories] route', route)
           :key="route.fullPath"
         >
           <Suspense>
-            <NuxtPage :page-key="route.fullPath" />
+            <NuxtPage :page-key="route => route.fullPath" />
           </Suspense>
         </div>
       </Transition>
