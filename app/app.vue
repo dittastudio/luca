@@ -9,18 +9,6 @@ const isHome = computed(() => ['/', '/home'].includes(routePath.value))
 const isStory = computed(() => routePath.value.startsWith('/stories/') && routePath.value.length > 9)
 const isDev = import.meta.dev
 
-watch(() => router.currentRoute.value.path, (current, previous) => {
-  if (isDev && import.meta.client) {
-    console.log('ROUTER changed', { previous, current })
-  }
-}, { immediate: true })
-
-watch(() => route.path, (current, previous) => {
-  if (isDev && import.meta.client) {
-    console.log('ROUTE changed', { previous, current })
-  }
-}, { immediate: true })
-
 const globalClasses = computed(() => ({
   'is-storyblok-editor': storyblokEditor(route.query),
 }))

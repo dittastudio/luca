@@ -10,20 +10,20 @@ const onEsc = () => {
     navigateTo('/stories')
 }
 
-let handleKeydown: ((e: KeyboardEvent) => void) | null = null
+let handleKeyUp: ((e: KeyboardEvent) => void) | null = null
 
 onMounted(() => {
-  handleKeydown = (e: KeyboardEvent) => {
+  handleKeyUp = (e: KeyboardEvent) => {
     if (e.key === 'Escape' || e.key === 'Esc') {
       onEsc()
     }
   }
-  window.addEventListener('keydown', handleKeydown)
+  window.addEventListener('keyup', handleKeyUp)
 })
 
 onBeforeUnmount(() => {
-  if (handleKeydown) {
-    window.removeEventListener('keydown', handleKeydown)
+  if (handleKeyUp) {
+    window.removeEventListener('keyup', handleKeyUp)
   }
 })
 </script>
