@@ -22,7 +22,7 @@
   "dependencies": {
     "@ditta/colophon": "^0.0.5",
     "@netlify/functions": "^4.2.5",
-    "@storyblok/nuxt": "^8.0.8",
+    "@storyblok/nuxt": "^8.1.0",
     "@tailwindcss/vite": "^4.1.13",
     "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^13.9.0",
@@ -53,7 +53,7 @@
     "nuxt": "^4.1.1",
     "nuxt-gtag": "^4.0.0",
     "prettier": "^3.6.2",
-    "storyblok": "^4.5.0",
+    "storyblok": "^4.6.0",
     "stylelint": "^16.24.0",
     "stylelint-config-clean-order": "^7.0.0",
     "stylelint-config-recommended-vue": "^1.6.1",
