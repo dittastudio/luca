@@ -1,0 +1,38 @@
+@layer base {
+  a,
+  button {
+    &:focus-visible {
+      border-radius: var(--radius-md);
+      outline: 1px solid --alpha(var(--color-white) / 20%);
+      outline-offset: 3px;
+    }
+  }
+
+  button {
+    touch-action: manipulation;
+    user-select: none;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  svg {
+    display: block;
+    fill: currentcolor;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}

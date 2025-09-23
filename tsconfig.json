@@ -1,6 +1,8 @@
 {
   "extends": "./.nuxt/tsconfig.json",
-  "compilerOptions": {
-    "jsx": "preserve"
-  }
+  "files": [
+    "types/app.d.ts",
+    "types/index.d.ts",
+    "types/reset.d.ts"
+  ]
 }

@@ -1,0 +1,116 @@
+@layer components {
+  .prose {
+    & :is(* + h1, * + h2, * + h3, * + h4, * + h5, * + h6, * + p, * + ul, * + ol) {
+      margin-block-start: --spacing(4);
+
+    }
+
+    & :is(h1 + h5, h2 + h5, h3 + h5, h4 + h5) {
+      margin-block-start: --spacing(8);
+    }
+
+    & :is(h1, h2, h3, h4, h5, h6) {
+      font-family: var(--font-heading);
+      font-weight: normal;
+      text-transform: uppercase;
+      text-wrap: balance;
+      letter-spacing: var(--tracking-widest);
+    }
+
+    & :is(h1, h2, h3, h4) {
+      font-size: var(--text-18);
+
+      @variant md {
+        font-size: var(--text-20);
+      }
+    }
+
+    & h5 {
+      font-size: var(--text-16);
+    }
+
+    & h6 {
+      font-size: var(--text-14);
+    }
+
+    p {
+      font-size: var(--text-16);
+      text-wrap: pretty;
+      letter-spacing: var(--tracking-wide);
+
+      @variant md {
+        font-size: var(--text-18);
+      }
+    }
+
+    p a {
+      text-decoration: underline;
+      opacity: 1;
+      transition: opacity 0.2s var(--ease-smooth);
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
+    blockquote {
+      & p {
+        &:first-of-type::before {
+          content: open-quote;
+        }
+
+        &:last-of-type::after {
+          content: close-quote;
+        }
+      }
+    }
+
+    ul, ol {
+      display: inline-block;
+      padding-block: --spacing(4);
+      text-align: left;
+      list-style-type: disc;
+
+      & li {
+        padding-inline-start: 0.25em;
+        text-wrap: pretty;
+      }
+
+      & li + li {
+        margin-block-start: 0.75em;
+      }
+
+      & li > ul,
+      & li > ol {
+        margin-block-start: 0;
+        margin-inline-start: 1em;
+        list-style-type: circle;
+      }
+
+      & p {
+        margin-inline: 0;
+      }
+    }
+  }
+
+  .prose--small {
+    & :is(h1, h2, h3, h4) {
+      font-size: var(--text-16);
+    }
+
+    p {
+      font-size: var(--text-14);
+      letter-spacing: var(--tracking-wider);
+    }
+  }
+
+  .prose--large {
+    p {
+      font-size: var(--text-18);
+
+      @variant md {
+        font-size: var(--text-20);
+      }
+    }
+  }
+}
