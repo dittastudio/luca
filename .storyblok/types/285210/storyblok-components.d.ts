@@ -3,7 +3,7 @@
 import type { StoryblokAsset, StoryblokRichtext, StoryblokMultilink, StoryblokMultiasset } from '../storyblok.d.ts';
 export interface BlockButton {
   title: string;
-  link: StoryblokMultilink;
+  link: Multilink;
   connecting_line?: boolean;
   component: "block_button";
   _uid: string;
@@ -116,7 +116,7 @@ export interface ImageVideo {
 
 export interface Link {
   title: string;
-  link: StoryblokMultilink;
+  link: Multilink;
   component: "link";
   _uid: string;
 }
