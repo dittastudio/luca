@@ -51,7 +51,7 @@
     "display_name": "Card",
     "description": null,
     "created_at": "2024-04-23T14:44:41.343Z",
-    "updated_at": "2025-08-12T13:17:25.143Z",
+    "updated_at": "2025-09-23T21:59:35.247Z",
     "id": 5697381,
     "schema": {
       "title": {
@@ -68,21 +68,18 @@
         "key": "headline",
         "id": "wjxR7InzRDS0qaFXnXOJAg"
       },
-      "media": {
-        "type": "asset",
+      "media_new": {
+        "type": "multiasset",
         "pos": 2,
-        "required": true,
         "filetypes": [
           "images",
           "videos"
         ],
-        "asset_folder_id": null,
-        "key": "media",
-        "id": "ksdERAXNS_uL3CiBMcaYvg"
+        "id": "XwN8UbUBSam8KUVsziuugg"
       },
       "ratio": {
         "type": "option",
-        "pos": 3,
+        "pos": 4,
         "use_uuid": true,
         "required": true,
         "source": "internal",
@@ -98,7 +95,7 @@
           "page"
         ],
         "required": true,
-        "pos": 4,
+        "pos": 5,
         "key": "link",
         "id": "MpXuB1ddRgmPspa6EDKwtQ"
       },
@@ -110,7 +107,7 @@
         "datasource_slug": "column-start",
         "exclude_empty_option": true,
         "default_value": "3",
-        "pos": 5,
+        "pos": 6,
         "key": "column_start",
         "id": "4DBECgq1Rn64sQjOS_JRaA"
       },
@@ -129,24 +126,15 @@
       "connecting_line": {
         "type": "boolean",
         "inline_label": true,
-        "pos": 7,
+        "pos": 8,
         "key": "connecting_line",
         "id": "2JaJJ9CgRYyUD3hsNzjMGA"
-      },
-      "media_new": {
-        "type": "multiasset",
-        "pos": 8,
-        "filetypes": [
-          "images",
-          "videos"
-        ],
-        "id": "XwN8UbUBSam8KUVsziuugg"
       }
     },
     "image": null,
     "preview_field": null,
     "is_root": false,
-    "preview_tmpl": "<p><strong>{{it.title}}</strong></p>\n<p>{{it.headline}}</p>\n{{@if(it.media.filename)}}\n<p>{{@image(it.media.filename)/}}</p>\n{{#else}}\n{{/if}}",
+    "preview_tmpl": "<p><strong>{{it.title}}</strong></p>\n<p>{{it.headline}}</p>\n{{@if(it.media_new[0].filename)}}\n<p>{{@image(it.media_new[0].filename)/}}</p>\n{{#else}}\n{{/if}}",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
@@ -429,7 +417,7 @@
     "display_name": "Menus",
     "description": null,
     "created_at": "2024-04-26T15:27:37.492Z",
-    "updated_at": "2025-09-23T18:03:06.529Z",
+    "updated_at": "2025-09-23T21:56:01.923Z",
     "id": 5717541,
     "schema": {
       "media": {
@@ -440,19 +428,6 @@
         ],
         "id": "qh_g6rTdTWGo8xrF0EtnAA",
         "display_name": "Banner"
-      },
-      "menus": {
-        "type": "bloks",
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "menu"
-        ],
-        "minimum": 1,
-        "key": "Menus",
-        "pos": 1,
-        "id": "kYn4q-T5TIWxSVC8k4UzLQ",
-        "display_name": "Menus (Legacy, please update in Settings)"
       }
     },
     "image": "//a.storyblok.com/f/285210/x/acad4da6f6/screenshot-2024-04-26-at-16-29-12.png",
@@ -1051,7 +1026,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-04-17T19:20:25.049Z",
-    "updated_at": "2025-09-02T17:31:01.955Z",
+    "updated_at": "2025-09-23T22:01:21.306Z",
     "id": 5669700,
     "schema": {
       "cover_message": {
@@ -1061,18 +1036,16 @@
         "display_name": "Introduction Headline",
         "id": "lnI7pCTMQp2ViecuxAFhwg"
       },
-      "navigation": {
+      "navigation_new": {
         "type": "bloks",
+        "pos": 2,
         "restrict_type": "",
         "restrict_components": true,
         "component_whitelist": [
-          "link_list"
+          "link",
+          "link_group"
         ],
-        "minimum": 1,
-        "maximum": 1,
-        "pos": 2,
-        "key": "navigation",
-        "id": "qkgNaGO5Qky_3Z2xIzeLxQ"
+        "id": "sLHs1wmmSCCPnxrIrv4Usw"
       },
       "opening_times_title": {
         "type": "text",
@@ -1191,17 +1164,6 @@
         "pos": 15,
         "display_name": "Vimeo",
         "id": "RY1IlkXZRnCA99UFy7awnQ"
-      },
-      "navigation_new": {
-        "type": "bloks",
-        "pos": 16,
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "link",
-          "link_group"
-        ],
-        "id": "sLHs1wmmSCCPnxrIrv4Usw"
       }
     },
     "image": null,

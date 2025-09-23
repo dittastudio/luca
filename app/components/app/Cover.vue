@@ -45,7 +45,7 @@ onMounted(async () => {
       ease-smooth
     "
     :class="{
-      'opacity-0 pointer-events-none': !coverVisible,
+      'opacity-0 pointer-events-none is-hidden': !coverVisible,
       'opacity-100 pointer-events-auto': coverVisible,
     }"
   >
@@ -90,5 +90,9 @@ html.is-storyblok-editor {
   .app-cover {
     display: none;
   }
+}
+
+html:has(.app-cover:not(.is-hidden)) {
+  overflow: hidden;
 }
 </style>

@@ -12,13 +12,12 @@ export interface BlockButton {
 export interface BlockCard {
   title: string;
   headline: string;
-  media: StoryblokAsset;
+  media_new?: StoryblokMultiasset;
   ratio: number | string;
   link: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   column_start: number | string;
   column_end: number | string;
   connecting_line?: boolean;
-  media_new?: StoryblokMultiasset;
   component: "block_card";
   _uid: string;
 }
@@ -64,7 +63,6 @@ export interface BlockMedia {
 
 export interface BlockMenus {
   media?: StoryblokAsset;
-  menus?: Menu[];
   component: "block_menus";
   _uid: string;
 }
@@ -174,7 +172,7 @@ export interface Seo {
 
 export interface Settings {
   cover_message?: string;
-  navigation?: LinkList[];
+  navigation_new?: (Link | LinkGroup)[];
   opening_times_title?: string;
   opening_times?: StoryblokRichtext;
   contact_title?: string;
@@ -188,7 +186,6 @@ export interface Settings {
   social_tiktok?: string;
   social_instagram?: string;
   social_vimeo?: string;
-  navigation_new?: (Link | LinkGroup)[];
   component: "settings";
   _uid: string;
 }
