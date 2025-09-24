@@ -214,7 +214,7 @@ onUnmounted(() => {
           </div>
 
           <div class="max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:gap-6 max-md:w-full max-md:pt-8 md:hidden">
-            <IconMichelin class="app-header__michelin w-4 h-auto aspect-[20/23] md:hidden" />
+            <IconMichelin class="app-header__michelin w-[20px] h-[23px] backface-hidden md:hidden" />
 
             <button
               :class="[
