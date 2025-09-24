@@ -42,7 +42,7 @@ const { data: oembed, error } = await useAsyncData(
 
     <div
       v-if="oembed && !error"
-      class="block-player__media overflow-hidden size-full rounded-xs bg-black/5 md:col-start-3 md:col-end-8"
+      class="block-player__media overflow-hidden size-full rounded-xs bg-black/5 md:col-start-3 md:col-span-8"
       :class="{ 'aspect-16/9': ['Vimeo', 'YouTube'].includes(oembed.provider_name) }"
       v-html="oembed.html"
     />
