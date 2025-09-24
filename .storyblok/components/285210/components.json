@@ -1026,7 +1026,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-04-17T19:20:25.049Z",
-    "updated_at": "2025-09-23T22:01:21.306Z",
+    "updated_at": "2025-09-23T22:36:45.768Z",
     "id": 5669700,
     "schema": {
       "cover_message": {
@@ -1045,7 +1045,8 @@
           "link",
           "link_group"
         ],
-        "id": "sLHs1wmmSCCPnxrIrv4Usw"
+        "id": "sLHs1wmmSCCPnxrIrv4Usw",
+        "display_name": "Navigation"
       },
       "opening_times_title": {
         "type": "text",
