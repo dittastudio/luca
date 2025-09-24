@@ -80,12 +80,8 @@ if (isStory.value) {
       </template>
     </AppLayout>
 
-    <!-- <AppCover
-      v-if="story && story.content.cover_message && !splashSeen && !isDev"
-      :message="story.content.cover_message"
-    /> -->
     <AppCover
-      v-if="story && story.content.cover_message"
+      v-if="story && story.content.cover_message && !splashSeen && !isDev"
       :message="story.content.cover_message"
     />
   </div>
