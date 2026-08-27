@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockGallery } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockGallery } from '#storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
 
 interface Props {
@@ -55,13 +55,14 @@ const swiperOptions: SwiperOptions = {
             h-full
             py-(--app-header-height)
             bg-(--app-background-color)
-            md:py-[calc(var(--app-header-height)/1.5)]
+            md:pt-[calc(var(--app-header-height)/1.5)]
+            md:pb-[calc(var(--app-header-height)*0.85)]
           "
         >
-          <div class="block-gallery__grid h-[inherit] md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter) md:justify-center">
+          <div class="h-[inherit] flex flex-col items-center">
             <div
               v-if="slide?.media?.filename"
-              class="block-gallery__inner col-span-full min-h-full h-full md:col-start-3 md:col-span-8"
+              class="relative h-full"
             >
               <MediaImage
                 v-if="storyblokAssetType(slide.media.filename) === 'image'"
@@ -119,15 +120,19 @@ const swiperOptions: SwiperOptions = {
 </template>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .block-gallery {
   .app-story & {
     --app-background-color: var(--color-offwhite);
   }
 
-  & img {
-    object-fit: contain;
+  & img,
+  & video {
+    width: auto!important;
+    height: 100%!important;
+    margin: 0 auto;
+    /* object-fit: contain; */
   }
 }
 </style>
