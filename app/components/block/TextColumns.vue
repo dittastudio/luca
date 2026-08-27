@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockTextColumns } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockTextColumns } from '#storyblok-components'
 
 interface Props {
   block: BlockTextColumns
@@ -24,7 +24,7 @@ const { block } = defineProps<Props>()
       <div class="text-left lg:columns-2 lg:gap-[calc(var(--app-inner-gutter)*5)] [&_p]:max-w-none">
         <StoryblokText
           v-if="storyblokRichTextContent(block.text)"
-          :content="block.text"
+          :html="block.text"
         />
       </div>
     </div>

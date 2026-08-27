@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
@@ -41,7 +42,7 @@ export default defineNuxtConfig({
     pageTransition: { name: 'fade', mode: 'out-in' },
     layoutTransition: false,
   },
-  css: ['@/assets/css/main.css'],
+  css: ['@/assets/css/app.css'],
   site: {
     url: 'https://luca.restaurant',
     name: 'Luca',
@@ -54,6 +55,10 @@ export default defineNuxtConfig({
       STORYBLOK_TOKEN: process.env.NUXT_STORYBLOK_TOKEN,
       STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
     },
+  },
+  alias: {
+    '#storyblok-components': fileURLToPath(new URL('./.storyblok/types/285210/storyblok-components', import.meta.url)),
+    '#storyblok-types': fileURLToPath(new URL('./.storyblok/types/storyblok', import.meta.url)),
   },
   routeRules: {
     '/**': { prerender: process.env.PRERENDER === 'true' },

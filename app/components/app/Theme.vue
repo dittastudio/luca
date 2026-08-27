@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Theme } from '@@/.storyblok/types/285210/storyblok-components'
+import type { Theme } from '#storyblok-components'
 import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {

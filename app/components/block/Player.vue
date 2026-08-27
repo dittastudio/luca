@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockPlayer } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockPlayer } from '#storyblok-components'
 
 interface Props {
   block: BlockPlayer
@@ -50,7 +50,7 @@ const { data: oembed, error } = await useAsyncData(
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .block-player__media {
   :deep(iframe) {

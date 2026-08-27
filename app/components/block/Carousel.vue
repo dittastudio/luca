@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockCarousel, Slide } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockCarousel, Slide } from '#storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
 import { useIntersectionObserver } from '@vueuse/core'
 

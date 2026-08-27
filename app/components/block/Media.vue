@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockMedia } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockMedia } from '#storyblok-components'
 
 interface Props {
   block: BlockMedia

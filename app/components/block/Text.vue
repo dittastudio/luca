@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockText } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockText } from '#storyblok-components'
 
 interface Props {
   block: BlockText
@@ -15,13 +15,13 @@ const { block } = defineProps<Props>()
   >
     <StoryblokText
       v-if="storyblokRichTextContent(block.text)"
-      :content="block.text"
+      :html="block.text"
     />
   </div>
 </template>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .block-text {
   & :is(h1, h2, h3, h4, h5, h6) {

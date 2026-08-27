@@ -180,7 +180,7 @@ watch(() => options, () => {
 </template>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .ui-carousel {
   --dot-size: 8px;

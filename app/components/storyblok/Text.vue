@@ -1,16 +1,26 @@
 <script lang="ts" setup>
-import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
+import type { StoryblokRichTextInput } from '@storyblok/richtext'
+import type { StoryblokRichTextDoc } from '#storyblok-types'
+import { StoryblokTextLink } from '#components'
 
 interface Props {
-  content?: StoryblokRichtext | undefined
+  html?: StoryblokRichTextDoc
 }
 
-const { content } = defineProps<Props>()
+const { html } = defineProps<Props>()
+
+const render = useStoryblokRichText({
+  components: {
+    link: StoryblokTextLink,
+  },
+})
+
+const richText = computed(() => (html ? () => render(html as StoryblokRichTextInput) : null))
 </script>
 
 <template>
-  <StoryblokRichText
-    v-if="content"
-    :doc="content"
+  <component
+    :is="richText"
+    v-if="richText"
   />
 </template>

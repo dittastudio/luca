@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockMenus, LinkGroup, Settings } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockMenus, LinkGroup, Settings } from '#storyblok-components'
 
 interface Props {
   block: BlockMenus

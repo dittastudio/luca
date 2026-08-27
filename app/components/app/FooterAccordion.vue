@@ -57,7 +57,7 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-footer-accordion {
   width: 100%;

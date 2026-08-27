@@ -152,14 +152,15 @@
     "display_name": " Card Editorial",
     "description": null,
     "created_at": "2024-04-26T21:53:11.867Z",
-    "updated_at": "2024-05-07T16:26:06.715Z",
+    "updated_at": "2026-02-24T16:06:27.141Z",
     "id": 5719290,
     "schema": {
       "title": {
         "type": "text",
         "required": true,
         "pos": 0,
-        "key": "title"
+        "key": "title",
+        "id": "Y-4Iedf0RYCsW8IJvB55EA"
       },
       "media": {
         "type": "asset",
@@ -170,7 +171,8 @@
           "videos"
         ],
         "asset_folder_id": null,
-        "key": "media"
+        "key": "media",
+        "id": "8HD290WFQwyoBK7kwoLV2g"
       },
       "ratio": {
         "type": "option",
@@ -180,7 +182,8 @@
         "source": "internal",
         "datasource_slug": "ratio",
         "exclude_empty_option": true,
-        "key": "ratio"
+        "key": "ratio",
+        "id": "4fvRy8mYTX2Ak1sH4k-lbw"
       },
       "link": {
         "type": "multilink",
@@ -190,7 +193,10 @@
         ],
         "required": true,
         "pos": 3,
-        "key": "link"
+        "key": "link",
+        "force_link_scope": true,
+        "id": "FDezj-CKRgqt6_rcU1eRsA",
+        "translatable": false
       },
       "column_start": {
         "type": "option",
@@ -201,7 +207,8 @@
         "exclude_empty_option": true,
         "default_value": "3",
         "pos": 4,
-        "key": "column_start"
+        "key": "column_start",
+        "id": "SLAp-CjtR5qVzain80Uqiw"
       },
       "column_end": {
         "type": "option",
@@ -212,13 +219,15 @@
         "exclude_empty_option": true,
         "default_value": "8",
         "pos": 5,
-        "key": "column_span"
+        "key": "column_span",
+        "id": "Rzeucf0eTJSUQ2w-V_iZlg"
       },
       "connecting_line": {
         "type": "boolean",
         "inline_label": true,
         "pos": 6,
-        "key": "connecting_line"
+        "key": "connecting_line",
+        "id": "CLeBNGgIRGiKb-dpQgPAng"
       }
     },
     "image": null,

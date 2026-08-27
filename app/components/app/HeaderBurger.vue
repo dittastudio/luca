@@ -25,7 +25,7 @@ const { isOpen = false } = defineProps<Props>()
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-header-burger__inner {
   --burger-height: 1px;

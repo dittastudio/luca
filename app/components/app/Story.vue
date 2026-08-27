@@ -53,7 +53,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-story {
   pointer-events: none;
