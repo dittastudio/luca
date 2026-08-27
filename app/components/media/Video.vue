@@ -5,9 +5,10 @@ import { useIntersectionObserver } from '@vueuse/core'
 interface Props {
   asset: StoryblokAsset
   ratio?: Luca.TAspectRatios | string | number
+  muted?: boolean
 }
 
-const { asset, ratio = 'auto' } = defineProps<Props>()
+const { asset, ratio = 'auto', muted = true } = defineProps<Props>()
 
 interface Emits {
   (event: 'seen' | 'playing', payload: boolean): void
@@ -58,7 +59,7 @@ onUnmounted(() => {
     :src="src"
     playsinline
     autoplay
-    muted
+    :muted="muted"
     loop
     class="w-full h-full object-cover"
     :class="ratioMap[ratio]"

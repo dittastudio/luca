@@ -8,6 +8,7 @@ interface Props {
 
 const { block } = defineProps<Props>()
 const currentSlide = ref(1)
+const muted = ref(true)
 
 const setCurrentSlide = (slide: number) => {
   currentSlide.value = slide
@@ -62,7 +63,7 @@ const swiperOptions: SwiperOptions = {
           <div class="h-[inherit] flex flex-col items-center">
             <div
               v-if="slide?.media?.filename"
-              class="relative h-full"
+              class="group relative h-full"
             >
               <MediaImage
                 v-if="storyblokAssetType(slide.media.filename) === 'image'"
@@ -78,11 +79,19 @@ const swiperOptions: SwiperOptions = {
                 "
               />
 
-              <MediaVideo
-                v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
-                :asset="slide.media"
-                class="block-gallery__media rounded-xs"
-              />
+              <template v-else-if="storyblokAssetType(slide.media.filename) === 'video'">
+                <MediaVideo
+                  :asset="slide.media"
+                  :muted="muted"
+                  class="block-gallery__media rounded-xs"
+                />
+
+                <UiMuteToggle
+                  :muted="muted"
+                  class="absolute bottom-4 right-4 text-white opacity-50 transition-opacity duration-300 ease-smooth group-hover:opacity-100"
+                  @toggle="muted = !muted"
+                />
+              </template>
             </div>
           </div>
         </div>
