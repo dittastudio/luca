@@ -49,7 +49,7 @@ const swiperOptions: SwiperOptions = {
       :options="swiperOptions"
       @current-slide="setCurrentSlide"
     >
-      <template #slide="{ slide }">
+      <template #slide="{ slide, index }">
         <div
           class="
             wrapper
@@ -83,12 +83,13 @@ const swiperOptions: SwiperOptions = {
                 <MediaVideo
                   :asset="slide.media"
                   :muted="muted"
+                  :active="currentSlide === index + 1"
                   class="block-gallery__media rounded-xs"
                 />
 
                 <UiMuteToggle
                   :muted="muted"
-                  class="absolute bottom-4 right-4 text-white opacity-50 transition-opacity duration-300 ease-smooth group-hover:opacity-100"
+                  class="absolute bottom-0 right-0 p-4 text-white opacity-30 transition-opacity duration-300 ease-smooth group-hover:opacity-100"
                   @toggle="muted = !muted"
                 />
               </template>

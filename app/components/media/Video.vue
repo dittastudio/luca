@@ -6,9 +6,10 @@ interface Props {
   asset: StoryblokAsset
   ratio?: Luca.TAspectRatios | string | number
   muted?: boolean
+  active?: boolean
 }
 
-const { asset, ratio = 'auto', muted = true } = defineProps<Props>()
+const { asset, ratio = 'auto', muted = true, active = true } = defineProps<Props>()
 
 interface Emits {
   (event: 'seen' | 'playing', payload: boolean): void
@@ -19,6 +20,7 @@ const emit = defineEmits<Emits>()
 const video = ref<HTMLVideoElement | null>(null)
 const seen = ref(false)
 const src = computed(() => seen.value ? asset?.filename ?? '' : '')
+const isMuted = computed(() => muted || !active || !seen.value)
 
 useIntersectionObserver(
   video,
@@ -31,15 +33,28 @@ useIntersectionObserver(
       emit('seen', true)
       seen.value = true
     }
-    else if (target instanceof HTMLVideoElement && target.isIntersecting && seen.value && src.value && target.paused) {
+    else if (target instanceof HTMLVideoElement && target.isIntersecting && seen.value && active && src.value && target.paused) {
       target.play()
     }
-    else if (target instanceof HTMLVideoElement && !target.isIntersecting && seen.value && src.value && !target.paused) {
+    else if (target instanceof HTMLVideoElement && (!target.isIntersecting || !active) && seen.value && src.value && !target.paused) {
       target.pause()
     }
   },
   { rootMargin: '50% 0px 50% 0px', threshold: 0 },
 )
+
+watch(() => active, (isActive) => {
+  if (!video.value || !src.value) {
+    return
+  }
+
+  if (isActive) {
+    video.value.play()
+  }
+  else {
+    video.value.pause()
+  }
+})
 
 onMounted(() => {
   video.value?.addEventListener('playing', () => emit('playing', true))
@@ -59,7 +74,7 @@ onUnmounted(() => {
     :src="src"
     playsinline
     autoplay
-    :muted="muted"
+    :muted="isMuted"
     loop
     class="w-full h-full object-cover"
     :class="ratioMap[ratio]"

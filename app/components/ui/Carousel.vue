@@ -128,6 +128,7 @@ watch(() => options, () => {
         <slot
           name="slide"
           :slide="slide"
+          :index="index"
         />
       </div>
     </div>
@@ -168,12 +169,13 @@ watch(() => options, () => {
 
   <template v-else>
     <template
-      v-for="slide in slides"
+      v-for="(slide, index) in slides"
       :key="slide"
     >
       <slot
         name="slide"
         :slide="slide"
+        :index="index"
       />
     </template>
   </template>

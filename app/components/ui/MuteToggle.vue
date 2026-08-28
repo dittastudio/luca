@@ -22,7 +22,22 @@ const emit = defineEmits<Emits>()
     @click="emit('toggle')"
   >
     <span
-      class="flex items-center justify-center size-6 p-1.25 bg-current/20 backdrop-blur-sm outline outline-white/40 rounded-full transition-[background-color] duration-300 ease-out group-hover:bg-current/30"
+      class="
+        flex
+        items-center
+        justify-center
+        size-6
+        p-[7px]
+        bg-black/80
+        backdrop-blur-xs
+        outline
+        outline-current/30
+        rounded-full
+        transition-[background-color]
+        duration-300
+        ease-out
+        group-hover:bg-current/20
+      "
     >
       <svg
         class="mute-toggle__icon w-4.5 h-auto"
