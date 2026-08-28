@@ -15,7 +15,7 @@ const emit = defineEmits<Emits>()
 <template>
   <div
     :class="!muted ? 'is-active' : ''"
-    class="mute-toggle group relative isolate h-[inherit] overflow-hidden"
+    class="mute-toggle group relative isolate overflow-hidden"
   >
     <slot />
 

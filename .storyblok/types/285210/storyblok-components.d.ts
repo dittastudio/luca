@@ -213,6 +213,7 @@ export interface Settings {
 export interface Slide {
   media: StoryblokAsset;
   caption?: string;
+  ratio?: number | string;
   component: "slide";
   _uid: string;
   _editable?: string | undefined;

@@ -1197,7 +1197,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-04-24T16:18:33.870Z",
-    "updated_at": "2024-06-27T16:55:20.195Z",
+    "updated_at": "2026-08-28T13:27:23.499Z",
     "id": 5704569,
     "schema": {
       "media": {
@@ -1214,11 +1214,22 @@
         "filetypes": [
           "images",
           "videos"
-        ]
+        ],
+        "id": "LOvYq7uQStKqYpAI_avgMg"
       },
       "caption": {
         "type": "text",
-        "pos": 1
+        "pos": 1,
+        "id": "rcnhezBlTkK8C3m2kN8Nsg"
+      },
+      "ratio": {
+        "type": "option",
+        "pos": 2,
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "ratio",
+        "default_value": "10:16",
+        "id": "ZFO9p64JS2CJfiTzhdE4Xw"
       }
     },
     "image": null,

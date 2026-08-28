@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { SwiperOptions } from 'swiper/types'
-import type { BlockGallery } from '#storyblok-components'
+import type { BlockGallery, Slide } from '#storyblok-components'
 
 interface Props {
   block: BlockGallery
@@ -12,6 +12,18 @@ const muted = ref(true)
 
 const setCurrentSlide = (slide: number) => {
   currentSlide.value = slide
+}
+
+const getMediaDimensions = (slide: Slide) => {
+  if (validAspectRatio(slide.ratio)) {
+    return ratioDimensions(slide.ratio!)
+  }
+
+  if (slide.media?.filename && storyblokAssetType(slide.media.filename) === 'image') {
+    return storyblokImageDimensions(slide.media.filename)
+  }
+
+  return { width: 0, height: 0 }
 }
 
 const swiperOptions: SwiperOptions = {
@@ -60,16 +72,26 @@ const swiperOptions: SwiperOptions = {
             md:pb-[calc(var(--app-header-height)*0.85)]
           "
         >
-          <div class="h-[inherit] flex flex-col items-center">
-            <div
-              v-if="slide?.media?.filename"
-              class="h-full"
-            >
-              <MediaImage
-                v-if="storyblokAssetType(slide.media.filename) === 'image'"
-                class="block-gallery__media rounded-xs"
-                :asset="slide.media"
-                sizes="
+          <div
+            v-if="slide?.media?.filename"
+            class="
+                block-gallery__media-container
+                h-full
+                w-full
+                flex
+                items-center
+                justify-center
+              "
+            :style="{
+              '--media-w': getMediaDimensions(slide).width || undefined,
+              '--media-h': getMediaDimensions(slide).height || undefined,
+            }"
+          >
+            <MediaImage
+              v-if="storyblokAssetType(slide.media.filename) === 'image'"
+              class="block-gallery__media rounded-xs"
+              :asset="slide.media"
+              sizes="
                   100vw
                   md:50vw
                   lg:50vw
@@ -77,21 +99,20 @@ const swiperOptions: SwiperOptions = {
                   2xl:50vw
                   3xl:50vw
                 "
-              />
+            />
 
-              <UiMuteToggle
-                v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
+            <UiMuteToggle
+              v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
+              :muted="muted"
+              @toggle="muted = !muted"
+            >
+              <MediaVideo
+                :asset="slide.media"
                 :muted="muted"
-                @toggle="muted = !muted"
-              >
-                <MediaVideo
-                  :asset="slide.media"
-                  :muted="muted"
-                  :active="currentSlide === index + 1"
-                  class="block-gallery__media rounded-xs"
-                />
-              </UiMuteToggle>
-            </div>
+                :active="currentSlide === index + 1"
+                class="block-gallery__media rounded-xs"
+              />
+            </UiMuteToggle>
           </div>
         </div>
       </template>
@@ -134,13 +155,16 @@ const swiperOptions: SwiperOptions = {
   .app-story & {
     --app-background-color: var(--color-offwhite);
   }
+}
 
-  & img,
-  & video {
-    width: auto!important;
-    height: 100%!important;
-    margin: 0 auto;
-    /* object-fit: contain; */
+.block-gallery__media-container {
+  container-type: size;
+}
+
+.block-gallery__media {
+  && {
+    width: min(100cqw, 100cqh * var(--media-w, 16) / var(--media-h, 9));
+    height: min(100cqh, 100cqw * var(--media-h, 9) / var(--media-w, 16));
   }
 }
 </style>
