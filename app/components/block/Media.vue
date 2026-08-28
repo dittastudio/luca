@@ -8,6 +8,7 @@ interface Props {
 const { block } = defineProps<Props>()
 const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
 const columnSpan = computed(() => Number(block.column_end) - Number(block.column_start))
+const muted = ref(true)
 </script>
 
 <template>
@@ -34,11 +35,25 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
         `"
       />
 
+      <UiMuteToggle
+        v-else-if="block.media && assetType === 'video' && block.has_audio"
+        :muted="muted"
+        @toggle="muted = !muted"
+      >
+        <MediaVideo
+          class="rounded-xs"
+          :asset="block.media"
+          :ratio="block.ratio"
+          :muted="muted"
+        />
+      </UiMuteToggle>
+
       <MediaVideo
         v-else-if="block.media && assetType === 'video'"
         class="rounded-xs"
         :asset="block.media"
         :ratio="block.ratio"
+        muted
       />
 
       <p

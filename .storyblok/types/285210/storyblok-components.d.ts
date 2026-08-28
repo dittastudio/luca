@@ -59,6 +59,7 @@ export interface BlockMedia {
   media: StoryblokAsset;
   caption?: string;
   ratio: number | string;
+  has_audio?: boolean;
   column_start: number | string;
   column_end: number | string;
   connecting_line?: boolean;
@@ -214,6 +215,7 @@ export interface Slide {
   media: StoryblokAsset;
   caption?: string;
   ratio?: number | string;
+  has_audio?: boolean;
   component: "slide";
   _uid: string;
   _editable?: string | undefined;

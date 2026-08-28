@@ -347,7 +347,7 @@
     "display_name": "Media",
     "description": null,
     "created_at": "2024-04-18T16:33:02.808Z",
-    "updated_at": "2024-06-27T15:42:39.324Z",
+    "updated_at": "2026-08-28T14:46:46.034Z",
     "id": 5676129,
     "schema": {
       "media": {
@@ -359,11 +359,13 @@
           "videos"
         ],
         "asset_folder_id": null,
-        "key": "media"
+        "key": "media",
+        "id": "LuAz0wJWRYagCmZ--jvpaA"
       },
       "caption": {
         "type": "text",
-        "pos": 1
+        "pos": 1,
+        "id": "fySHaqAXR8uZvuV4Cb8H7w"
       },
       "ratio": {
         "type": "option",
@@ -373,7 +375,13 @@
         "datasource_slug": "ratio",
         "exclude_empty_option": true,
         "required": true,
-        "key": "ratio"
+        "key": "ratio",
+        "id": "48fXbhUATvuwDK8hAIJmxA"
+      },
+      "has_audio": {
+        "type": "boolean",
+        "pos": 3,
+        "id": "7namP-QPS3asKTxFGhiaRw"
       },
       "column_start": {
         "type": "option",
@@ -383,9 +391,10 @@
         "source": "internal",
         "datasource_slug": "column-start",
         "exclude_empty_option": true,
-        "pos": 3,
+        "pos": 4,
         "key": "column_start",
-        "default_value": "1"
+        "default_value": "1",
+        "id": "oO5Tv9NBSNi8G7B0mtigEA"
       },
       "column_end": {
         "type": "option",
@@ -394,15 +403,17 @@
         "source": "internal",
         "datasource_slug": "column-end",
         "exclude_empty_option": true,
-        "pos": 4,
+        "pos": 5,
         "key": "column_span",
-        "default_value": "13"
+        "default_value": "13",
+        "id": "5qDIm0tbRbuJj5UhmjnJ3g"
       },
       "connecting_line": {
         "type": "boolean",
         "inline_label": true,
-        "pos": 5,
-        "key": "connecting_line"
+        "pos": 6,
+        "key": "connecting_line",
+        "id": "ty7bVMttQei31kjBrUS1GA"
       }
     },
     "image": null,
@@ -1197,7 +1208,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-04-24T16:18:33.870Z",
-    "updated_at": "2026-08-28T13:27:23.499Z",
+    "updated_at": "2026-08-28T14:47:08.645Z",
     "id": 5704569,
     "schema": {
       "media": {
@@ -1228,8 +1239,15 @@
         "use_uuid": true,
         "source": "internal",
         "datasource_slug": "ratio",
-        "default_value": "10:16",
-        "id": "ZFO9p64JS2CJfiTzhdE4Xw"
+        "default_value": "",
+        "id": "ZFO9p64JS2CJfiTzhdE4Xw",
+        "tooltip": true,
+        "description": "Needed for video"
+      },
+      "has_audio": {
+        "type": "boolean",
+        "pos": 3,
+        "id": "nwVd33BDSfad0CQghJAaEw"
       }
     },
     "image": null,

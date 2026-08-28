@@ -102,7 +102,7 @@ const swiperOptions: SwiperOptions = {
             />
 
             <UiMuteToggle
-              v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
+              v-else-if="storyblokAssetType(slide.media.filename) === 'video' && slide.has_audio"
               :muted="muted"
               @toggle="muted = !muted"
             >
@@ -113,6 +113,14 @@ const swiperOptions: SwiperOptions = {
                 class="block-gallery__media rounded-xs"
               />
             </UiMuteToggle>
+
+            <MediaVideo
+              v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
+              :asset="slide.media"
+              muted
+              :active="currentSlide === index + 1"
+              class="block-gallery__media rounded-xs"
+            />
           </div>
         </div>
       </template>
