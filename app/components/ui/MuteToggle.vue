@@ -37,7 +37,7 @@ const emit = defineEmits<Emits>()
       :class="[
         {
           'opacity-100': muted,
-          'opacity-0 group-hover:opacity-100': !muted,
+          'only-hover:opacity-0 group-hover:opacity-100': !muted,
         },
       ]"
       type="button"
