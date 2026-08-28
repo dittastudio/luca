@@ -13,65 +13,112 @@ const emit = defineEmits<Emits>()
 </script>
 
 <template>
-  <button
-    class="mute-toggle group flex items-center justify-center"
+  <div
     :class="!muted ? 'is-active' : ''"
-    type="button"
-    :aria-label="muted ? 'Unmute video' : 'Mute video'"
-    :aria-pressed="!muted"
-    @click="emit('toggle')"
+    class="mute-toggle group relative isolate h-[inherit] overflow-hidden"
   >
-    <span
+    <slot />
+
+    <button
       class="
+        mute-toggle__button
+        group/button
         flex
         items-center
         justify-center
-        size-6
-        p-[7px]
-        bg-black/80
-        backdrop-blur-xs
-        outline
-        outline-current/30
-        rounded-full
-        transition-[background-color]
+        absolute
+        right-0
+        bottom-0
+        p-4
+        transition-opacity
         duration-300
-        ease-out
-        group-hover:bg-current/20
+        ease-smooth
       "
+      :class="[
+        {
+          'opacity-100': muted,
+          'opacity-0 group-hover:opacity-100': !muted,
+        },
+      ]"
+      type="button"
+      :aria-label="muted ? 'Unmute video' : 'Mute video'"
+      :aria-pressed="!muted"
+      @click="emit('toggle')"
     >
-      <svg
-        class="mute-toggle__icon w-4.5 h-auto"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <span
+        class="
+          flex
+          items-center
+          justify-center
+          size-5
+          p-1
+          backdrop-blur-xs
+          rounded-full
+          text-offwhite/70
+          group-hover/button:text-offwhite
+          transition-colors
+          duration-300
+          ease-out
+          bg-offwhite/20
+          outline
+          outline-offwhite/30
+        "
       >
-        <path
-          d="M10.375 4.21875C10.6752 3.97861 11.0871 3.93211 11.4336 4.09863C11.7799 4.26521 12 4.61571 12 5V19C12 19.3843 11.7799 19.7348 11.4336 19.9014C11.0871 20.0679 10.6752 20.0214 10.375 19.7813L5.64844 16H2C1.44772 16 1 15.5523 1 15V9C1 8.44772 1.44772 8 2 8H5.64844L10.375 4.21875ZM6.625 9.78125C6.44769 9.9231 6.22707 10 6 10H3V14H6C6.22707 14 6.44769 14.0769 6.625 14.2188L10 16.918V7.08106L6.625 9.78125Z"
-        />
-
-        <g class="mute-toggle__waves">
+        <svg
+          class="mute-toggle__icon w-4.5 h-auto"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
-            d="M16.0038 11.9952C16.0038 10.9346 15.5827 9.91715 14.8329 9.16705C14.4425 8.7765 14.4424 8.14346 14.8329 7.75298C15.2235 7.36255 15.8565 7.36251 16.247 7.75298C17.3718 8.87815 18.0038 10.4042 18.0038 11.9952C18.0038 13.5861 17.3718 15.1122 16.247 16.2374C15.8565 16.6277 15.2234 16.6277 14.8329 16.2374C14.4423 15.8469 14.4425 15.2139 14.8329 14.8233C15.5828 14.0732 16.0038 13.0558 16.0038 11.9952Z"
+            class="mute-toggle__speaker"
+            d="M10.5312 4.41404C10.7564 4.23394 11.0653 4.19931 11.3252 4.3242C11.5849 4.44915 11.75 4.7118 11.75 4.99998V19C11.75 19.2882 11.5849 19.5508 11.3252 19.6758C11.0653 19.8006 10.7564 19.766 10.5312 19.5859L5.73633 15.75H2C1.58579 15.75 1.25 15.4142 1.25 15V8.99998C1.25 8.58577 1.58579 8.24998 2 8.24998H5.73633L10.5312 4.41404ZM6.46875 9.58592C6.33577 9.6923 6.1703 9.74998 6 9.74998H2.75V14.25H6C6.1703 14.25 6.33577 14.3077 6.46875 14.414L10.25 17.4385V6.56053L6.46875 9.58592Z"
           />
-          <path
-            d="M20.998 12.0003C20.998 9.61387 20.0504 7.32476 18.3632 5.63702C17.9728 5.24647 17.9727 4.61343 18.3632 4.22295C18.7538 3.83252 19.3868 3.83248 19.7773 4.22295C21.8395 6.28576 22.998 9.08349 22.998 12.0003C22.9979 14.917 21.8393 17.7139 19.7773 19.7767C19.3869 20.1672 18.7538 20.1679 18.3632 19.7776C17.9726 19.3872 17.9727 18.7532 18.3632 18.3626C20.0502 16.675 20.9979 14.3865 20.998 12.0003Z"
-          />
-        </g>
 
-        <path
-          class="mute-toggle__cross"
-          d="M21.2929 8.29295C21.6834 7.90243 22.3164 7.90243 22.707 8.29295C23.0975 8.68348 23.0975 9.31649 22.707 9.70702L20.414 12L22.707 14.293C23.0975 14.6835 23.0975 15.3165 22.707 15.707C22.3164 16.0975 21.6834 16.0975 21.2929 15.707L18.9999 13.414L16.707 15.707C16.3164 16.0975 15.6834 16.0975 15.2929 15.707C14.9024 15.3165 14.9024 14.6835 15.2929 14.293L17.5859 12L15.2929 9.70702C14.9024 9.31649 14.9024 8.68348 15.2929 8.29295C15.6834 7.90243 16.3164 7.90243 16.707 8.29295L18.9999 10.5859L21.2929 8.29295Z"
-        />
-      </svg>
-    </span>
-  </button>
+          <g class="mute-toggle__waves">
+            <path d="M21.248 12.0003C21.248 9.54754 20.274 7.19485 18.5399 5.46023C18.2471 5.16732 18.2471 4.69254 18.5399 4.39968C18.8329 4.10686 19.3076 4.10683 19.6005 4.39968C21.6158 6.41561 22.748 9.14976 22.748 12.0003C22.7479 14.8506 21.6157 17.584 19.6005 19.5999C19.3076 19.8928 18.8329 19.8927 18.5399 19.5999C18.2473 19.307 18.2472 18.8322 18.5399 18.5393C20.2738 16.8048 21.2479 14.4528 21.248 12.0003Z" />
+
+            <path d="M16.2538 11.9951C16.2538 10.8682 15.8064 9.78724 15.0097 8.99026C14.7168 8.69735 14.7168 8.22257 15.0097 7.92971C15.3026 7.63689 15.7774 7.63686 16.0702 7.92971C17.1482 9.008 17.7538 10.4704 17.7538 11.9951C17.7538 13.5198 17.1481 14.9823 16.0702 16.0606C15.7774 16.3532 15.3025 16.3533 15.0097 16.0606C14.7168 15.7677 14.7169 15.293 15.0097 15C15.8064 14.2031 16.2538 13.122 16.2538 11.9951Z" />
+          </g>
+
+          <path
+            class="mute-toggle__cross"
+            d="M21.4677 8.46967C21.7606 8.17678 22.2354 8.17678 22.5283 8.46967C22.8212 8.76256 22.8212 9.23732 22.5283 9.53022L20.0585 11.9999L22.5283 14.4697C22.8212 14.7626 22.8212 15.2373 22.5283 15.5302C22.2354 15.8231 21.7606 15.8231 21.4677 15.5302L18.998 13.0605L16.5283 15.5302C16.2354 15.8231 15.7606 15.8231 15.4677 15.5302C15.1748 15.2373 15.1748 14.7626 15.4677 14.4697L17.9374 11.9999L15.4677 9.53022C15.1748 9.23732 15.1748 8.76256 15.4677 8.46967C15.7606 8.17678 16.2354 8.17678 16.5283 8.46967L18.998 10.9394L21.4677 8.46967Z"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
 </template>
 
 <style scoped>
 @reference "@/assets/css/app.css";
 
-.mute-toggle__icon {
-  .mute-toggle:not(.is-active):hover & {
+.mute-toggle {
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at bottom right, --alpha(var(--color-black) / 15%) 0%, --alpha(var(--color-black) / 0%) 15%);
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease-out);
+  }
+
+  &:not(:hover).is-active::before {
+    opacity: 0;
+  }
+}
+
+.mute-toggle__speaker {
+  .mute-toggle:not(.is-active) & {
     animation: wig 0.5s var(--ease-inOutQuart);
+    transform-origin: center;
   }
 }
 

@@ -76,7 +76,7 @@ onUnmounted(() => {
     autoplay
     :muted="isMuted"
     loop
-    class="w-full h-full object-cover"
+    class="size-full object-cover"
     :class="ratioMap[ratio]"
   />
 </template>

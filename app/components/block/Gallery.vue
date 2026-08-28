@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { BlockGallery } from '#storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
+import type { BlockGallery } from '#storyblok-components'
 
 interface Props {
   block: BlockGallery
@@ -63,7 +63,7 @@ const swiperOptions: SwiperOptions = {
           <div class="h-[inherit] flex flex-col items-center">
             <div
               v-if="slide?.media?.filename"
-              class="group relative h-full"
+              class="h-full"
             >
               <MediaImage
                 v-if="storyblokAssetType(slide.media.filename) === 'image'"
@@ -79,20 +79,18 @@ const swiperOptions: SwiperOptions = {
                 "
               />
 
-              <template v-else-if="storyblokAssetType(slide.media.filename) === 'video'">
+              <UiMuteToggle
+                v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
+                :muted="muted"
+                @toggle="muted = !muted"
+              >
                 <MediaVideo
                   :asset="slide.media"
                   :muted="muted"
                   :active="currentSlide === index + 1"
                   class="block-gallery__media rounded-xs"
                 />
-
-                <UiMuteToggle
-                  :muted="muted"
-                  class="absolute bottom-0 right-0 p-4 text-white opacity-30 transition-opacity duration-300 ease-smooth group-hover:opacity-100"
-                  @toggle="muted = !muted"
-                />
-              </template>
+              </UiMuteToggle>
             </div>
           </div>
         </div>

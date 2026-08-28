@@ -36,7 +36,7 @@ Required `.env` vars (see README.md): `NUXT_STORYBLOK_TOKEN`, `NUXT_STORYBLOK_VE
 - Custom global types live under the `Luca` namespace in `types/app.d.ts` (e.g. `Luca.ImageTransformOptions`, `Luca.TAspectRatios`) and are used unqualified across components/utils.
 - `server/api/` (Nitro): `sitemap.ts` builds the sitemap from Storyblok links for `@nuxtjs/sitemap`; `oembed.post.ts` proxies oEmbed lookups for SoundCloud/Mixcloud/Vimeo/YouTube and rewrites the returned iframe `src` with extra player params; `mailchimp.ts` handles newsletter signup with zod validation and an "already subscribed" branch.
 - Images go through `@nuxt/image` with a custom Storyblok provider (base URL `a2.storyblok.com`); use the manual transform helpers in `app/utils/storyblok.ts` for cases outside `@nuxt/image`.
-- ESLint (`eslint.config.mjs`) layers `@antfu/eslint-config` on top of the Nuxt-generated config, with repo overrides: one attribute per line in templates, a blank line required between template tags, kebab-case custom event names. Prettier/Stylelint packages are present but not wired into an npm script — don't assume `format`/`stylelint` commands exist.
+- ESLint (`eslint.config.mjs`) layers `@antfu/eslint-config` on top of the Nuxt-generated config, with repo overrides: one attribute per line in templates, a blank line required between template tags, kebab-case custom event names. Prettier is present as a dependency but not wired into an npm script — don't assume a `format` command exists.
 
 ## Conventions
 

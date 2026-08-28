@@ -41,9 +41,6 @@
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
   },
-  "[tailwindcss]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
-  },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   }
