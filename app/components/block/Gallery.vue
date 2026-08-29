@@ -75,13 +75,13 @@ const swiperOptions: SwiperOptions = {
           <div
             v-if="slide?.media?.filename"
             class="
-                block-gallery__media-container
-                h-full
-                w-full
-                flex
-                items-center
-                justify-center
-              "
+              block-gallery__media-container
+              h-full
+              w-full
+              flex
+              items-center
+              justify-center
+            "
             :style="{
               '--media-w': getMediaDimensions(slide).width || undefined,
               '--media-h': getMediaDimensions(slide).height || undefined,
@@ -92,13 +92,13 @@ const swiperOptions: SwiperOptions = {
               class="block-gallery__media rounded-xs"
               :asset="slide.media"
               sizes="
-                  100vw
-                  md:50vw
-                  lg:50vw
-                  xl:50vw
-                  2xl:50vw
-                  3xl:50vw
-                "
+                100vw
+                md:50vw
+                lg:50vw
+                xl:50vw
+                2xl:50vw
+                3xl:50vw
+              "
             />
 
             <UiMuteToggle
@@ -111,6 +111,7 @@ const swiperOptions: SwiperOptions = {
                 :muted="muted"
                 :active="currentSlide === index + 1"
                 class="block-gallery__media rounded-xs"
+                @mute="muted = true"
               />
             </UiMuteToggle>
 

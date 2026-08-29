@@ -45,6 +45,7 @@ const muted = ref(true)
           :asset="block.media"
           :ratio="block.ratio"
           :muted="muted"
+          @mute="muted = true"
         />
       </UiMuteToggle>
 
