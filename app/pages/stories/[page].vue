@@ -13,9 +13,6 @@ useSeoMeta({
   ogDescription: description,
   ogImage: storyblokImage(image?.filename, imageOptions) || null,
   ogType: 'website',
-  twitterTitle: title ?? story.value.name,
-  twitterCard: 'summary_large_image',
-  twitterImage: storyblokImage(image?.filename, imageOptions) || null,
 })
 </script>
 
