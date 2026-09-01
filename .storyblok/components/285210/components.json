@@ -347,7 +347,7 @@
     "display_name": "Media",
     "description": null,
     "created_at": "2024-04-18T16:33:02.808Z",
-    "updated_at": "2026-08-28T14:46:46.034Z",
+    "updated_at": "2026-09-01T17:40:39.054Z",
     "id": 5676129,
     "schema": {
       "media": {
@@ -381,7 +381,8 @@
       "has_audio": {
         "type": "boolean",
         "pos": 3,
-        "id": "7namP-QPS3asKTxFGhiaRw"
+        "id": "7namP-QPS3asKTxFGhiaRw",
+        "inline_label": true
       },
       "column_start": {
         "type": "option",
@@ -539,7 +540,7 @@
     "display_name": "Split",
     "description": null,
     "created_at": "2024-04-23T17:04:16.558Z",
-    "updated_at": "2025-07-23T15:22:51.967Z",
+    "updated_at": "2026-09-01T17:40:24.373Z",
     "id": 5698629,
     "schema": {
       "media": {
@@ -550,11 +551,13 @@
           "images",
           "videos"
         ],
-        "asset_folder_id": 530535
+        "asset_folder_id": 530535,
+        "id": "6WA5QyotTdS5PUoKGWuZ8Q"
       },
       "caption": {
         "type": "text",
-        "pos": 1
+        "pos": 1,
+        "id": "MtuhGUDmShiZEcMqyjMdMA"
       },
       "ratio": {
         "type": "option",
@@ -564,7 +567,8 @@
         "source": "internal",
         "datasource_slug": "ratio",
         "exclude_empty_option": true,
-        "key": "ratio"
+        "key": "ratio",
+        "id": "b1FPm_04SCOv7I8cQ0GkRQ"
       },
       "text": {
         "type": "richtext",
@@ -585,19 +589,28 @@
           "link",
           "paragraph",
           "quote"
-        ]
+        ],
+        "id": "8skliZAdS8yrHxHr4PQgTg"
       },
       "reversed": {
         "type": "boolean",
         "inline_label": true,
         "pos": 4,
-        "key": "reversed"
+        "key": "reversed",
+        "id": "_Jq52i2iStCGaxwCnYARQw"
+      },
+      "has_audio": {
+        "type": "boolean",
+        "pos": 5,
+        "id": "VhQ_Lh1rQ-KoFDKeJWGX0w",
+        "inline_label": true
       },
       "connecting_line": {
         "type": "boolean",
-        "pos": 5,
+        "pos": 6,
         "inline_label": true,
-        "key": "connecting_line"
+        "key": "connecting_line",
+        "id": "gV01KP7GR0u-bctyXeMd0g"
       }
     },
     "image": null,
@@ -1208,7 +1221,7 @@
     "display_name": null,
     "description": null,
     "created_at": "2024-04-24T16:18:33.870Z",
-    "updated_at": "2026-08-28T14:47:08.645Z",
+    "updated_at": "2026-09-01T17:40:50.851Z",
     "id": 5704569,
     "schema": {
       "media": {
@@ -1247,7 +1260,8 @@
       "has_audio": {
         "type": "boolean",
         "pos": 3,
-        "id": "nwVd33BDSfad0CQghJAaEw"
+        "id": "nwVd33BDSfad0CQghJAaEw",
+        "inline_label": true
       }
     },
     "image": null,
