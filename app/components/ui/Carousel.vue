@@ -214,10 +214,6 @@ watch(() => options, () => {
   background-color: var(--app-background-color);
 
   transition-property: transform;
-
-  .app-story & {
-    background-color: var(--color-offwhite);
-  }
 }
 
 .ui-carousel__button {

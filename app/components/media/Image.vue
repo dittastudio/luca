@@ -126,6 +126,7 @@ const imgAttrs = computed(() => ({
 .media-image__asset {
   width: 100%;
   height: inherit;
+  object-fit: cover;
 
   &.is-lazy {
     position: absolute;
@@ -148,6 +149,7 @@ const imgAttrs = computed(() => ({
 
   width: 100%;
   height: inherit;
+  object-fit: cover;
 
   backface-visibility: hidden;
   opacity: 1;

@@ -8,7 +8,6 @@ interface Props {
 
 const { block } = defineProps<Props>()
 const currentSlide = ref(1)
-const muted = ref(true)
 
 const setCurrentSlide = (slide: number) => {
   currentSlide.value = slide
@@ -101,24 +100,11 @@ const swiperOptions: SwiperOptions = {
               "
             />
 
-            <UiMuteToggle
-              v-else-if="storyblokAssetType(slide.media.filename) === 'video' && slide.has_audio"
-              :muted="muted"
-              @toggle="muted = !muted"
-            >
-              <MediaVideo
-                :asset="slide.media"
-                :muted="muted"
-                :active="currentSlide === index + 1"
-                class="block-gallery__media rounded-xs"
-                @mute="muted = true"
-              />
-            </UiMuteToggle>
-
             <MediaVideo
               v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
               :asset="slide.media"
-              muted
+              :ratio="slide.ratio"
+              :has-audio="slide.has_audio"
               :active="currentSlide === index + 1"
               class="block-gallery__media rounded-xs"
             />
@@ -157,14 +143,8 @@ const swiperOptions: SwiperOptions = {
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "@/assets/css/app.css";
-
-.block-gallery {
-  .app-story & {
-    --app-background-color: var(--color-offwhite);
-  }
-}
 
 .block-gallery__media-container {
   container-type: size;

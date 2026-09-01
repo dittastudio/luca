@@ -39,6 +39,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
         class="block-split__media"
         :asset="block.media"
         :ratio="block.ratio"
+        :has-audio="block.has_audio"
       />
 
       <p

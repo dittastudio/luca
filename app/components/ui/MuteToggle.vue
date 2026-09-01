@@ -102,16 +102,20 @@ const emit = defineEmits<Emits>()
     position: absolute;
     right: 0;
     bottom: 0;
-    opacity: 1;
+    opacity: 0.5;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(circle at bottom right, --alpha(var(--color-black) / 15%) 0%, --alpha(var(--color-black) / 0%) 15%);
+    background-image: radial-gradient(circle at bottom right, --alpha(var(--color-black) / 30%) 0%, --alpha(var(--color-black) / 0%) 15%);
     pointer-events: none;
-    transition: opacity 0.2s var(--ease-out);
+    transition: opacity 0.3s var(--ease-out);
   }
 
-  &:not(:hover).is-active::before {
+  &.is-active:not(:hover)::before {
     opacity: 0;
+  }
+
+  &:has(.mute-toggle__button:hover)::before {
+    opacity: 1;
   }
 }
 

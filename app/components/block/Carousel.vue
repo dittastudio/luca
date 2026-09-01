@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { BlockCarousel, Slide } from '#storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
+import type { BlockCarousel, Slide } from '#storyblok-components'
 import { useIntersectionObserver } from '@vueuse/core'
 
 interface Props {
@@ -60,7 +60,7 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
               >
                 <MediaImage
                   v-if="item?.media?.filename && storyblokAssetType(item.media.filename) === 'image'"
-                  class="h-full object-cover rounded-xs"
+                  class="h-full rounded-xs"
                   :asset="item.media"
                   :sizes="
                     block.two_per_slide ? `
@@ -77,8 +77,8 @@ const slides = computed(() => block.two_per_slide ? arrayToTuples<Slide>(block.i
 
                 <MediaVideo
                   v-else-if="item?.media?.filename && storyblokAssetType(item.media.filename) === 'video'"
-                  class="h-full object-cover rounded-xs"
-                  :asset="item.media.video"
+                  class="h-full rounded-xs"
+                  :asset="item.media"
                   :ratio="block.two_per_slide ? '8:9' : '16:9'"
                 />
 
