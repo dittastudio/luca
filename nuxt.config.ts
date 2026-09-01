@@ -67,19 +67,6 @@ export default defineNuxtConfig({
     layoutTransition: false,
   },
   css: ['@/assets/css/app.css'],
-  site: {
-    url: 'https://luca.restaurant',
-    name: 'LUCA',
-  },
-  runtimeConfig: {
-    MAILCHIMP_API_KEY: process.env.NUXT_MAILCHIMP_API_KEY,
-    MAILCHIMP_LIST_ID: process.env.NUXT_MAILCHIMP_LIST_ID,
-    MAILCHIMP_SERVER: process.env.NUXT_MAILCHIMP_SERVER,
-    public: {
-      STORYBLOK_TOKEN: process.env.NUXT_STORYBLOK_TOKEN,
-      STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
-    },
-  },
   alias: {
     '#storyblok-components': fileURLToPath(new URL('./.storyblok/types/285210/storyblok-components', import.meta.url)),
     '#storyblok-types': fileURLToPath(new URL('./.storyblok/types/storyblok', import.meta.url)),
@@ -104,6 +91,22 @@ export default defineNuxtConfig({
     noScripts: false,
   },
   compatibilityDate: '2025-04-13',
+  seo: {
+    automaticOgAndTwitterTags: false,
+  },
+  site: {
+    url: 'https://luca.restaurant',
+    name: 'LUCA',
+  },
+  runtimeConfig: {
+    MAILCHIMP_API_KEY: process.env.NUXT_MAILCHIMP_API_KEY,
+    MAILCHIMP_LIST_ID: process.env.NUXT_MAILCHIMP_LIST_ID,
+    MAILCHIMP_SERVER: process.env.NUXT_MAILCHIMP_SERVER,
+    public: {
+      STORYBLOK_TOKEN: process.env.NUXT_STORYBLOK_TOKEN,
+      STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
+    },
+  },
   vite: {
     resolve: {
       dedupe: [
@@ -141,6 +144,7 @@ export default defineNuxtConfig({
     id: 'G-19JK9R6VDM',
   },
   sitemap: {
+    excludeAppSources: true,
     sources: ['/api/sitemap'],
   },
 })
