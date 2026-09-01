@@ -52,6 +52,14 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
+<style>
+@reference "@/assets/css/app.css";
+
+.app-story {
+  --app-background-color: var(--color-offwhite);
+}
+</style>
+
 <style scoped>
 @reference "@/assets/css/app.css";
 

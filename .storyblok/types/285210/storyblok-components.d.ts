@@ -96,6 +96,7 @@ export interface BlockSplit {
   ratio: number | string;
   text: StoryblokRichTextDoc;
   reversed?: boolean;
+  has_audio?: boolean;
   connecting_line?: boolean;
   component: "block_split";
   _uid: string;

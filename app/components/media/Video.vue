@@ -5,23 +5,20 @@ import { useIntersectionObserver } from '@vueuse/core'
 interface Props {
   asset: StoryblokAsset
   ratio?: Luca.TAspectRatios | string | number
-  muted?: boolean
+  hasAudio?: boolean
   active?: boolean
 }
 
-const { asset, ratio = 'auto', muted = true, active = true } = defineProps<Props>()
+const { asset, ratio = 'auto', hasAudio = false, active = true } = defineProps<Props>()
 
-interface Emits {
-  (event: 'mute'): void
-}
-
-const emit = defineEmits<Emits>()
+defineOptions({ inheritAttrs: false })
 
 const video = ref<HTMLVideoElement | null>(null)
 const isIntersecting = ref(false)
 const seen = ref(false)
+const muted = ref(true)
 const src = computed(() => seen.value ? asset?.filename ?? '' : '')
-const isMuted = computed(() => muted || !active || !seen.value)
+const isMuted = computed(() => !hasAudio || muted.value || !active || !seen.value)
 const shouldPlay = computed(() => seen.value && active && isIntersecting.value && !!src.value)
 
 useIntersectionObserver(
@@ -48,22 +45,39 @@ watchEffect(() => {
   }
   else if (!video.value.paused) {
     video.value.pause()
-
-    if (!muted) {
-      emit('mute')
-    }
+    muted.value = true
   }
 })
 </script>
 
 <template>
+  <UiMuteToggle
+    v-if="asset && hasAudio"
+    :muted="muted"
+    v-bind="$attrs"
+    @toggle="muted = !muted"
+  >
+    <video
+      ref="video"
+
+      :src="src"
+      playsinline
+      autoplay
+      :muted="isMuted"
+      loop
+      class="size-full object-cover"
+      :class="ratioMap[ratio]"
+    />
+  </UiMuteToggle>
+
   <video
-    v-if="asset"
+    v-else-if="asset"
     ref="video"
+    v-bind="$attrs"
     :src="src"
     playsinline
     autoplay
-    :muted="isMuted"
+    muted
     loop
     class="size-full object-cover"
     :class="ratioMap[ratio]"
