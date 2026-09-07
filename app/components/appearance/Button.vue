@@ -22,7 +22,7 @@ const { size = 'default' } = defineProps<Props>()
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .appearance-button {
   --button-padding-y: 1em;

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockCard } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockCard } from '#storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
 
 interface Props {

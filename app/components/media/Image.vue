@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { StoryblokAsset } from '@@/.storyblok/types/storyblok'
+import type { StoryblokAsset } from '#storyblok-types'
 import { useIntersectionObserver } from '@vueuse/core'
 
 defineOptions({
@@ -108,7 +108,7 @@ const imgAttrs = computed(() => ({
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .media-image {
   --transition-duration: 1s;
@@ -126,6 +126,7 @@ const imgAttrs = computed(() => ({
 .media-image__asset {
   width: 100%;
   height: inherit;
+  object-fit: cover;
 
   &.is-lazy {
     position: absolute;
@@ -148,6 +149,7 @@ const imgAttrs = computed(() => ({
 
   width: 100%;
   height: inherit;
+  object-fit: cover;
 
   backface-visibility: hidden;
   opacity: 1;

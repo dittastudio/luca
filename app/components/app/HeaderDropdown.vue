@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Link } from '@@/.storyblok/types/285210/storyblok-components'
+import type { Link } from '#storyblok-components'
 
 interface Props {
   title: string
@@ -86,7 +86,7 @@ watch(
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-header-dropdown__line {
   opacity: 0;

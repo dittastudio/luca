@@ -1,5 +1,5 @@
-import type { Link, LinkGroup } from '@@/.storyblok/types/285210/storyblok-components'
-import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
+import type { Link, LinkGroup } from '#storyblok-components'
+import type { StoryblokMultilink, StoryblokRichTextDoc } from '#storyblok-types'
 import type { LocationQuery } from 'vue-router'
 
 const isLink = (media: Link | LinkGroup): media is Link => media.component === 'link'
@@ -70,7 +70,7 @@ const storyblokImage = (
   return path
 }
 
-const storyblokRichTextContent = (richtext: StoryblokRichtext | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
+const storyblokRichTextContent = (richtext: StoryblokRichTextDoc | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
 
 const storyblokSlug = (path: string): string =>
   ['/', ''].includes(path) ? '/home' : path.replace(/\/+$/, '')
@@ -99,7 +99,23 @@ const storyblokImageDimensions = (
   return { width: Number(width), height: Number(height) }
 }
 
+const determineHref = (item: StoryblokMultilink) => {
+  switch (item.linktype) {
+    case 'story': {
+      const path = `/${item.cached_url}`.replace('/home', '/').trim()
+      return path === '/' ? path : path.replace(/\/$/, '')
+    }
+    case 'email': {
+      return `mailto:${item.email}`
+    }
+    default: {
+      return item.cached_url
+    }
+  }
+}
+
 export {
+  determineHref,
   isLink,
   isLinkGroup,
   storyblokAssetType,

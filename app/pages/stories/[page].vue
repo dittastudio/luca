@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Page } from '@@/.storyblok/types/285210/storyblok-components'
+import type { Page } from '#storyblok-components'
 
 const route = useRoute()
 const story = await useStory<Page>(route.path)
@@ -12,10 +12,9 @@ useSeoMeta({
   ogTitle: title ?? story.value.name,
   ogDescription: description,
   ogImage: storyblokImage(image?.filename, imageOptions) || null,
+  ogImageWidth: imageOptions.width,
+  ogImageHeight: imageOptions.height,
   ogType: 'website',
-  twitterTitle: title ?? story.value.name,
-  twitterCard: 'summary_large_image',
-  twitterImage: storyblokImage(image?.filename, imageOptions) || null,
 })
 </script>
 

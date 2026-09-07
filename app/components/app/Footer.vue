@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
+import type { StoryblokRichtext } from '#storyblok-types'
 import IconFacebook from '@/assets/icons/facebook.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
 import IconTikTok from '@/assets/icons/tiktok.svg'
@@ -99,7 +99,7 @@ const socialList = [
           </h2>
 
           <div class="text-balance [*+&]:mt-4">
-            <StoryblokText :content="newsletter" />
+            <StoryblokText :html="newsletter" />
           </div>
 
           <div class="[*+&]:mt-2">
@@ -126,7 +126,7 @@ const socialList = [
 
         <template #content>
           <div class="text-pretty">
-            <StoryblokText :content="openingTimes" />
+            <StoryblokText :html="openingTimes" />
           </div>
         </template>
       </AppFooterAccordion>
@@ -149,7 +149,7 @@ const socialList = [
 
         <template #content>
           <div class="text-pretty">
-            <StoryblokText :content="contact" />
+            <StoryblokText :html="contact" />
           </div>
         </template>
       </AppFooterAccordion>
@@ -172,7 +172,7 @@ const socialList = [
 
         <template #content>
           <div class="text-pretty">
-            <StoryblokText :content="reservations" />
+            <StoryblokText :html="reservations" />
           </div>
         </template>
       </AppFooterAccordion>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockMedia } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockMedia } from '#storyblok-components'
 
 interface Props {
   block: BlockMedia
@@ -39,6 +39,7 @@ const columnSpan = computed(() => Number(block.column_end) - Number(block.column
         class="rounded-xs"
         :asset="block.media"
         :ratio="block.ratio"
+        :has-audio="block.has_audio"
       />
 
       <p

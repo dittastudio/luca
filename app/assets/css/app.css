@@ -8,6 +8,8 @@
 
 @import "tailwindcss";
 
+@custom-variant only-hover (@media (hover: hover));
+
 @theme {
   --color-white: #fff;
   --color-black: #000;

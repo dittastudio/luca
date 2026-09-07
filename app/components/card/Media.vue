@@ -34,7 +34,7 @@ const { title, headline } = defineProps<Props>()
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .card-media__media {
   @media (hover: hover) {

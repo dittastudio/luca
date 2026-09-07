@@ -18,7 +18,7 @@ const { isOpen = false } = defineProps<Props>()
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-footer-accordion-icon {
   --size: --spacing(4);

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockSplit } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockSplit } from '#storyblok-components'
 
 interface Props {
   block: BlockSplit
@@ -39,6 +39,7 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
         class="block-split__media"
         :asset="block.media"
         :ratio="block.ratio"
+        :has-audio="block.has_audio"
       />
 
       <p
@@ -55,14 +56,14 @@ const isStoryPage = computed(() => route.path.startsWith('/stories/') && route.p
         class="block-split__copy prose"
         :class="{ 'prose--large': !isStoryPage }"
       >
-        <StoryblokText :content="block.text" />
+        <StoryblokText :html="block.text" />
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .block-split {
   @variant md {

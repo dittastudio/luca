@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockButton } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockButton } from '#storyblok-components'
 
 interface Props {
   block: BlockButton

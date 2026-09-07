@@ -30,14 +30,16 @@ const colEndMap: Record<string, string> = {
 
 const ratioMap: Record<string, string> = {
   'auto': '',
+  '16:10': 'aspect-16/10',
+  '10:16': 'aspect-10/16',
   '16:9': 'aspect-16/9',
   '9:16': 'aspect-9/16',
-  '8:9': 'aspect-8/9',
-  '3:2': 'aspect-3/2',
-  '2:3': 'aspect-2/3',
+  '5:4': 'aspect-5/4',
+  '4:5': 'aspect-4/5',
   '4:3': 'aspect-4/3',
   '3:4': 'aspect-3/4',
-  '1:1.414': 'aspect-1/1.414',
+  '3:2': 'aspect-3/2',
+  '2:3': 'aspect-2/3',
   '1:1': 'aspect-1/1',
 } as const
 

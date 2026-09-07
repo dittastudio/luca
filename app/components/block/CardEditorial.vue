@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockCardEditorial } from '@@/.storyblok/types/285210/storyblok-components'
+import type { BlockCardEditorial } from '#storyblok-components'
 
 interface Props {
   block: BlockCardEditorial

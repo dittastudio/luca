@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { BlockGallery } from '@@/.storyblok/types/285210/storyblok-components'
 import type { SwiperOptions } from 'swiper/types'
+import type { BlockGallery, Slide } from '#storyblok-components'
 
 interface Props {
   block: BlockGallery
@@ -11,6 +11,18 @@ const currentSlide = ref(1)
 
 const setCurrentSlide = (slide: number) => {
   currentSlide.value = slide
+}
+
+const getMediaDimensions = (slide: Slide) => {
+  if (validAspectRatio(slide.ratio)) {
+    return ratioDimensions(slide.ratio!)
+  }
+
+  if (slide.media?.filename && storyblokAssetType(slide.media.filename) === 'image') {
+    return storyblokImageDimensions(slide.media.filename)
+  }
+
+  return { width: 0, height: 0 }
 }
 
 const swiperOptions: SwiperOptions = {
@@ -48,41 +60,54 @@ const swiperOptions: SwiperOptions = {
       :options="swiperOptions"
       @current-slide="setCurrentSlide"
     >
-      <template #slide="{ slide }">
+      <template #slide="{ slide, index }">
         <div
           class="
             wrapper
             h-full
             py-(--app-header-height)
             bg-(--app-background-color)
-            md:py-[calc(var(--app-header-height)/1.5)]
+            md:pt-[calc(var(--app-header-height)/1.5)]
+            md:pb-[calc(var(--app-header-height)*0.85)]
           "
         >
-          <div class="block-gallery__grid h-[inherit] md:grid-cols-(--app-grid) md:gap-(--app-inner-gutter) md:justify-center">
-            <div
-              v-if="slide?.media?.filename"
-              class="block-gallery__inner col-span-full min-h-full h-full md:col-start-3 md:col-span-8"
-            >
-              <MediaImage
-                v-if="storyblokAssetType(slide.media.filename) === 'image'"
-                class="block-gallery__media rounded-xs"
-                :asset="slide.media"
-                sizes="
-                  100vw
-                  md:50vw
-                  lg:50vw
-                  xl:50vw
-                  2xl:50vw
-                  3xl:50vw
-                "
-              />
+          <div
+            v-if="slide?.media?.filename"
+            class="
+              block-gallery__media-container
+              h-full
+              w-full
+              flex
+              items-center
+              justify-center
+            "
+            :style="{
+              '--media-w': getMediaDimensions(slide).width || undefined,
+              '--media-h': getMediaDimensions(slide).height || undefined,
+            }"
+          >
+            <MediaImage
+              v-if="storyblokAssetType(slide.media.filename) === 'image'"
+              class="block-gallery__media rounded-xs"
+              :asset="slide.media"
+              sizes="
+                100vw
+                md:50vw
+                lg:50vw
+                xl:50vw
+                2xl:50vw
+                3xl:50vw
+              "
+            />
 
-              <MediaVideo
-                v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
-                :asset="slide.media"
-                class="block-gallery__media rounded-xs"
-              />
-            </div>
+            <MediaVideo
+              v-else-if="storyblokAssetType(slide.media.filename) === 'video'"
+              :asset="slide.media"
+              :ratio="slide.ratio"
+              :has-audio="slide.has_audio"
+              :active="currentSlide === index + 1"
+              class="block-gallery__media rounded-xs"
+            />
           </div>
         </div>
       </template>
@@ -118,16 +143,17 @@ const swiperOptions: SwiperOptions = {
   </div>
 </template>
 
-<style>
-@reference "@/assets/css/main.css";
+<style scoped>
+@reference "@/assets/css/app.css";
 
-.block-gallery {
-  .app-story & {
-    --app-background-color: var(--color-offwhite);
-  }
+.block-gallery__media-container {
+  container-type: size;
+}
 
-  & img {
-    object-fit: contain;
+.block-gallery__media {
+  && {
+    width: min(100cqw, 100cqh * var(--media-w, 16) / var(--media-h, 9));
+    height: min(100cqh, 100cqw * var(--media-h, 9) / var(--media-w, 16));
   }
 }
 </style>

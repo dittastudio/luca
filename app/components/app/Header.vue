@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Link, LinkGroup } from '@@/.storyblok/types/285210/storyblok-components'
+import type { Link, LinkGroup } from '#storyblok-components'
 import IconLucaLogo from '@/assets/icons/luca-logo.svg'
 import IconMichelin from '@/assets/icons/michelin.svg'
 
@@ -317,7 +317,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-header {
   @variant max-md {

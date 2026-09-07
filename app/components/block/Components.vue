@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Page } from '@@/.storyblok/types/285210/storyblok-components'
+import type { Page } from '#storyblok-components'
 
 interface Props {
   content: Page
@@ -89,7 +89,7 @@ const isStory = computed(() => route.path.startsWith('/stories/'))
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .block-components__item {
   --_spacing: --spacing(30);

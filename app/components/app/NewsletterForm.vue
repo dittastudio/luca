@@ -170,7 +170,7 @@ const onSubmit = async () => {
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-footer-form {
   position: relative;

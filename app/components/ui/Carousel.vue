@@ -128,6 +128,7 @@ watch(() => options, () => {
         <slot
           name="slide"
           :slide="slide"
+          :index="index"
         />
       </div>
     </div>
@@ -168,19 +169,20 @@ watch(() => options, () => {
 
   <template v-else>
     <template
-      v-for="slide in slides"
+      v-for="(slide, index) in slides"
       :key="slide"
     >
       <slot
         name="slide"
         :slide="slide"
+        :index="index"
       />
     </template>
   </template>
 </template>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .ui-carousel {
   --dot-size: 8px;
@@ -212,10 +214,6 @@ watch(() => options, () => {
   background-color: var(--app-background-color);
 
   transition-property: transform;
-
-  .app-story & {
-    background-color: var(--color-offwhite);
-  }
 }
 
 .ui-carousel__button {
