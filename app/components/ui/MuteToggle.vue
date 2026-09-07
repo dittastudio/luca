@@ -102,10 +102,10 @@ const emit = defineEmits<Emits>()
     position: absolute;
     right: 0;
     bottom: 0;
-    opacity: 0.5;
+    opacity: 0.75;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(circle at bottom right, --alpha(var(--color-black) / 30%) 0%, --alpha(var(--color-black) / 0%) 15%);
+    background-image: radial-gradient(circle at bottom right, --alpha(var(--color-black) / 50%) 0%, --alpha(var(--color-black) / 0%) 25%);
     pointer-events: none;
     transition: opacity 0.3s var(--ease-out);
   }
