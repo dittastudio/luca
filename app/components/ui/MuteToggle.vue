@@ -47,6 +47,7 @@ const emit = defineEmits<Emits>()
     >
       <span
         class="
+          mute-toggle__button-inner
           flex
           items-center
           justify-center
@@ -54,14 +55,9 @@ const emit = defineEmits<Emits>()
           p-1
           backdrop-blur-xs
           rounded-full
-          text-offwhite/70
-          group-hover/button:text-offwhite
           transition-colors
           duration-300
           ease-out
-          bg-offwhite/20
-          outline
-          outline-offwhite/30
         "
       >
         <svg
@@ -103,9 +99,9 @@ const emit = defineEmits<Emits>()
     right: 0;
     bottom: 0;
     opacity: 0.75;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle at bottom right, --alpha(var(--color-black) / 50%) 0%, --alpha(var(--color-black) / 0%) 25%);
+    width: --spacing(80);
+    height: --spacing(80);
+    background-image: radial-gradient(circle at bottom right, --alpha(var(--color-black) / 30%) 0%, --alpha(var(--color-black) / 0%) 15%);
     pointer-events: none;
     transition: opacity 0.3s var(--ease-out);
   }
@@ -113,9 +109,22 @@ const emit = defineEmits<Emits>()
   &.is-active:not(:hover)::before {
     opacity: 0;
   }
+}
 
-  &:has(.mute-toggle__button:hover)::before {
-    opacity: 1;
+.mute-toggle__button-inner {
+  background-color: --alpha(var(--color-black) / 80%);
+  color: --alpha(var(--color-white) / 80%);
+  outline: 1px solid --alpha(var(--color-offwhite) / 20%);
+
+  .mute-toggle__button:hover & {
+    color: --alpha(var(--color-white) / 100%);
+    outline-color: --alpha(var(--color-offwhite) / 30%);
+  }
+
+  .mute-toggle.is-active & {
+    background-color: --alpha(var(--color-offwhite) / 20%);
+    color: var(--color-offwhite);
+    outline-color: --alpha(var(--color-offwhite) / 30%);
   }
 }
 
